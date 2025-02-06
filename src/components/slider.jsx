@@ -86,7 +86,7 @@ const Slider = () => {
                                 }}
                             />
                             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
-                                <h2 className="text-white text-center text-[60px] sm:text-5xl font-semibold">{slide.text}</h2>
+                                <h2 className="text-white text-center sm:text-3xl md:text-4xl lg:text-5xl font-semibold">{slide.text}</h2>
                             </div>
                         </div>
                     ))}

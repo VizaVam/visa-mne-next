@@ -54,7 +54,7 @@ export default function Header() {
             <div className={"header__bottom"}>
                 <div className={"header__bottom-left"}>
                     <a href={"/"} className={"header__bottom-left"}>
-                        <img src={"/logoNew.png"} alt={""}/>
+                        <img src={"/logo-visamne.png"} alt={""}/>
                     </a>
                 </div>
                 <div className={"header__bottom-right"}>

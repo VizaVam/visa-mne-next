@@ -66,9 +66,9 @@ export default function CountryPage({params}) {
                         {["poland", "slovenia", "germany", "spain", "france", "usa", "netherland", "greece", "hungary", "romania", "austria"].includes(selectedCountry.url) && (
                             <div className="py-24 flex flex-col gap-8 w-[60%]">
                                 {selectedCountry.title &&
-                                    <h1 className="text-black text-[40px] font-medium">{selectedCountry.title}</h1>}
+                                    <h1 className="text-black text-4xl font-medium">{selectedCountry.title}</h1>}
                                 {selectedCountry.text1 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text1}</p>}
+                                    <p className="text-black text-xl font-medium">{selectedCountry.text1}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
                                     <ul className="text-black text-lg font-medium flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
@@ -80,15 +80,15 @@ export default function CountryPage({params}) {
                                     </ul>
                                 )}
                                 {selectedCountry.text2 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text2}</p>}
+                                    <p className="text-black text-xl font-medium">{selectedCountry.text2}</p>}
                                 {selectedCountry.text3 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text3}</p>}
+                                    <p className="text-black text-xl font-medium">{selectedCountry.text3}</p>}
                                 {selectedCountry.text4 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text4}</p>}
+                                    <p className="text-black text-xl font-medium">{selectedCountry.text4}</p>}
                                 {selectedCountry.text5 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text5}</p>}
+                                    <p className="text-black text-xl font-medium">{selectedCountry.text5}</p>}
                                 {selectedCountry.title2 &&
-                                    <h1 className="text-black text-[40px] font-medium">{selectedCountry.title2}</h1>}
+                                    <h1 className="text-black text-4xl font-medium">{selectedCountry.title2}</h1>}
                                 {selectedCountry.variants2 && selectedCountry.variants2.length > 0 && (
                                     <ul className="text-black text-lg font-medium flex flex-col gap-2">
                                         {selectedCountry.variants2.map((variant, index) => (

@@ -12,7 +12,7 @@ export default function HomePage({onOpenModal}) {
             <section
                 className="lg:px-16 lg:mt-[40px] mt-[170px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row items-center lg:items-start relative">
                 {/* Левая часть */}
-                <div className="lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%]">
+                <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
                     <h1 className="text-3xl lg:text-6xl font-semibold text-black">
                         КОМПАНИЯ<span className="text-6xl">“VISA VAM”</span>
                     </h1>

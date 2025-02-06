@@ -4,6 +4,8 @@ import './output.css';
 import './styles.scss';
 import Header from '../components/header'
 import Footer from '../components/footer';
+import Modal from "@/components/modal";
+import {ModalProvider} from "@/components/modalcontext";
 
 const interSans = Inter({
     variable: '--font-inter-sans',
@@ -24,9 +26,12 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <body className={`${interSans.variable} ${caveatSans.variable} antialiased`}>
-        <Header/>
-        <main>{children}</main>
-        <Footer/>
+        <ModalProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Modal /> {/* Добавляем модалку, чтобы она была доступна везде */}
+        </ModalProvider>
         </body>
         </html>
     );

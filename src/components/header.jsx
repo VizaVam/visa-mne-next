@@ -1,21 +1,9 @@
 'use client'
 
-import { useState } from "react";
-import Modal from "../components/Modal";
+import { useModal } from "@/components/modalcontext";
 
-export default function Header({onOpenModal}) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-        onOpenModal();
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
+export default function Header() {
+    const { openModal } = useModal();
 
     return (
         <header className={"header"}>
@@ -79,16 +67,13 @@ export default function Header({onOpenModal}) {
                         </a>
                     </div>
                     <button
-                        onClick={() => {
-                        onOpenModal();
-                        setIsMenuOpen(false);}}
+                        onClick={openModal}
                         className={"header__bottom-right-btn"}
                     >
                         Оформить заявку
                     </button>
                 </div>
             </div>
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
         </header>
     );
 };

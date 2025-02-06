@@ -1,6 +1,6 @@
 const Steps = () => {
     return (
-        <div className="w-full px-[7%] py-20 flex flex-col">
+        <div className="w-full px-[7%] py-32 flex flex-col">
             {/* Title */}
             <h1 className="text-4xl lg:text-5xl font-medium mb-16">
                 3 шага для получения визы

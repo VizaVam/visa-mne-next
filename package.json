@@ -12,7 +12,8 @@
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-input-mask": "^2.0.4",
+    "react-imask": "^7.6.1",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-swipeable": "^7.0.2",
     "sass": "^1.83.4"
   },

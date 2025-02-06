@@ -1,16 +1,18 @@
 'use client'
 
 import { useState } from "react";
-import InputMask from "react-input-mask";
+import { useModal } from "@/components/modalcontext";
+import { IMaskInput } from "react-imask";
 
-const Modal = ({ isOpen, onClose }) => {
-    const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
+const Modal = () => {
+    const [formData, setFormData] = useState({ name: "", phone: null, email: "" });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState("");
     const [isAgreed, setIsAgreed] = useState(true);
+    const { isModalOpen, closeModal } = useModal();
 
-    if (!isOpen) return null;
+    if (!isModalOpen) return null;
 
     const validatePhone = (phone) => {
         const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
@@ -25,7 +27,7 @@ const Modal = ({ isOpen, onClose }) => {
 
     const handlePhoneInput = (e) => {
         const { value } = e.target;
-        setFormData((prev) => ({ ...prev, phone: value }));
+        setFormData({ ...formData, phone: event.target.value });
         setErrors((prev) => ({ ...prev, phone: "" }));
     };
 
@@ -88,11 +90,11 @@ const Modal = ({ isOpen, onClose }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
             <div className="bg-white p-8 rounded-[2px] shadow-lg max-w-md w-full relative">
                 <button
+                    onClick={closeModal}
                     className="absolute top-2 right-2 text-[#F86F00] font-bold text-lg"
-                    onClick={onClose}
                 >
                     <img src="/close.svg" alt="Закрыть" />
                 </button>
@@ -119,11 +121,14 @@ const Modal = ({ isOpen, onClose }) => {
                         )}
                     </div>
                     <div className="mb-4">
-                        <InputMask
-                            mask="+999 99 999-99-99"
+                        <IMaskInput
+                            mask="+000 00 000-00-00" // 000 вместо 999, чтобы избежать автозаполнения
+                            definitions={{
+                                0: /[0-9]/, // Позволяет вводить только цифры
+                            }}
                             name="phone"
                             placeholder="Телефон*"
-                            value={formData.phone}
+                            value={formData.phone || ""}
                             onChange={handlePhoneInput}
                             className={`w-full border ${
                                 errors.phone ? "border-red-500" : "border-gray-300"

@@ -1,4 +1,22 @@
-export default function Header() {
+'use client'
+
+import { useState } from "react";
+import Modal from "../components/Modal";
+
+export default function Header({onOpenModal}) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+        onOpenModal();
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <header className={"header"}>
             <div className={"header__top"}>
@@ -48,7 +66,7 @@ export default function Header() {
             <div className={"header__bottom"}>
                 <div className={"header__bottom-left"}>
                     <a href={"/"} className={"header__bottom-left"}>
-                        <img src={"/logoNew.png"} alt={""} />
+                        <img src={"/logoNew.png"} alt={""}/>
                     </a>
                 </div>
                 <div className={"header__bottom-right"}>
@@ -60,11 +78,17 @@ export default function Header() {
                             Контакты
                         </a>
                     </div>
-                    <button className={"header__bottom-right-btn"}>
+                    <button
+                        onClick={() => {
+                        onOpenModal();
+                        setIsMenuOpen(false);}}
+                        className={"header__bottom-right-btn"}
+                    >
                         Оформить заявку
                     </button>
                 </div>
             </div>
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
         </header>
     );
 };

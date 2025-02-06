@@ -1,40 +1,14 @@
 'use client'
 
-import {useEffect, useState} from "react";
-import {useSwipeable} from "react-swipeable";
-import {CarouselButton} from "./icons";
+import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
+import { CarouselButton } from "./icons";
 
 const reviews = [
-    {
-        id: 1,
-        name: "Владимир Зайцев",
-        text: "Выражаю искреннюю признательность за консультации и помощь в планирование моего путешествия.",
-        image: "/1м.png",
-    },
-    {
-        id: 2,
-        name: "Игорь Барташов",
-        text: "Помогли планировать поездку очень оперативно. Обратился, приехал в офис, все сделали! Профессионализм!",
-        image: "/2м.png",
-    },
-    {
-        id: 3,
-        name: "Дмитрий Вольский",
-        text: "Спасибо за профессиональную помощь!",
-        image: "/3м.png",
-    },
-    {
-        id: 4,
-        name: "Аганова Марина",
-        text: "Благодарю менеджеров за профессиональную консультацию по моей нестандартной ситуации.",
-        image: "/4м.png",
-    },
-    {
-        id: 5,
-        name: "Ирина Васкина",
-        text: "Обращаюсь в третий раз в компанию. И сестра моя обращалась, и муж. Искренне благодарю директора, знакомы лично уже, менеджеров рекомендую всем своим знакомым.",
-        image: "/5м_1.png",
-    },
+    { id: 1, name: "Виктор Бородин", text: "Спасибо большео за помощь. Получил визу легко и быстро. Отличный сервис и профессионалы. Буду обращаться в дальнейшем только сюда и всем рекомендую.", image: "/r-1.png" },
+    { id: 2, name: "Виктор Бородин", text: "Спасибо большео за помощь. Получил визу легко и быстро. Отличный сервис и профессионалы. Буду обращаться в дальнейшем только сюда и всем рекомендую.", image: "/r-2.png" },
+    { id: 3, name: "Антон Петровский", text: "Спасибо большео за помощь. Получил визу легко и быстро. Отличный сервис и профессионалы. Буду обращаться в дальнейшем только сюда и всем рекомендую.", image: "/r-3.png" },
+    { id: 4, name: "Антон Петровский", text: "Спасибо большео за помощь. Получил визу легко и быстро. Отличный сервис и профессионалы. Буду обращаться в дальнейшем только сюда и всем рекомендую.", image: "/r-4.png" },
 ];
 
 const Reviews = () => {
@@ -42,50 +16,32 @@ const Reviews = () => {
     const [visibleCards, setVisibleCards] = useState(1);
     const gap = 16;
 
-    // Определяем количество видимых карточек в зависимости от ширины экрана
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1024) {
-                setVisibleCards(3.5);
-            } else {
-                setVisibleCards(1);
-            }
+            setVisibleCards(Math.floor(window.innerWidth >= 1024 ? 3.5 : 1));
         };
-        handleResize(); // Проверяем при загрузке
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Переключение на следующий слайд
-    const nextSlide = () => {
-        if (currentIndex < reviews.length - visibleCards) {
-            setCurrentIndex(currentIndex + 1);
-        }
-    };
+    const maxIndex = Math.max(reviews.length - visibleCards, 0);
 
-    // Переключение на предыдущий слайд
-    const prevSlide = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-        }
-    };
+    const nextSlide = () => setCurrentIndex((prev) => Math.min(prev + visibleCards, maxIndex));
+    const prevSlide = () => setCurrentIndex((prev) => Math.max(prev - visibleCards, 0));
 
-    // Свайп-обработчики
     const swipeHandlers = useSwipeable({
-        onSwipedLeft: nextSlide,
-        onSwipedRight: prevSlide,
+        onSwipedLeft: () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex)),
+        onSwipedRight: () => setCurrentIndex((prev) => Math.max(prev - 1, 0)),
         trackMouse: true,
     });
 
     return (
-        <div className="py-12 px-[7%]" {...swipeHandlers}>
-            <h2 className="text-4xl lg:text-5xl font-medium mb-8 lg:mb-16">
-                Отзывы наших клиентов
-            </h2>
+        <div className="pt-20 px-[7%]" {...swipeHandlers}>
+            <h2 className="text-4xl lg:text-5xl font-medium mb-8 lg:mb-16">Отзывы наших клиентов</h2>
             <div className="relative overflow-hidden">
-                {/* Карточки */}
                 <div
-                    className="flex gap-4 transition-transform duration-500 ease-in-out w-full"
+                    className="flex gap-4 transition-transform duration-500 ease-in-out"
                     style={{
                         transform: `translateX(calc(-${currentIndex * (100 / visibleCards)}% - ${currentIndex * gap}px))`,
                     }}
@@ -93,44 +49,31 @@ const Reviews = () => {
                     {reviews.map((review) => (
                         <div
                             key={review.id}
-                            className="w-auto lg:w-1/4 md:w-1/3 sm:w-1/2 flex-shrink-0 bg-[#FAFAFA] border-[1px] border-[#ECECEC] rounded-[2px] p-6 text-center transition-transform duration-500 ease-in-out transform"
+                            className="w-auto xl:w-[24.2%] lg:w-[32%] sm:w-[49%] flex-shrink-0 bg-[#FAFAFA] border-[1px] border-[#ECECEC] rounded-[2px] p-6 text-center"
                         >
-                            <img
-                                src={review.image}
-                                alt={review.name}
-                                className="w-24 h-24 mx-auto rounded-full mb-4 object-cover"
-                            />
-                            <h3 className="text-lg font-bold mb-2">{review.name}</h3>
-                            <p className="text-sm text-gray-600">{review.text}</p>
+                            <img src={review.image} alt={review.name} className="w-36    h-36 mx-auto rounded-full mb-4 object-cover"/>
+                            <h3 className="text-xl font-medium mb-2">{review.name}</h3>
+                            <p className="text-lg text-gray-600">{review.text}</p>
                         </div>
                     ))}
                 </div>
             </div>
-            {/* Навигация */}
             <div className="flex justify-center items-center mt-8 space-x-4">
                 <button
                     onClick={prevSlide}
-                    className={`text-gray-600 hover:text-orange-500 transition-colors duration-300 ${
-                        currentIndex === 0 && "opacity-50 cursor-not-allowed"
-                    }`}
                     disabled={currentIndex === 0}
                     aria-label="Назад"
+                    className={`text-gray-600 hover:text-orange-500 transition-colors duration-300 ${currentIndex === 0 && "opacity-50 cursor-not-allowed"}`}
                 >
-                    <CarouselButton color={currentIndex > 0 ? "#F86F00" : "#595959"}/>
+                    <CarouselButton color={currentIndex > 0 ? "#F86F00" : "#595959"} />
                 </button>
                 <button
                     onClick={nextSlide}
-                    className={`text-orange-500 hover:text-orange-600 transition-colors duration-300 ${
-                        currentIndex >= reviews.length - visibleCards &&
-                        "opacity-50 cursor-not-allowed"
-                    }`}
-                    disabled={currentIndex >= reviews.length - visibleCards}
+                    disabled={currentIndex >= maxIndex}
                     aria-label="Вперед"
+                    className={`text-orange-500 hover:text-orange-600 transition-colors duration-300 ${currentIndex >= maxIndex && "opacity-50 cursor-not-allowed"}`}
                 >
-                    <CarouselButton
-                        isRight={true}
-                        color={currentIndex < reviews.length - visibleCards ? "#F86F00" : "#595959"}
-                    />
+                    <CarouselButton isRight={true} color={currentIndex < maxIndex ? "#F86F00" : "#595959"} />
                 </button>
             </div>
         </div>

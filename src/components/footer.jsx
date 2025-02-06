@@ -26,22 +26,28 @@ export default function Footer(){
                             <div className={"footer__top-right-right-lists-list"}>
                                 <img src={"/footer-call.png"} alt={""}/>
                                 <div>
-                                    <p>+375296800620</p>
-                                    <p>+375293734870</p>
+                                    <a href={"tel:+375296800620"}>
+                                        +375296800620
+                                    </a>
+                                    <a href={"tel:+375293734870"}>
+                                        +375293734870
+                                    </a>
                                 </div>
                             </div>
                             <div className={"footer__top-right-right-lists-list"}>
                                 <img src={"/footer-email.png"} alt={""}/>
                                 <div>
-                                    <p>info@visavam.by</p>
+                                    <a href={"mailto:l336906097@gmail.com"}>
+                                        info@visavam.by
+                                    </a>
                                 </div>
                             </div>
-                            <div className={"footer__top-right-right-lists-list"}>
+                            <a href={"https://www.google.com/maps/place/%D0%92%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9+%D0%A6%D0%B5%D0%BD%D1%82%D1%80+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA/@53.910344,27.544728,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcf6dc479a1b9:0x20fc9ea41769ce82!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11hf27ckdt?entry=ttu"} className={"footer__top-right-right-lists-list"}>
                                 <img src={"/footer-location.png"} alt={""}/>
                                 <div>
                                     <p>Минск, пр. Победителей 17 офис 1204 (метро Немига)</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div className={"footer__top-right-right-socs"}>
                             <a

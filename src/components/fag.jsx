@@ -4,9 +4,9 @@ import {useState} from "react";
 
 const faqData = [
     {
-        question: "Почему именно вы?",
+        question: "Предоставляется ли семьям скидка на Ваши услуги?",
         answer:
-            "Наша компания на рынке уже более 10-ти лет. За это время наши специалисты сталкивались с разными случаями и находили индивидуальный подход для каждого клиента.",
+            "Делая визу у нас всей семьей, вы получаете скидку 5% на наши услуги. Мы поможем собрать все документы для детей и взрослых быстро и в срок.",
     },
     {
         question: "Какая система скидок на ваши услуги?",
@@ -76,14 +76,14 @@ const FAQ = () => {
     };
 
     return (
-        <div className="pt-12 px-[7%]">
+        <div className="pt-20 px-[7%]">
             <h2 className="text-4xl lg:text-5xl font-medium mb-8 lg:mb-16">Вопрос-ответ</h2>
             <div className="space-y-4">
                 {faqData.map((faq, index) => (
                     <div key={index} className="border border-orange-500 rounded-t-[2px]">
                         <button
                             className="flex justify-between items-center w-full bg-orange-500 text-white py-4 px-6 font-medium text-left focus:outline-none"
-                            onClick={() => toggleFAQ({index: index})}
+                            onClick={() => toggleFAQ(index)}
                         >
                             <span>В: {faq.question}</span>
                             <span>
@@ -106,7 +106,7 @@ const FAQ = () => {
                         {openIndex === index && (
                             <div
                                 className="bg-white py-4 px-6 text-gray-700"
-                                dangerouslySetInnerHTML={{__html: faq.answer}}
+                                dangerouslySetInnerHTML={{__html: "О: " + faq.answer}}
                             />
                         )}
                     </div>

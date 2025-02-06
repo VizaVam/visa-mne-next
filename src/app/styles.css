@@ -38,12 +38,12 @@
 }
 .header__bottom-right {
   display: flex;
-  gap: 3rem;
+  gap: 5rem;
   align-items: center;
 }
 .header__bottom-right-links {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
 }
 .header__bottom-right-links a {
   font-size: 1rem;

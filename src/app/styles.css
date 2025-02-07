@@ -20,6 +20,10 @@
   clip-path: polygon(0px 0px, 97% 0px, 100% 100%, 0px 100%);
   padding: 0.8rem 7%;
 }
+.header__top-left-num {
+  display: flex;
+  gap: 1rem;
+}
 .header__top-right {
   display: flex;
   gap: 2rem;
@@ -224,6 +228,19 @@
     margin-left: 0;
     width: 100%;
     padding: 1rem;
+  }
+  .header__top {
+    flex-direction: column;
+  }
+  .header__top-left {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 7%;
+    padding-right: 0;
+    gap: 0.3rem;
+  }
+  .header__top-left-num {
+    gap: 0.3rem;
   }
   .header__bottom-left img {
     height: 4rem;

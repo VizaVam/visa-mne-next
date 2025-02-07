@@ -16,12 +16,14 @@ export default function Header() {
             <header className={"header"}>
                 <div className={"header__top"}>
                     <div className={"header__top-left"}>
-                        <span>пр. Победителей 17, офис 1204</span>
-                        <span>Пн-пт: с 09:00 до 19:00</span>
-                        <span>Сб: c 10:00 до 14:00</span>
+                        <span className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>пр. Победителей 17, офис 1204</span>
+                        <div className={"header__top-left-num"}>
+                            <span className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Пн-пт: с 09:00 до 19:00</span>
+                            <span className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Сб: c 10:00 до 14:00</span>
+                        </div>
                     </div>
                     <div className={"header__top-right"}>
-                        <div className={"header__top-right-num"}>
+                    <div className={"header__top-right-num"}>
                             <a href="tel:+375296800620">
                                 +375296800620
                             </a>

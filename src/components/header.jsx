@@ -64,7 +64,7 @@ export default function Header() {
                 <div className={"header__bottom"}>
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
-                            <Image width={1000} height={800} src={"/logo-visamne.png"} alt={""} className={"lg:h-16 md:h-16 sm:h-12 mdd:h-12 w-full"} />
+                            <Image width={1000} height={800} src={"/logo-visamne.png"} alt={""} className={"lg:h-16 md:h-16 sm:h-12 mdd:h-12 lg:w-16 md:w-16 sm:w-12 mdd:w-12"} />
                         </a>
                     </div>
                     <div className={"header__bottom-right"}>

@@ -5,6 +5,7 @@ import Reviews from "@/components/reviews";
 import Fag from "@/components/fag"
 import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
+import Image from "next/image";
 
 export default function HomePage({onOpenModal}) {
     return (
@@ -27,8 +28,8 @@ export default function HomePage({onOpenModal}) {
                 {/* Правая часть */}
                 <div className="w-full lg:flex items-center -mt-[20%] lg:mt-0 relative z-5">
                     {/* Изображение */}
-                    <img
-                        src="/banner-hero.svg"
+                    <Image width={2000} height={1000}
+                           src="/banner-hero.svg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%]"
                     />
@@ -44,28 +45,28 @@ export default function HomePage({onOpenModal}) {
                 <ul
                     className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-1/2 space-y-4 text-left p-4 rounded-md">
                     <li className="flex items-center text-lg">
-                        <img src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <p className="font-[500] text-[20px]">
                             Более 10 лет <br/>
                             <span className="text-[16px] text-[#808080]">на рынке</span>
                         </p>
                     </li>
                     <li className="flex items-center text-lg">
-                        <img src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <p className="font-[500] text-[20px]">
                             20 000+<br/>
                             <span className="text-[16px] text-[#808080]">успешных кейсов</span>
                         </p>
                     </li>
                     <li className="flex items-center text-lg">
-                        <img src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <p className="font-[500] text-[20px]">
                             10 000+<br/>
                             <span className="text-[16px] text-[#808080]">довольных клиентов</span>
                         </p>
                     </li>
                     <li className="flex items-center text-lg font-[500] text-[20px]">
-                        <img src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         Персональный подход
                     </li>
                 </ul>

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer(){
     return (
         <footer className={"footer"}>
@@ -25,7 +27,7 @@ export default function Footer(){
                             <h3>Контакты</h3>
                             <div className={"footer__top-right-main-right-lists"}>
                                 <div className={"footer__top-right-main-right-lists-list"}>
-                                    <img src={"/footer-call.png"} alt={""}/>
+                                    <Image width={1000} height={800}  src={"/footer-call.png"} alt={""}/>
                                     <div className={"flex flex-col"}>
                                         <a href={"tel:+375296800620"}>
                                             +375296800620
@@ -36,7 +38,7 @@ export default function Footer(){
                                     </div>
                                 </div>
                                 <div className={"footer__top-right-main-right-lists-list"}>
-                                    <img src={"/footer-email.png"} alt={""}/>
+                                    <Image width={1000} height={800}  src={"/footer-email.png"} alt={""}/>
                                     <div>
                                         <a href={"mailto:l336906097@gmail.com"}>
                                             info@visavam.by
@@ -45,7 +47,7 @@ export default function Footer(){
                                 </div>
                                 <a href={"https://www.google.com/maps/place/%D0%92%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9+%D0%A6%D0%B5%D0%BD%D1%82%D1%80+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA/@53.910344,27.544728,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcf6dc479a1b9:0x20fc9ea41769ce82!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11hf27ckdt?entry=ttu"}
                                    className={"footer__top-right-main-right-lists-list"}>
-                                    <img src={"/footer-location.png"} alt={""}/>
+                                    <Image width={1000} height={800}  src={"/footer-location.png"} alt={""}/>
                                     <div>
                                         <p>Минск, пр. Победителей 17 офис 1204 (метро Немига)</p>
                                     </div>
@@ -59,21 +61,21 @@ export default function Footer(){
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src={"/instagram.png"} alt={""}/>
+                            <Image width={1000} height={800}  src={"/instagram.png"} alt={""}/>
                         </a>
                         <a
                             href="viber://chat?number=375295648334"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="/viber.svg" alt="Viber"/>
+                            <Image width={1000} height={800}  src="/viber.svg" alt="Viber"/>
                         </a>
                         <a
                             href="https://t.me/+375295648334"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <img src="/telegram.svg" alt="Telegram"/>
+                            <Image width={1000} height={800}  src="/telegram.svg" alt="Telegram"/>
                         </a>
                         <a
                             href="https://wa.me/375257654320"
@@ -81,7 +83,7 @@ export default function Footer(){
                             rel="noopener noreferrer"
 
                         >
-                            <img src="/whatsapp.svg" alt="WhatsApp"/>
+                            <Image width={1000} height={800}  src="/whatsapp.svg" alt="WhatsApp"/>
                         </a>
                     </div>
                 </div>

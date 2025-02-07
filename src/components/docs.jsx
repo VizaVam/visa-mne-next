@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Docs = () => {
     return (
         <div className="bg-[#15419E] px-[7%] py-6">
@@ -17,7 +19,7 @@ const Docs = () => {
                         {title: "Страховка"}
                     ].map((doc, index) => (
                         <div key={index} className="flex gap-3 items-center mb-3">
-                            <img className="w-6 h-6" src="/docs-check.png" alt=""/>
+                            <Image width={1000} height={800} className="w-6 h-6" src="/docs-check.png" alt=""/>
                             <div>
                                 <h2 className="lg:text-xl">{doc.title}</h2>
                                 {doc.desc && <p className="text-[#CCCCCC] font-normal">{doc.desc}</p>}

@@ -3,6 +3,7 @@
 import {useState} from "react";
 import { useModal } from "@/components/modalcontext";
 import { countries } from "@/components/serviceson";
+import Image from "next/image";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,8 +16,9 @@ export default function Header() {
             <header className={"header"}>
                 <div className={"header__top"}>
                     <div className={"header__top-left"}>
-                        <span>пр-т Победителей 17, офис 1204</span>
-                        <span>09:00-19:00</span>
+                        <span>пр. Победителей 17, офис 1204</span>
+                        <span>Пн-пт: с 09:00 до 19:00</span>
+                        <span>Сб: c 10:00 до 14:00</span>
                     </div>
                     <div className={"header__top-right"}>
                         <div className={"header__top-right-num"}>
@@ -33,14 +35,14 @@ export default function Header() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <img src="/viber.svg" alt="Viber"/>
+                                <Image width={1000} height={800}  src="/viber.svg" alt="Viber"/>
                             </a>
                             <a
                                 href="https://t.me/+375295648334"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <img src="/telegram.svg" alt="Telegram"/>
+                                <Image width={1000} height={800}  src="/telegram.svg" alt="Telegram"/>
                             </a>
                             <a
                                 href="https://wa.me/375257654320"
@@ -48,10 +50,10 @@ export default function Header() {
                                 rel="noopener noreferrer"
 
                             >
-                                <img src="/whatsapp.svg" alt="WhatsApp"/>
+                                <Image width={1000} height={800}  src="/whatsapp.svg" alt="WhatsApp"/>
                             </a>
                             <a href="mailto:l336906097@gmail.com">
-                                <img src="/mail.svg" alt="E-Mail"/>
+                                <Image width={1000} height={800}  src="/mail.svg" alt="E-Mail"/>
                             </a>
                         </div>
                     </div>
@@ -60,7 +62,7 @@ export default function Header() {
                 <div className={"header__bottom"}>
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
-                            <img src={"/logo-visamne.png"} alt={""}/>
+                            <Image width={1000} height={800} src={"/logo-visamne.png"} alt={""} />
                         </a>
                     </div>
                     <div className={"header__bottom-right"}>
@@ -77,7 +79,7 @@ export default function Header() {
                         </button>
                         <div className="lg:hidden p-0 w-max">
                             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <img src="/burger.svg" alt="Menu" className="mdd:w-[3rem] sm:w-[3rem] h-full"/>
+                                <Image width={1000} height={800}  src="/burger.svg" alt="Menu" className="mdd:w-[3rem] sm:w-[3rem] h-full"/>
                             </button>
                         </div>
                     </div>
@@ -102,7 +104,7 @@ export default function Header() {
                                 className="self-end mb-4"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                <img src="/close.svg" alt="Close"/>
+                                <Image width={1000} height={800}  src="/close.svg" alt="Close" className={"h-6 w-full"}/>
                             </button>
                         </div>
                         <div className={"text-black flex flex-col gap-3"}>
@@ -146,7 +148,7 @@ export default function Header() {
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
                     className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
                 >
-                    <img src="/request.svg" alt="Контакты" className="w-12 h-12"/>
+                    <Image width={1000} height={800}  src="/request.svg" alt="Контакты" className="w-12 h-12"/>
                 </button>
 
                 {/* Раскрывающееся меню */}

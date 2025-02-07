@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from "react";
 import { countries } from "@/components/serviceson";
+import Image from "next/image";
 
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -27,8 +28,8 @@ const Services = () => {
                         key={index}
                         className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm"
                     >
-                        <img
-                            src={country.img}
+                        <Image width={1500} height={1000}
+                               src={country.img}
                             alt={country.name}
                             className="w-full object-cover"
                         />

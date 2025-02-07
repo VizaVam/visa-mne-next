@@ -49,6 +49,7 @@
 }
 .header__bottom-left img {
   height: 5rem;
+  width: 100%;
 }
 .header__bottom-right {
   display: flex;
@@ -226,6 +227,7 @@
   }
   .header__bottom-left img {
     height: 4rem;
+    width: 100%;
   }
   .header__bottom-right {
     gap: 2rem;

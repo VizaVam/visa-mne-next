@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { CarouselButton } from "./icons";
+import Image from "next/image";
 
 const reviews = [
     { id: 1, name: "Виктор Бородин", text: "Спасибо большео за помощь. Получил визу легко и быстро. Отличный сервис и профессионалы. Буду обращаться в дальнейшем только сюда и всем рекомендую.", image: "/r-1.png" },
@@ -51,7 +52,7 @@ const Reviews = () => {
                             key={review.id}
                             className="w-auto mdd:w-[100%] xl:w-[24.2%] lg:w-[32%] sm:w-[49%] flex-shrink-0 bg-[#FAFAFA] border-[1px] border-[#ECECEC] rounded-[2px] p-6 text-center"
                         >
-                            <img src={review.image} alt={review.name} className="w-36 h-36 mx-auto rounded-full mb-4 object-cover"/>
+                            <Image width={1000} height={800}  src={review.image} alt={review.name} className="w-36 h-36 mx-auto rounded-full mb-4 object-cover"/>
                             <h3 className="text-xl font-medium mb-2">{review.name}</h3>
                             <p className="mdd:text-[16px] sm:text-lg lg:text-lg text-gray-600">{review.text}</p>
                         </div>

@@ -3,6 +3,7 @@
 import {useEffect, useState} from "react";
 import {useSwipeable} from "react-swipeable";
 import {CarouselButton} from "./icons";
+import Image from "next/image";
 
 const slides = [
     {
@@ -76,16 +77,17 @@ const Slider = () => {
                                 isLgScreen ? "w-[100%]" : "w-[85%]"
                             } sm:min-w-full h-56 lg:h-64 flex-shrink-0 relative mr-2 rounded-[2px]`}
                         >
-                            <img
-                                src={slide.image}
-                                alt={`Slide ${slide.id}`}
-                                loading="lazy"
-                                className={`w-full h-52 lg:h-64 object-cover rounded-[2px]`}
-                                style={{
-                                    objectPosition: slide.id === 2 ? "50% 71%" : "center",
-                                }}
+                            <Image width={2000} height={1200}
+                                   src={slide.image}
+                                   alt={`Slide ${slide.id}`}
+                                   loading="lazy"
+                                   className={`w-full h-52 lg:h-64 object-cover rounded-[2px]`}
+                                   style={{
+                                       objectPosition: slide.id === 2 ? "50% 71%" : "center",
+                                   }}
                             />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
+                            <div
+                                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
                                 <h2 className="text-white text-center sm:text-3xl md:text-4xl lg:text-5xl font-semibold">{slide.text}</h2>
                             </div>
                         </div>

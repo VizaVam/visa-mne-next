@@ -19,9 +19,9 @@ export default function HomePage({onOpenModal}) {
                 className="lg:px-16 lg:mt-[80px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row items-center lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
-                    <h1 className="text-3xl lg:text-6xl font-semibold text-black">
+                    <h1 className="lg:text-4xl md:text-4xl mdd:text-3xl flex lg:flex-row md:flex-row mdd:flex-col sm:flex-col font-semibold text-black">
                         КОМПАНИЯ
-                        <span className="text-6xl">“VISA VAM”</span>
+                        <span className="lg:text-6xl md:text-6xl sm:text-5xl mdd:text-5xl">“VISA VAM”</span>
                     </h1>
                     <p
                         className="lg:mt-4 pl-6 text-2xl lg:text-3xl text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65"

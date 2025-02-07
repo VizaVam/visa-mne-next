@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .header {
   position: fixed;
   top: 0;
@@ -8,17 +9,24 @@
 .header__top {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(to right, #15419E 52%, #F86F00 48%);
-  padding: 0.8rem 7%;
   color: white;
+  background-color: rgb(249, 115, 22, var(--tw-bg-opacity, 1));
 }
 .header__top-left {
   display: flex;
   gap: 1rem;
+  width: 54%;
+  background-color: rgb(21, 65, 158, var(--tw-bg-opacity, 1));
+  clip-path: polygon(0px 0px, 97% 0px, 100% 100%, 0px 100%);
+  padding: 0.8rem 7%;
 }
 .header__top-right {
   display: flex;
   gap: 2rem;
+  width: 46%;
+  background-color: rgb(249, 115, 22, var(--tw-bg-opacity, 1));
+  padding: 0.8rem 7%;
+  justify-content: end;
 }
 .header__top-right-num {
   display: flex;
@@ -37,6 +45,7 @@
   justify-content: space-between;
   padding: 0.7rem 7%;
   align-items: center;
+  position: relative;
 }
 .header__bottom-left img {
   height: 5rem;
@@ -55,7 +64,7 @@
   font-weight: 400;
   line-height: 1.5rem;
 }
-.header__bottom-right button {
+.header__bottom-right-btn {
   background-color: #15419E;
   width: 14rem;
   height: 2.5rem;
@@ -80,37 +89,42 @@
 }
 .footer__top-right {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.footer__top-right-main {
+  display: flex;
   gap: 6rem;
 }
-.footer__top-right h3 {
+.footer__top-right-main h3 {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
 }
-.footer__top-right-right {
+.footer__top-right-main-right {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-.footer__top-right-right-lists {
+.footer__top-right-main-right-lists {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.footer__top-right-right-lists img {
+.footer__top-right-main-right-lists img {
   width: 1.5rem;
   height: 1.5rem;
 }
-.footer__top-right-right-lists-list {
+.footer__top-right-main-right-lists-list {
   display: flex;
   gap: 0.5rem;
 }
-.footer__top-right-right-socs {
+.footer__top-right-socs {
   display: flex;
   gap: 2rem;
   justify-content: end;
 }
-.footer__top-right-right-socs img {
+.footer__top-right-socs img {
   width: 3rem;
 }
 .footer__bottom {
@@ -152,7 +166,6 @@
 @media (max-width: 1024px) {
   .header__top {
     flex-direction: column;
-    padding: 0.5rem 5%;
   }
   .header__top-left {
     flex-direction: column;
@@ -161,27 +174,55 @@
     display: none;
   }
   .header__bottom {
-    flex-direction: column;
-    align-items: start;
-    padding: 0.5rem 5%;
+    padding: 0.5rem 7%;
   }
-  .header__bottom-left {
-    flex-direction: column;
+  .header__bottom-right-links {
+    display: none;
   }
-  .header__bottom-right {
+  .header__bottom-right-btn {
     display: none;
   }
 }
 @media (max-width: 768px) {
+  .footer__top {
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+  .footer__top-left,
+  .footer__top-right {
+    width: 100%; /* Чтобы элементы растягивались на всю ширину */
+    gap: 1rem;
+  }
+  .footer__top-left h3,
+  .footer__top-right h3 {
+    font-size: 1rem;
+  }
+  .footer__top-left a,
+  .footer__top-right a {
+    font-size: 0.8rem;
+  }
+  .footer__top-left p,
+  .footer__top-right p {
+    font-size: 0.8rem;
+  }
+  .footer__top-right-socs img {
+    width: 2.2rem;
+  }
+  .footer__top-right-main {
+    gap: 1rem;
+  }
+  .docs {
+    gap: 1rem;
+  }
   .docs-left {
     width: 100%;
+    font-size: 24px;
+    padding: 1rem;
   }
   .docs-right {
     margin-left: 0;
     width: 100%;
-  }
-  .header__top {
-    padding: 0.5rem 3%;
+    padding: 1rem;
   }
   .header__bottom-left img {
     height: 4rem;
@@ -192,29 +233,16 @@
   .header__bottom-right-links {
     gap: 1.5rem;
   }
-  .header__bottom-right button {
-    width: 12rem;
-    height: 2.2rem;
-  }
 }
 @media (max-width: 480px) {
   .header__top {
     flex-direction: column;
-    padding: 0.5rem 2%;
   }
   .header__top-left {
     flex-direction: column;
-    align-items: center;
   }
   .header__top-right {
     flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .header__bottom {
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem 2%;
   }
   .header__bottom-left img {
     height: 3rem;
@@ -226,11 +254,6 @@
   .header__bottom-right-links {
     flex-direction: column;
     gap: 1rem;
-  }
-  .header__bottom-right button {
-    width: 10rem;
-    height: 2rem;
-    font-size: 0.9rem;
   }
 }
 .hero-section {

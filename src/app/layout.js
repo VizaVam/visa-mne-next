@@ -30,7 +30,7 @@ export default function RootLayout({children}) {
             <Header />
             <main>{children}</main>
             <Footer />
-            <Modal /> {/* Добавляем модалку, чтобы она была доступна везде */}
+            <Modal />
         </ModalProvider>
         </body>
         </html>

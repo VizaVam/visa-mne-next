@@ -1,34 +1,48 @@
+'use client'
+
 import Link from "next/link";
 import Contacts from "@/components/contacts";
 import Image from "next/image";
 
+import { useModal } from "@/components/modalcontext";
+
 export default function ContactsPage() {
+    const { openModal } = useModal();
+
     return (
         <div>
-            <div>
-                <div className={"w-full relative flex justify-between"}>
+            <div className={"flex flex-col items-center"}>
+                <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                     <div
-                        className="lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col gap-24">
+                        className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-8">
                         <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
-                            <Link href="/public" className="text-orange-500 hover:underline">Главная</Link>
+                            <Link href="/" className="text-orange-500 hover:underline">Главная</Link>
                             <span><img className={"w-2"} src={"/nav-icon.png"} alt={""}/></span>
-                            <span className="font-semibold">Контакты</span>
+                            <Link href="/contacts" className="font-semibold">Контакты</Link>
                         </nav>
-                        <h1 className="text-7xl lg:text-7xl font-semibold text-black">
+                        <h1 className="mdd:text-4xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black">
                             КОНТАКТЫ
                         </h1>
                     </div>
-                    <div className="w-full lg:flex items-center -mt-[30%] lg:mt-0 relative z-5">
+                    <div className="w-full lg:flex items-center mdd:mt-[25%] mt-[20%] lg:mt-0 relative z-5">
                         <Image
                             src="/contacts-banner.png"
                             alt="Оформление виз с VisaVam.by – Легко и Доступно"
                             width={1000}
                             height={1000}
-                            className="relative lg:top-[10%] lg:w-[50%] lg:left-[45%]"
+                            className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%]"
                         />
                     </div>
+                    <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-20">
+                        <button
+                            onClick={openModal}
+                            className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
+                            Оформить заявку
+                        </button>
+                    </div>
                 </div>
-                <div className={"w-full relative flex justify-between px-[7%]"}>
+                <div
+                    className={"w-full relative flex lg:flex-row sm:flex-col lg:gap-2 sm:gap-4 justify-between px-[7%]"}>
                     <div className="w-full lg:flex items-center lg:mt-0 relative z-5">
                         <Image
                             src="/contacts-banner-2.png"
@@ -41,9 +55,9 @@ export default function ContactsPage() {
                     <div className={"flex flex-col gap-6"}>
                         <div className={"flex gap-4 items-center"}>
                             <img className={"w-6 h-6"} src={"/contacts-call-icon.png"} alt={""}/>
-                            <div>
-                                <p className={"font-medium text-lg"}>+375296800620</p>
-                                <p className={"font-medium text-lg"}>+375293734870</p>
+                            <div className={"flex flex-col"}>
+                                <a href={"tel:+375296800620"} className={"font-medium text-lg"}>+375296800620</a>
+                                <a href={"tel:+375293734870"} className={"font-medium text-lg"}>+375293734870</a>
                                 <p className={"font-normal text-[14px] text-[#808080]"}>Мобильный, Вайбер, Телеграм,
                                     Ватсап</p>
                             </div>
@@ -51,14 +65,17 @@ export default function ContactsPage() {
                         <div className={"flex gap-4 items-center"}>
                             <img className={"w-6 h-6"} src={"/contacts-email-icon.png"} alt={""}/>
                             <div>
-                                <p className={"text-lg font-medium"}>info@visavam.by</p>
+                                <a href={"mailto:l336906097@gmail.com"} className={"text-lg font-medium"}>
+                                    info@visavam.by
+                                </a>
                             </div>
                         </div>
                         <div className={"flex gap-4"}>
                             <img className={"w-6 h-6"} src={"/contacts-location-icon.png"} alt={""}/>
                             <div className={"flex flex-col gap-4"}>
-                                <p className={"text-lg font-medium"}>Минск, пр. Победителей 17 офис 1204 (метро
-                                    Немига)</p>
+                                <a href={"https://www.google.com/maps/place/%D0%92%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9+%D0%A6%D0%B5%D0%BD%D1%82%D1%80+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA/@53.910344,27.544728,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcf6dc479a1b9:0x20fc9ea41769ce82!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11hf27ckdt?entry=ttu"}
+                                   className={"text-lg font-medium"}>Минск, пр. Победителей 17 офис 1204 (метро
+                                    Немига)</a>
                                 <a href={"/"} className={"underline text-[#4472C4]"}>Google Map</a>
                                 <div className={"text-lg font-medium"}>
                                     <p>Пн-пт: с 09:00 до 19:00</p>

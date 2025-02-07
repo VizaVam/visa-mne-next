@@ -20,7 +20,7 @@ const Services = () => {
 
     return (
         <section id="services" className="px-[7%] pt-16 lg:pt-24">
-            <h2 className="text-4xl lg:text-5xl font-medium mb-8 lg:mb-16">Оформление документов для подачи на визы</h2>
+            <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16">Оформление документов для подачи на визы</h2>
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {displayedCountries.map((country, index) => (
                     <div
@@ -35,7 +35,7 @@ const Services = () => {
                         <div className="lg:p-8 p-6">
                             <div className="flex flex-row gap-2 items-center">
                                 <img src={country.svg} alt={country.name} className="h-6"/>
-                                <p className="font-medium text-xl">{country.name}</p>
+                                <p className="font-medium mdd:text-[16px] sm:text-lg md:text-xl lg:text-xl">{country.name}</p>
                             </div>
                         </div>
                     </div>

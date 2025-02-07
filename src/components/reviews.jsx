@@ -38,7 +38,7 @@ const Reviews = () => {
 
     return (
         <div className="pt-20 px-[7%]" {...swipeHandlers}>
-            <h2 className="text-4xl lg:text-5xl font-medium mb-8 lg:mb-16">Отзывы наших клиентов</h2>
+            <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16">Отзывы наших клиентов</h2>
             <div className="relative overflow-hidden">
                 <div
                     className="flex gap-4 transition-transform duration-500 ease-in-out"
@@ -49,11 +49,11 @@ const Reviews = () => {
                     {reviews.map((review) => (
                         <div
                             key={review.id}
-                            className="w-auto xl:w-[24.2%] lg:w-[32%] sm:w-[49%] flex-shrink-0 bg-[#FAFAFA] border-[1px] border-[#ECECEC] rounded-[2px] p-6 text-center"
+                            className="w-auto mdd:w-[100%] xl:w-[24.2%] lg:w-[32%] sm:w-[49%] flex-shrink-0 bg-[#FAFAFA] border-[1px] border-[#ECECEC] rounded-[2px] p-6 text-center"
                         >
-                            <img src={review.image} alt={review.name} className="w-36    h-36 mx-auto rounded-full mb-4 object-cover"/>
+                            <img src={review.image} alt={review.name} className="w-36 h-36 mx-auto rounded-full mb-4 object-cover"/>
                             <h3 className="text-xl font-medium mb-2">{review.name}</h3>
-                            <p className="text-lg text-gray-600">{review.text}</p>
+                            <p className="mdd:text-[16px] sm:text-lg lg:text-lg text-gray-600">{review.text}</p>
                         </div>
                     ))}
                 </div>

@@ -19,7 +19,7 @@ const Docs = () => {
                         <div key={index} className="flex gap-3 items-center mb-3">
                             <img className="w-6 h-6" src="/docs-check.png" alt=""/>
                             <div>
-                                <h2 className="text-xl">{doc.title}</h2>
+                                <h2 className="lg:text-xl">{doc.title}</h2>
                                 {doc.desc && <p className="text-[#CCCCCC] font-normal">{doc.desc}</p>}
                             </div>
                         </div>

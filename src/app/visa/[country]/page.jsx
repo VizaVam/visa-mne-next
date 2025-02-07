@@ -8,9 +8,11 @@ import Steps from "@/components/steps";
 import Docs from "@/components/docs";
 import {useState} from "react";
 import Image from "next/image";
+import { useModal } from "@/components/modalcontext";
 
 export default function CountryPage({params}) {
     const {country} = useParams();
+    const { openModal } = useModal();
     const selectedCountry = countries.find(c => c.url === country);
     const priorityCountries = ["greece", "slovenia", "germany", "spain"];
 
@@ -36,9 +38,9 @@ export default function CountryPage({params}) {
 
     return (
         <div className={"flex flex-col items-center"}>
-            <div className={"w-full relative flex justify-between"}>
+            <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
-                    className="lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col gap-24">
+                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-8">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline">Главная</Link>
                         <span><img className={"w-2"} src={"/nav-icon.png"} alt={""}/></span>
@@ -46,31 +48,40 @@ export default function CountryPage({params}) {
                         <span><img className={"w-2"} src={"/nav-icon.png"} alt={""}/></span>
                         <Link href="/visa/" className={""}>{selectedCountry.name}</Link>
                     </nav>
-                    <h1 className="text-7xl lg:text-7xl font-semibold text-black uppercase">
+                    <h1 className="mdd:text-4xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
                         Виза в {selectedCountry.name}
                     </h1>
                 </div>
-                <div className="w-full lg:flex items-center -mt-[30%] lg:mt-0 relative z-5">
-                    <img
+                <div className="w-full lg:flex items-center mdd:mt-[25%] mt-[20%] lg:mt-0 relative z-5">
+                    <Image
                         src="/visa-c.png"
                         alt=""
-                        className="relative lg:top-[10%] lg:w-[50%] lg:left-[45%]"
+                        width={1000}
+                        height={1000}
+                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50"
                     />
                 </div>
+                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%]">
+                    <button
+                        onClick={openModal}
+                        className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
+                        Оформить заявку
+                    </button>
+                </div>
             </div>
-            <img src={"/country-banner.png"} alt={""} className={"w-max px-[7%]"}/>
+            <img src={"/country-banner.png"} alt={""} className={"w-max px-0 lg:px-[7%] md:px-[7%]"}/>
             {selectedCountry.good !== 0 ? (
                 <div className={"w-full"}>
                     <Steps/>
                     <div className={"px-[7%]"}>
                         {["poland", "slovenia", "germany", "spain", "france", "usa", "netherland", "greece", "hungary", "romania", "austria"].includes(selectedCountry.url) && (
-                            <div className="py-24 flex flex-col gap-8 w-[60%]">
+                            <div className="py-24 flex flex-col gap-8 lg:w-[60%]">
                                 {selectedCountry.title &&
-                                    <h1 className="text-black text-4xl font-medium">{selectedCountry.title}</h1>}
+                                    <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
                                 {selectedCountry.text1 &&
-                                    <p className="text-black text-xl font-medium">{selectedCountry.text1}</p>}
+                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text1}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
-                                    <ul className="text-black text-lg font-medium flex flex-col gap-2">
+                                    <ul className="text-black lg:text-xl font-medium flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
                                                 <img className="w-6 h-6" src="/check-0.png" alt=""/>
@@ -80,15 +91,15 @@ export default function CountryPage({params}) {
                                     </ul>
                                 )}
                                 {selectedCountry.text2 &&
-                                    <p className="text-black text-xl font-medium">{selectedCountry.text2}</p>}
+                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text2}</p>}
                                 {selectedCountry.text3 &&
-                                    <p className="text-black text-xl font-medium">{selectedCountry.text3}</p>}
+                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text3}</p>}
                                 {selectedCountry.text4 &&
-                                    <p className="text-black text-xl font-medium">{selectedCountry.text4}</p>}
+                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text4}</p>}
                                 {selectedCountry.text5 &&
-                                    <p className="text-black text-xl font-medium">{selectedCountry.text5}</p>}
+                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text5}</p>}
                                 {selectedCountry.title2 &&
-                                    <h1 className="text-black text-4xl font-medium">{selectedCountry.title2}</h1>}
+                                    <h1 className="text-black lg:text-4xl font-medium">{selectedCountry.title2}</h1>}
                                 {selectedCountry.variants2 && selectedCountry.variants2.length > 0 && (
                                     <ul className="text-black text-lg font-medium flex flex-col gap-2">
                                         {selectedCountry.variants2.map((variant, index) => (
@@ -101,24 +112,23 @@ export default function CountryPage({params}) {
                                 )}
                             </div>
                         )}
-
                     </div>
                     <Docs/>
                 </div>
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">
                     {["litva", "latvia", "italy", "greatbritain"].includes(selectedCountry.url) && (
-                        <div className="py-24 flex flex-col gap-8 items-center w-[60%]">
+                        <div className="py-24 flex flex-col gap-8 items-center lg:w-[60%] sm:w-full mdd:w-full">
                             {selectedCountry.title &&
-                                <h1 className="text-[#F86F00] text-[40px] font-medium">{selectedCountry.title}</h1>}
+                                <h1 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">{selectedCountry.title}</h1>}
 
                             <div className="flex flex-col gap-6">
                                 {selectedCountry.text1 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text1}</p>}
+                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text1}</p>}
                                 {selectedCountry.text2 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text2}</p>}
+                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text2}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
-                                    <ul className="list-disc list-inside text-black text-2xl font-medium flex flex-col gap-2">
+                                    <ul className="list-disc list-inside text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
                                                 <img className="w-6 h-6" src="/check-0.png" alt=""/>
@@ -128,7 +138,7 @@ export default function CountryPage({params}) {
                                     </ul>
                                 )}
                                 {selectedCountry.text3 &&
-                                    <p className="text-black text-2xl font-medium">{selectedCountry.text3}</p>}
+                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text3}</p>}
                             </div>
 
                         </div>

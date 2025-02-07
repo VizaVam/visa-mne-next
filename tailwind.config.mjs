@@ -11,6 +11,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      screens: {
+        "mdd": { max: "768px" }, // Matches devices below 768px
+      },
     },
   },
   plugins: [],

@@ -42,7 +42,7 @@ export default function ContactsPage() {
                     </div>
                 </div>
                 <div
-                    className={"w-full relative flex lg:flex-row sm:flex-col lg:gap-2 sm:gap-4 justify-between px-[7%]"}>
+                    className={"w-full relative flex lg:flex-row sm:flex-col mdd:flex-col lg:gap-2 sm:gap-4 mdd:gap-4 justify-between px-[7%]"}>
                     <div className="w-full lg:flex items-center lg:mt-0 relative z-5">
                         <Image
                             src="/contacts-banner-2.png"

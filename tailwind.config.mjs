@@ -14,6 +14,7 @@ export default {
       screens: {
         "mdd": { max: "640px" }, // Matches devices below 640px
         "ht": { min: "1500px" },
+        "dr": { max: "400px" },
       },
     },
   },

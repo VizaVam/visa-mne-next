@@ -33,10 +33,10 @@ const Services = () => {
                             alt={country.name}
                             className="w-full object-cover"
                         />
-                        <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2">
+                        <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2 dr:pl-1">
                             <div className="flex flex-row gap-1 items-center">
                                 <img src={country.svg} alt={country.name} className="h-6"/>
-                                <p className="font-medium mdd:text-[16px] sm:text-lg md:text-xl lg:text-xl">{country.name}</p>
+                                <p className="font-medium mdd:text-[16px] dr:text-[14px] sm:text-lg md:text-xl lg:text-xl">{country.name}</p>
                             </div>
                         </div>
                     </div>

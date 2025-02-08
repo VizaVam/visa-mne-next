@@ -168,6 +168,11 @@
   background-color: rgba(250, 250, 250, 0.3019607843);
 }
 
+@media (max-width: 1280px) {
+  .header__top-left {
+    flex-direction: column;
+  }
+}
 @media (max-width: 1024px) {
   .header__top {
     flex-direction: column;
@@ -256,6 +261,16 @@
 @media (max-width: 480px) {
   .header__top {
     flex-direction: column;
+  }
+  .header__top-left {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    gap: 0.3rem;
+  }
+  .header__top-left-num {
+    gap: 0.1rem;
   }
   .header__top-left {
     flex-direction: column;

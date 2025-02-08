@@ -12,7 +12,7 @@ export default {
         foreground: "var(--foreground)",
       },
       screens: {
-        "mdd": { max: "768px" }, // Matches devices below 768px
+        "mdd": { max: "640px" }, // Matches devices below 640px
       },
     },
   },

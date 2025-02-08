@@ -1,14 +1,14 @@
 'use client'
 
 import {useState} from "react";
-import { useModal } from "@/components/modalcontext";
-import { countries } from "@/components/serviceson";
+import {useModal} from "@/components/modalcontext";
+import {countries} from "@/components/serviceson";
 import Image from "next/image";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false); // Управление плавающей кнопкой
-    const { openModal } = useModal();
+    const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -16,14 +16,17 @@ export default function Header() {
             <header className={"header"}>
                 <div className={"header__top"}>
                     <div className={"header__top-left"}>
-                        <span className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>пр. Победителей 17, офис 1204</span>
-                        <div className={"header__top-left-num"}>
-                            <span className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Пн-пт: с 09:00 до 19:00</span>
-                            <span className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Сб: c 10:00 до 14:00</span>
+                        <div className={"flex gap-4 mdd:gap-2 lg:flex-row md:flex-col sm:flex-col mdd:flex-col"}>
+                            <p className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>пр. Победителей 17, офис
+                            1204</p>
+                            <div className={"header__top-left-num"}>
+                                <p className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Пн-пт: 09:00-19:00</p>
+                                <p className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Сб: 10:00-14:00</p>
+                            </div>
                         </div>
                     </div>
                     <div className={"header__top-right"}>
-                    <div className={"header__top-right-num"}>
+                        <div className={"header__top-right-num"}>
                             <a href="tel:+375296800620">
                                 +375296800620
                             </a>
@@ -37,14 +40,14 @@ export default function Header() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Image width={1000} height={800}  src="/viber.svg" alt="Viber"/>
+                                <Image width={1000} height={800} src="/viber.svg" alt="Viber"/>
                             </a>
                             <a
                                 href="https://t.me/+375295648334"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Image width={1000} height={800}  src="/telegram.svg" alt="Telegram"/>
+                                <Image width={1000} height={800} src="/telegram.svg" alt="Telegram"/>
                             </a>
                             <a
                                 href="https://wa.me/375257654320"
@@ -52,10 +55,10 @@ export default function Header() {
                                 rel="noopener noreferrer"
 
                             >
-                                <Image width={1000} height={800}  src="/whatsapp.svg" alt="WhatsApp"/>
+                                <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>
                             </a>
                             <a href="mailto:l336906097@gmail.com">
-                                <Image width={1000} height={800}  src="/mail.svg" alt="E-Mail"/>
+                                <Image width={1000} height={800} src="/mail.svg" alt="E-Mail"/>
                             </a>
                         </div>
                     </div>
@@ -64,7 +67,8 @@ export default function Header() {
                 <div className={"header__bottom"}>
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
-                            <Image width={1000} height={800} src={"/logo-visamne.png"} alt={""} className={"lg:h-16 md:h-16 sm:h-12 mdd:h-12 lg:w-16 md:w-16 sm:w-12 mdd:w-12"} />
+                            <Image width={1000} height={800} src={"/logo-visamne.png"} alt={""}
+                                   className={"lg:h-16 md:h-16 sm:h-12 mdd:h-12 lg:w-16 md:w-16 sm:w-12 mdd:w-12"}/>
                         </a>
                     </div>
                     <div className={"header__bottom-right"}>
@@ -81,7 +85,8 @@ export default function Header() {
                         </button>
                         <div className="lg:hidden p-0 w-max">
                             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <Image width={1000} height={800}  src="/burger.svg" alt="Menu" className="mdd:w-[3rem] sm:w-[3rem] h-full"/>
+                                <Image width={1000} height={800} src="/burger.svg" alt="Menu"
+                                       className="mdd:w-[3rem] sm:w-[3rem] h-full"/>
                             </button>
                         </div>
                     </div>
@@ -106,7 +111,7 @@ export default function Header() {
                                 className="self-end mb-4"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                <Image width={1000} height={800}  src="/close.svg" alt="Close" className={"h-6 w-full"}/>
+                                <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
                             </button>
                         </div>
                         <div className={"text-black flex flex-col gap-3"}>
@@ -150,7 +155,7 @@ export default function Header() {
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
                     className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
                 >
-                    <Image width={1000} height={800}  src="/request.svg" alt="Контакты" className="w-12 h-12"/>
+                    <Image width={1000} height={800} src="/request.svg" alt="Контакты" className="w-12 h-12"/>
                 </button>
 
                 {/* Раскрывающееся меню */}

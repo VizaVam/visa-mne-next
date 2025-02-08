@@ -52,7 +52,7 @@ export default function CountryPage({params}) {
                         Виза в {selectedCountry.name}
                     </h1>
                 </div>
-                <div className="w-full lg:flex items-center mdd:mt-[25%] mt-[20%] lg:mt-0 relative z-5">
+                <div className="w-full lg:flex items-center mdd:mt-[40%] mt-[20%] lg:mt-0 relative z-5">
                     <Image
                         src="/visa-c.png"
                         alt=""

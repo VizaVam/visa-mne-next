@@ -24,7 +24,7 @@ export default function ContactsPage() {
                             КОНТАКТЫ
                         </h1>
                     </div>
-                    <div className="w-full lg:flex items-center mdd:mt-[25%] mt-[20%] lg:mt-0 relative z-5">
+                    <div className="w-full lg:flex items-center mdd:mt-[40%] mt-[20%] lg:mt-0 relative z-5">
                         <Image
                             src="/contacts-banner.png"
                             alt="Оформление виз с VisaVam.by – Легко и Доступно"

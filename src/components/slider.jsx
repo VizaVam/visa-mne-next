@@ -61,7 +61,7 @@ const Slider = () => {
     return (
         <div className="relative w-full mx-auto overflow-hidden pl-[7%] sm:px-[7%]" {...swipeHandlers}>
             {/* Слайд */}
-            <div className="relative h-56 lg:h-64 overflow-hidden">
+            <div className="relative lg:h-64 md:h-60 sm:h-52 mdd:h-52 w-full overflow-hidden">
                 <div
                     className="flex transition-transform duration-700 rounded-[2px]"
                     style={{
@@ -75,13 +75,13 @@ const Slider = () => {
                             key={slide.id}
                             className={`${
                                 isLgScreen ? "w-[100%]" : "w-[85%]"
-                            } sm:min-w-full h-56 lg:h-64 flex-shrink-0 relative mr-2 rounded-[2px]`}
+                            } sm:min-w-full lg:h-64 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-[2px]`}
                         >
                             <Image width={2000} height={1200}
                                    src={slide.image}
                                    alt={`Slide ${slide.id}`}
                                    loading="lazy"
-                                   className={`w-full h-52 lg:h-64 object-cover rounded-[2px]`}
+                                   className={`w-full lg:h-64 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-[2px]`}
                                    style={{
                                        objectPosition: slide.id === 2 ? "50% 71%" : "center",
                                    }}
@@ -99,7 +99,7 @@ const Slider = () => {
             <div className="flex justify-center items-center mt-4 space-x-4">
                 <button
                     onClick={prevSlide}
-                    className={`text-4xl transition-all duration-300 ${
+                    className={`text-4xl transition-all duration-300 mdd:hidden ${
                         currentIndex > 0 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
                     }`}
                     aria-label="Назад"
@@ -108,7 +108,7 @@ const Slider = () => {
                 </button>
                 <button
                     onClick={nextSlide}
-                    className={`text-4xl transition-all duration-300 ${
+                    className={`text-4xl transition-all duration-300 mdd:hidden ${
                         currentIndex < slides.length - 1 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
                     }`}
                     aria-label="Вперед"

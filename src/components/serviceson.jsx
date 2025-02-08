@@ -124,7 +124,7 @@ const Services = () => {
                     <Link href={`/visa/${country.url}`} key={index}>
                         <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer">
                             <img src={country.img} alt={country.name} className="w-full object-cover" />
-                            <div className="lg:p-8 md:p-8 sm:p-6 mdd:p-4">
+                            <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2 dr:pl-1">
                                 <div className="flex flex-row justify-between items-center">
                                     <div className="flex gap-2 items-center">
                                         <img src={country.svg} alt={country.name} className="h-6" />

@@ -98,22 +98,17 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(false)}
                 >
                     <div
-                        className={`bg-white w-3/4 h-full p-6 sidebar ${
+                        className={`bg-white w-3/4 h-full flex flex-col p-6 sidebar ${
                             isMenuOpen ? "sidebar-open" : ""
                         }`}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className={"flex justify-between mdd:mb-4 mb-8"}>
-                            <a href={"/"} className={"mdd:text-2xl sm:text-3xl text-[#F86F00] font-bold"}>
-                                Визовый Центр Минск
-                            </a>
-                            <button
-                                className="self-end mb-4"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
-                            </button>
-                        </div>
+                        <button
+                            className="self-end mb-4"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
+                        </button>
                         <div className={"text-black flex flex-col gap-3"}>
                             <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400"} href={"/visa"}>
                                 Визы
@@ -140,10 +135,6 @@ export default function Header() {
                             <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400"} href={"/contacts"}>
                                 Контакты
                             </a>
-                            <button onClick={openModal}
-                                    className={"mdd:text-xl sm:text-2xl bg-customBlue hover:bg-blue-500 text-white py-2 px-[25px] rounded-[2px]"}>
-                                Оформить заявку
-                            </button>
                         </div>
                     </div>
                 </div>

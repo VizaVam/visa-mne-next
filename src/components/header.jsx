@@ -68,7 +68,7 @@ export default function Header() {
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
                             <Image width={1000} height={800} src={"/logo-visamne.png"} alt={""}
-                                   className={"lg:h-16 md:h-16 sm:h-12 mdd:h-12 lg:w-16 md:w-16 sm:w-12 mdd:w-12"}/>
+                                   className={"lg:h-16 md:h-16 sm:h-12 mdd:h-8 lg:w-16 md:w-16 sm:w-12 mdd:w-8"}/>
                         </a>
                     </div>
                     <div className={"header__bottom-right"}>
@@ -86,7 +86,7 @@ export default function Header() {
                         <div className="lg:hidden p-0 w-max">
                             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <Image width={1000} height={800} src="/burger.svg" alt="Menu"
-                                       className="mdd:w-[3rem] sm:w-[3rem] h-full"/>
+                                       className="mdd:w-[2rem] sm:w-[3rem] h-full"/>
                             </button>
                         </div>
                     </div>

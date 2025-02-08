@@ -58,13 +58,6 @@
     align-items: center;
     position: relative;
 
-    &-left {
-
-      img {
-        height: 5rem;
-        width: 100%;
-      }
-    }
 
     &-right {
       display: flex;
@@ -309,11 +302,6 @@
     }
   }
 
-  .header__bottom-left img {
-    height: 4rem;
-    width: 100%;
-  }
-
   .header__bottom-right {
     gap: 2rem;
   }
@@ -352,9 +340,6 @@
   .header__bottom {
   }
 
-  .header__bottom-left img {
-    height: 3rem;
-  }
 
   .header__bottom-right {
     flex-direction: column;

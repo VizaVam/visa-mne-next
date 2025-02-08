@@ -51,10 +51,6 @@
   align-items: center;
   position: relative;
 }
-.header__bottom-left img {
-  height: 5rem;
-  width: 100%;
-}
 .header__bottom-right {
   display: flex;
   gap: 5rem;
@@ -247,10 +243,6 @@
   .header__top-left-num {
     gap: 0.3rem;
   }
-  .header__bottom-left img {
-    height: 4rem;
-    width: 100%;
-  }
   .header__bottom-right {
     gap: 2rem;
   }
@@ -277,9 +269,6 @@
   }
   .header__top-right {
     flex-direction: column;
-  }
-  .header__bottom-left img {
-    height: 3rem;
   }
   .header__bottom-right {
     flex-direction: column;

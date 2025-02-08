@@ -23,7 +23,7 @@ export default function HomePage({onOpenModal}) {
                         <h1 className="lg:text-4xl md:text-4xl sm:text-2xl mdd:text-lg font-semibold text-black">
                             КОМПАНИЯ
                         </h1>
-                        <p className="lg:text-6xl md:text-5xl sm:text-4xl mdd:text-3xl font-semibold">“VISA VAM”</p>
+                        <p className="lg:text-5xl md:text-5xl sm:text-4xl mdd:text-3xl font-semibold">“VISA VAM”</p>
                     </div>
                     <p
                         className="lg:mt-4 pl-6 text-2xl lg:text-3xl text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65"

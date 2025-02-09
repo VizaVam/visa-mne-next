@@ -94,8 +94,8 @@ export default function Footer(){
                 </div>
             </div>
 
-            <div className={"footer__bottom"}>
-                <a href={"https://drive.google.com/file/d/1TFDuPAQ8QYl6lE41Oyiy_U2dyVLgqDRb/view?usp=sharing"}>
+            <div className="footer__bottom">
+                <a href="/offer.pdf" target="_blank" rel="noopener noreferrer">
                     Публичная оферта
                 </a>
             </div>

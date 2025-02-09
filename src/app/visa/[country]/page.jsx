@@ -73,14 +73,14 @@ export default function CountryPage({params}) {
 
                 </div>
                 <div className="w-full lg:flex items-center mdd:mt-[30%] mt-[20%] lg:mt-0 relative z-5">
-                    <Image
-                        src="/visa-c.png"
-                        alt=""
-                        width={1000}
-                        height={1000}
-                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
-                    />
-                    {selectedCountry.good === 1 ? (
+                    {selectedCountry.rb === 1 ? (
+                        <Image src={"/visa-c.png"} alt={""} width={1000}
+                               height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
+                    ) : (
+                        <Image src={"/visa-cc.png"} alt={""} width={1000}
+                               height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
+                    )}
+                    {selectedCountry.rb === 1 ? (
                         <Image src={"/visa-1.svg"} alt={""} width={1000}
                                height={1000} className="relative top-[20%] -z-50 sm:hidden"/>
                     ) : (
@@ -96,13 +96,13 @@ export default function CountryPage({params}) {
                     </button>
                 </div>
             </div>
-            <img src={"/country-banner.png"} alt={""} className={"w-max px-0 lg:px-[7%] md:px-[7%]"}/>
+            <img src={`${selectedCountry.img}`}  alt={""} className={"w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"}/>
             {selectedCountry.good !== 0 ? (
                 <div className={"w-full"}>
                     <Steps/>
                     <div className={"px-[7%]"}>
                         {["poland", "slovenia", "germany", "spain", "france", "usa", "netherland", "greece", "hungary", "romania", "austria"].includes(selectedCountry.url) && (
-                            <div className="py-24 flex flex-col gap-8 lg:w-[60%]">
+                            <div className="pb-24 flex flex-col gap-8 lg:w-[60%]">
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
                                 {selectedCountry.text1 &&

@@ -1,6 +1,6 @@
 const Steps = () => {
     return (
-        <div className="w-full px-[7%] pt-24">
+        <div className="w-full px-[7%] py-24">
             <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16">3 простых шага до мечты</h2>
 
             {/* Контейнер шагов */}

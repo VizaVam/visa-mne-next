@@ -37,6 +37,13 @@ export default function CountryPage({params}) {
         return notFound();
     }
 
+    const parseText = (text) => {
+        const parts = text.split(/\*\*(.*?)\*\*/g); // Разделяем текст по **жирным фрагментам**
+        return parts.map((part, index) =>
+            index % 2 === 1 ? <b key={index}>{part}</b> : part
+        );
+    };
+
     return (
         <div className={"flex flex-col items-center"}>
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
@@ -99,7 +106,7 @@ export default function CountryPage({params}) {
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
                                 {selectedCountry.text1 &&
-                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text1}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{parseText(selectedCountry.text1)}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
                                     <ul className="text-black lg:text-xl font-medium flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
@@ -111,13 +118,13 @@ export default function CountryPage({params}) {
                                     </ul>
                                 )}
                                 {selectedCountry.text2 &&
-                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text2}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{parseText(selectedCountry.text2)}</p>}
                                 {selectedCountry.text3 &&
-                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text3}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{parseText(selectedCountry.text3)}</p>}
                                 {selectedCountry.text4 &&
-                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text4}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{parseText(selectedCountry.text4)}</p>}
                                 {selectedCountry.text5 &&
-                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text5}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{parseText(selectedCountry.text5)}</p>}
                                 {selectedCountry.title2 &&
                                     <h1 className="text-black lg:text-4xl mdd:text-[16px]">{selectedCountry.title2}</h1>}
                                 {selectedCountry.variants2 && selectedCountry.variants2.length > 0 && (

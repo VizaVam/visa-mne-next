@@ -8,13 +8,15 @@ import Steps from "@/components/steps";
 import Docs from "@/components/docs";
 import {useState} from "react";
 import Image from "next/image";
-import { useModal } from "@/components/modalcontext";
+import {useModal} from "@/components/modalcontext";
+import {usePathname} from "next/navigation";
 
 export default function CountryPage({params}) {
     const {country} = useParams();
-    const { openModal } = useModal();
+    const {openModal} = useModal();
     const selectedCountry = countries.find(c => c.url === country);
-    const priorityCountries = ["greece", "slovenia", "germany", "spain"];
+    const countryOrder = {greece: 1, slovenia: 2, germany: 3, spain: 4};
+    const pathname = usePathname();
 
     // Найти текущую страну в списке
     const currentCountry = countries.find(c => c.url === country);
@@ -27,9 +29,8 @@ export default function CountryPage({params}) {
     const displayedCountries = showAll ? countries : countries.slice(0, 4);
 
     const sortedCountries = [...displayedCountries].sort((a, b) => {
-        const aPriority = priorityCountries.includes(a.url) ? 0 : 1;
-        const bPriority = priorityCountries.includes(b.url) ? 0 : 1;
-        return aPriority - bPriority;
+        const order = ["greece", "slovenia", "germany", "spain"];
+        return order.indexOf(a.url.toLowerCase()) - order.indexOf(b.url.toLowerCase());
     });
 
     if (!selectedCountry) {
@@ -40,17 +41,29 @@ export default function CountryPage({params}) {
         <div className={"flex flex-col items-center"}>
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-8">
+                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-8 mdd:gap-8">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline">Главная</Link>
-                        <span><img className={"w-2"} src={"/nav-icon.png"} alt={""}/></span>
-                        <Link href="/visa" className="text-orange-500 hover:underline">Визы</Link>
-                        <span><img className={"w-2"} src={"/nav-icon.png"} alt={""}/></span>
-                        <Link href="/visa/" className={""}>{selectedCountry.name}</Link>
+                        <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
+                        <Link href="/visa"
+                              className={`text-orange-500 hover:underline ${pathname === "/visa" ? "font-semibold text-gray-900 pointer-events-none" : ""}`}>
+                            Визы
+                        </Link>
+                        <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
+                        <span className="font-semibold text-gray-900">{selectedCountry.name}</span>
                     </nav>
                     <h1 className="mdd:text-5xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
-                        Виза в {selectedCountry.name}
+                        Виза в {["Великобританию", "Нидерланды"].includes(selectedCountry.n) ? (
+                        <p className="mdd:text-3xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
+                            {selectedCountry.n}
+                        </p>
+                    ) : (
+                        <p className="mdd:text-5xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
+                            {selectedCountry.n}
+                        </p>
+                    )}
                     </h1>
+
                 </div>
                 <div className="w-full lg:flex items-center mdd:mt-[30%] mt-[20%] lg:mt-0 relative z-5">
                     <Image
@@ -60,10 +73,15 @@ export default function CountryPage({params}) {
                         height={1000}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
                     />
-                    <Image src={"/visac-banner.svg"} alt={""} width={1000}
-                           height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"/>
+                    {selectedCountry.good === 1 ? (
+                        <Image src={"/visa-1.svg"} alt={""} width={1000}
+                               height={1000} className="relative top-[20%] -z-50 sm:hidden"/>
+                    ) : (
+                        <Image src={"/visa-0.svg"} alt={""} width={1000}
+                               height={1000} className="relative top-[20%] -z-50 sm:hidden"/>
+                    )}
                 </div>
-                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%]">
+                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
                     <button
                         onClick={openModal}
                         className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
@@ -81,7 +99,7 @@ export default function CountryPage({params}) {
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
                                 {selectedCountry.text1 &&
-                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text1}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text1}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
                                     <ul className="text-black lg:text-xl font-medium flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
@@ -93,15 +111,15 @@ export default function CountryPage({params}) {
                                     </ul>
                                 )}
                                 {selectedCountry.text2 &&
-                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text2}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text2}</p>}
                                 {selectedCountry.text3 &&
-                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text3}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text3}</p>}
                                 {selectedCountry.text4 &&
-                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text4}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text4}</p>}
                                 {selectedCountry.text5 &&
-                                    <p className="text-black lg:text-xl font-medium">{selectedCountry.text5}</p>}
+                                    <p className="text-black lg:text-xl mdd:text-[16px]">{selectedCountry.text5}</p>}
                                 {selectedCountry.title2 &&
-                                    <h1 className="text-black lg:text-4xl font-medium">{selectedCountry.title2}</h1>}
+                                    <h1 className="text-black lg:text-4xl mdd:text-[16px]">{selectedCountry.title2}</h1>}
                                 {selectedCountry.variants2 && selectedCountry.variants2.length > 0 && (
                                     <ul className="text-black text-lg font-medium flex flex-col gap-2">
                                         {selectedCountry.variants2.map((variant, index) => (
@@ -120,7 +138,7 @@ export default function CountryPage({params}) {
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">
                     {["litva", "latvia", "italy", "greatbritain"].includes(selectedCountry.url) && (
-                        <div className="py-24 flex flex-col gap-8 items-center lg:w-[60%] sm:w-full mdd:w-full">
+                        <div className="pt-24 flex flex-col gap-8 items-center lg:w-[60%] sm:w-full mdd:w-full">
                             {selectedCountry.title &&
                                 <h1 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">{selectedCountry.title}</h1>}
 
@@ -130,7 +148,7 @@ export default function CountryPage({params}) {
                                 {selectedCountry.text2 &&
                                     <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text2}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
-                                    <ul className="list-disc list-inside text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium flex flex-col gap-2">
+                                    <ul className="list-disc list-inside text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] flex flex-col gap-2 font-medium">
                                         {selectedCountry.variants.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
                                                 <img className="w-6 h-6" src="/check-0.png" alt=""/>
@@ -142,40 +160,49 @@ export default function CountryPage({params}) {
                                 {selectedCountry.text3 &&
                                     <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text3}</p>}
                             </div>
-
                         </div>
                     )}
 
-                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {sortedCountries.map((c, index) => (
-                            <Link href={`/visa/${c.url}`} key={index}>
-                                <div
-                                    className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer">
-                                    <img src={c.img} alt={c.name} className="w-full object-cover"/>
-                                    <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2 mdd:pr-2 dr:pl-1 dr:pr-1">
-                                        <div className="flex flex-row justify-between items-center">
-                                            <div className="flex gap-2 items-center">
-                                                <img src={c.svg} alt={c.name} className="h-6"/>
-                                                <p className="font-medium mdd:text-[16px] dr:text-[14px] sm:text-lg md:text-xl lg:text-xl">{c.name}</p>
+                    <div className={"flex flex-col gap-4 mt-16"}>
+                        <p className={"text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium"}>Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {Object.keys(countryOrder).map((countryKey, index) => {
+                                const c = countries.find(c => c.url.toLowerCase() === countryKey);
+                                if (!c) return null; // Пропускаем, если страны нет в списке
+
+                                return (
+                                    <Link href={`/visa/${c.url}`} key={index}>
+                                        <div
+                                            className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                                            <img src={c.img} alt={c.name} className="w-full object-cover"/>
+                                            <div
+                                                className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2 mdd:pr-2 dr:pl-1 dr:pr-1">
+                                                <div className="flex flex-row justify-between items-center">
+                                                    <div className="flex gap-2 items-center">
+                                                        <img src={c.svg} alt={c.name} className="h-6"/>
+                                                        <p className="font-medium mdd:text-[16px] dr:text-[14px] sm:text-lg md:text-xl lg:text-xl">
+                                                            {c.name}
+                                                        </p>
+                                                    </div>
+                                                    <img className="lg:w-8 md:w-8 sm:w-6 mdd:w-4 dr:w-3"
+                                                         src="/Line 5.png"
+                                                         alt=""/>
+                                                </div>
                                             </div>
-                                            <img className="lg:w-8 md:w-8 sm:w-6 mdd:w-4 dr:w-3" src="/Line 5.png" alt=""/>
                                         </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </div>
-                    {/* Кнопка "Еще больше стран" */}
-                    {isLimited && !showAll && (
-                        <div className="mt-8 text-center">
+                    <div className="sm:mt-6 text-center">
+                        <Link href="/visa">
                             <button
-                                onClick={() => setShowAll(true)}
-                                className="bg-customBlue w-max hover:bg-blue-500 text-white py-4 px-8 rounded-[2px] text-[16px]"
-                            >
+                                className="bg-customBlue w-max hover:bg-blue-500 text-white py-4 px-8 rounded-[2px] text-[16px]">
                                 Еще больше стран
                             </button>
-                        </div>
-                    )}
+                        </Link>
+                    </div>
                 </div>
             )}
             <Contacts/>

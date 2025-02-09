@@ -36,15 +36,11 @@
 
       &-num {
         display: flex;
+        align-items: center;
         gap: 1rem;
-      }
-
-      &-icons {
-        display: flex;
-        gap: 0.5rem;
 
         img {
-          max-width: 24px;
+          max-width: 28px;
         }
       }
     }
@@ -152,7 +148,7 @@
         justify-content: end;
 
         img {
-          width: 3rem;
+          width: 1.8rem;
         }
       }
     }
@@ -230,11 +226,10 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .footer__top {
     flex-direction: column-reverse;
     gap: 3rem;
-
   }
 
   .footer__top-left,
@@ -259,9 +254,7 @@
   }
 
   .footer__top-right-socs {
-    img {
-      width: 2.2rem;
-    }
+
   }
 
   .footer__top-right-main {
@@ -296,10 +289,10 @@
 
       clip-path: polygon(0px 0px, 85% 0px, 100% 100%, 0px 100%);
 
-      gap: 0.3rem;
+      gap: 0.5rem;
 
       &-num {
-        gap: 0.3rem;
+        gap: 0.5rem;
       }
     }
   }
@@ -326,7 +319,7 @@
       gap: 0.3rem;
 
       &-num {
-        gap: 0.1rem;
+        gap: 0.3rem;
       }
     }
   }

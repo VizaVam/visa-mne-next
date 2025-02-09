@@ -4,37 +4,38 @@ import {useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import {countries} from "@/components/serviceson";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false); // Управление плавающей кнопкой
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
 
     return (
         <>
             <header className={"header"}>
                 <div className={"header__top"}>
                     <div className={"header__top-left"}>
-                        <div className={"flex gap-4 mdd:gap-2 lg:flex-row md:flex-col sm:flex-col mdd:flex-col"}>
-                            <p className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>пр. Победителей 17, офис
+                        <div className={"flex gap-2 lg:gap-4 lg:flex-row md:flex-col sm:flex-col mdd:flex-col"}>
+                            <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>пр. Победителей 17, офис
                             1204</p>
                             <div className={"header__top-left-num"}>
-                                <p className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Пн-пт: 09:00-19:00</p>
-                                <p className={"lg:text-[16px] md:text-[14px] mdd:text-xs"}>Сб: 10:00-14:00</p>
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Пн-пт: 09:00-19:00</p>
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Сб: 10:00-14:00</p>
                             </div>
                         </div>
                     </div>
                     <div className={"header__top-right"}>
                         <div className={"header__top-right-num"}>
-                            <a href="tel:+375296800620">
+                            <a href="tel:+375296800620" className={"hover:underline"}>
                                 +375296800620
                             </a>
-                            <a href="tel:+375293734870">
+                            <a href="tel:+375293734870" className={"hover:underline"}>
                                 +375293734870
                             </a>
-                        </div>
-                        <div className={"header__top-right-icons"}>
                             <a
                                 href="viber://chat?number=375295648334"
                                 target="_blank"
@@ -67,18 +68,23 @@ export default function Header() {
                 <div className={"header__bottom"}>
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
-                            <Image width={600} height={600} src={"/logo-visamne.png"} alt={""}
-                                   className={"lg:h-16 md:h-16 sm:h-12 mdd:h-12 lg:w-16 md:w-16 sm:w-12 mdd:w-12"}/>
+                            <Image width={600} height={600} src={"/new-logo.svg"} alt={""}
+                                   className={"lg:h-20 md:h-20 sm:h-16 mdd:h-[54px] lg:w-20 md:w-20 sm:w-16 mdd:w-[54px] hover:underline"}/>
                         </a>
                     </div>
                     <div className={"header__bottom-right"}>
                         <div className={"header__bottom-right-links"}>
-                            <a href={"/visa"}>
-                                Визы
-                            </a>
-                            <a href={"/contacts"}>
-                                Контакты
-                            </a>
+                            {pathname === "/visa" ? (
+                                <span className="font-semibold text-gray-900">Визы</span>
+                            ) : (
+                                <Link href="/visa" className="hover:underline">Визы</Link>
+                            )}
+
+                            {pathname === "/contacts" ? (
+                                <span className="font-semibold text-gray-900">Контакты</span>
+                            ) : (
+                                <Link href="/contacts" className="hover:underline">Контакты</Link>
+                            )}
                         </div>
                         <button onClick={openModal} className={"header__bottom-right-btn"}>
                             Оформить заявку
@@ -86,7 +92,7 @@ export default function Header() {
                         <div className="lg:hidden p-0 w-max">
                             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <Image width={1000} height={800} src="/burger.svg" alt="Menu"
-                                       className="mdd:w-[2rem] sm:w-[3rem] h-full"/>
+                                       className="w-9 mdd:w-7 h-full"/>
                             </button>
                         </div>
                     </div>

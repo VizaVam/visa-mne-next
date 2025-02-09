@@ -101,7 +101,7 @@ const FAQ = () => {
                         {openIndex === index && (
                             <div
                                 className="mdd:text-[16px] text-[16px] bg-white py-4 px-6 text-gray-700"
-                                dangerouslySetInnerHTML={{__html: "О: " + faq.answer}}
+                                dangerouslySetInnerHTML={{__html: faq.answer}}
                             />
                         )}
                     </div>

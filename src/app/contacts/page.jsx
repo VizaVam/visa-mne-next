@@ -32,10 +32,10 @@ export default function ContactsPage() {
                             height={1000}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] mdd:hidden"
                         />
-                        <Image src={"/contacts-banner-svg.svg"} alt={""} width={1000}
+                        <Image src={"/contactsbanner-f.svg"} alt={""} width={1000}
                                height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"/>
                     </div>
-                    <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-20">
+                    <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
                         <button
                             onClick={openModal}
                             className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
@@ -44,7 +44,7 @@ export default function ContactsPage() {
                     </div>
                 </div>
                 <div
-                    className={"w-full relative flex lg:flex-row sm:flex-col mdd:flex-col lg:gap-2 sm:gap-4 mdd:gap-4 justify-between px-[7%]"}>
+                    className={"w-full relative flex lg:flex-row sm:flex-col mdd:flex-col lg:gap-2 sm:gap-4 mdd:gap-20 justify-between px-[7%] pt-10"}>
                     <div className="w-full lg:flex items-center lg:mt-0 relative z-5">
                         <Image
                             src="/contacts-banner-2.png"
@@ -75,10 +75,12 @@ export default function ContactsPage() {
                         <div className={"flex gap-4"}>
                             <img className={"w-6 h-6"} src={"/contacts-location-icon.png"} alt={""}/>
                             <div className={"flex flex-col gap-4"}>
-                                <a href={"https://www.google.com/maps/place/%D0%92%D0%B8%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9+%D0%A6%D0%B5%D0%BD%D1%82%D1%80+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA/@53.910344,27.544728,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcf6dc479a1b9:0x20fc9ea41769ce82!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11hf27ckdt?entry=ttu"}
-                                   className={"text-lg font-medium"}>Минск, пр. Победителей 17 офис 1204 (метро
-                                    Немига)</a>
-                                <a href={"/"} className={"underline text-[#4472C4]"}>Google Map</a>
+                                <p className={"text-lg font-medium"}>Минск, пр. Победителей 17 офис 1204 (метро
+                                    Немига)</p>
+                                <a href={"https://www.google.com/maps/place/Visa+Vam/@53.910344,27.5447334,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcfe91ef014a9:0xa6163600e41617e9!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11x1ym4kj8?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D"}
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   className={"underline text-[#4472C4]"}>Google Map</a>
                                 <div className={"text-lg font-medium"}>
                                     <p>Пн-пт: с 09:00 до 19:00</p>
                                     <p>Суббота c 10:00 до 14:00</p>
@@ -88,7 +90,7 @@ export default function ContactsPage() {
                         </div>
                     </div>
                 </div>
-                <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-[7%] text-lg"}>
+                <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-16 text-lg"}>
                     <div>
                         <p>
                             Общество с ограниченной ответственностью "Визовый Сервис"<br/>

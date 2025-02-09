@@ -61,7 +61,7 @@ const Slider = () => {
     return (
         <div className="relative w-full mx-auto overflow-hidden pl-[7%] sm:px-[7%]" {...swipeHandlers}>
             {/* Слайд */}
-            <div className="relative lg:h-64 md:h-60 sm:h-52 mdd:h-52 w-full overflow-hidden">
+            <div className="relative lg:h-96 md:h-60 sm:h-52 mdd:h-36 w-full overflow-hidden">
                 <div
                     className="flex transition-transform duration-700 rounded-[2px]"
                     style={{
@@ -75,20 +75,20 @@ const Slider = () => {
                             key={slide.id}
                             className={`${
                                 isLgScreen ? "w-[100%]" : "w-[85%]"
-                            } sm:min-w-full lg:h-64 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-[2px]`}
+                            } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-36 flex-shrink-0 relative mr-2 rounded-[2px]`}
                         >
-                            <Image width={2000} height={1200}
-                                   src={slide.image}
-                                   alt={`Slide ${slide.id}`}
-                                   loading="lazy"
-                                   className={`w-full lg:h-64 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-[2px]`}
-                                   style={{
-                                       objectPosition: slide.id === 2 ? "50% 71%" : "center",
-                                   }}
+                            <img
+                                src={slide.image}
+                                alt={`Slide ${slide.id}`}
+                                loading="lazy"
+                                className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-36 object-cover rounded-[2px]`}
+                                style={{
+                                    objectPosition: slide.id === 2 ? "50% 71%" : "center",
+                                }}
                             />
                             <div
                                 className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
-                                <h2 className="text-white text-center sm:text-3xl md:text-4xl lg:text-5xl font-semibold">{slide.text}</h2>
+                                <h2 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold">{slide.text}</h2>
                             </div>
                         </div>
                     ))}

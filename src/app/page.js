@@ -9,6 +9,7 @@ import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
 import Image from "next/image";
 import { useModal } from "@/components/modalcontext";
+import Serviceson from "@/components/serviceson";
 
 export default function HomePage({onOpenModal}) {
     const { openModal } = useModal();
@@ -16,20 +17,16 @@ export default function HomePage({onOpenModal}) {
     return (
         <div className={""}>
             <section
-                className="lg:px-16 lg:mt-[80px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row items-center lg:items-start relative">
+                className="lg:px-16 lg:mt-[80px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
-                    <div className={"flex ht:flex-row ht:items-end lg:flex-col md:flex-col sm:flex-col mdd:flex-row mdd:items-end gap-2"}>
-                        <h1 className="lg:text-3xl md:text-3xl sm:text-2xl mdd:text-[16px] font-semibold text-black">
-                            КОМПАНИЯ
-                        </h1>
-                        <p className="lg:text-6xl md:text-6xl sm:text-5xl mdd:text-4xl font-semibold">VISA VAM</p>
+                    <div className={"flex flex-col"}>
+                        <h1 className="text-[24px] mdd:text-[12px] font-semibold text-black">КОМПАНИЯ</h1>
+                        <h1 className="lg:text-[80px] text-[70px] mdd:text-[40px] font-bold leading-none">VISA VAM</h1>
+                        <p className="relative lg:absolute lg:top-[85%] lg:left-[28%] mdd:left-[5%] left-[10%] text-[32px] mdd:text-[20px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                            Помогаем превратить мечты в реальность
+                        </p>
                     </div>
-                    <p
-                        className="lg:mt-4 lg:text-3xl md:text-3xl sm:text-3xl mdd:text-2xl dr:text-xl text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65"
-                    >
-                        Помогаем превратить мечты в реальность
-                    </p>
                 </div>
 
                 {/* Правая часть */}
@@ -50,8 +47,7 @@ export default function HomePage({onOpenModal}) {
                     </div>
                 </div>
                 {/* Список преимуществ */}
-                <ul
-                    className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-1/2 space-y-4 text-left lg:p-4 md:p-4 sm:pt-20 mdd:pt-20 rounded-md">
+                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-1/2 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-20 rounded-md pl-[7%]">
                     <li className="flex items-center text-lg">
                         <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <p className="font-[500] text-[20px]">
@@ -80,8 +76,12 @@ export default function HomePage({onOpenModal}) {
                 </ul>
             </section>
             <Slider/>
-            <Services/>
-            <Steps />
+            <div>
+                <h2 className="px-[7%] mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">Оформление документов для
+                    подачи на визы</h2>
+                <Serviceson/>
+            </div>
+            <Steps/>
             <Docs/>
             <Reviews/>
             <Fag/>

@@ -11,9 +11,11 @@ import Serviceson from "@/components/serviceson";
 
 import { useModal } from "@/components/modalcontext";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function VisaPage() {
     const { openModal } = useModal();
+    const pathname = usePathname()
 
     return (
         <div>
@@ -22,8 +24,12 @@ export default function VisaPage() {
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline">Главная</Link>
-                        <span><img className={"w-2"} src={"/nav-icon.png"} alt={""}/></span>
-                        <Link href="/visa" className="font-semibold">Визы</Link>
+                        <span><img className="w-2" src="/nav-icon.png" alt="" /></span>
+                        {pathname === "/visa" ? (
+                            <span className="font-semibold text-gray-900">Визы</span>
+                        ) : (
+                            <Link href="/visa" className="font-semibold hover:underline">Визы</Link>
+                        )}
                     </nav>
                     <h1 className="mdd:text-5xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black">
                         ВИЗЫ
@@ -35,12 +41,12 @@ export default function VisaPage() {
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={1000}
                         height={1000}
-                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
+                        className="relative lg:top-[15%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
                     />
-                    <Image src={"/visabanner-new.svg"} alt={""} width={1000}
+                    <Image src={"/visabanner-f.svg"} alt={""} width={1000}
                            height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"/>
                 </div>
-                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-20">
+                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
                     <button
                         onClick={openModal}
                         className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">

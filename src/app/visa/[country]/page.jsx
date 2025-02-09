@@ -151,9 +151,9 @@ export default function CountryPage({params}) {
 
                             <div className="flex flex-col gap-6">
                                 {selectedCountry.text1 &&
-                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text1}</p>}
+                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{parseText(selectedCountry.text1)}</p>}
                                 {selectedCountry.text2 &&
-                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text2}</p>}
+                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{parseText(selectedCountry.text2)}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
                                     <ul className="list-disc list-inside text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] flex flex-col gap-2 font-medium">
                                         {selectedCountry.variants.map((variant, index) => (
@@ -165,7 +165,7 @@ export default function CountryPage({params}) {
                                     </ul>
                                 )}
                                 {selectedCountry.text3 &&
-                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{selectedCountry.text3}</p>}
+                                    <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{parseText(selectedCountry.text3)}</p>}
                             </div>
                         </div>
                     )}

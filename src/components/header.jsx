@@ -4,7 +4,7 @@ import {useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import {countries} from "@/components/serviceson";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import {usePathname} from "next/navigation";
 import Link from "next/link";
 
 export default function Header() {
@@ -137,7 +137,9 @@ export default function Header() {
                 </div>
             </header>
             {/* Фиксированная кнопка */}
-            <div className="fixed bottom-3 right-3 justify-end z-50 md:hidden">
+            <div className={`fixed ${
+                isFloatingMenuOpen ? "bottom-16" : "bottom-3"
+            } right-3 z-[60] md:hidden transition-all duration-300`}>
                 {/* Основная кнопка */}
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
@@ -147,35 +149,35 @@ export default function Header() {
                 </button>
 
                 {/* Раскрывающееся меню */}
-                    {isFloatingMenuOpen && (
-                        <div className="absolute bottom-0 right-12 flex items-end justify-between">
-                            <a href="tel:+375296800620"
-                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                                <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
-                            </a>
-                            <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
-                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                                <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
-                            </a>
-                            <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
-                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                                <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
-                            </a>
-                            <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
-                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                                <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
-                            </a>
-                            <a href="mailto:l336906097@gmail.com"
-                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                                <img src="/email.svg" alt="Email" className="w-12 h-12"/>
-                            </a>
-                            <button onClick={openModal}
-                                    className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center text-white">
-                                <img src="/floating-button.svg" alt="Email" className="w-12 h-12"/>
-                            </button>
-                        </div>
-                    )}
             </div>
+            {isFloatingMenuOpen && (
+                <div className="w-full fixed bottom-3 flex items-center justify-between z-50 px-3">
+                    <a href="tel:+375296800620"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
+                    </a>
+                    <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
+                    </a>
+                    <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
+                    </a>
+                    <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
+                    </a>
+                    <a href="mailto:l336906097@gmail.com"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/email.svg" alt="Email" className="w-12 h-12"/>
+                    </a>
+                    <button onClick={openModal}
+                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center text-white">
+                        <img src="/floating-button.svg" alt="Email" className="w-12 h-12"/>
+                    </button>
+                </div>
+            )}
 
         </>
     );

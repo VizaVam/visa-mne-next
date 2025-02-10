@@ -21,7 +21,7 @@ export default function Header() {
                     <div className={"header__top-left"}>
                         <div className={"flex gap-2 lg:gap-4 lg:flex-row md:flex-col sm:flex-col mdd:flex-col"}>
                             <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>пр. Победителей 17, офис
-                            1204</p>
+                                1204</p>
                             <div className={"header__top-left-num"}>
                                 <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] mdd:hidden"}>Пн-пт:
                                     09:00-19:00</p>
@@ -78,18 +78,23 @@ export default function Header() {
                     <div className={"header__bottom-right"}>
                         <div className={"header__bottom-right-links"}>
                             {pathname === "/visa" ? (
-                                <span className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Визы</span>
+                                <span
+                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Визы</span>
                             ) : (
-                                <Link href="/visa" className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                                <Link href="/visa"
+                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
                             )}
 
                             {pathname === "/contacts" ? (
-                                <span className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Контакты</span>
+                                <span
+                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Контакты</span>
                             ) : (
-                                <Link href="/contacts" className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Контакты</Link>
+                                <Link href="/contacts"
+                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Контакты</Link>
                             )}
                         </div>
-                        <button onClick={openModal} className={"header__bottom-right-btn active:scale-95 transition-transform duration-150 ease-in-out"}>
+                        <button onClick={openModal}
+                                className={"header__bottom-right-btn active:scale-95 transition-transform duration-150 ease-in-out"}>
                             Оформить заявку
                         </button>
                         <div className="lg:hidden p-0 w-max">
@@ -119,10 +124,12 @@ export default function Header() {
                             <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
                         </button>
                         <div className={"text-black flex flex-col gap-3"}>
-                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"} href={"/visa"}>
+                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"}
+                               href={"/visa"}>
                                 Визы
                             </a>
-                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"} href={"/contacts"}>
+                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"}
+                               href={"/contacts"}>
                                 Контакты
                             </a>
                         </div>
@@ -130,7 +137,7 @@ export default function Header() {
                 </div>
             </header>
             {/* Фиксированная кнопка */}
-            <div className="fixed bottom-4 right-4 z-50 md:hidden">
+            <div className="fixed bottom-3 right-3 z-50 md:hidden">
                 {/* Основная кнопка */}
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
@@ -140,58 +147,38 @@ export default function Header() {
                 </button>
 
                 {/* Раскрывающееся меню */}
-                {isFloatingMenuOpen && (
-                    <div className="absolute bottom-16 right-0 flex flex-col items-end space-y-3">
-                        <a
-                            href="tel:+375296800620"
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center"
-
-                        >
-                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
-                        </a>
-                        <a
-                            href="viber://chat?number=375295648334"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center"
-
-                        >
-                            <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
-                        </a>
-                        <a
-                            href="https://t.me/+375295648334"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center"
-
-                        >
-                            <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
-                        </a>
-                        <a
-                            href="https://wa.me/375257654320"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center"
-
-                        >
-                            <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
-                        </a>
-                        <a
-                            href="mailto:l336906097@gmail.com"
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center"
-                        >
-                            <img src="/email.svg" alt="Email" className="w-12 h-12"/>
-                        </a>
-                        <button
-                            onClick={openModal}
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center text-white"
-
-                        >
-                            <img src="/floating-button.svg" alt="Email" className="w-12 h-12"/>
-                        </button>
-                    </div>
-                )}
+                <div>
+                    {isFloatingMenuOpen && (
+                        <div className="absolute bottom-0 right-14 flex items-end gap-1">
+                            <a href="tel:+375296800620"
+                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                                <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
+                            </a>
+                            <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
+                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                                <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
+                            </a>
+                            <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
+                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                                <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
+                            </a>
+                            <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
+                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                                <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
+                            </a>
+                            <a href="mailto:l336906097@gmail.com"
+                               className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                                <img src="/email.svg" alt="Email" className="w-12 h-12"/>
+                            </a>
+                            <button onClick={openModal}
+                                    className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center text-white">
+                                <img src="/floating-button.svg" alt="Email" className="w-12 h-12"/>
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
+
         </>
     );
 };

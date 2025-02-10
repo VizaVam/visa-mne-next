@@ -184,10 +184,10 @@ export default function Header() {
                         </a>
                         <button
                             onClick={openModal}
-                            className="w-72 h-full rounded-full bg-transparent flex items-center justify-center text-white"
+                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center text-white"
 
                         >
-                            <img src="/fixed-button.svg" alt="Email" className="w-72 h-full"/>
+                            <img src="/floating-button.svg" alt="Email" className="w-12 h-12"/>
                         </button>
                     </div>
                 )}

@@ -50,10 +50,10 @@ export default function CountryPage({params}) {
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
-                        <Link href="/" className="text-orange-500 hover:underline">Главная</Link>
+                        <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <Link href="/visa"
-                              className={`text-orange-500 hover:underline ${pathname === "/visa" ? "font-semibold text-gray-900 pointer-events-none" : ""}`}>
+                              className={`text-orange-500 hover:underline ${pathname === "/visa" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
                             Визы
                         </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>

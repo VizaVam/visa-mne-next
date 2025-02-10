@@ -78,18 +78,18 @@ export default function Header() {
                     <div className={"header__bottom-right"}>
                         <div className={"header__bottom-right-links"}>
                             {pathname === "/visa" ? (
-                                <span className="font-semibold text-gray-900">Визы</span>
+                                <span className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Визы</span>
                             ) : (
-                                <Link href="/visa" className="hover:underline">Визы</Link>
+                                <Link href="/visa" className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
                             )}
 
                             {pathname === "/contacts" ? (
-                                <span className="font-semibold text-gray-900">Контакты</span>
+                                <span className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Контакты</span>
                             ) : (
-                                <Link href="/contacts" className="hover:underline">Контакты</Link>
+                                <Link href="/contacts" className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Контакты</Link>
                             )}
                         </div>
-                        <button onClick={openModal} className={"header__bottom-right-btn"}>
+                        <button onClick={openModal} className={"header__bottom-right-btn active:scale-95 transition-transform duration-150 ease-in-out"}>
                             Оформить заявку
                         </button>
                         <div className="lg:hidden p-0 w-max">

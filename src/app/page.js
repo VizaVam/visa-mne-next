@@ -23,7 +23,7 @@ export default function HomePage({onOpenModal}) {
                     <div className={"flex flex-col"}>
                         <h1 className="text-[24px] mdd:text-[12px] font-semibold text-black">КОМПАНИЯ</h1>
                         <h1 className="lg:text-[80px] text-[70px] mdd:text-[40px] font-bold leading-none">VISA VAM</h1>
-                        <p className="relative lg:absolute lg:top-[80%] lg:left-[20%] mdd:left-[5%] left-[10%] text-[32px] mdd:text-[20px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[90%] md:top-[8%] sm:top-[9%] mdd:top-[6%] lg:left-[20%] mdd:left-[5%] left-[10%] text-[32px] mdd:text-[20px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
                             Помогаем превратить мечты в реальность
                         </p>
                     </div>

@@ -151,31 +151,36 @@ export default function Header() {
                 {/* Раскрывающееся меню */}
             </div>
             {isFloatingMenuOpen && (
-                <div className="w-full fixed bottom-3 flex items-center justify-between z-50 px-3">
-                    <a href="tel:+375296800620"
-                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                        <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
-                    </a>
-                    <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
-                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                        <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
-                    </a>
-                    <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
-                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                        <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
-                    </a>
-                    <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
-                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                        <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
-                    </a>
-                    <a href="mailto:l336906097@gmail.com"
-                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                        <img src="/email.svg" alt="Email" className="w-12 h-12"/>
-                    </a>
-                    <button onClick={openModal}
-                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center text-white">
-                        <img src="/floating-button.svg" alt="Email" className="w-12 h-12"/>
-                    </button>
+                <div className="">
+                    <div className={"fixed bottom-28 right-3 flex flex-col items-center justify-between z-50"}>
+                        <a href="tel:+375296800620"
+                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
+                        </a>
+                        <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
+                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                            <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
+                        </a>
+                        <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
+                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                            <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
+                        </a>
+                        <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
+                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                            <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
+                        </a>
+                        <a href="mailto:l336906097@gmail.com"
+                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                            <img src="/email.svg" alt="Email" className="w-12 h-12"/>
+                        </a>
+                    </div>
+                    <div className={"w-full fixed bottom-3 flex items-center justify-between z-50 px-3"}>
+                        <button
+                            onClick={openModal}
+                            className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            Оформить заявку
+                        </button>
+                    </div>
                 </div>
             )}
 

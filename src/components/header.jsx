@@ -137,7 +137,7 @@ export default function Header() {
                 </div>
             </header>
             {/* Фиксированная кнопка */}
-            <div className="fixed bottom-3 right-3 z-50 md:hidden">
+            <div className="fixed bottom-3 right-3 justify-end z-50 md:hidden">
                 {/* Основная кнопка */}
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
@@ -147,9 +147,8 @@ export default function Header() {
                 </button>
 
                 {/* Раскрывающееся меню */}
-                <div>
                     {isFloatingMenuOpen && (
-                        <div className="absolute bottom-0 right-14 flex items-end gap-1">
+                        <div className="absolute bottom-0 right-12 flex items-end justify-between">
                             <a href="tel:+375296800620"
                                className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
                                 <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
@@ -176,7 +175,6 @@ export default function Header() {
                             </button>
                         </div>
                     )}
-                </div>
             </div>
 
         </>

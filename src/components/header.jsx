@@ -139,7 +139,7 @@ export default function Header() {
             {/* Фиксированная кнопка */}
             <div className={`fixed ${
                 isFloatingMenuOpen ? "bottom-16" : "bottom-3"
-            } right-3 z-[60] md:hidden transition-all duration-300`}>
+            } right-3 z-[60] md:hidden`}>
                 {/* Основная кнопка */}
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}

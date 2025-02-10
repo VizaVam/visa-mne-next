@@ -174,7 +174,7 @@ const Modal = () => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className={`py-3 px-4 rounded-[2px] w-[220px] ${
+                            className={`py-3 px-4 rounded-[2px] w-[220px] active:scale-95 transition-transform duration-150 ease-in-out ${
                                 isSubmitting
                                     ? "bg-gray-500 cursor-not-allowed"
                                     : "bg-customBlue hover:bg-blue-700 text-white"

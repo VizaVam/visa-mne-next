@@ -31,11 +31,11 @@ export default function VisaPage() {
                             <Link href="/visa" className="font-semibold hover:underline">Визы</Link>
                         )}
                     </nav>
-                    <h1 className="mdd:text-5xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black">
+                    <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black">
                         ВИЗЫ
                     </h1>
                 </div>
-                <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[30%] lg:mt-0 relative z-5">
+                <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[15%] lg:mt-0 relative z-5">
                     <Image
                         src="/visa-banner-new.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
@@ -49,7 +49,7 @@ export default function VisaPage() {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
+                        className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
                         Оформить заявку
                     </button>
                 </div>

@@ -35,10 +35,12 @@ export default function HomePage({onOpenModal}) {
                     <Image width={2000} height={1000}
                            src="/banner-hero.svg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%]"
+                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
                     />
+                    <Image width={1000} height={1000}
+                        src={"/main-m.svg"} alt={"Оформление виз с VisaVam.by – Легко и Доступно"} className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden" />
 
-                    <div className="lg:hidden absolute bottom-0 w-full px-[7%]">
+                    <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <button
                             onClick={openModal}
                             className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
@@ -47,27 +49,33 @@ export default function HomePage({onOpenModal}) {
                     </div>
                 </div>
                 {/* Список преимуществ */}
-                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-1/2 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-20 rounded-md pl-[7%]">
+                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-1/2 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 rounded-md pl-[7%]">
                     <li className="flex items-center text-lg">
                         <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
-                        <p className="font-[500] text-[20px]">
-                            Более 10 лет <br/>
-                            <span className="text-[16px] text-[#808080]">на рынке</span>
-                        </p>
+                        <div>
+                            <p className="font-[500] text-[20px] mdd:leading-none">
+                                Более 10 лет
+                            </p>
+                            <p className="text-[16px] text-[#808080]  mdd:leading-none">на рынке</p>
+                        </div>
                     </li>
                     <li className="flex items-center text-lg">
                         <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
-                        <p className="font-[500] text-[20px]">
-                            20 000+<br/>
-                            <span className="text-[16px] text-[#808080]">успешных кейсов</span>
-                        </p>
+                        <div>
+                            <p className="font-[500] text-[20px]  mdd:leading-none">
+                                20 000+
+                            </p>
+                            <p className="text-[16px] text-[#808080]  mdd:leading-none">успешных кейсов</p>
+                        </div>
                     </li>
                     <li className="flex items-center text-lg">
                         <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
-                        <p className="font-[500] text-[20px]">
-                            10 000+<br/>
-                            <span className="text-[16px] text-[#808080]">довольных клиентов</span>
-                        </p>
+                        <div>
+                            <p className="font-[500] text-[20px] mdd:leading-none">
+                                10 000+
+                            </p>
+                            <p className="text-[16px] text-[#808080] mdd:leading-none">довольных клиентов</p>
+                        </div>
                     </li>
                     <li className="flex items-center text-lg font-[500] text-[20px]">
                         <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
@@ -79,7 +87,7 @@ export default function HomePage({onOpenModal}) {
             <div>
                 <h2 className="px-[7%] mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">Оформление документов для
                     подачи на визы</h2>
-                <Serviceson/>
+                <Services/>
             </div>
             <Steps/>
             <Docs/>

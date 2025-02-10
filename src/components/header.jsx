@@ -23,8 +23,11 @@ export default function Header() {
                             <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>пр. Победителей 17, офис
                             1204</p>
                             <div className={"header__top-left-num"}>
-                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Пн-пт: 09:00-19:00</p>
-                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Сб: 10:00-14:00</p>
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] mdd:hidden"}>Пн-пт:
+                                    09:00-19:00</p>
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] mdd:hidden"}>Сб:
+                                    10:00-14:00</p>
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] sm:hidden"}>09:00-19:00</p>
                             </div>
                         </div>
                     </div>
@@ -116,29 +119,10 @@ export default function Header() {
                             <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
                         </button>
                         <div className={"text-black flex flex-col gap-3"}>
-                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400"} href={"/visa"}>
+                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"} href={"/visa"}>
                                 Визы
                             </a>
-                            <button
-                                onClick={() => setIsOpen(!isOpen)}
-                                className="mdd:text-xl sm:text-2xl text-black font-medium hover:text-gray-400 w-max"
-                            >
-                                Список всех стран
-                            </button>
-                            {isOpen && (
-                                <div className="w-full ">
-                                    {countries.map((country, index) => (
-                                        <a
-                                            key={index}
-                                            href={`/visa/${country.url}`}
-                                            className="block px-4 py-2 hover:text-gray-400"
-                                        >
-                                            {country.name}
-                                        </a>
-                                    ))}
-                                </div>
-                            )}
-                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400"} href={"/contacts"}>
+                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"} href={"/contacts"}>
                                 Контакты
                             </a>
                         </div>

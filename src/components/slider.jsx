@@ -99,7 +99,7 @@ const Slider = () => {
             <div className="flex justify-center items-center mt-4 space-x-4">
                 <button
                     onClick={prevSlide}
-                    className={`text-4xl transition-all duration-300 mdd:hidden ${
+                    className={`text-4xl transition-all duration-300 ${
                         currentIndex > 0 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
                     }`}
                     aria-label="Назад"
@@ -108,7 +108,7 @@ const Slider = () => {
                 </button>
                 <button
                     onClick={nextSlide}
-                    className={`text-4xl transition-all duration-300 mdd:hidden ${
+                    className={`text-4xl transition-all duration-300 ${
                         currentIndex < slides.length - 1 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
                     }`}
                     aria-label="Вперед"

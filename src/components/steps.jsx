@@ -8,7 +8,7 @@ const Steps = () => {
                  className="flex flex-col max-w-[320px] lg:max-w-none lg:flex-row items-center lg:justify-center space-x-[-10px] lg:space-y-0 relative">
                 {/* Step 1 */}
                 <div
-                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] lg:w-[12%] py-5 relative self-start"
+                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-[12%] py-5 relative self-start"
                     style={{
                         border: "1px solid #ECECEC",
                     }}
@@ -52,7 +52,7 @@ const Steps = () => {
 
                 {/* Step 3 */}
                 <div
-                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] lg:w-[12%] py-5 relative self-start"
+                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-[12%] py-5 relative self-start"
                     style={{
                         border: "1px solid #ECECEC",
                     }}

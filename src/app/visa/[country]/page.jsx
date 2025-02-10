@@ -48,7 +48,7 @@ export default function CountryPage({params}) {
         <div className={"flex flex-col items-center"}>
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-8 mdd:gap-8">
+                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
@@ -59,20 +59,20 @@ export default function CountryPage({params}) {
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <span className="font-semibold text-gray-900">{selectedCountry.name}</span>
                     </nav>
-                    <h1 className="mdd:text-5xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
+                    <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black uppercase">
                         Виза в {["Великобританию", "Нидерланды"].includes(selectedCountry.n) ? (
-                        <p className="mdd:text-3xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
+                        <p className="mdd:text-[30px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black uppercase">
                             {selectedCountry.n}
                         </p>
                     ) : (
-                        <p className="mdd:text-5xl lg:text-7xl md:text-6xl sm:text-5xl font-semibold text-black uppercase">
+                        <p className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black uppercase">
                             {selectedCountry.n}
                         </p>
                     )}
                     </h1>
 
                 </div>
-                <div className="w-full lg:flex items-center mdd:mt-[30%] mt-[20%] lg:mt-0 relative z-5">
+                <div className="w-full lg:flex items-center mdd:mt-[15%] mt-[20%] lg:mt-0 relative z-5">
                     {selectedCountry.rb === 1 ? (
                         <Image src={"/visa-c.png"} alt={""} width={1000}
                                height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
@@ -91,7 +91,7 @@ export default function CountryPage({params}) {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
+                        className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
                         Оформить заявку
                     </button>
                 </div>
@@ -155,7 +155,7 @@ export default function CountryPage({params}) {
                                 {selectedCountry.text2 &&
                                     <p className="text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium">{parseText(selectedCountry.text2)}</p>}
                                 {selectedCountry.variants && selectedCountry.variants.length > 0 && (
-                                    <ul className="list-disc list-inside text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] flex flex-col gap-2 font-medium">
+                                    <ul className="list-disc list-inside text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[14px] flex flex-col gap-2 font-medium">
                                         {selectedCountry.variants.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
                                                 <img className="w-6 h-6" src="/check-0.png" alt=""/>
@@ -205,7 +205,7 @@ export default function CountryPage({params}) {
                     <div className="sm:mt-6 text-center">
                         <Link href="/visa">
                             <button
-                                className="bg-customBlue w-max hover:bg-blue-500 text-white py-4 px-8 rounded-[2px] text-[16px]">
+                                className="bg-customBlue w-max hover:bg-blue-500 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран
                             </button>
                         </Link>

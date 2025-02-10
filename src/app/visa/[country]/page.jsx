@@ -100,11 +100,7 @@ export default function CountryPage({params}) {
                 </div>
             </div>
             <img
-                src={
-                    selectedCountry.name === "Польша"
-                        ? "/123123.png"
-                        : `${selectedCountry.img}`
-                }
+                src={`${selectedCountry.banner}`}
                 alt=""
                 className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
             />

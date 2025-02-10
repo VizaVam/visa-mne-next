@@ -60,18 +60,21 @@ export default function CountryPage({params}) {
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <span className="font-semibold text-gray-900">{selectedCountry.name}</span>
                     </nav>
-                    <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black uppercase leading-none">
-                        Виза в {" "}
+                    <h1 className="lg:text-[64px] md:text-[58px] sm:text-[48px] mdd:text-[40px] font-semibold text-black uppercase leading-none">
+                        Виза в{" "}
                         <span
                             className={`${
                                 ["Великобританию", "Нидерланды"].includes(selectedCountry.n)
-                                    ? "text-[30px] lg:text-[64px] md:text-[58px] sm:text-[48px]"
-                                    : "mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px]"
-                            } font-semibold text-black uppercase inline-block`}
+                                    ? "lg:text-[64px] md:text-[58px] sm:text-[48px] mdd:text-[30px]"
+                                    : "lg:text-[64px] md:text-[58px] sm:text-[48px] mdd:text-[40px]"
+                            } font-semibold text-black uppercase block ${
+                                "mdd:inline-block"
+                            }`}
                         >
         {selectedCountry.n}
     </span>
                     </h1>
+
 
                 </div>
                 <div className="w-full lg:flex items-center mdd:mt-[15%] mt-[20%] lg:mt-0 relative z-5">

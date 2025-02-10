@@ -50,7 +50,8 @@ export default function CountryPage({params}) {
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
-                        <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
+                        <Link href="/"
+                              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <Link href="/visa"
                               className={`text-orange-500 hover:underline ${pathname === "/visa" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
@@ -75,10 +76,12 @@ export default function CountryPage({params}) {
                 <div className="w-full lg:flex items-center mdd:mt-[15%] mt-[20%] lg:mt-0 relative z-5">
                     {selectedCountry.rb === 1 ? (
                         <Image src={"/visa-c.png"} alt={""} width={1000}
-                               height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
+                               height={1000}
+                               className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
                     ) : (
                         <Image src={"/visa-cc.png"} alt={""} width={1000}
-                               height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
+                               height={1000}
+                               className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
                     )}
                     {selectedCountry.rb === 1 ? (
                         <Image src={"/visa-1.svg"} alt={""} width={1000}
@@ -96,7 +99,16 @@ export default function CountryPage({params}) {
                     </button>
                 </div>
             </div>
-            <img src={`${selectedCountry.img}`}  alt={""} className={"w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"}/>
+            <img
+                src={
+                    selectedCountry.name === "Польша"
+                        ? "/123123.png"
+                        : `${selectedCountry.img}`
+                }
+                alt=""
+                className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
+            />
+
             {selectedCountry.good !== 0 ? (
                 <div className={"w-full"}>
                     <Steps/>
@@ -171,7 +183,8 @@ export default function CountryPage({params}) {
                     )}
 
                     <div className={"flex flex-col gap-4 mt-16"}>
-                        <p className={"text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium"}>Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:</p>
+                        <p className={"text-black lg:text-2xl md:text-2xl sm:text-xl mdd:text-[16px] font-medium"}>Для
+                            получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:</p>
                         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             {Object.keys(countryOrder).map((countryKey, index) => {
                                 const c = countries.find(c => c.url.toLowerCase() === countryKey);

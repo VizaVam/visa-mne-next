@@ -29,10 +29,10 @@ export default function Footer(){
                                 <div className={"footer__top-right-main-right-lists-list"}>
                                     <Image width={1000} height={800}  src={"/footer-call.png"} alt={""}/>
                                     <div className={"flex flex-col"}>
-                                        <a href={"tel:+375296800620"}>
+                                        <a className={"hover:underline"} href={"tel:+375296800620"}>
                                             +375296800620
                                         </a>
-                                        <a href={"tel:+375293734870"}>
+                                        <a className={"hover:underline"} href={"tel:+375293734870"}>
                                             +375293734870
                                         </a>
                                     </div>
@@ -40,7 +40,7 @@ export default function Footer(){
                                 <div className={"footer__top-right-main-right-lists-list"}>
                                     <Image width={1000} height={800}  src={"/footer-email.png"} alt={""}/>
                                     <div>
-                                        <a href={"mailto:l336906097@gmail.com"}
+                                        <a className={"hover:underline"} href={"mailto:l336906097@gmail.com"}
                                            target="_blank"
                                            rel="noopener noreferrer">
                                             info@visavam.by
@@ -50,7 +50,7 @@ export default function Footer(){
                                 <a href={"https://www.google.com/maps/place/Visa+Vam/@53.910344,27.5447334,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcfe91ef014a9:0xa6163600e41617e9!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11x1ym4kj8?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D"}
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className={"footer__top-right-main-right-lists-list"}
+                                   className={"footer__top-right-main-right-lists-list hover:underline"}
                                 >
                                     <Image width={1000} height={800}  src={"/footer-location.png"} alt={""}/>
                                     <div>
@@ -95,7 +95,7 @@ export default function Footer(){
             </div>
 
             <div className="footer__bottom">
-                <a href="/offer.pdf" target="_blank" rel="noopener noreferrer">
+                <a className={"text-[#E6E6E6] hover:text-white"} href="/offer.pdf" target="_blank" rel="noopener noreferrer">
                     Публичная оферта
                 </a>
             </div>

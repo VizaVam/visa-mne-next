@@ -94,7 +94,7 @@ export default function Header() {
                             )}
                         </div>
                         <button onClick={openModal}
-                                className={"header__bottom-right-btn active:scale-95 transition-transform duration-150 ease-in-out"}>
+                                className={"header__bottom-right-btn hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"}>
                             Оформить заявку
                         </button>
                         <div className="lg:hidden p-0 w-max">

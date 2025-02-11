@@ -23,7 +23,7 @@ export default function HomePage({onOpenModal}) {
                     <div className={"flex flex-col"}>
                         <h1 className="text-[24px] mdd:text-[12px] font-semibold text-black">КОМПАНИЯ</h1>
                         <h1 className="lg:text-[80px] text-[70px] mdd:text-[40px] font-bold leading-none">VISA VAM</h1>
-                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[90%] md:top-[8%] sm:top-[9%] mdd:top-[6%] lg:left-[20%] mdd:left-[5%] left-[10%] text-[32px] mdd:text-[20px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[90%] md:top-[8%] sm:top-[9%] mdd:top-[6%] lg:left-[27%] mdd:left-[15%] left-[15%] text-[32px] mdd:text-[20px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
                             Помогаем превратить мечты в реальность
                         </p>
                     </div>
@@ -43,13 +43,13 @@ export default function HomePage({onOpenModal}) {
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <button
                             onClick={openModal}
-                            className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
+                            className="relative w-[100%] bg-customBlue text-white py-3 rounded-[2px] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
                             Оформить заявку
                         </button>
                     </div>
                 </div>
                 {/* Список преимуществ */}
-                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-1/2 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 rounded-md pl-[7%]">
+                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 rounded-md pl-[7%]">
                     <li className="flex items-center text-lg">
                         <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <div>

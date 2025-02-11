@@ -46,10 +46,10 @@ export default function VisaPage() {
                     <Image src={"/visabanner-f.svg"} alt={""} width={1000}
                            height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"/>
                 </div>
-                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
+                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
                         Оформить заявку
                     </button>
                 </div>

@@ -26,7 +26,7 @@ export default function ContactsPage() {
                     </div>
                     <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[15%] mt-[20%] relative z-5">
                         <Image
-                            src="/contacts-banner.png"
+                            src="/conc.png"
                             alt="Оформление виз с VisaVam.by – Легко и Доступно"
                             width={1000}
                             height={1000}
@@ -35,10 +35,10 @@ export default function ContactsPage() {
                         <Image src={"/contactsbanner-f.svg"} alt={""} width={1000}
                                height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"/>
                     </div>
-                    <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[25%]">
+                    <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[27%]">
                         <button
                             onClick={openModal}
-                            className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px]">
+                            className="relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[2px]">
                             Оформить заявку
                         </button>
                     </div>
@@ -58,8 +58,8 @@ export default function ContactsPage() {
                         <div className={"flex gap-4 items-center"}>
                             <img className={"w-6 h-6"} src={"/contacts-call-icon.png"} alt={""}/>
                             <div className={"flex flex-col"}>
-                                <a href={"tel:+375296800620"} className={"font-medium text-[18px] mdd:text-[14px]"}>+375296800620</a>
-                                <a href={"tel:+375293734870"} className={"font-medium text-[18px] mdd:text-[14px]"}>+375293734870</a>
+                                <a href={"tel:+375296800620"} className={"font-medium text-[18px] mdd:text-[14px] hover:underline"}>+375296800620</a>
+                                <a href={"tel:+375293734870"} className={"font-medium text-[18px] mdd:text-[14px] hover:underline"}>+375293734870</a>
                                 <p className={"font-normal text-[14px] mdd:text-[12px] text-[#808080]"}>Мобильный, Вайбер, Телеграм,
                                     Ватсап</p>
                             </div>
@@ -67,7 +67,7 @@ export default function ContactsPage() {
                         <div className={"flex gap-4 items-center"}>
                             <img className={"w-6 h-6"} src={"/contacts-email-icon.png"} alt={""}/>
                             <div>
-                                <a href={"mailto:l336906097@gmail.com"} className={"text-[18px] mdd:text-[14px] font-medium"}>
+                                <a href={"mailto:l336906097@gmail.com"} className={"text-[18px] mdd:text-[14px] font-medium hover:underline"}>
                                     info@visavam.by
                                 </a>
                             </div>
@@ -80,7 +80,7 @@ export default function ContactsPage() {
                                 <a href={"https://www.google.com/maps/place/Visa+Vam/@53.910344,27.5447334,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcfe91ef014a9:0xa6163600e41617e9!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11x1ym4kj8?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D"}
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className={"underline text-[#4472C4]"}>Google Map</a>
+                                   className={"underline text-[#4472C4] hover:text-blue-700"}>Google Map</a>
                                 <div className={"text-[18px] mdd:text-[14px] font-medium"}>
                                     <p>Пн-пт: с 09:00 до 19:00</p>
                                     <p>Суббота c 10:00 до 14:00</p>

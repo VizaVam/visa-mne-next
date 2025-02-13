@@ -186,13 +186,15 @@
     display: none;
   }
 }
+@media (max-width: 768px) {
+  .footer__bottom {
+    height: 6.5rem;
+  }
+}
 @media (max-width: 640px) {
   .footer__top {
     flex-direction: column-reverse;
     gap: 3rem;
-  }
-  .footer__bottom {
-    height: 6.5rem;
   }
   .footer__top-left,
   .footer__top-right {

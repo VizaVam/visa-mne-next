@@ -192,7 +192,7 @@ export default function Header() {
             {showFloatingButton && (
                 <div className="fixed bottom-3 w-full flex justify-center z-50 px-3">
                     <button onClick={openModal}
-                            className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out md:hidden">
                         Оформить заявку
                     </button>
                 </div>

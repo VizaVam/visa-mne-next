@@ -98,7 +98,7 @@ export default function CountryPage({params}) {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
                         Оформить заявку
                     </button>
                 </div>
@@ -180,6 +180,8 @@ export default function CountryPage({params}) {
                                 )}
                                 {selectedCountry.text3 &&
                                     <p className="text-black text-[14px]">{parseText(selectedCountry.text3)}</p>}
+                                {selectedCountry.text4 &&
+                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text4)}</p>}
                             </div>
                         </div>
                     )}
@@ -187,7 +189,7 @@ export default function CountryPage({params}) {
                     <div className={"flex flex-col gap-4 mt-16"}>
                         <p className={"text-black text-[14px]"}>Для
                             получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:</p>
-                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
                             {Object.keys(countryOrder).map((countryKey, index) => {
                                 const c = countries.find(c => c.url.toLowerCase() === countryKey);
                                 if (!c) return null; // Пропускаем, если страны нет в списке
@@ -198,17 +200,18 @@ export default function CountryPage({params}) {
                                             className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                             <img src={c.img} alt={c.name} className="w-full object-cover"/>
                                             <div
-                                                className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2 mdd:pr-2 dr:pl-1 dr:pr-1">
+                                                className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
                                                 <div className="flex flex-row justify-between items-center">
-                                                    <div className="flex gap-2 items-center">
+                                                    <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
                                                         <img src={c.svg} alt={c.name} className="h-6"/>
-                                                        <p className="font-medium mdd:text-[16px] dr:text-[14px] sm:text-lg md:text-xl lg:text-xl">
+                                                        <p className="font-medium mdd:text-[14px] sm:text-lg md:text-xl lg:text-xl">
                                                             {c.name}
                                                         </p>
                                                     </div>
-                                                    <img className="lg:w-8 md:w-8 sm:w-6 mdd:w-4 dr:w-3"
-                                                         src="/Line 5.png"
+                                                    <img className="lg:w-8 md:w-6 sm:w-6 mdd:hidden" src="/Line 5.png"
                                                          alt=""/>
+                                                    <img className={"mdd:w-3 dr:w-3 sm:hidden"} src={"/line123.png"}
+                                                         alt={""}/>
                                                 </div>
                                             </div>
                                         </div>

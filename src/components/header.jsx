@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import {countries} from "@/components/serviceson";
 import Image from "next/image";
@@ -9,10 +9,31 @@ import Link from "next/link";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false); // Управление плавающей кнопкой
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+
+    const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
+    const [showFloatingButton, setShowFloatingButton] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const mainButton = document.querySelector('.bbbt');
+
+            if (pathname === "/contacts") {
+                setShowFloatingButton(true);
+                return;
+            }
+
+            if (mainButton) {
+                const buttonRect = mainButton.getBoundingClientRect();
+                setShowFloatingButton(buttonRect.top < 0);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [pathname]);
 
     return (
         <>
@@ -94,7 +115,7 @@ export default function Header() {
                             )}
                         </div>
                         <button onClick={openModal}
-                                className={"header__bottom-right-btn hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"}>
+                                className="header__bottom-right-btn hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
                             Оформить заявку
                         </button>
                         <div className="lg:hidden p-0 w-max">
@@ -140,50 +161,42 @@ export default function Header() {
             <div className={`fixed ${
                 isFloatingMenuOpen ? "bottom-16" : "bottom-3"
             } right-3 z-[60] md:hidden`}>
-                {/* Основная кнопка */}
-                <button
-                    onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
-                    className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
-                >
-                    <Image width={1000} height={800} src="/request.svg" alt="Контакты" className="w-12 h-12"/>
-                </button>
 
                 {/* Раскрывающееся меню */}
             </div>
-            {isFloatingMenuOpen && (
-                <div className="">
-                    <div className={"fixed bottom-28 right-3 flex flex-col items-center justify-between z-50"}>
-                        <a href="tel:+375296800620"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
-                        </a>
-                        <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
-                        </a>
-                        <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
-                        </a>
-                        <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
-                        </a>
-                        <a href="mailto:l336906097@gmail.com"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/email.svg" alt="Email" className="w-12 h-12"/>
-                        </a>
-                    </div>
-                    <div className={"w-full fixed bottom-3 flex items-center justify-between z-50 px-3"}>
-                        <button
-                            onClick={openModal}
-                            className="relative w-[100%] bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
-                            Оформить заявку
-                        </button>
-                    </div>
+            <div className="md:hidden">
+                <div
+                    className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-3"} right-3 flex flex-col items-center justify-between z-50`}>
+                    <a href="tel:+375296800620"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
+                    </a>
+                    <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
+                    </a>
+                    <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
+                    </a>
+                    <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
+                    </a>
+                    <a href="mailto:l336906097@gmail.com"
+                       className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
+                        <img src="/email.svg" alt="Email" className="w-12 h-12"/>
+                    </a>
+                </div>
+            </div>
+            {showFloatingButton && (
+                <div className="fixed bottom-3 w-full flex justify-center z-50 px-3">
+                    <button onClick={openModal}
+                            className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                        Оформить заявку
+                    </button>
                 </div>
             )}
-
         </>
     );
 };

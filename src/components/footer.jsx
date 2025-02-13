@@ -95,7 +95,7 @@ export default function Footer(){
             </div>
 
             <div className="footer__bottom">
-                <a className={"text-[#E6E6E6] hover:text-white"} href="/offer.pdf" target="_blank" rel="noopener noreferrer">
+                <a className={"text-[#E6E6E6] hover:text-white"} href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf" target="_blank" rel="noopener noreferrer">
                     Публичная оферта
                 </a>
             </div>

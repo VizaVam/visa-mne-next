@@ -17,7 +17,7 @@ export default function HomePage({onOpenModal}) {
     return (
         <div className={""}>
             <section
-                className="lg:px-16 lg:mt-[80px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
+                className="lg:px-16 lg:mt-[60px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
                     <div className={"flex flex-col"}>
@@ -43,7 +43,7 @@ export default function HomePage({onOpenModal}) {
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <button
                             onClick={openModal}
-                            className="relative w-[100%] bg-customBlue text-white py-3 rounded-[2px] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="bbbt relative w-[100%] bg-customBlue text-white py-3 rounded-[2px] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
                             Оформить заявку
                         </button>
                     </div>

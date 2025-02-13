@@ -22,21 +22,22 @@ const Services = () => {
 
     return (
         <section id="services" className="px-[7%]">
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-1">
                 {displayedCountries.map((country, index) => (
                     <Link href={`/visa/${country.url}`} key={index}>
                         <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer
                             transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                             <img src={country.img} alt={country.name} className="w-full object-cover"/>
-                            <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-2 mdd:pr-2">
+                            <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
                                 <div className="flex flex-row justify-between items-center">
-                                    <div className="flex gap-2 items-center">
+                                    <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
                                         <img src={country.svg} alt={country.name} className="h-6"/>
                                         <p className="font-medium mdd:text-[16px] dr:text-[14px] sm:text-lg md:text-xl lg:text-xl">
                                             {country.name}
                                         </p>
                                     </div>
-                                    <img className="lg:w-8 md:w-8 sm:w-6 mdd:w-4 dr:w-3" src="/Line 5.png" alt=""/>
+                                    <img className="lg:w-8 md:w-6 sm:w-6 mdd:hidden" src="/Line 5.png" alt=""/>
+                                    <img className={"mdd:w-3 dr:w-3 sm:hidden"} src={"/line123.png"} alt={""}/>
                                 </div>
                             </div>
                         </div>

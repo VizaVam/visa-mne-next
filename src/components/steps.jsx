@@ -5,10 +5,10 @@ const Steps = () => {
 
             {/* Контейнер шагов */}
             <div style={{margin: "0 auto"}}
-                 className="flex flex-col max-w-[320px] lg:max-w-none lg:flex-row items-center lg:justify-center space-x-[-10px] lg:space-y-0 relative">
+                 className="flex flex-col max-w-[320px] lg:max-w-none lg:flex-row items-center lg:justify-center lg:space-y-0 relative">
                 {/* Step 1 */}
                 <div
-                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start"
+                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:left-10"
                     style={{
                         border: "1px solid #ECECEC",
                     }}
@@ -18,14 +18,14 @@ const Steps = () => {
                         alt="Заявка"
                         className="h-14 lg:h-20 rotate-[-9deg] lg:rotate-[-5deg]"
                     />
-                    <p className="text-sm font-medium px-2 lg:px-0">Оформление<br/>заявки на сайте</p>
+                    <p className="text-sm font-medium px-2 h-10 lg:px-0">Оформление<br/>заявки на сайте</p>
                 </div>
 
                 {/* Connector (скрываем на мобильных) */}
                 <img
                     src="/curve-1.svg"
                     alt="Curve"
-                    className="lg:block h-9 ml-6 relative top-[16%] z-[-1] rotate-[25deg] lg:rotate-0"
+                    className="lg:block mdd:h-9 ml-6 relative top-[16%] z-[-1] rotate-[25deg] lg:rotate-0 lg:left-2"
                 />
 
                 {/* Step 2 */}
@@ -34,7 +34,7 @@ const Steps = () => {
                     style={{border: "1px solid #ECECEC"}}
                 >
                     <img src="/step-2.svg" alt="Документы" className="h-14 lg:h-20"/>
-                    <p className="text-sm font-medium px-6 lg:px-0">
+                    <p className="text-sm font-medium px-2 lg:px-0">
             <span
                 className="block lg:hidden">Проверка<br/>документов<br/>(в офисе/удаленно)</span> {/* Текст для телефона */}
                         <span className="hidden lg:block">
@@ -47,12 +47,12 @@ const Steps = () => {
                 <img
                     src="/curve-1.svg"
                     alt="Curve"
-                    className="lg:block h-9 relative top-[54%] z-[-1] rotate-[-33deg] lg:rotate-180"
+                    className="lg:block lg:h-12 mdd:h-9 relative top-[54%] z-[-1] rotate-[-33deg] lg:rotate-180 lg:right-2"
                 />
 
                 {/* Step 3 */}
                 <div
-                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start"
+                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:right-4"
                     style={{
                         border: "1px solid #ECECEC",
                     }}
@@ -63,7 +63,7 @@ const Steps = () => {
                         className="h-14 lg:h-20"
                         style={{transform: "rotate(9deg)"}}
                     />
-                    <p className="text-sm font-medium px-6 h-10 lg:px-0">Подача документов</p>
+                    <p className="text-sm font-medium px-2 h-10 lg:px-0">Подача документов</p>
                 </div>
             </div>
         </div>

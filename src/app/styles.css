@@ -92,7 +92,7 @@
 }
 .footer__top-right-main {
   display: flex;
-  gap: 6rem;
+  gap: 2rem;
 }
 .footer__top-right-main h3 {
   font-size: 1.25rem;
@@ -191,6 +191,9 @@
     flex-direction: column-reverse;
     gap: 3rem;
   }
+  .footer__bottom {
+    height: 6.5rem;
+  }
   .footer__top-left,
   .footer__top-right {
     width: 100%; /* Чтобы элементы растягивались на всю ширину */
@@ -208,8 +211,12 @@
   .footer__top-right p {
     font-size: 0.8rem;
   }
+  .footer__top-right-socs {
+    padding-top: 2rem;
+    justify-content: center;
+  }
   .footer__top-right-main {
-    gap: 1rem;
+    gap: 5rem;
   }
   .docs {
     gap: 1rem;

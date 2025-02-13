@@ -41,8 +41,8 @@ const Modal = () => {
         const { name, phone, email } = formData;
 
         const newErrors = {};
-        if (!name.trim()) newErrors.name = "Поле обязательно к заполнению";
-        if (!phone.trim()) {
+        if (!name?.trim()) newErrors.name = "Поле обязательно к заполнению";
+        if (!phone || !phone.trim()) { // Ensure phone is not null
             newErrors.phone = "Поле обязательно к заполнению";
         } else if (!validatePhone(phone)) {
             newErrors.phone = "Некорректный формат данных";
@@ -59,35 +59,29 @@ const Modal = () => {
             setIsSubmitting(true);
             console.log("Отправка данных", { name, phone: formattedPhone, email });
 
-            // Encode data for x-www-form-urlencoded
             const params = new URLSearchParams();
             params.append("u_name", name);
             params.append("u_phone", formattedPhone);
             params.append("u_email", email);
             params.append("source", "заявка с visavam.by лэндинга");
 
-            // Fetch request
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
-                mode: "no-cors", // Bypass CORS
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded", // x-www-form-urlencoded header
-                },
-                body: params.toString(), // Send encoded data
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: params.toString(),
             });
 
             console.log("Request sent. Response status:", response.status);
-
             setMessage("Заявка успешно отправлена. С Вами свяжутся в ближайшее время.");
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
-            setMessage(
-                "Произошла ошибка при отправке заявки. Приносим извинения за неудобства. Попробуйте повторно позже."
-            );
+            setMessage("Произошла ошибка при отправке заявки. Попробуйте повторно позже.");
         } finally {
             setIsSubmitting(false);
         }
     };
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
@@ -159,7 +153,7 @@ const Modal = () => {
                         <label htmlFor="agreement" className="text-sm">
                             Я согласен с{" "}
                             <a
-                                href="/public-offer.pdf"
+                                href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline text-[#F86F00]"

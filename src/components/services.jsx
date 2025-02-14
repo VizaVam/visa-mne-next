@@ -36,7 +36,7 @@ const Services = () => {
                                             {country.name}
                                         </p>
                                     </div>
-                                    <img className="lg:w-8 md:w-6 sm:w-6 mdd:hidden" src="/Line 5.png" alt=""/>
+                                    <img className="lg:w-6 md:w-6 sm:w-4 mdd:hidden" src="/Line 5.png" alt=""/>
                                     <img className={"mdd:w-3 dr:w-3 sm:hidden"} src={"/line123.png"} alt={""}/>
                                 </div>
                             </div>

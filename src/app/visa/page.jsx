@@ -41,7 +41,7 @@ export default function VisaPage() {
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={1000}
                         height={1000}
-                        className="relative lg:top-[17%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
+                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
                     />
                     <Image src={"/visabanner-f.svg"} alt={""} width={1000}
                            height={1000} className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"/>

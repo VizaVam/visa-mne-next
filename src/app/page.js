@@ -17,7 +17,7 @@ export default function HomePage({onOpenModal}) {
     return (
         <div className={""}>
             <section
-                className="lg:px-16 lg:mt-[60px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
+                className="lg:px-16 lg:mt-[70px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
                     <div className={"flex flex-col"}>

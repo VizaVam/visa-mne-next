@@ -15,6 +15,17 @@ export default function Header() {
 
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
     const [showFloatingButton, setShowFloatingButton] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollThreshold = 100;
+            setIsScrolled(window.scrollY > scrollThreshold);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -89,7 +100,9 @@ export default function Header() {
                     </div>
                 </div>
 
-                <div className={"header__bottom"}>
+                <div className={`header__bottom mdd:bg-white ${
+                    isScrolled ? "bg-white" : "bg-transparent"
+                }`}>
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
                             <Image width={600} height={600} src={"/new-logo.svg"} alt={""}

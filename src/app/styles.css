@@ -41,7 +41,6 @@
   max-width: 28px;
 }
 .header__bottom {
-  background-color: white;
   display: flex;
   justify-content: space-between;
   padding: 0.7rem 7%;

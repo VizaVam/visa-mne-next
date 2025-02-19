@@ -2,7 +2,6 @@
 
 import {useEffect, useState} from "react";
 import {useModal} from "@/components/modalcontext";
-import {countries} from "@/components/serviceson";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";

@@ -26,10 +26,7 @@ const faqData = [
         <li>Система ЕРИП Оплата</li>
         <li>Безопасная ссылка bepaid</li>
       </ul>
-      Актуальные цены на услуги можно посмотреть <a class="underline hover:no-underline" href="#!" target="_blank" rel="noopener noreferrer">здесь</a>.
-<!--      <a href="/price-list.pdf" target="_blank" rel="noopener noreferrer" class="text-orange-500 underline">-->
-<!--        здесь-->
-<!--      </a>.-->
+      Актуальные цены на услуги можно посмотреть <a class="underline hover:no-underline" href="/Цены на услуги. Компания VISA VAM.pdf" target="_blank" rel="noopener noreferrer">здесь</a>.
     `,
     },
     {

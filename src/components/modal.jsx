@@ -57,13 +57,12 @@ const Modal = () => {
         try {
             const formattedPhone = phone.replace(/\D/g, "");
             setIsSubmitting(true);
-            console.log("Отправка данных", { name, phone: formattedPhone, email });
 
             const params = new URLSearchParams();
             params.append("u_name", name);
             params.append("u_phone", formattedPhone);
             params.append("u_email", email);
-            params.append("source", "заявка с visavam.by лэндинга");
+            params.append("source", "заявка с сайта visavampro.by");
 
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",

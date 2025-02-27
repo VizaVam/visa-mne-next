@@ -1,32 +1,33 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import {useEffect, useState, useTransition} from "react";
 import {useModal} from "@/components/modalcontext";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import ScrollToTop from "@/components/scroll";
 import {countries} from "@/components/serviceson";
+import {router} from "next/client";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const [clickCount, setClickCount] = useState(0);
+    const [isPending, startTransition] = useTransition();
 
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
     const [showFloatingButton, setShowFloatingButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const handleVisasClick = (e) => {
-        if (clickCount === 0) {
-            e.preventDefault(); // Блокируем переход при первом нажатии
-            setIsOpen(true);
-            setClickCount(1);
-            setTimeout(() => setClickCount(0), 500); // Сброс через 0.5 сек
-        }
+    const handleCloseMenu = () => {
+        setIsOpen(false);
     };
+
+    useEffect(() => {
+        setIsOpen(false);
+        setIsMenuOpen(false);
+    }, [pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -213,12 +214,13 @@ export default function Header() {
                         <div className="text-black flex flex-col gap-3">
                             {/* Кнопка Визы с + и - */}
                             <div className="flex items-center justify-between">
-                                <a
+                                <Link
                                     className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
                                     href="/visy"
+                                    onClick={handleCloseMenu}
                                 >
                                     Визы
-                                </a>
+                                </Link>
                                 <button
                                     onClick={() => setIsOpen(!isOpen)}
                                     className="text-xl font-bold focus:outline-none transition-transform duration-150 ease-in-out"
@@ -233,13 +235,13 @@ export default function Header() {
                                     <ul className="space-y-2">
                                         {countries.map((country) => (
                                             <li key={country.url}>
-                                                <a
+                                                <Link
                                                     href={`/visy/${country.url}`}
                                                     className="hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
-                                                    onClick={() => setIsOpen(false)}
+                                                    onClick={handleCloseMenu}
                                                 >
                                                     {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -247,20 +249,20 @@ export default function Header() {
                             )}
 
                             {/* Остальные ссылки */}
-                            <a
+                            <Link
                                 className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
                                 href="/o-nas"
-                                onClick={() => setIsOpen(false)}
+                                onClick={handleCloseMenu}
                             >
                                 О нас
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
                                 href="/kontakty"
-                                onClick={() => setIsOpen(false)}
+                                onClick={handleCloseMenu}
                             >
                                 Контакты
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

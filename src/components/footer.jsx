@@ -29,7 +29,7 @@ export default function Footer() {
                 <div className={"footer__top-right"}>
                     <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
                         <div className={"footer__top-right-main-left"}>
-                            <h3>Визы</h3>
+                            <a href={"/visy"} className={"font-medium text-xl"}>Визы</a>
                             <ul className="my-6 mdd:my-2">
                                 {countries.map((country) => {
                                     const isActive = pathname === `/visy/${country.url}`;
@@ -54,10 +54,10 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div className={"footer__top-right-main-left"}>
-                            <h3>О нас</h3>
+                            <a href={"/o-nas"} className={"font-medium text-xl"}>О нас</a>
                         </div>
                         <div className={"footer__top-right-main-right"}>
-                            <h3>Контакты</h3>
+                            <a href={"/kontakty"} className={"font-medium text-xl"}>Контакты</a>
                             <div className={"footer__top-right-main-right-lists"}>
                                 <div className={"footer__top-right-main-right-lists-list"}>
                                     <Image width={1000} height={800} src={"/footer-call.png"} alt={""}/>

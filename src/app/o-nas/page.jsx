@@ -56,10 +56,10 @@ export default function Onas() {
                 <img
                     src={"onas.svg"}
                     alt=""
-                    className="w-full h-96 object-center px-0 lg:px-[7%] md:px-[7%]"
+                    className="w-full object-center px-0 lg:px-[7%] md:px-[7%]"
                 />
             </div>
-            <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-16 text-[16px] mdd:text-[14px]"}>
+            <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-20 text-[16px] mdd:text-[14px]"}>
                 <div className={"w-[80%] mdd:w-full"}>
                     <p>
                         Компания Visa Vam представлена на рынке туристических услуг уже <strong>более 10 лет</strong>.<br/>
@@ -71,7 +71,7 @@ export default function Onas() {
                     </p>
                 </div>
             </div>
-            <div className={"flex flex-col gap-4 mt-16 p-[7%]"}>
+            <div className={"flex flex-col gap-4 mt-2 p-[7%]"}>
                 <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">Оформление документов для
                     подачи на визы
                 </h2>

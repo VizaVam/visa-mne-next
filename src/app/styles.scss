@@ -167,6 +167,11 @@
     }
   }
 }
+.footerlink {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
 
 .docs {
   display: flex;
@@ -237,18 +242,11 @@
     gap: 3rem;
   }
 
+
   .footer__top-left,
   .footer__top-right {
     width: 100%; /* Чтобы элементы растягивались на всю ширину */
     gap: 1rem;
-
-    h3{
-      font-size: 1rem;
-    }
-
-    a {
-      font-size: 0.8rem;
-    }
 
     p{
       font-size: 0.8rem;
@@ -261,10 +259,6 @@
   .footer__top-right-socs {
     padding-top: 2rem;
     justify-content: center;
-  }
-
-  .footer__top-right-main {
-    gap: 5rem;
   }
 
   .docs {

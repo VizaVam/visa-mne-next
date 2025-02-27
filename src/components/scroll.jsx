@@ -17,7 +17,7 @@ export default function ScrollToTop() {
     return (
         <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`fixed bottom-8 right-8 p-3 text-gray-600 transition-opacity ${
+            className={`fixed bottom-14 right-14 p-3 text-gray-600 transition-opacity ${
                 isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
         >

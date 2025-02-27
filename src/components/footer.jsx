@@ -53,7 +53,7 @@ export default function Footer() {
                                 })}
                             </ul>
                         </div>
-                        <div className={"footer__top-right-main-left w-[100px]"}>
+                        <div className={"footer__top-right-main-left w-[120px]"}>
                             <a href={"/o-nas"} className={"block font-medium text-xl"}>О нас</a>
                         </div>
                         <div className={"footer__top-right-main-right"}>

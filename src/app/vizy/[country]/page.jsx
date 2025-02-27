@@ -54,12 +54,12 @@ export default function CountryPage({params}) {
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <Link href="/visy"
-                              className={`text-orange-500 hover:underline ${pathname === "/visy" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
+                        <Link href="/vizy"
+                              className={`text-orange-500 hover:underline ${pathname === "/vizy" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
                             Визы
                         </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <span className="font-semibold text-gray-900 cursor-default">{selectedCountry.name}</span>
+                        <span className="font-semibold text-gray-900 cursor-default">{selectedCountry.n === "Францию" ? "Виза во" : "Виза в"} {selectedCountry.n}</span>
                     </nav>
                     <h1 className="lg:text-[56px] md:text-[56px] sm:text-[48px] mdd:text-[40px] font-semibold text-black uppercase leading-none">
                         Виза {["Францию"].includes(selectedCountry.n) ? "Во " : "В "}{" "}
@@ -195,7 +195,7 @@ export default function CountryPage({params}) {
                                 if (!c) return null; // Пропускаем, если страны нет в списке
 
                                 return (
-                                    <Link href={`/visy/${c.url}`} key={index}>
+                                    <Link href={`/vizy/${c.url}`} key={index}>
                                         <div
                                             className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                             <img src={c.img} alt={c.name} className="w-full object-cover"/>
@@ -221,7 +221,7 @@ export default function CountryPage({params}) {
                         </div>
                     </div>
                     <div className="sm:mt-6 text-center">
-                        <Link href="/visy">
+                        <Link href="/vizy">
                             <button
                                 className="bg-customBlue w-max hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран

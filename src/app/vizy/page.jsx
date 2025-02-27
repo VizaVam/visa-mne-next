@@ -25,10 +25,10 @@ export default function VisaPage() {
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt="" /></span>
-                        {pathname === "/visy" ? (
+                        {pathname === "/vizy" ? (
                             <span className="font-semibold text-gray-900 cursor-default">Визы</span>
                         ) : (
-                            <Link href="/visy" className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                            <Link href="/vizy" className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
                         )}
                     </nav>
                     <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black">

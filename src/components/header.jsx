@@ -128,11 +128,11 @@ export default function Header() {
                                 onMouseEnter={() => setIsOpen(true)}
                                 onMouseLeave={() => setIsOpen(false)}
                             >
-                                {pathname === "/visy" ? (
+                                {pathname === "/vizy" ? (
                                     <span
                                         className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Визы</span>
                                 ) : (
-                                    <Link href="/visy"
+                                    <Link href="/vizy"
                                           className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
                                 )}
 
@@ -140,7 +140,7 @@ export default function Header() {
                                     <div className="absolute left-0 mt-0 w-80 bg-white border-gray-200 z-50">
                                         <ul className="py-2 grid grid-cols-2 gap-2">
                                             {countries.map((country) => {
-                                                const isActive = pathname === `/visy/${country.url}`;
+                                                const isActive = pathname === `/vizy/${country.url}`;
                                                 return (
                                                     <li key={country.url}>
                                                         {isActive ? (
@@ -150,7 +150,7 @@ export default function Header() {
                                                             </span>
                                                         ) : (
                                                             <Link
-                                                                href={`/visy/${country.url}`}
+                                                                href={`/vizy/${country.url}`}
                                                                 className="block px-2 py-1 transition-colors hover:underline"
                                                             >
                                                                 {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
@@ -216,7 +216,7 @@ export default function Header() {
                             <div className="flex items-center justify-between">
                                 <Link
                                     className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
-                                    href="/visy"
+                                    href="/vizy"
                                     onClick={handleCloseMenu}
                                 >
                                     Визы
@@ -236,7 +236,7 @@ export default function Header() {
                                         {countries.map((country) => (
                                             <li key={country.url}>
                                                 <Link
-                                                    href={`/visy/${country.url}`}
+                                                    href={`/vizy/${country.url}`}
                                                     className="hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
                                                     onClick={handleCloseMenu}
                                                 >

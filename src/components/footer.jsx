@@ -29,10 +29,10 @@ export default function Footer() {
                 <div className={"footer__top-right"}>
                     <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
                         <div className={"footer__top-right-main-left"}>
-                            <a href={"/visy"} className={"font-medium text-xl"}>Визы</a>
+                            <a href={"/vizy"} className={"font-medium text-xl"}>Визы</a>
                             <ul className="my-6 mdd:my-1 grid grid-cols-2">
                                 {countries.map((country) => {
-                                    const isActive = pathname === `/visy/${country.url}`;
+                                    const isActive = pathname === `/vizy/${country.url}`;
                                     return (
                                         <li key={country.url} className={"mx-2 mdd:hidden"}>
                                             {isActive ? (
@@ -42,7 +42,7 @@ export default function Footer() {
                                                             </span>
                                             ) : (
                                                 <Link
-                                                    href={`/visy/${country.url}`}
+                                                    href={`/vizy/${country.url}`}
                                                     className="block py-2 transition-colors hover:underline"
                                                 >
                                                     {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
@@ -53,8 +53,8 @@ export default function Footer() {
                                 })}
                             </ul>
                         </div>
-                        <div className={"footer__top-right-main-left"}>
-                            <a href={"/o-nas"} className={"font-medium text-xl"}>О нас</a>
+                        <div className={"footer__top-right-main-left w-[100px]"}>
+                            <a href={"/o-nas"} className={"block font-medium text-xl"}>О нас</a>
                         </div>
                         <div className={"footer__top-right-main-right"}>
                             <a href={"/kontakty"} className={"font-medium text-xl"}>Контакты</a>

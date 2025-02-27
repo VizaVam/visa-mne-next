@@ -137,8 +137,8 @@ export default function Header() {
                                 )}
 
                                 {isOpen && (
-                                    <div className="absolute left-0 mt-0 w-48 bg-white border-gray-200 z-50">
-                                        <ul className="py-2">
+                                    <div className="absolute left-0 mt-0 w-80 bg-white border-gray-200 z-50">
+                                        <ul className="py-2 grid grid-cols-2 gap-2">
                                             {countries.map((country) => {
                                                 const isActive = pathname === `/visy/${country.url}`;
                                                 return (
@@ -151,7 +151,7 @@ export default function Header() {
                                                         ) : (
                                                             <Link
                                                                 href={`/visy/${country.url}`}
-                                                                className="block px-4 py-2 transition-colors hover:underline"
+                                                                className="block px-2 py-1 transition-colors hover:underline"
                                                             >
                                                                 {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
                                                             </Link>

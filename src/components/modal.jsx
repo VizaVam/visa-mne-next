@@ -141,7 +141,7 @@ const Modal = () => {
                             className="w-full border border-gray-300 rounded-[2px] p-2"
                         />
                     </div>
-                    <div className="flex items-center mb-3">
+                    <div className="flex items-center mt-5 mb-5">
                         <input
                             type="checkbox"
                             id="agreement"

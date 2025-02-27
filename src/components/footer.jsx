@@ -30,11 +30,11 @@ export default function Footer() {
                     <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
                         <div className={"footer__top-right-main-left"}>
                             <a href={"/visy"} className={"font-medium text-xl"}>Визы</a>
-                            <ul className="my-6 mdd:my-2">
+                            <ul className="my-6 mdd:my-1 grid grid-cols-2">
                                 {countries.map((country) => {
                                     const isActive = pathname === `/visy/${country.url}`;
                                     return (
-                                        <li key={country.url}>
+                                        <li key={country.url} className={"mx-2 mdd:hidden"}>
                                             {isActive ? (
                                                 <span
                                                     className="text-gray-200 block cursor-default">

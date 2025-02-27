@@ -16,7 +16,7 @@ export default function CountryPage({params}) {
     const {country} = useParams();
     const {openModal} = useModal();
     const selectedCountry = countries.find(c => c.url === country);
-    const countryOrder = {greece: 1, slovenia: 2, germany: 3, spain: 4};
+    const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
     const pathname = usePathname();
 
     // Найти текущую страну в списке
@@ -30,7 +30,7 @@ export default function CountryPage({params}) {
     const displayedCountries = showAll ? countries : countries.slice(0, 4);
 
     const sortedCountries = [...displayedCountries].sort((a, b) => {
-        const order = ["greece", "slovenia", "germany", "spain"];
+        const order = ["viza-v-grecziyu", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu"];
         return order.indexOf(a.url.toLowerCase()) - order.indexOf(b.url.toLowerCase());
     });
 
@@ -54,12 +54,12 @@ export default function CountryPage({params}) {
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <Link href="/visa"
-                              className={`text-orange-500 hover:underline ${pathname === "/visa" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
+                        <Link href="/visy"
+                              className={`text-orange-500 hover:underline ${pathname === "/visy" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
                             Визы
                         </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <span className="font-semibold text-gray-900">{selectedCountry.name}</span>
+                        <span className="font-semibold text-gray-900 cursor-default">{selectedCountry.name}</span>
                     </nav>
                     <h1 className="lg:text-[56px] md:text-[56px] sm:text-[48px] mdd:text-[40px] font-semibold text-black uppercase leading-none">
                         Виза {["Францию"].includes(selectedCountry.n) ? "Во " : "В "}{" "}
@@ -115,7 +115,7 @@ export default function CountryPage({params}) {
                 <div className={"w-full"}>
                     <Steps1 />
                     <div className={"px-[7%]"}>
-                    {["poland", "slovenia", "germany", "spain", "france", "usa", "bulgaria", "netherland", "greece", "hungary", "romania", "austria"].includes(selectedCountry.url) && (
+                    {["viza-v-polshu", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-bolgariyu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
                             <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
@@ -158,7 +158,7 @@ export default function CountryPage({params}) {
                 </div>
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">
-                    {["litva", "latvia", "italy", "greatbritain"].includes(selectedCountry.url) && (
+                    {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-velikobritaniyu"].includes(selectedCountry.url) && (
                         <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
                             {selectedCountry.title &&
                                 <h1 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">{selectedCountry.title}</h1>}
@@ -195,7 +195,7 @@ export default function CountryPage({params}) {
                                 if (!c) return null; // Пропускаем, если страны нет в списке
 
                                 return (
-                                    <Link href={`/visa/${c.url}`} key={index}>
+                                    <Link href={`/visy/${c.url}`} key={index}>
                                         <div
                                             className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                             <img src={c.img} alt={c.name} className="w-full object-cover"/>
@@ -221,7 +221,7 @@ export default function CountryPage({params}) {
                         </div>
                     </div>
                     <div className="sm:mt-6 text-center">
-                        <Link href="/visa">
+                        <Link href="/visy">
                             <button
                                 className="bg-customBlue w-max hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран

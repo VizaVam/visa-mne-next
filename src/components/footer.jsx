@@ -1,6 +1,14 @@
-import Image from "next/image";
+'use client'
 
-export default function Footer(){
+import Image from "next/image";
+import {countries} from "@/components/serviceson";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
+
+
+export default function Footer() {
+    const pathname = usePathname();
+
     return (
         <footer className={"footer"}>
             <div className={"footer__top"}>
@@ -19,15 +27,40 @@ export default function Footer(){
                     </div>
                 </div>
                 <div className={"footer__top-right"}>
-                    <div className={"footer__top-right-main"}>
+                    <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
                         <div className={"footer__top-right-main-left"}>
                             <h3>Визы</h3>
+                            <ul className="my-6 mdd:my-2">
+                                {countries.map((country) => {
+                                    const isActive = pathname === `/visy/${country.url}`;
+                                    return (
+                                        <li key={country.url}>
+                                            {isActive ? (
+                                                <span
+                                                    className="text-gray-200 block cursor-default">
+                                                                {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                            </span>
+                                            ) : (
+                                                <Link
+                                                    href={`/visy/${country.url}`}
+                                                    className="block py-2 transition-colors hover:underline"
+                                                >
+                                                    {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                </Link>
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                        <div className={"footer__top-right-main-left"}>
+                            <h3>О нас</h3>
                         </div>
                         <div className={"footer__top-right-main-right"}>
                             <h3>Контакты</h3>
                             <div className={"footer__top-right-main-right-lists"}>
                                 <div className={"footer__top-right-main-right-lists-list"}>
-                                    <Image width={1000} height={800}  src={"/footer-call.png"} alt={""}/>
+                                    <Image width={1000} height={800} src={"/footer-call.png"} alt={""}/>
                                     <div className={"flex flex-col"}>
                                         <a className={"hover:underline"} href={"tel:+375296800620"}>
                                             +375296800620
@@ -38,7 +71,7 @@ export default function Footer(){
                                     </div>
                                 </div>
                                 <div className={"footer__top-right-main-right-lists-list"}>
-                                    <Image width={1000} height={800}  src={"/footer-email.png"} alt={""}/>
+                                    <Image width={1000} height={800} src={"/footer-email.png"} alt={""}/>
                                     <div>
                                         <a className={"hover:underline"} href={"mailto:l336906097@gmail.com"}
                                            target="_blank"
@@ -52,7 +85,7 @@ export default function Footer(){
                                    rel="noopener noreferrer"
                                    className={"footer__top-right-main-right-lists-list hover:underline"}
                                 >
-                                    <Image width={1000} height={800}  src={"/footer-location.png"} alt={""}/>
+                                    <Image width={1000} height={800} src={"/footer-location.png"} alt={""}/>
                                     <div>
                                         <p>Минск, пр. Победителей 17 офис 1204 (метро Немига)</p>
                                     </div>
@@ -66,21 +99,21 @@ export default function Footer(){
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Image width={1000} height={800}  src={"/instagram.png"} alt={""} />
+                            <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
                         </a>
                         <a
                             href="viber://chat?number=375295648334"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Image width={1000} height={800}  src="/viber.svg" alt="Viber"/>
+                            <Image width={1000} height={800} src="/viber.svg" alt="Viber"/>
                         </a>
                         <a
                             href="https://t.me/+375295648334"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <Image width={1000} height={800}  src="/telegram.svg" alt="Telegram"/>
+                            <Image width={1000} height={800} src="/telegram.svg" alt="Telegram"/>
                         </a>
                         <a
                             href="https://wa.me/375257654320"
@@ -88,14 +121,15 @@ export default function Footer(){
                             rel="noopener noreferrer"
 
                         >
-                            <Image width={1000} height={800}  src="/whatsapp.svg" alt="WhatsApp"/>
+                            <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>
                         </a>
                     </div>
                 </div>
             </div>
 
             <div className="footer__bottom">
-                <a className={"text-[#E6E6E6] hover:text-white"} href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf" target="_blank" rel="noopener noreferrer">
+                <a className={"text-[#E6E6E6] hover:text-white"} href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf"
+                   target="_blank" rel="noopener noreferrer">
                     Публичная оферта
                 </a>
             </div>

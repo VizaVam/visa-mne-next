@@ -5,16 +5,28 @@ import {useModal} from "@/components/modalcontext";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
+import ScrollToTop from "@/components/scroll";
+import {countries} from "@/components/serviceson";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const [clickCount, setClickCount] = useState(0);
 
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
     const [showFloatingButton, setShowFloatingButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+
+    const handleVisasClick = (e) => {
+        if (clickCount === 0) {
+            e.preventDefault(); // Блокируем переход при первом нажатии
+            setIsOpen(true);
+            setClickCount(1);
+            setTimeout(() => setClickCount(0), 500); // Сброс через 0.5 сек
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,7 +42,7 @@ export default function Header() {
         const handleScroll = () => {
             const mainButton = document.querySelector('.bbbt');
 
-            if (pathname === "/contacts") {
+            if (pathname === "/kontakty") {
                 setShowFloatingButton(true);
                 return;
             }
@@ -110,19 +122,61 @@ export default function Header() {
                     </div>
                     <div className={"header__bottom-right"}>
                         <div className={"header__bottom-right-links"}>
-                            {pathname === "/visa" ? (
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsOpen(true)}
+                                onMouseLeave={() => setIsOpen(false)}
+                            >
+                                {pathname === "/visy" ? (
+                                    <span
+                                        className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Визы</span>
+                                ) : (
+                                    <Link href="/visy"
+                                          className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                                )}
+
+                                {isOpen && (
+                                    <div className="absolute left-0 mt-0 w-48 bg-white border-gray-200 z-50">
+                                        <ul className="py-2">
+                                            {countries.map((country) => {
+                                                const isActive = pathname === `/visy/${country.url}`;
+                                                return (
+                                                    <li key={country.url}>
+                                                        {isActive ? (
+                                                            <span
+                                                                className="font-semibold text-gray-900 active:scale-95 block px-4 py-2 cursor-default">
+                                                                {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                            </span>
+                                                        ) : (
+                                                            <Link
+                                                                href={`/visy/${country.url}`}
+                                                                className="block px-4 py-2 transition-colors hover:underline"
+                                                            >
+                                                                {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                            </Link>
+                                                        )}
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+
+                            {pathname === "/o-nas" ? (
                                 <span
-                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Визы</span>
+                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">О нас</span>
                             ) : (
-                                <Link href="/visa"
-                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                                <Link href="/o-nas"
+                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">О
+                                    нас</Link>
                             )}
 
-                            {pathname === "/contacts" ? (
+                            {pathname === "/kontakty" ? (
                                 <span
-                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out">Контакты</span>
+                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Контакты</span>
                             ) : (
-                                <Link href="/contacts"
+                                <Link href="/kontakty"
                                       className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Контакты</Link>
                             )}
                         </div>
@@ -156,19 +210,62 @@ export default function Header() {
                         >
                             <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
                         </button>
-                        <div className={"text-black flex flex-col gap-3"}>
-                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"}
-                               href={"/visa"}>
-                                Визы
+                        <div className="text-black flex flex-col gap-3">
+                            {/* Кнопка Визы с + и - */}
+                            <div className="flex items-center justify-between">
+                                <a
+                                    className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
+                                    href="/visy"
+                                >
+                                    Визы
+                                </a>
+                                <button
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className="text-xl font-bold focus:outline-none transition-transform duration-150 ease-in-out"
+                                >
+                                    {isOpen ? "−" : "+"}
+                                </button>
+                            </div>
+
+                            {/* Подменю стран */}
+                            {isOpen && (
+                                <div className="pl-2">
+                                    <ul className="space-y-2">
+                                        {countries.map((country) => (
+                                            <li key={country.url}>
+                                                <a
+                                                    href={`/visy/${country.url}`}
+                                                    className="hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* Остальные ссылки */}
+                            <a
+                                className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
+                                href="/o-nas"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                О нас
                             </a>
-                            <a className={"mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"}
-                               href={"/contacts"}>
+                            <a
+                                className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
+                                href="/kontakty"
+                                onClick={() => setIsOpen(false)}
+                            >
                                 Контакты
                             </a>
                         </div>
                     </div>
                 </div>
             </header>
+            <ScrollToTop/>
             {/* Фиксированная кнопка */}
             <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-3"} right-3 z-[60] md:hidden`}>
                 <button

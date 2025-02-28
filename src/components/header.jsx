@@ -39,22 +39,24 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            const mainButton = document.querySelector('.bbbt');
-
             if (pathname === "/kontakty") {
                 setShowFloatingButton(true);
                 return;
             }
 
-            if (mainButton) {
-                const buttonRect = mainButton.getBoundingClientRect();
-                setShowFloatingButton(buttonRect.top < 0);
+            const mainButton = document.querySelector('.bbbt');
+            if (!mainButton) {
+                setShowFloatingButton(false);
+                return;
             }
+
+            const buttonRect = mainButton.getBoundingClientRect();
+            setShowFloatingButton(buttonRect.top < 0);
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [pathname]);
+    }, [pathname, isMenuOpen]);
 
     useEffect(() => {
         if (isMenuOpen) {
@@ -273,9 +275,9 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-            <ScrollToTop showFloatingButton={showFloatingButton} />
+            <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen} isMenuOpen={isMenuOpen} />
             {/* Фиксированная кнопка */}
-            <div className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-16" : "bottom-28") : (!isMenuOpen ? "bottom-3" : "bottom-3")} right-3 z-[60] md:hidden`}>
+            <div className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-16" : "bottom-16") : (!isMenuOpen ? "bottom-3" : "bottom-3")} right-3 z-[60] md:hidden`}>
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
                     className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
@@ -286,7 +288,7 @@ export default function Header() {
             {isFloatingMenuOpen && (
                 <div className="md:hidden">
                     <div
-                        className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-28" : "bottom-40") : (!isMenuOpen ? "bottom-16" : "bottom-16")} right-3 flex flex-col items-center justify-between z-50`}>
+                        className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-28" : "bottom-28") : (!isMenuOpen ? "bottom-16" : "bottom-16")} right-3 flex flex-col items-center justify-between z-50`}>
                         <a href="tel:+375296800620"
                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center bg-white">
                             <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>

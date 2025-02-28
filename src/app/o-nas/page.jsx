@@ -53,12 +53,10 @@ export default function Onas() {
                 </div>
             </div>
             <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">
-                <Image
-                    src="onas.svg"
+                <img
+                    src={"onasb.jpg"}
                     alt=""
-                    width={2000}
-                    height={1000}
-                    className="w-full mdd:h-52 object-cover object-left px-0 lg:px-[7%] md:px-[7%]"
+                    className="w-full mdd:h-52 object-cover px-0 lg:px-[7%] md:px-[7%]"
                 />
             </div>
             <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-20 text-[16px] mdd:text-[14px]"}>

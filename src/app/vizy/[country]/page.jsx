@@ -61,13 +61,13 @@ export default function CountryPage({params}) {
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <span className="font-semibold text-gray-900 cursor-default">{selectedCountry.n === "Францию" ? "Виза во" : "Виза в"} {selectedCountry.n}</span>
                     </nav>
-                    <h1 className="lg:text-[56px] md:text-[56px] sm:text-[48px] mdd:text-[40px] font-semibold text-black uppercase leading-none">
+                    <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
                         Виза {["Францию"].includes(selectedCountry.n) ? "Во " : "В "}{" "}
                         <span
                             className={`${
                                 ["Великобританию", "Нидерланды"].includes(selectedCountry.n)
-                                    ? "lg:text-[56px] md:text-[56px] sm:text-[48px] mdd:text-[30px]"
-                                    : "lg:text-[56px] md:text-[56px] sm:text-[48px] mdd:text-[40px]"
+                                    ? "ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px]"
+                                    : "ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px]"
                             } font-semibold text-black uppercase block"
                             `}
                         >
@@ -103,7 +103,7 @@ export default function CountryPage({params}) {
                     </button>
                 </div>
             </div>
-            <div className={"w-full relative ht:bottom-[110px] xl:bottom-[60px] lg:bottom-[30px]"}>
+            <div className={"w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]"}>
                 <img
                     src={`${selectedCountry.banner}`}
                     alt=""
@@ -220,10 +220,10 @@ export default function CountryPage({params}) {
                             })}
                         </div>
                     </div>
-                    <div className="sm:mt-6 text-center">
+                    <div className="sm:mt-6 text-center w-full">
                         <Link href="/vizy">
                             <button
-                                className="bg-customBlue w-max hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран
                             </button>
                         </Link>

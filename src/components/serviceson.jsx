@@ -146,7 +146,7 @@ const Services = () => {
                 <div className="mt-8 text-center">
                     <button
                         onClick={() => setShowAllCountries(true)}
-                        className="bg-customBlue w-max hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out"
+                        className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out"
                     >
                         Еще больше стран
                     </button>

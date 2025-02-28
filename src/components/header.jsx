@@ -7,14 +7,12 @@ import {usePathname} from "next/navigation";
 import Link from "next/link";
 import ScrollToTop from "@/components/scroll";
 import {countries} from "@/components/serviceson";
-import {router} from "next/client";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const [isPending, startTransition] = useTransition();
 
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
     const [showFloatingButton, setShowFloatingButton] = useState(false);
@@ -57,6 +55,14 @@ export default function Header() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [pathname]);
+
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+    }, [isMenuOpen]);
 
     return (
         <>
@@ -137,15 +143,15 @@ export default function Header() {
                                 )}
 
                                 {isOpen && (
-                                    <div className="absolute left-0 mt-0 w-80 bg-white border-gray-200 z-50">
-                                        <ul className="py-2 grid grid-cols-2 gap-2">
+                                    <div className="absolute left-0 mt-0 w-[350px] bg-white border-gray-200 z-50">
+                                        <ul className="px-2 py-2 grid grid-cols-2 gap-2">
                                             {countries.map((country) => {
                                                 const isActive = pathname === `/vizy/${country.url}`;
                                                 return (
                                                     <li key={country.url}>
                                                         {isActive ? (
                                                             <span
-                                                                className="font-semibold text-gray-900 active:scale-95 block px-4 py-2 cursor-default">
+                                                                className="font-semibold text-gray-900 block px-2 py-1 cursor-default">
                                                                 {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
                                                             </span>
                                                         ) : (
@@ -200,7 +206,7 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(false)}
                 >
                     <div
-                        className={`bg-white w-3/4 h-full flex flex-col p-6 sidebar ${
+                        className={`bg-white w-full h-full flex flex-col p-6 sidebar ${
                             isMenuOpen ? "sidebar-open" : ""
                         }`}
                         onClick={(e) => e.stopPropagation()}
@@ -211,7 +217,7 @@ export default function Header() {
                         >
                             <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
                         </button>
-                        <div className="text-black flex flex-col gap-3">
+                        <div className="text-black flex flex-col gap-1">
                             {/* Кнопка Визы с + и - */}
                             <div className="flex items-center justify-between">
                                 <Link
@@ -267,9 +273,9 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-            <ScrollToTop/>
+            <ScrollToTop showFloatingButton={showFloatingButton} />
             {/* Фиксированная кнопка */}
-            <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-3"} right-3 z-[60] md:hidden`}>
+            <div className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-16" : "bottom-28") : (!isMenuOpen ? "bottom-3" : "bottom-3")} right-3 z-[60] md:hidden`}>
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
                     className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
@@ -280,7 +286,7 @@ export default function Header() {
             {isFloatingMenuOpen && (
                 <div className="md:hidden">
                     <div
-                        className={`fixed ${showFloatingButton ? "bottom-28" : "bottom-16"} right-3 flex flex-col items-center justify-between z-50`}>
+                        className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-28" : "bottom-40") : (!isMenuOpen ? "bottom-16" : "bottom-16")} right-3 flex flex-col items-center justify-between z-50`}>
                         <a href="tel:+375296800620"
                            className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center bg-white">
                             <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
@@ -305,8 +311,8 @@ export default function Header() {
                 </div>
             )}
             {showFloatingButton && (
-                <div className="fixed bottom-3 w-full flex justify-center z-50 px-3">
-                    <button onClick={openModal}
+                <div className="fixed bottom-3 w-full px-[7%] flex justify-center z-50">
+                    <button onClick={() => { setIsMenuOpen(false); openModal(); }}
                             className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out md:hidden">
                         Оформить заявку
                     </button>

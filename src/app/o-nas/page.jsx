@@ -52,11 +52,13 @@ export default function Onas() {
                     </button>
                 </div>
             </div>
-            <div className={"w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]"}>
-                <img
-                    src={"onas.svg"}
+            <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">
+                <Image
+                    src="onas.svg"
                     alt=""
-                    className="w-full object-center px-0 lg:px-[7%] md:px-[7%]"
+                    width={2000}
+                    height={1000}
+                    className="w-full mdd:h-52 object-cover object-left px-0 lg:px-[7%] md:px-[7%]"
                 />
             </div>
             <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-20 text-[16px] mdd:text-[14px]"}>
@@ -108,7 +110,7 @@ export default function Onas() {
                 <div className="sm:mt-6 text-center">
                     <Link href="/visy">
                         <button
-                            className="bg-customBlue w-max hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран
                         </button>
                     </Link>

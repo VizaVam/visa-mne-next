@@ -1,13 +1,12 @@
-"use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function ScrollToTop() {
+export default function ScrollToTop({ showFloatingButton }) {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const toggleVisibility = () => {
-            setIsVisible(window.scrollY > 300);
+            setIsVisible(window.scrollY > 750);
         };
 
         window.addEventListener("scroll", toggleVisibility);
@@ -15,13 +14,13 @@ export default function ScrollToTop() {
     }, []);
 
     return (
-        <button
+        <div
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`fixed bottom-14 right-14 p-3 text-gray-600 transition-opacity ${
+            className={`fixed mdd:bottom-16 mdd:right-3 bottom-6 right-6 text-gray-600 transition-opacity cursor-pointer ${
                 isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
         >
             <Image src={"/scroll.svg"} alt={"Scroll to Top"} width={50} height={50} />
-        </button>
+        </div>
     );
 }

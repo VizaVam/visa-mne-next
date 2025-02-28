@@ -20,11 +20,6 @@ export default function Footer() {
                         <p>Гос. регистрация N 193637145 от 22.07.2022</p>
                         <p>Минский горисполком</p>
                     </div>
-                    <div className={"footer__top-left-bottomtext"}>
-                        <p>Пн-пт: с 09:00 до 19:00</p>
-                        <p>Суббота c 10:00 до 14:00</p>
-                        <p>Воскресенье: выходной</p>
-                    </div>
                 </div>
                 <div className={"footer__top-right"}>
                     <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
@@ -34,7 +29,7 @@ export default function Footer() {
                                 {countries.map((country) => {
                                     const isActive = pathname === `/vizy/${country.url}`;
                                     return (
-                                        <li key={country.url} className={"mx-2 mdd:hidden"}>
+                                        <li key={country.url} className={"py-2 mdd:hidden"}>
                                             {isActive ? (
                                                 <span
                                                     className="text-gray-200 block cursor-default">
@@ -43,7 +38,7 @@ export default function Footer() {
                                             ) : (
                                                 <Link
                                                     href={`/vizy/${country.url}`}
-                                                    className="block py-2 transition-colors hover:underline"
+                                                    className="py-2 transition-colors hover:underline"
                                                 >
                                                     {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
                                                 </Link>
@@ -90,6 +85,11 @@ export default function Footer() {
                                         <p>Минск, пр. Победителей 17 офис 1204 (метро Немига)</p>
                                     </div>
                                 </a>
+                                <div className={"pl-8"}>
+                                    <p>Пн-пт: с 09:00 до 19:00</p>
+                                    <p>Суббота c 10:00 до 14:00</p>
+                                    <p>Воскресенье: выходной</p>
+                                </div>
                             </div>
                         </div>
                     </div>

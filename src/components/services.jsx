@@ -49,7 +49,7 @@ const Services = () => {
                 <div className="mt-8 text-center">
                     <Link href="/visy">
                         <button
-                            className="bg-customBlue w-max hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="bg-customBlue mdd:w-full hover:bg-blue-600 text-white py-4 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран
                         </button>
                     </Link>

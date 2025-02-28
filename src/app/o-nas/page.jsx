@@ -56,7 +56,7 @@ export default function Onas() {
                 <img
                     src={"onasb.jpg"}
                     alt=""
-                    className="w-full mdd:h-52 object-cover px-0 lg:px-[7%] md:px-[7%]"
+                    className="w-full mdd:h-96 object-cover object-[60%] px-0 lg:px-[7%] md:px-[7%]"
                 />
             </div>
             <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-20 text-[16px] mdd:text-[14px]"}>

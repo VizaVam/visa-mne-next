@@ -111,7 +111,7 @@ export default function Onas() {
                     })}
                 </div>
                 <div className="sm:mt-6 text-center">
-                    <Link href="/visy">
+                    <Link href="/vizy">
                         <button
                             className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран

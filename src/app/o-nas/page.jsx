@@ -53,20 +53,13 @@ export default function Onas() {
                 </div>
             </div>
             <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">
-                {/*<Image*/}
-                {/*    src={"onas.svg"}*/}
-                {/*    alt=""*/}
-                {/*    width={1280}*/}
-                {/*    height={328}*/}
-                {/*    className="w-full object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"*/}
-                {/*/>*/}
                 <img
-                    src={"onasmobile.jpg"}
+                    src={"onasmobile.JPG"}
                     alt=""
                     className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                 />
                 <img
-                    src={"onasmobile.jpg"}
+                    src={"onasmobile.JPG"}
                     alt=""
                     className="w-full object-cover px-0 lg:px-[7%] md:px-[7%] sm:hidden"
                 />

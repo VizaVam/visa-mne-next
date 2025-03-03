@@ -145,7 +145,8 @@ export default function Header() {
                                 )}
 
                                 {isOpen && (
-                                    <div className="absolute left-0 mt-0 w-[350px] bg-white border-gray-200 z-50">
+                                    <div
+                                        className="absolute left-0 mt-0 pt-4 w-[350px] bg-white border-gray-200 z-20 rounded-b-lg">
                                         <ul className="px-2 py-2 grid grid-cols-2 gap-2">
                                             {countries.map((country) => {
                                                 const isActive = pathname === `/vizy/${country.url}`;
@@ -190,7 +191,7 @@ export default function Header() {
                             )}
                         </div>
                         <button onClick={openModal}
-                                className="header__bottom-right-btn hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
+                                className="header__bottom-right-btn hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50">
                             Оформить заявку
                         </button>
                         <div className="lg:hidden p-0 w-max">
@@ -275,9 +276,11 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-            <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen} isMenuOpen={isMenuOpen} />
+            <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen}
+                         isMenuOpen={isMenuOpen}/>
             {/* Фиксированная кнопка */}
-            <div className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-16" : "bottom-16") : (!isMenuOpen ? "bottom-3" : "bottom-3")} right-3 z-[60] md:hidden`}>
+            <div
+                className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-16" : "bottom-16") : (!isMenuOpen ? "bottom-3" : "bottom-3")} right-3 z-[60] md:hidden`}>
                 <button
                     onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
                     className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
@@ -314,7 +317,10 @@ export default function Header() {
             )}
             {showFloatingButton && (
                 <div className="fixed bottom-3 w-full px-[7%] flex justify-center z-50">
-                    <button onClick={() => { setIsMenuOpen(false); openModal(); }}
+                    <button onClick={() => {
+                        setIsMenuOpen(false);
+                        openModal();
+                    }}
                             className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out md:hidden">
                         Оформить заявку
                     </button>

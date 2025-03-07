@@ -8,6 +8,7 @@ import {usePathname} from "next/navigation";
 
 export default function Footer() {
     const pathname = usePathname();
+    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     return (
         <footer className={"footer"}>
@@ -26,7 +27,9 @@ export default function Footer() {
                         <div className={"footer__top-right-main-left"}>
                             <a href={"/vizy"} className={"font-medium text-xl"}>Визы</a>
                             <ul className="my-6 mdd:my-1 grid grid-cols-2">
-                                {countries.map((country) => {
+                                {countries
+                                    .filter(country => !excludedCountries.includes(country.url))
+                                    .map((country) => {
                                     const isActive = pathname === `/vizy/${country.url}`;
                                     return (
                                         <li key={country.url} className={"py-2 mdd:hidden"}>

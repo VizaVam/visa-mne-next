@@ -22,6 +22,8 @@ export default function Header() {
         setIsOpen(false);
     };
 
+    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+
     useEffect(() => {
         setIsOpen(false);
         setIsMenuOpen(false);
@@ -148,26 +150,28 @@ export default function Header() {
                                     <div
                                         className="absolute left-0 mt-0 pt-4 w-[350px] bg-white border-gray-200 z-20 rounded-b-lg">
                                         <ul className="px-2 py-2 grid grid-cols-2 gap-2">
-                                            {countries.map((country) => {
-                                                const isActive = pathname === `/vizy/${country.url}`;
-                                                return (
-                                                    <li key={country.url}>
-                                                        {isActive ? (
-                                                            <span
-                                                                className="font-semibold text-gray-900 block px-2 py-1 cursor-default">
+                                            {countries
+                                                .filter(country => !excludedCountries.includes(country.url))
+                                                .map((country) => {
+                                                    const isActive = pathname === `/vizy/${country.url}`;
+                                                    return (
+                                                        <li key={country.url}>
+                                                            {isActive ? (
+                                                                <span
+                                                                    className="font-semibold text-gray-900 block px-2 py-1 cursor-default">
                                                                 {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
                                                             </span>
-                                                        ) : (
-                                                            <Link
-                                                                href={`/vizy/${country.url}`}
-                                                                className="block px-2 py-1 transition-colors hover:underline"
-                                                            >
-                                                                {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
-                                                            </Link>
-                                                        )}
-                                                    </li>
-                                                );
-                                            })}
+                                                            ) : (
+                                                                <Link
+                                                                    href={`/vizy/${country.url}`}
+                                                                    className="block px-2 py-1 transition-colors hover:underline"
+                                                                >
+                                                                    {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                                </Link>
+                                                            )}
+                                                        </li>
+                                                    );
+                                                })}
                                         </ul>
                                     </div>
                                 )}
@@ -242,7 +246,9 @@ export default function Header() {
                             {isOpen && (
                                 <div className="pl-2">
                                     <ul className="space-y-2">
-                                        {countries.map((country) => (
+                                        {countries
+                                            .filter(country => !excludedCountries.includes(country.url))
+                                            .map((country) => (
                                             <li key={country.url}>
                                                 <Link
                                                     href={`/vizy/${country.url}`}

@@ -52,7 +52,7 @@ export default function CountryPage({params}) {
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[180px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
-                    <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
+                    <nav className="mb-4 flex flex-wrap items-center sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
@@ -61,7 +61,7 @@ export default function CountryPage({params}) {
                             Визы
                         </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <span className="font-semibold text-gray-900 cursor-default">
+                        <span className="font-semibold text-gray-900 cursor-default whitespace-nowrap m-0">
                             {excludedCountries.includes(selectedCountry.url)
                             ? selectedCountry.n
                             : selectedCountry.n.includes("в ") || selectedCountry.n.includes("во ")
@@ -136,7 +136,7 @@ export default function CountryPage({params}) {
                                     <ul className="text-black text-[14px] flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
-                                                <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                 {variant}
                                             </li>
                                         ))}
@@ -158,7 +158,7 @@ export default function CountryPage({params}) {
                                     <ul className="text-black text-[14px] flex flex-col gap-2">
                                         {selectedCountry.variants11.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
-                                                <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                 {variant}
                                             </li>
                                         ))}
@@ -169,12 +169,12 @@ export default function CountryPage({params}) {
                                 {selectedCountry.text5 &&
                                     <p className="text-black text-[14px]">{parseText(selectedCountry.text5)}</p>}
                                 {selectedCountry.title2 &&
-                                    <h1 className="text-black lg:text-4xl mdd:text-[16px]">{selectedCountry.title2}</h1>}
+                                    <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title2}</h1>}
                                 {selectedCountry.variants2 && selectedCountry.variants2.length > 0 && (
                                     <ul className="text-black text-[14px] flex flex-col gap-2">
                                         {selectedCountry.variants2.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
-                                                <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                 {variant}
                                             </li>
                                         ))}
@@ -198,7 +198,7 @@ export default function CountryPage({params}) {
                                     <ul className="text-black text-[14px] flex flex-col gap-2">
                                         {selectedCountry.variants3.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
-                                                <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                 {variant}
                                             </li>
                                         ))}
@@ -207,7 +207,7 @@ export default function CountryPage({params}) {
                                 {selectedCountry.priceGood !== 0 ? (
                                     <div className="flex flex-col gap-6 lg:w-[80%]">
                                         {selectedCountry.price1 &&
-                                            <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">Наша
+                                            <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Наша
                                                 услуга: <span
                                                     className="text-orange-500">{parseText(selectedCountry.price1)}</span> бел.
                                                 руб. {parseText(selectedCountry.priceType)}</p>}
@@ -215,12 +215,12 @@ export default function CountryPage({params}) {
                                 ) : (
                                     <div className="flex flex-col gap-6 lg:w-[80%]">
                                         {selectedCountry.priceTitle &&
-                                            <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">{selectedCountry.priceTitle}</p>}
+                                            <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.priceTitle}</p>}
                                         {selectedCountry.priceVariants && selectedCountry.priceVariants.length > 0 && (
                                             <ul className="text-black text-[14px] flex flex-col gap-2">
                                                 {selectedCountry.priceVariants.map((variant, index) => (
-                                                    <li key={index} className="flex gap-2 items-center">
-                                                        <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                    <li key={index} className="flex gap-2">
+                                                        <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                         {variant}
                                                     </li>
                                                 ))}
@@ -229,7 +229,7 @@ export default function CountryPage({params}) {
                                     </div>
                                 )}
                                 {selectedCountry.typev &&
-                                    <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">{parseText(selectedCountry.typev)}</p>}
+                                    <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{parseText(selectedCountry.typev)}</p>}
                                 {selectedCountry.typevb && selectedCountry.typevb.length > 0 && (
                                     <>
                                         {selectedCountry.typevb.map((text, index) => (
@@ -264,7 +264,7 @@ export default function CountryPage({params}) {
                                     <ul className="list-disc list-inside text-black text-[14px] flex flex-col gap-2">
                                         {selectedCountry.variants.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
-                                                <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                 {variant}
                                             </li>
                                         ))}
@@ -289,7 +289,7 @@ export default function CountryPage({params}) {
                                             <ul className="text-black text-[14px] flex flex-col gap-2">
                                                 {selectedCountry.priceVariants.map((variant, index) => (
                                                     <li key={index} className="flex gap-2 items-center">
-                                                        <img className="w-6 h-6" src="/check-0.png" alt=""/>
+                                                        <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                         {variant}
                                                     </li>
                                                 ))}

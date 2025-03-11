@@ -41,8 +41,8 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (pathname === "/kontakty") {
-                setShowFloatingButton(true);
+            if (pathname === "/kontakty" || isMenuOpen || isFloatingMenuOpen) {
+                setShowFloatingButton(false);
                 return;
             }
 
@@ -58,7 +58,8 @@ export default function Header() {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [pathname, isMenuOpen]);
+    }, [pathname, isMenuOpen, isFloatingMenuOpen]);
+
 
     useEffect(() => {
         if (isMenuOpen) {
@@ -213,7 +214,7 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(false)}
                 >
                     <div
-                        className={`bg-white w-full h-full flex flex-col p-6 sidebar ${
+                        className={`bg-white w-full h-full flex flex-col p-6 sidebar overflow-y-auto ${
                             isMenuOpen ? "sidebar-open" : ""
                         }`}
                         onClick={(e) => e.stopPropagation()}
@@ -285,15 +286,16 @@ export default function Header() {
             <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen}
                          isMenuOpen={isMenuOpen}/>
             {/* Фиксированная кнопка */}
-            <div
-                className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-16" : "bottom-16") : (!isMenuOpen ? "bottom-3" : "bottom-3")} right-3 z-[60] md:hidden`}>
-                <button
-                    onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
-                    className="w-12 h-12 rounded-full bg-white text-white flex items-center justify-center"
-                >
-                    <img src="/request.svg" alt="Контакты" className="w-12 h-12"/>
-                </button>
-            </div>
+            {!isMenuOpen && (
+                <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-3"} right-3 z-[60] md:hidden`}>
+                    <button
+                        onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
+                        className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
+                    >
+                        <img src="/request.svg" alt="Контакты" className="w-12 h-12"/>
+                    </button>
+                </div>
+            )}
             {isFloatingMenuOpen && (
                 <div className="md:hidden">
                     <div
@@ -321,7 +323,7 @@ export default function Header() {
                     </div>
                 </div>
             )}
-            {showFloatingButton && (
+            {showFloatingButton && !isMenuOpen && (
                 <div className="fixed bottom-3 w-full px-[7%] flex justify-center z-50">
                     <button onClick={() => {
                         setIsMenuOpen(false);

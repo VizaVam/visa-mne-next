@@ -285,7 +285,6 @@ export default function Header() {
             </header>
             <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen}
                          isMenuOpen={isMenuOpen}/>
-            {/* Фиксированная кнопка */}
             {!isMenuOpen && (
                 <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-3"} right-3 z-[60] md:hidden`}>
                     <button

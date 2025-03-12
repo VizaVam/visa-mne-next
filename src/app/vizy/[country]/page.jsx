@@ -51,7 +51,7 @@ export default function CountryPage({params}) {
         <div className={"flex flex-col items-center"}>
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[180px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
+                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
                     <nav className="mb-4 flex flex-wrap items-center sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
@@ -85,7 +85,7 @@ export default function CountryPage({params}) {
                         </span>
                     </h1>
                 </div>
-                <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[15%] mt-[20%] relative z-5">
+                <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     {selectedCountry.rb === 1 ? (
                         <Image src={"/visa-c.png"} alt={""} width={1000}
                                height={1000}
@@ -219,7 +219,7 @@ export default function CountryPage({params}) {
                                         {selectedCountry.priceVariants && selectedCountry.priceVariants.length > 0 && (
                                             <ul className="text-black text-[14px] flex flex-col gap-2">
                                                 {selectedCountry.priceVariants.map((variant, index) => (
-                                                    <li key={index} className="flex gap-2">
+                                                    <li key={index} className="flex gap-2 items-center">
                                                         <img className="w-4 h-4" src="/check-0.png" alt=""/>
                                                         {variant}
                                                     </li>

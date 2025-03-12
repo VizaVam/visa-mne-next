@@ -21,7 +21,7 @@ export default function VisaPage() {
         <div>
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[170px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
+                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt="" /></span>
@@ -35,7 +35,7 @@ export default function VisaPage() {
                         ВИЗЫ
                     </h1>
                 </div>
-                <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[15%] lg:mt-0 relative z-5">
+                <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[10%] lg:mt-0 relative z-5">
                     <Image
                         src="/visa-banner-new.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"

@@ -213,19 +213,21 @@ export default function Header() {
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                 >
+                    <div className="fixed top-6 right-6 z-50">
+                        <button
+                            className=""
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <Image width={24} height={24} src="/close.svg" alt="Close" className="h-6 w-6"/>
+                        </button>
+                    </div>
                     <div
-                        className={`bg-white w-full h-full flex flex-col p-6 sidebar overflow-y-auto ${
+                        className={`bg-white w-full h-full flex flex-col p-6 sidebar overflow-y-auto relative ${
                             isMenuOpen ? "sidebar-open" : ""
                         }`}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <button
-                            className="self-end mb-4"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            <Image width={1000} height={800} src="/close.svg" alt="Close" className={"h-6 w-full"}/>
-                        </button>
-                        <div className="text-black flex flex-col gap-1">
+                        <div className="text-black flex flex-col gap-1 mt-10">
                             {/* Кнопка Визы с + и - */}
                             <div className="flex items-center justify-between">
                                 <Link

@@ -6,6 +6,11 @@ import Image from "next/image";
 
 import { useModal } from "@/components/modalcontext";
 
+export const metadata = {
+    title: "Контакты – компания VISA VAM",
+    description: "Свяжитесь с нами для получения визовой поддержки.",
+};
+
 export default function ContactsPage() {
     const { openModal } = useModal();
 

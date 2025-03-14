@@ -13,6 +13,11 @@ import { useModal } from "@/components/modalcontext";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+export const metadata = {
+    title: "Визы – компания VISA VAM",
+    description: "Оформление виз в Европу и США. Быстро, удобно, надежно.",
+};
+
 export default function VisaPage() {
     const { openModal } = useModal();
     const pathname = usePathname()

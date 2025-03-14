@@ -10,6 +10,11 @@ import Reviews from "@/components/reviews";
 import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 
+export const metadata = {
+    title: "О нас – компания VISA VAM",
+    description: "Узнайте больше о компании VISA VAM и наших услугах.",
+};
+
 export default function Onas() {
     const { openModal } = useModal();
     const pathname = usePathname()

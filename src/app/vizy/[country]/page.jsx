@@ -12,6 +12,22 @@ import {useModal} from "@/components/modalcontext";
 import {usePathname} from "next/navigation";
 import Steps1 from "@/components/steps1";
 
+export async function generateMetadata({ params }) {
+    const countryParam = decodeURIComponent(params?.country || "");
+
+    const countryData = countries.find(c => c.name === countryParam);
+
+    return {
+        title: countryData
+            ? `Виза в ${countryData.name} – компания VISA VAM`
+            : "Визы – компания VISA VAM",
+
+        description: countryData
+            ? `Оформление визы в ${countryData.name}. Помощь с документами, консультации.`
+            : "Оформление виз в Европу и США.",
+    };
+}
+
 export default function CountryPage({params}) {
     const {country} = useParams();
     const {openModal} = useModal();

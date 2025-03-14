@@ -52,7 +52,7 @@ export default function CountryPage({params}) {
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
-                    <nav className="mb-4 flex flex-wrap items-center sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+                    <nav className="mb-4 flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
@@ -61,7 +61,7 @@ export default function CountryPage({params}) {
                             Визы
                         </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <span className="font-semibold text-gray-900 cursor-default whitespace-nowrap m-0">
+                        <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
                             {excludedCountries.includes(selectedCountry.url)
                             ? selectedCountry.n
                             : selectedCountry.n.includes("в ") || selectedCountry.n.includes("во ")

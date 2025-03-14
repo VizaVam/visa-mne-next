@@ -19,8 +19,12 @@ const caveatSans = Caveat({
 
 export const metadata = {
     title: "Открыть визу в Минске – компания VISA VAM",
-    keywords: "планирование путешествия в США и Европе, отдых, отдых в Европе и США, путешествие",
-    robots: "index, follow",
+    description: "Оформление виз в США и Европу. Помощь в планировании путешествий.",
+    keywords: ["планирование путешествия в США и Европе", "отдых", "отдых в Европе и США", "путешествие"],
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function RootLayout({children}) {

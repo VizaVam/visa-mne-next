@@ -107,7 +107,7 @@ const Modal = () => {
                             onChange={handleInputChange}
                             className={`w-full border ${
                                 errors.name ? "border-red-500" : "border-gray-300"
-                            } rounded-[2px] p-2`}
+                            } rounded-[4px] p-2`}
                         />
                         {errors.name && (
                             <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -125,7 +125,7 @@ const Modal = () => {
                             onChange={handlePhoneInput}
                             className={`w-full border ${
                                 errors.phone ? "border-red-500" : "border-gray-300"
-                            } rounded-[2px] p-2`}
+                            } rounded-[4px] p-2`}
                         />
                         {errors.phone && (
                             <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
@@ -138,7 +138,7 @@ const Modal = () => {
                             placeholder="Email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            className="w-full border border-gray-300 rounded-[2px] p-2"
+                            className="w-full border border-gray-300 rounded-[4px] p-2"
                         />
                     </div>
                     <div className="flex items-center mt-5 mb-5">

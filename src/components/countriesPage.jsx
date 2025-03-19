@@ -105,7 +105,7 @@ export default function CountryPage({params}) {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out">
                         Оформить заявку
                     </button>
                 </div>
@@ -235,7 +235,7 @@ export default function CountryPage({params}) {
                                             <div key={index} className="flex flex-col items-start">
                                                 <a
                                                     href={`/vizy/${selectedCountry.typevl[index]}`}
-                                                    className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[2px] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                                                    className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
                                                 >
                                                     {text}
                                                 </a>
@@ -338,7 +338,7 @@ export default function CountryPage({params}) {
                     <div className="sm:mt-6 text-center w-full">
                         <Link href="/vizy">
                             <button
-                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[2px] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран
                             </button>
                         </Link>

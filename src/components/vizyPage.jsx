@@ -49,7 +49,7 @@ export default function VisaPage({params}) {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out">
                         Оформить заявку
                     </button>
                 </div>

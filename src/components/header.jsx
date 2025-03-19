@@ -196,7 +196,7 @@ export default function Header() {
                             )}
                         </div>
                         <button onClick={openModal}
-                                className="header__bottom-right-btn hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50">
+                                className="header__bottom-right-btn rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50">
                             Оформить заявку
                         </button>
                         <div className="lg:hidden p-0 w-max">
@@ -330,7 +330,7 @@ export default function Header() {
                         setIsMenuOpen(false);
                         openModal();
                     }}
-                            className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[2px] active:scale-95 transition-transform duration-150 ease-in-out md:hidden">
+                            className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden">
                         Оформить заявку
                     </button>
                 </div>

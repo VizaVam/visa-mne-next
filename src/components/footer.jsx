@@ -32,7 +32,7 @@ export default function Footer() {
                                     .map((country) => {
                                     const isActive = pathname === `/vizy/${country.url}`;
                                     return (
-                                        <li key={country.url} className={"py-2 mdd:hidden"}>
+                                        <li key={country.url} className={"py-2 mdd:hidden pr-2"}>
                                             {isActive ? (
                                                 <span
                                                     className="text-gray-200 block cursor-default">

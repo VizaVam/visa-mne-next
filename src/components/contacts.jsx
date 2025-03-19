@@ -15,7 +15,7 @@ const CallTooAction = () => {
             </h2>
             <button
                 onClick={openModal}
-                className="bbbt sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-[2px] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
+                className="bbbt sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
                 Оформить заявку
             </button>
         </div>

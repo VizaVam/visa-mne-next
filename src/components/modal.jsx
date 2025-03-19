@@ -84,7 +84,7 @@ const Modal = () => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
-            <div className="bg-white p-8 rounded-[2px] shadow-lg max-w-md w-full relative">
+            <div className="bg-white p-8 rounded-[4px] shadow-lg max-w-md w-full relative">
                 <button
                     onClick={closeModal}
                     className="absolute top-2 right-2 text-[#F86F00] font-bold text-lg"

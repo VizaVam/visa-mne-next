@@ -5,12 +5,12 @@ const Docs = () => {
         <div className="bg-[#15419E] px-[7%] py-6">
             <div className="docs">
                 {/* Left Side: Heading */}
-                <h1 className="docs-left">
+                <h1 className="docs-left rounded-[4px]">
                     Основные документы
                 </h1>
 
                 {/* Right Side: Documents List */}
-                <div className="docs-right">
+                <div className="docs-right rounded-[4px]">
                     {[
                         {title: "Паспорт", desc: "не старше десяти лет"},
                         {title: "Цветная фотография", desc: "размер: 3,5×4,5 см, матовая бумага"},

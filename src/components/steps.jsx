@@ -8,7 +8,7 @@ const Steps = () => {
                  className="flex flex-col max-w-[320px] lg:max-w-none lg:flex-row items-center lg:justify-center lg:space-y-0 relative">
                 {/* Step 1 */}
                 <div
-                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:left-10"
+                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[4px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:left-10"
                     style={{
                         border: "1px solid #ECECEC",
                     }}
@@ -30,7 +30,7 @@ const Steps = () => {
 
                 {/* Step 2 */}
                 <div
-                    className="flex flex-col items-center text-center bg-[#FAFAFA] rounded-[2px] lg:w-60 md:w-48 py-8 relative lg:left-[0] self-end"
+                    className="flex flex-col items-center text-center bg-[#FAFAFA] rounded-[4px] lg:w-60 md:w-48 py-8 relative lg:left-[0] self-end"
                     style={{border: "1px solid #ECECEC"}}
                 >
                     <img src="/step-2.svg" alt="Документы" className="h-14 lg:h-20"/>
@@ -52,7 +52,7 @@ const Steps = () => {
 
                 {/* Step 3 */}
                 <div
-                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:right-4"
+                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[4px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:right-4"
                     style={{
                         border: "1px solid #ECECEC",
                     }}

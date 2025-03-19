@@ -73,7 +73,7 @@ const FAQ = () => {
             <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16">Вопрос-ответ</h2>
             <div className="space-y-4">
                 {faqData.map((faq, index) => (
-                    <div key={index} className="mdd:text-[16px] text-[16px] border border-orange-500 rounded-t-[2px]">
+                    <div key={index} className="mdd:text-[16px] text-[16px] border border-orange-500 rounded-t-[4px]">
                         <button
                             className="flex justify-between items-center w-full bg-orange-500 text-white py-4 px-6 font-medium text-left focus:outline-none"
                             onClick={() => toggleFAQ(index)}

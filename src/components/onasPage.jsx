@@ -88,7 +88,7 @@ export default function OnasPage() {
                         return (
                             <Link href={`/vizy/${c.url}`} key={index}>
                                 <div
-                                    className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                                    className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                     <img src={c.img} alt={c.name} className="w-full object-cover"/>
                                     <div
                                         className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">

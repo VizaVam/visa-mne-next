@@ -8,6 +8,7 @@ import Link from "next/link";
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [showAllCountries, setShowAllCountries] = useState(false);
+    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     // Проверяем ширину экрана
     useEffect(() => {
@@ -23,9 +24,11 @@ const Services = () => {
     return (
         <section id="services" className="px-[7%]">
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-1">
-                {displayedCountries.map((country, index) => (
+                {displayedCountries
+                    .filter(country => !excludedCountries.includes(country.url))
+                    .map((country, index) => (
                     <Link href={`/vizy/${country.url}`} key={index}>
-                        <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[2px] overflow-hidden shadow-sm cursor-pointer
+                        <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer
                             transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                             <img src={country.img} alt={country.name} className="w-full object-cover"/>
                             <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">

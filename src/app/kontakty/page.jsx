@@ -1,10 +1,29 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export { metadata } from "./metadata"
-export { structuredData } from "@/lib/structuredData";
 import ContactsPage from "@/components/contactsPage";
+import Script from "next/script";
+
+export const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VISA VAM",
+    "image": "https://visamne.vercel.app/new-logo.svg",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Примерная, 10",
+        "addressLocality": "Минск",
+        "addressRegion": "Минская область",
+        "postalCode": "220000",
+        "addressCountry": "BY"
+    },
+    "telephone": "+375 29 68 00 620",
+    "email": "mailto:l336906097@gmail.com",
+    "openingHours": "Mo-Fr 09:00-18:00"
+};
 
 export default function Page() {
+
     const breadcrumbs = [
         { name: "Главная", url: "https://visamne.vercel.app/" },
         { name: "Контакты", url: "https://visamne.vercel.app/kontakty" }
@@ -12,6 +31,10 @@ export default function Page() {
 
     return (
         <>
+            <Script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <ContactsPage />
         </>

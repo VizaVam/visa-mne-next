@@ -1,8 +1,8 @@
-const structuredData = {
+export const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "VISA VAM",
-    "image": "https://yourwebsite.com/logo.png",
+    "image": "https://visamne.vercel.app/new-logo.svg",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "ул. Примерная, 10",
@@ -15,5 +15,3 @@ const structuredData = {
     "email": "mailto:l336906097@gmail.com",
     "openingHours": "Mo-Fr 09:00-18:00"
 };
-
-export default structuredData;

@@ -7,6 +7,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import Modal from "@/components/modal";
 import { ModalProvider } from "@/components/modalcontext";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const interSans = Inter({
     variable: '--font-inter-sans',
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
         <GoogleTagManager />
         <ModalProvider>
             <Header />
+            <Breadcrumbs />
             <main>{children}</main>
             <Footer />
             <Modal />

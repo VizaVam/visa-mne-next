@@ -6,9 +6,9 @@ export default function Page({ params }) {
     const { country } = params;
 
     const breadcrumbs = [
-        { name: "Главная", url: "https://example.com/" },
-        { name: "Шенгенские визы", url: "https://example.com/shengenskie-vizy" },
-        { name: `Виза в ${country}`, url: `https://example.com/shengenskie-vizy/${country}` }
+        { name: "Главная", url: "https://visamne.vercel.app/" },
+        { name: "Шенгенские визы", url: "https://visamne.vercel.app/shengenskie-vizy" },
+        { name: `Виза в ${country}`, url: `https://visamne.vercel.app/shengenskie-vizy/${country}` }
     ];
 
     return (

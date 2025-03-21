@@ -7,11 +7,12 @@ import { motion } from "framer-motion";
 
 import { useModal } from "@/components/modalcontext";
 
-export default function ContactsPage() {
+export default function ContactsPage({breadcrumbs}) {
     const { openModal } = useModal();
 
     return (
         <div>
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
             <div className={"flex flex-col items-center"}>
                 <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                     <div

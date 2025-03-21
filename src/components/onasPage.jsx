@@ -11,13 +11,14 @@ import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import { motion } from "framer-motion";
 
-export default function OnasPage() {
+export default function OnasPage({breadcrumbs}) {
     const { openModal } = useModal();
     const pathname = usePathname()
     const countryOrder = {"viza-v-polshu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
 
     return (
         <div>
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">

@@ -14,12 +14,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {motion} from "framer-motion";
 
-export default function VisaPage({params}) {
+export default function VisaPage({breadcrumbs}) {
     const { openModal } = useModal();
     const pathname = usePathname()
 
     return (
         <div>
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">

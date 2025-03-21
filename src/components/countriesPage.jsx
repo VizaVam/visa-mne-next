@@ -12,7 +12,7 @@ import {usePathname} from "next/navigation";
 import Steps1 from "@/components/steps1";
 import { motion } from "framer-motion";
 
-export default function CountryPage({params}) {
+export default function CountryPage({breadcrumbs}) {
     const {country} = useParams();
     const {openModal} = useModal();
     const selectedCountry = countries.find(c => c.url === country);
@@ -50,6 +50,7 @@ export default function CountryPage({params}) {
 
     return (
         <div className={"flex flex-col items-center"}>
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
             <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">

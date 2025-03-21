@@ -1,18 +1,9 @@
 'use client'
 
-import Head from 'next/head';
-import { usePathname } from 'next/navigation';
+export default function Breadcrumbs({ breadcrumbs = [] }) {
+    if (!breadcrumbs.length) return null; // Если пусто, ничего не рендерим
 
-const Breadcrumbs = () => {
-    const pathname = usePathname();
-    const pathSegments = pathname.split('/').filter(Boolean);
-
-    const breadcrumbs = pathSegments.map((segment, index) => ({
-        name: segment.replace(/-/g, ' '),
-        url: '/' + pathSegments.slice(0, index + 1).join('/')
-    }));
-
-    const structuredData = {
+    const schemaData = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": breadcrumbs.map((item, index) => ({
@@ -24,13 +15,19 @@ const Breadcrumbs = () => {
     };
 
     return (
-        <Head>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
-        </Head>
+        <nav aria-label="breadcrumb">
+            <script type="application/ld+json">
+                {JSON.stringify(schemaData)}
+            </script>
+            <ul className="flex space-x-2 text-sm">
+                {breadcrumbs.map((item, index) => (
+                    <li key={index} className="after:content-['/'] last:after:content-[''] after:mx-2">
+                        <a href={item.url} className="text-blue-600 hover:underline">
+                            {item.name}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     );
-};
-
-export default Breadcrumbs;
+}

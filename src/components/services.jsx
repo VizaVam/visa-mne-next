@@ -8,7 +8,7 @@ import Link from "next/link";
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [showAllCountries, setShowAllCountries] = useState(false);
-    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     // Проверяем ширину экрана
     useEffect(() => {
@@ -19,7 +19,7 @@ const Services = () => {
     }, []);
 
     // Ограничиваем список стран для мобильных
-    const displayedCountries = isMobile && !showAllCountries ? countries.slice(0, 8) : countries;
+    const displayedCountries = isMobile && !showAllCountries ? countries.slice(0, 10) : countries;
 
     return (
         <section id="services" className="px-[7%]">
@@ -27,7 +27,7 @@ const Services = () => {
                 {displayedCountries
                     .filter(country => !excludedCountries.includes(country.url))
                     .map((country, index) => (
-                    <Link href={`/vizy/${country.url}`} key={index}>
+                    <Link href={`/shengenskie-vizy/${country.url}`} key={index}>
                         <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer
                             transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                             <img src={country.img} alt={country.name} className="w-full object-cover"/>
@@ -50,7 +50,7 @@ const Services = () => {
 
             {isMobile && !showAllCountries && (
                 <div className="mt-8 text-center">
-                    <Link href="/vizy">
+                    <Link href="/shengenskie-vizy">
                         <button
                             className="bg-customBlue mdd:w-full hover:bg-blue-600 text-white py-4 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран

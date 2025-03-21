@@ -9,6 +9,7 @@ import {countries} from "@/components/serviceson";
 import Reviews from "@/components/reviews";
 import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
+import { motion } from "framer-motion";
 
 export default function OnasPage() {
     const { openModal } = useModal();
@@ -47,7 +48,25 @@ export default function OnasPage() {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="bbbt relative overflow-hidden w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+                    >
+                        {[0, 1, 2].map((i) => (
+                            <motion.span
+                                key={i}
+                                className="absolute inset-0 flex items-center justify-center"
+                                initial={{ scale: 0, opacity: 0.5 }}
+                                animate={{ scale: 4, opacity: 0 }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeOut",
+                                    repeatDelay: 1.5,
+                                    delay: i * 0.7,
+                                }}
+                            >
+                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                            </motion.span>
+                        ))}
                         Оформить заявку
                     </button>
                 </div>
@@ -67,12 +86,15 @@ export default function OnasPage() {
             <div className={"w-full relative flex flex-col gap-6 px-[7%] pt-20 text-[16px] mdd:text-[14px]"}>
                 <div className={"w-[80%] mdd:w-full"}>
                     <p>
-                        Компания Visa Vam представлена на рынке туристических услуг уже <strong>более 10 лет</strong>.<br/>
-                        За это время наши специалисты сталкивались с разными случаями и находили индивидуальный подход для каждого клиента.<br/>
-                        Годы успешной работы помогли нам создать базу постоянных клиентов, которая постоянно пополняется новыми благодарными клиентами.<br/>
-                        Мы предлагаем помощь в оформлении различных типов виз во множество стран мира (страны Европы, США, Канада, Великобритания и т.д.).<br/>
-                        Нашими клиентами являются как обычные туристы, так и целые организации, которые отправляют сотрудников в деловые поездки.<br/>
-                        Также мы предлагаем помощь в открытии национальных виз для переезда на постоянное место проживания в Европе с целью учебы, работы, обмена опытом, женитьбы, воссоединения семьи и т.д.
+                        <strong>Visa Vam более 10 лет</strong> помогает клиентам в оформлении виз по всему миру.<br/>
+                        Опыт наших специалистов позволяет находить индивидуальные решения для
+                        каждого.<br/>
+                        Мы оформляем туристические, бизнес- и национальные визы в Европу, США,
+                        Великобританию и другие страны.<br/>
+                        Среди наших клиентов – как частные путешественники, так и компании,
+                        отправляющие сотрудников в командировки.<br/>
+                        Также мы помогаем с визами для переезда в Европу на учебу, работу, брак или
+                        воссоединение семьи.<br/>
                     </p>
                 </div>
             </div>
@@ -86,7 +108,7 @@ export default function OnasPage() {
                         if (!c) return null; // Пропускаем, если страны нет в списке
 
                         return (
-                            <Link href={`/vizy/${c.url}`} key={index}>
+                            <Link href={`/shengenskie-vizy/${c.url}`} key={index}>
                                 <div
                                     className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                     <img src={c.img} alt={c.name} className="w-full object-cover"/>

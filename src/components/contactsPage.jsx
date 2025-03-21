@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Contacts from "@/components/contacts";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { useModal } from "@/components/modalcontext";
 
@@ -38,7 +39,25 @@ export default function ContactsPage() {
                     <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[27%]">
                         <button
                             onClick={openModal}
-                            className="relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]">
+                            className="relative overflow-hidden w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]"
+                        >
+                            {[0, 1, 2].map((i) => (
+                                <motion.span
+                                    key={i}
+                                    className="absolute inset-0 flex items-center justify-center"
+                                    initial={{ scale: 0, opacity: 0.5 }}
+                                    animate={{ scale: 4, opacity: 0 }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeOut",
+                                        repeatDelay: 1.5,
+                                        delay: i * 0.7,
+                                    }}
+                                >
+                                    <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                                </motion.span>
+                            ))}
                             Оформить заявку
                         </button>
                     </div>

@@ -12,6 +12,7 @@ import {countries} from "@/components/serviceson";
 import { useModal } from "@/components/modalcontext";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import {motion} from "framer-motion";
 
 export default function VisaPage({params}) {
     const { openModal } = useModal();
@@ -25,14 +26,14 @@ export default function VisaPage({params}) {
                     <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
                         <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt="" /></span>
-                        {pathname === "/vizy" ? (
+                        {pathname === "/shengenskie-vizy" ? (
                             <span className="font-semibold text-gray-900 cursor-default">Визы</span>
                         ) : (
-                            <Link href="/vizy" className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                            <Link href="/shengenskie-vizy" className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
                         )}
                     </nav>
-                    <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black">
-                        ВИЗЫ
+                    <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black leading-none">
+                        ШЕНГЕНСКИЕ ВИЗЫ
                     </h1>
                 </div>
                 <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[10%] lg:mt-0 relative z-5">
@@ -49,7 +50,25 @@ export default function VisaPage({params}) {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="bbbt relative overflow-hidden w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+                    >
+                        {[0, 1, 2].map((i) => (
+                            <motion.span
+                                key={i}
+                                className="absolute inset-0 flex items-center justify-center"
+                                initial={{ scale: 0, opacity: 0.5 }}
+                                animate={{ scale: 4, opacity: 0 }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeOut",
+                                    repeatDelay: 1.5,
+                                    delay: i * 0.7,
+                                }}
+                            >
+                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                            </motion.span>
+                        ))}
                         Оформить заявку
                     </button>
                 </div>

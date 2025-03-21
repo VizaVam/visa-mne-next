@@ -7,11 +7,15 @@ import {usePathname} from "next/navigation";
 import Link from "next/link";
 import ScrollToTop from "@/components/scroll";
 import {countries} from "@/components/serviceson";
+import {motion, AnimatePresence} from "framer-motion";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenn, setIsOpenn] = useState(false);
+    const [isSchengenOpen, setIsSchengenOpen] = useState(false);
+    const [isOtherVisasOpen, setIsOtherVisasOpen] = useState(false);
     const pathname = usePathname();
 
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
@@ -22,10 +26,28 @@ export default function Header() {
         setIsOpen(false);
     };
 
-    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const listItemVariants = {
+        hidden: {opacity: 0, y: -10},
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: {delay: i * 0.05, duration: 0.3}
+        }),
+        exit: {opacity: 0, y: -10, transition: {duration: 0.2}}
+    };
+
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+
+    const menuItems = [
+        {name: "Шенгенские визы", link: "/shengenskie-vizy", hasSubmenu: true, state: isOpen, setState: setIsOpen},
+        {name: "Другие визы", link: "/shengenskie-vizy", hasSubmenu: true, state: isOpenn, setState: setIsOpenn},
+        {name: "О нас", link: "/o-nas", hasSubmenu: false},
+        {name: "Контакты", link: "/kontakty", hasSubmenu: false},
+    ];
 
     useEffect(() => {
         setIsOpen(false);
+        setIsOpenn(false);
         setIsMenuOpen(false);
     }, [pathname]);
 
@@ -139,12 +161,13 @@ export default function Header() {
                                 onMouseEnter={() => setIsOpen(true)}
                                 onMouseLeave={() => setIsOpen(false)}
                             >
-                                {pathname === "/vizy" ? (
+                                {pathname === "/shengenskie-vizy" ? (
                                     <span
-                                        className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Визы</span>
+                                        className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Шенгенские визы</span>
                                 ) : (
-                                    <Link href="/vizy"
-                                          className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                                    <Link href="/shengenskie-vizy"
+                                          className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Шенгенские
+                                        визы</Link>
                                 )}
 
                                 {isOpen && (
@@ -154,7 +177,7 @@ export default function Header() {
                                             {countries
                                                 .filter(country => !excludedCountries.includes(country.url))
                                                 .map((country) => {
-                                                    const isActive = pathname === `/vizy/${country.url}`;
+                                                    const isActive = pathname === `/shengenskie-vizy/${country.url}`;
                                                     return (
                                                         <li key={country.url}>
                                                             {isActive ? (
@@ -164,10 +187,49 @@ export default function Header() {
                                                             </span>
                                                             ) : (
                                                                 <Link
-                                                                    href={`/vizy/${country.url}`}
+                                                                    href={`/shengenskie-vizy/${country.url}`}
                                                                     className="block px-2 py-1 transition-colors hover:underline"
                                                                 >
                                                                     {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                                </Link>
+                                                            )}
+                                                        </li>
+                                                    );
+                                                })}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsOpenn(true)}
+                                onMouseLeave={() => setIsOpenn(false)}
+                            >
+                                <span
+                                    className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out cursor-pointer">
+                                    Другие визы
+                                </span>
+
+                                {isOpenn && (
+                                    <div
+                                        className="absolute left-0 mt-0 pt-4 w-[250px] bg-white border-gray-200 z-20 rounded-b-lg">
+                                        <ul className="px-2 py-2">
+                                            {countries
+                                                .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
+                                                .map((visa) => {
+                                                    const isActive = pathname === `/shengenskie-vizy/${visa.url}`;
+                                                    return (
+                                                        <li key={visa.url}>
+                                                            {isActive ? (
+                                                                <span
+                                                                    className="font-semibold text-gray-900 block px-2 py-1 cursor-default">
+                                                                        Виза в {visa.n}
+                                                                </span>
+                                                            ) : (
+                                                                <Link href={`/shengenskie-vizy/${visa.url}`}
+                                                                      className="block px-2 py-1 transition-colors hover:underline">
+                                                                    Виза в {visa.n}
                                                                 </Link>
                                                             )}
                                                         </li>
@@ -195,10 +257,32 @@ export default function Header() {
                                       className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Контакты</Link>
                             )}
                         </div>
-                        <button onClick={openModal}
-                                className="header__bottom-right-btn rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50">
+                        <button
+                            onClick={openModal}
+                            className="header__bottom-right-btn relative overflow-hidden rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
+                        >
+                            {/* Три медленные пульсирующие волны, затем пауза */}
+                            {[0, 1, 2].map((i) => (
+                                <motion.span
+                                    key={i}
+                                    className="absolute inset-0 flex items-center justify-center"
+                                    initial={{ scale: 0, opacity: 0.5 }}
+                                    animate={{ scale: 4, opacity: 0 }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeOut",
+                                        repeatDelay: 1.5, // Пауза после трех волн
+                                        delay: i * 0.7, // Волны идут друг за другом
+                                    }}
+                                >
+                                    <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                                </motion.span>
+                            ))}
                             Оформить заявку
                         </button>
+
+
                         <div className="lg:hidden p-0 w-max">
                             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <Image width={1000} height={800} src="/burger.svg" alt="Menu"
@@ -207,83 +291,142 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                <div
-                    className={`fixed inset-0 bg-[rgba(0,0,0,0.5)] z-[2] ${
-                        isMenuOpen ? "block" : "hidden"
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                >
-                    <div className="fixed top-6 right-6 z-50">
-                        <button
-                            className=""
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            <Image width={24} height={24} src="/close.svg" alt="Close" className="h-6 w-6"/>
-                        </button>
-                    </div>
-                    <div
-                        className={`bg-white w-full h-full flex flex-col p-6 sidebar overflow-y-auto relative ${
-                            isMenuOpen ? "sidebar-open" : ""
-                        }`}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="text-black flex flex-col gap-1 mt-10">
-                            {/* Кнопка Визы с + и - */}
-                            <div className="flex items-center justify-between">
-                                <Link
-                                    className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
-                                    href="/vizy"
-                                    onClick={handleCloseMenu}
-                                >
-                                    Визы
-                                </Link>
-                                <button
-                                    onClick={() => setIsOpen(!isOpen)}
-                                    className="text-xl font-bold focus:outline-none transition-transform duration-150 ease-in-out"
-                                >
-                                    {isOpen ? "−" : "+"}
-                                </button>
-                            </div>
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <>
+                            {/* Затемнение фона */}
+                                <motion.div
+                                    className="fixed inset-0 bg-black bg-opacity-30 z-40"
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 1}}
+                                    exit={{opacity: 0}}
+                                    onClick={() => setIsMenuOpen(false)}
+                                />
 
-                            {/* Подменю стран */}
-                            {isOpen && (
-                                <div className="pl-2">
-                                    <ul className="space-y-2">
-                                        {countries
-                                            .filter(country => !excludedCountries.includes(country.url))
-                                            .map((country) => (
-                                            <li key={country.url}>
-                                                <Link
-                                                    href={`/vizy/${country.url}`}
-                                                    className="hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
-                                                    onClick={handleCloseMenu}
-                                                >
-                                                    {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                            {/* Меню (проявление) */}
+                                <motion.div
+                                    className="fixed inset-0 bg-white text-black p-6 z-50 shadow-xl overflow-y-auto"
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 1}}
+                                    exit={{opacity: 0}}
+                                    transition={{duration: 0.1, ease: "easeOut"}}
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    {/* Кнопка закрытия */}
+                                    <div className="absolute top-4 right-4">
+                                        <button onClick={() => setIsMenuOpen(false)}>
+                                            <Image width={24} height={24} src="/close.svg" alt="Close"/>
+                                        </button>
+                                    </div>
+
+                                    {/* Основное меню */}
+                                    <motion.div
+                                        className="flex flex-col gap-4 mt-10 text-xl font-semibold"
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="exit"
+                                        variants={{
+                                            hidden: {opacity: 0},
+                                            visible: {opacity: 1, transition: {staggerChildren: 0.3, duration: 0.5}}, // Уменьшено
+                                            exit: {opacity: 0, height: 0, transition: {duration: 0.5}} // Ускорено
+                                        }}
+                                    >
+                                        {/* Шенгенские визы */}
+                                        <motion.div variants={listItemVariants}>
+                                            <div className="w-full flex justify-between items-center">
+                                                <Link href="/shengenskie-vizy" className="w-full" onClick={() => setIsMenuOpen(false)}>
+                                                    Шенгенские визы
                                                 </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
+                                                <button onClick={() => setIsSchengenOpen(!isSchengenOpen)}>
+                                                    {isSchengenOpen ? "−" : "+"}
+                                                </button>
+                                            </div>
+                                            <AnimatePresence>
+                                                {isSchengenOpen && (
+                                                    <motion.ul
+                                                        initial="hidden"
+                                                        animate="visible"
+                                                        exit="exit"
+                                                        variants={{
+                                                            hidden: {opacity: 0, height: 0},
+                                                            visible: {
+                                                                opacity: 1,
+                                                                height: "auto",
+                                                                transition: {staggerChildren: 0.3, duration: 0.3}
+                                                            }, // Уменьшено
+                                                            exit: {opacity: 0, height: 0, transition: {duration: 0.2}} // Ускорено
+                                                        }}
+                                                        className="pl-4 mt-2 space-y-2 text-lg font-normal"
+                                                    >
+                                                        {countries
+                                                            .filter(c => !excludedCountries.includes(c.url)) // Проверка по excludedCountries
+                                                            .map((country, index) => (
+                                                                <motion.li key={country.url} variants={listItemVariants}
+                                                                           custom={index}>
+                                                                    <Link href={`/shengenskie-vizy/${country.url}`}>
+                                                                        Виза в {country.n}
+                                                                    </Link>
+                                                                </motion.li>
+                                                            ))}
+                                                    </motion.ul>
+                                                )}
+                                            </AnimatePresence>
+                                        </motion.div>
 
-                            {/* Остальные ссылки */}
-                            <Link
-                                className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
-                                href="/o-nas"
-                                onClick={handleCloseMenu}
-                            >
-                                О нас
-                            </Link>
-                            <Link
-                                className="mdd:text-xl sm:text-2xl font-medium hover:text-gray-400 active:scale-95 transition-transform duration-150 ease-in-out"
-                                href="/kontakty"
-                                onClick={handleCloseMenu}
-                            >
-                                Контакты
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                                        {/* Другие визы */}
+                                        <motion.div variants={listItemVariants}>
+                                            <button
+                                                className="w-full flex justify-between items-center"
+                                                onClick={() => setIsOtherVisasOpen(!isOtherVisasOpen)}
+                                            >
+                                                Другие визы
+                                                <span>{isOtherVisasOpen ? "−" : "+"}</span>
+                                            </button>
+
+                                            <AnimatePresence>
+                                                {isOtherVisasOpen && (
+                                                    <motion.ul
+                                                        initial="hidden"
+                                                        animate="visible"
+                                                        exit="exit"
+                                                        variants={{
+                                                            hidden: {opacity: 0, height: 0},
+                                                            visible: {
+                                                                opacity: 1,
+                                                                height: "auto",
+                                                                transition: {staggerChildren: 0.05}
+                                                            },
+                                                            exit: {opacity: 0, height: 0}
+                                                        }}
+                                                        className="pl-4 mt-2 space-y-2 text-lg font-normal"
+                                                    >
+                                                        {countries
+                                                            .filter(c => ["viza-v-ssha", "viza-v-velikobritaniyu"].includes(c.url))
+                                                            .map((country, index) => (
+                                                                <motion.li key={country.url} variants={listItemVariants}
+                                                                           custom={index}>
+                                                                    <Link href={`/shengenskie-vizy/${country.url}`}>
+                                                                        Виза в {country.n}
+                                                                    </Link>
+                                                                </motion.li>
+                                                            ))}
+                                                    </motion.ul>
+                                                )}
+                                            </AnimatePresence>
+                                        </motion.div>
+
+                                        {/* О нас и Контакты */}
+                                        <motion.div variants={listItemVariants}>
+                                            <Link href="/o-nas">О нас</Link>
+                                        </motion.div>
+                                        <motion.div variants={listItemVariants}>
+                                            <Link href="/kontakty">Контакты</Link>
+                                        </motion.div>
+                                    </motion.div>
+                                </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
             </header>
             <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen}
                          isMenuOpen={isMenuOpen}/>
@@ -326,11 +469,26 @@ export default function Header() {
             )}
             {showFloatingButton && !isMenuOpen && (
                 <div className="fixed bottom-3 w-full px-[7%] flex justify-center z-50">
-                    <button onClick={() => {
-                        setIsMenuOpen(false);
-                        openModal();
-                    }}
-                            className="w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden">
+                    <button
+                        onClick={() => {
+                            setIsMenuOpen(false);
+                            openModal();
+                        }}
+                        className="relative overflow-hidden w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden"
+                    >
+                        {/* Три плавных волны */}
+                        {[0, 1, 2].map((i) => (
+                            <motion.span
+                                key={i}
+                                className="absolute inset-0 flex items-center justify-center"
+                                initial={{ scale: 0, opacity: 0.5 }}
+                                animate={{ scale: 4, opacity: 0 }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", repeatDelay: 1.5, delay: i * 0.7 }}
+                            >
+                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-50 rounded-full" />
+                            </motion.span>
+                        ))}
+
                         Оформить заявку
                     </button>
                 </div>

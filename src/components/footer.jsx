@@ -8,7 +8,7 @@ import {usePathname} from "next/navigation";
 
 export default function Footer() {
     const pathname = usePathname();
-    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     return (
         <footer className={"footer"}>
@@ -25,31 +25,82 @@ export default function Footer() {
                 <div className={"footer__top-right"}>
                     <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
                         <div className={"footer__top-right-main-left"}>
-                            <a href={"/vizy"} className={"font-medium text-xl"}>Визы</a>
-                            <ul className="my-6 mdd:my-1 grid grid-cols-2">
-                                {countries
-                                    .filter(country => !excludedCountries.includes(country.url))
-                                    .map((country) => {
-                                    const isActive = pathname === `/vizy/${country.url}`;
-                                    return (
-                                        <li key={country.url} className={"py-2 mdd:hidden pr-2"}>
-                                            {isActive ? (
-                                                <span
-                                                    className="text-gray-200 block cursor-default">
+                            <div>
+                                <a href={"/shengenskie-vizy"} className={"font-medium text-xl"}>Шенгенские визы</a>
+                                <ul className="my-6 mdd:my-1 grid grid-cols-2">
+                                    {countries
+                                        .filter(country => !excludedCountries.includes(country.url))
+                                        .map((country) => {
+                                            const isActive = pathname === `/shengenskie-vizy/${country.url}`;
+                                            return (
+                                                <li key={country.url} className={"py-2 mdd:hidden pr-2"}>
+                                                    {isActive ? (
+                                                        <span
+                                                            className="text-gray-200 block cursor-default">
                                                                 {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
                                                             </span>
-                                            ) : (
-                                                <Link
-                                                    href={`/vizy/${country.url}`}
-                                                    className="py-2 transition-colors hover:underline"
-                                                >
-                                                    {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
-                                                </Link>
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                                                    ) : (
+                                                        <Link
+                                                            href={`/shengenskie-vizy/${country.url}`}
+                                                            className="py-2 transition-colors hover:underline"
+                                                        >
+                                                            {country.n.startsWith("Ф") ? "Виза во" : "Виза в"} {country.n}
+                                                        </Link>
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
+                                </ul>
+                            </div>
+                            <div className={"mdd:hidden"}>
+                                <p className={"font-medium text-xl"}>Другие визы</p>
+                                <ul className="my-6 mdd:my-1 grid">
+                                    {countries
+                                        .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
+                                        .map((visa) => {
+                                            const isActive = pathname === `/shengenskie-vizy/${visa.url}`;
+                                            return (
+                                                <li key={visa.url} className={"py-2 mdd:hidden pr-2"}>
+                                                    {isActive ? (
+                                                        <span
+                                                            className="text-gray-200 block cursor-default">
+                                                                        Виза в {visa.n}
+                                                                </span>
+                                                    ) : (
+                                                        <Link href={`/shengenskie-vizy/${visa.url}`}
+                                                              className="py-2 transition-colors hover:underline">
+                                                            Виза в {visa.n}
+                                                        </Link>
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
+                                </ul>
+                            </div>
+                            <div className={"sm:hidden"}>
+                                <ul className="my-6 mdd:my-1 grid">
+                                    {countries
+                                        .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
+                                        .map((visa) => {
+                                            const isActive = pathname === `/shengenskie-vizy/${visa.url}`;
+                                            return (
+                                                <li key={visa.url} className={"py-2 pr-2"}>
+                                                    {isActive ? (
+                                                        <span
+                                                            className="font-medium text-xl">
+                                                                        Виза в {visa.n}
+                                                                </span>
+                                                    ) : (
+                                                        <Link href={`/shengenskie-vizy/${visa.url}`}
+                                                              className="py-2 font-medium text-xl">
+                                                            Виза в {visa.n}
+                                                        </Link>
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
+                                </ul>
+                            </div>
                         </div>
                         <div className={"footer__top-right-main-left w-[120px]"}>
                             <a href={"/o-nas"} className={"block font-medium text-xl"}>О нас</a>

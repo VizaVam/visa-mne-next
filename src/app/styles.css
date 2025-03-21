@@ -78,6 +78,7 @@
   font-weight: 400;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 }
 .footer__top-left {
   display: flex;

@@ -9,7 +9,7 @@ import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
 import Image from "next/image";
 import { useModal } from "@/components/modalcontext";
-import Serviceson from "@/components/serviceson";
+import { motion } from "framer-motion";
 
 export default function HomePage({onOpenModal}) {
     const { openModal } = useModal();
@@ -20,11 +20,10 @@ export default function HomePage({onOpenModal}) {
                 className="lg:px-16 lg:mt-[70px] mt-[200px] pb-32 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
-                    <div className={"flex flex-col"}>
-                        <h1 className="text-[24px] mdd:text-[12px] font-semibold text-black">КОМПАНИЯ</h1>
-                        <h1 className="lg:text-[80px] text-[70px] mdd:text-[40px] font-bold leading-none">VISA VAM</h1>
-                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[90%] md:top-[8%] sm:top-[9%] mdd:top-[6%] lg:left-[27%] mdd:left-[15%] left-[15%] text-[32px] mdd:text-[20px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
-                            Помогаем превратить мечты в реальность
+                    <div className={"flex flex-col lg:w-[85%] md:w-[90%] sm:w-[90%] mdd:w-[90%]"}>
+                        <h1 className="text-[34px] mdd:text-[24px] font-semibold text-black">Оформи свою визу вместе с <span className="lg:text-[55px] text-[45px] mdd:text-[35px] font-bold leading-none">VISA VAM</span></h1>
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[75%] md:top-[8%] sm:top-[9%] mdd:top-[7%] lg:left-[27%] mdd:left-[15%] left-[15%] text-[34px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                            Помогаем оформить визы во все страны мира
                         </p>
                     </div>
                 </div>
@@ -43,7 +42,25 @@ export default function HomePage({onOpenModal}) {
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <button
                             onClick={openModal}
-                            className="bbbt relative w-[100%] bg-customBlue text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                        >
+                            {[0, 1, 2].map((i) => (
+                                <motion.span
+                                    key={i}
+                                    className="absolute inset-0 flex items-center justify-center"
+                                    initial={{ scale: 0, opacity: 0.5 }}
+                                    animate={{ scale: 4, opacity: 0 }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeOut",
+                                        repeatDelay: 1.5,
+                                        delay: i * 0.7,
+                                    }}
+                                >
+                                    <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                                </motion.span>
+                            ))}
                             Оформить заявку
                         </button>
                     </div>

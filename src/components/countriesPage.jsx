@@ -10,6 +10,7 @@ import Image from "next/image";
 import {useModal} from "@/components/modalcontext";
 import {usePathname} from "next/navigation";
 import Steps1 from "@/components/steps1";
+import { motion } from "framer-motion";
 
 export default function CountryPage({params}) {
     const {country} = useParams();
@@ -17,7 +18,8 @@ export default function CountryPage({params}) {
     const selectedCountry = countries.find(c => c.url === country);
     const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
     const pathname = usePathname();
-    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries1 = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     // Найти текущую страну в списке
     const currentCountry = countries.find(c => c.url === country);
@@ -55,13 +57,13 @@ export default function CountryPage({params}) {
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <Link href="/vizy"
-                              className={`text-orange-500 hover:underline ${pathname === "/vizy" ? "font-semibold text-gray-900 pointer-events-none active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
+                        <Link href="/shengenskie-vizy"
+                              className={`text-orange-500 hover:underline ${pathname === "/shengenskie-vizy" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
                             Визы
                         </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
-                            {excludedCountries.includes(selectedCountry.url)
+                            {excludedCountries1.includes(selectedCountry.url)
                                 ? selectedCountry.n
                                 : selectedCountry.n.includes("в ") || selectedCountry.n.includes("во ")
                                     ? selectedCountry.n
@@ -69,7 +71,7 @@ export default function CountryPage({params}) {
                         </span>
                     </nav>
                     <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
-                        {excludedCountries.includes(selectedCountry.url)
+                        {excludedCountries1.includes(selectedCountry.url)
                             ? ""  // Убираем "В" или "Во" для исключенных стран
                             : `Виза ${selectedCountry.n === "Францию" ? "Во" : "В"} `}
                         <span
@@ -105,9 +107,28 @@ export default function CountryPage({params}) {
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
                     <button
                         onClick={openModal}
-                        className="bbbt relative w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out">
+                        className="bbbt relative overflow-hidden w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+                    >
+                        {[0, 1, 2].map((i) => (
+                            <motion.span
+                                key={i}
+                                className="absolute inset-0 flex items-center justify-center"
+                                initial={{ scale: 0, opacity: 0.5 }}
+                                animate={{ scale: 4, opacity: 0 }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeOut",
+                                    repeatDelay: 1.5,
+                                    delay: i * 0.7,
+                                }}
+                            >
+                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                            </motion.span>
+                        ))}
                         Оформить заявку
                     </button>
+
                 </div>
             </div>
             <div className={"w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]"}>
@@ -234,7 +255,7 @@ export default function CountryPage({params}) {
                                         {selectedCountry.typevb.map((text, index) => (
                                             <div key={index} className="flex flex-col items-start">
                                                 <a
-                                                    href={`/vizy/${selectedCountry.typevl[index]}`}
+                                                    href={`/shengenskie-vizy/${selectedCountry.typevl[index]}`}
                                                     className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
                                                 >
                                                     {text}
@@ -310,7 +331,7 @@ export default function CountryPage({params}) {
                                 if (!c) return null; // Пропускаем, если страны нет в списке
 
                                 return (
-                                    <Link href={`/vizy/${c.url}`} key={index}>
+                                    <Link href={`/shengenskie-vizy/${c.url}`} key={index}>
                                         <div
                                             className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                             <img src={c.img} alt={c.name} className="w-full object-cover"/>
@@ -336,7 +357,7 @@ export default function CountryPage({params}) {
                         </div>
                     </div>
                     <div className="sm:mt-6 text-center w-full">
-                        <Link href="/vizy">
+                        <Link href="/shengenskie-vizy">
                             <button
                                 className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран

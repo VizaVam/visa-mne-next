@@ -33,6 +33,7 @@ export default function Page() {
         <>
             <Script
                 type="application/ld+json"
+                strategy="beforeInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
             />
             <Breadcrumbs breadcrumbs={breadcrumbs} />

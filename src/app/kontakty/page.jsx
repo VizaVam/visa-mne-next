@@ -7,7 +7,7 @@ import ContactsPage from "@/components/contactsPage";
 export default function Page() {
     const breadcrumbs = [
         { name: "Главная", url: "https://visamne.vercel.app/" },
-        { name: "Шенгенские визы", url: "https://visamne.vercel.app/shengenskie-vizy" }
+        { name: "Контакты", url: "https://visamne.vercel.app/kontakty" }
     ];
 
     return (

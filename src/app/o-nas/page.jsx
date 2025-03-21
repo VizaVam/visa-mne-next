@@ -6,7 +6,7 @@ import OnasPage from "@/components/onasPage";
 export default function Page() {
    const breadcrumbs = [
       { name: "Главная", url: "https://visamne.vercel.app/" },
-      { name: "Шенгенские визы", url: "https://visamne.vercel.app/shengenskie-vizy" }
+      { name: "О нас", url: "https://visamne.vercel.app/o-nas" }
    ];
 
    return (

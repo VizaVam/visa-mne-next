@@ -178,8 +178,7 @@ export default function Header() {
                                     {isOpen ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
                                 </div>
                                 {isOpen && (
-                                    <div
-                                        className="absolute left-0 mt-0 pt-4 w-[350px] bg-white border-gray-200 z-20 rounded-b-lg">
+                                    <div className="absolute left-0 mt-0 pt-4 w-[350px] bg-white border-gray-200 z-20 rounded-b-lg">
                                         <ul className="px-2 py-2 grid grid-cols-2 gap-2">
                                             {countries
                                                 .filter(country => !excludedCountries.includes(country.url))
@@ -213,7 +212,7 @@ export default function Header() {
                                 onMouseEnter={() => setIsOpenn(true)}
                                 onMouseLeave={() => setIsOpenn(false)}
                             >
-                                <div className={"flex items-center gap-1 hover:underline cursor-default"}>
+                                <div className={"flex items-center gap-1 cursor-default"}>
                                     <p>
                                         Другие визы
                                     </p>
@@ -268,7 +267,7 @@ export default function Header() {
                         </div>
                         <button
                             onClick={openModal}
-                            className="header__bottom-right-btn relative overflow-hidden rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
+                            className="header__bottom-right-btn relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
                         >
                             {/* Три медленные пульсирующие волны, затем пауза */}
                             {[0, 1, 2].map((i) => (
@@ -322,7 +321,7 @@ export default function Header() {
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 {/* Кнопка закрытия */}
-                                <div className="absolute top-4 right-4">
+                                <div className="fixed top-4 right-4">
                                     <button onClick={() => setIsMenuOpen(false)}>
                                         <Image width={24} height={24} src="/close.svg" alt="Close"/>
                                     </button>

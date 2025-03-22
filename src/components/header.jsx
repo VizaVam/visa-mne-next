@@ -169,7 +169,7 @@ export default function Header() {
                                 <div className={"flex items-center gap-1 cursor-pointer hover:underline"}>
                                     {pathname === "/shengenskie-vizy" ? (
                                         <span
-                                            className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Шенгенские визы</span>
+                                            className="font-semibold text-gray-900 cursor-default">Шенгенские визы</span>
                                     ) : (
                                         <Link href="/shengenskie-vizy"
                                               className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Шенгенские

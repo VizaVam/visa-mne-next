@@ -7,7 +7,7 @@ export default function Page({ params }) {
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visamne.vercel.app/" },
-        { name: `Виза в ${country}`, url: `https://visamne.vercel.app/shengenskie-vizy/${country}` }
+        { name: `Виза в ${country}`, url: `https://visamne.vercel.app/${country}` }
     ];
 
     return (

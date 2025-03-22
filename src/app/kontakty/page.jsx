@@ -11,10 +11,10 @@ export const structuredData = {
     "image": "https://visamne.vercel.app/new-logo.svg",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "ул. Примерная, 10",
+        "streetAddress": "пр. Победителей 17",
         "addressLocality": "Минск",
         "addressRegion": "Минская область",
-        "postalCode": "220000",
+        "postalCode": "220004",
         "addressCountry": "BY"
     },
     "telephone": "+375 29 68 00 620",

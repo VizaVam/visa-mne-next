@@ -22,7 +22,7 @@ export default function HomePage({onOpenModal}) {
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
                     <div className={"flex flex-col lg:w-[85%] md:w-[90%] sm:w-[90%] mdd:w-[90%]"}>
                         <h1 className="text-[34px] mdd:text-[24px] font-semibold text-black">Оформи свою визу вместе с <span className="lg:text-[55px] text-[45px] mdd:text-[35px] font-bold leading-none">VISA VAM</span></h1>
-                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[75%] md:top-[8%] sm:top-[9%] mdd:top-[8%] lg:left-[25%] mdd:left-[25%] left-[15%] text-[34px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[75%] md:top-[8%] sm:top-[9%] mdd:top-[8%] lg:left-[%] mdd:left-[25%] left-[15%] text-[34px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
                             Помогаем оформить визы во все страны мира
                         </p>
                     </div>

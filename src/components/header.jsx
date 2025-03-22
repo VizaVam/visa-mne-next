@@ -166,7 +166,7 @@ export default function Header() {
                                 onMouseEnter={() => setIsOpen(true)}
                                 onMouseLeave={() => setIsOpen(false)}
                             >
-                                <div className={"flex items-center gap-1 cursor-pointer hover:underline"}>
+                                <div className={"flex items-center gap-1 cursor-pointer"}>
                                     {pathname === "/shengenskie-vizy" ? (
                                         <span
                                             className="font-semibold text-gray-900 cursor-default">Шенгенские визы</span>

@@ -101,7 +101,7 @@ export default function OnasPage({breadcrumbs}) {
                 </div>
             </div>
             <div className={"flex flex-col gap-4 mt-2 p-[7%]"}>
-                <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">Оформление документов для
+                <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4">Оформление документов для
                     подачи на визы
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">

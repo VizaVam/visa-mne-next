@@ -11,6 +11,7 @@ import {useModal} from "@/components/modalcontext";
 import {usePathname} from "next/navigation";
 import Steps1 from "@/components/steps1";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function CountryPage({breadcrumbs}) {
     const {country} = useParams();

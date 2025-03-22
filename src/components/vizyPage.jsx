@@ -13,6 +13,7 @@ import { useModal } from "@/components/modalcontext";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {motion} from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function VisaPage({breadcrumbs}) {
     const { openModal } = useModal();

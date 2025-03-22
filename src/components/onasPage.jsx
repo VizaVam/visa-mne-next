@@ -10,6 +10,7 @@ import Reviews from "@/components/reviews";
 import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function OnasPage({breadcrumbs}) {
     const { openModal } = useModal();

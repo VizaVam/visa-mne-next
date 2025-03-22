@@ -22,20 +22,6 @@ export default function Header() {
     const [showFloatingButton, setShowFloatingButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const handleCloseMenu = () => {
-        setIsOpen(false);
-    };
-
-    const listItemVariants = {
-        hidden: {opacity: 0, y: -10},
-        visible: (i) => ({
-            opacity: 1,
-            y: 0,
-            transition: {delay: i * 0.05, duration: 0.3}
-        }),
-        exit: {opacity: 0, y: -10, transition: {duration: 0.2}}
-    };
-
     const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     const menuItems = [
@@ -63,7 +49,7 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (pathname === "/kontakty" || isMenuOpen || isFloatingMenuOpen) {
+            if (isMenuOpen || isFloatingMenuOpen) {
                 setShowFloatingButton(false);
                 return;
             }
@@ -82,7 +68,6 @@ export default function Header() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [pathname, isMenuOpen, isFloatingMenuOpen]);
 
-
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = "hidden";
@@ -90,6 +75,18 @@ export default function Header() {
             document.body.style.overflow = "";
         }
     }, [isMenuOpen]);
+
+    console.log("showFloatingButton:", showFloatingButton);
+
+    const listItemVariants = {
+        hidden: {opacity: 0, y: -10},
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: {delay: i * 0.05, duration: 0.3}
+        }),
+        exit: {opacity: 0, y: -10, transition: {duration: 0.2}}
+    };
 
     return (
         <>
@@ -474,7 +471,7 @@ export default function Header() {
                             setIsMenuOpen(false);
                             openModal();
                         }}
-                        className="relative overflow-hidden w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden"
+                        className="relative overflow-hidden w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden z-50"
                     >
                         {/* Три плавных волны */}
                         {[0, 1, 2].map((i) => (

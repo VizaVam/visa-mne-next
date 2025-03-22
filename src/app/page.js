@@ -42,7 +42,7 @@ export default function HomePage({onOpenModal}) {
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <button
                             onClick={openModal}
-                            className="relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                            className="bbbt relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
                         >
                             {[0, 1, 2].map((i) => (
                                 <motion.span

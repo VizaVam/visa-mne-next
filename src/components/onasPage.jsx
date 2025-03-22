@@ -56,17 +56,17 @@ export default function OnasPage({breadcrumbs}) {
                             <motion.span
                                 key={i}
                                 className="absolute inset-0 flex items-center justify-center"
-                                initial={{ scale: 0, opacity: 0.5 }}
-                                animate={{ scale: 4, opacity: 0 }}
+                                initial={{scale: 0, opacity: 1.5}}
+                                animate={{scale: 4, opacity: 0}}
                                 transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     ease: "easeOut",
-                                    repeatDelay: 1.5,
-                                    delay: i * 0.7,
+                                    repeatDelay: 0.5, // Пауза после трех волн
+                                    delay: i * 0.4, // Волны идут друг за другом
                                 }}
                             >
-                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                             </motion.span>
                         ))}
                         Оформить заявку
@@ -135,7 +135,7 @@ export default function OnasPage({breadcrumbs}) {
                     })}
                 </div>
                 <div className="sm:mt-6 text-center">
-                    <Link href="/vizy">
+                    <Link href="/shengenskie-vizy">
                         <button
                             className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран

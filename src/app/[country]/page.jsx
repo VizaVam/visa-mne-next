@@ -1,5 +1,5 @@
 export { generateMetadata } from "./metadata";
-import CountryPage from "@/components/countriesPage";
+import OtherCountryPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function Page({ params }) {
@@ -7,14 +7,13 @@ export default function Page({ params }) {
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visamne.vercel.app/" },
-        { name: "Шенгенские визы", url: "https://visamne.vercel.app/shengenskie-vizy" },
         { name: `Виза в ${country}`, url: `https://visamne.vercel.app/shengenskie-vizy/${country}` }
     ];
 
     return (
         <>
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <CountryPage country={country} />
+            <OtherCountryPage country={country} />
         </>
     );
 }

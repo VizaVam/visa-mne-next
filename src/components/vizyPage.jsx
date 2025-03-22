@@ -29,9 +29,9 @@ export default function VisaPage({breadcrumbs}) {
                         <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
                         <span><img className="w-2" src="/nav-icon.png" alt="" /></span>
                         {pathname === "/shengenskie-vizy" ? (
-                            <span className="font-semibold text-gray-900 cursor-default">Визы</span>
+                            <span className="font-semibold text-gray-900 cursor-default">Шенгенские визы</span>
                         ) : (
-                            <Link href="/shengenskie-vizy" className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Визы</Link>
+                            <Link href="/shengenskie-vizy" className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Шенгенские визы</Link>
                         )}
                     </nav>
                     <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black leading-none">
@@ -58,17 +58,17 @@ export default function VisaPage({breadcrumbs}) {
                             <motion.span
                                 key={i}
                                 className="absolute inset-0 flex items-center justify-center"
-                                initial={{ scale: 0, opacity: 0.5 }}
-                                animate={{ scale: 4, opacity: 0 }}
+                                initial={{scale: 0, opacity: 1.5}}
+                                animate={{scale: 4, opacity: 0}}
                                 transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     ease: "easeOut",
-                                    repeatDelay: 1.5,
-                                    delay: i * 0.7,
+                                    repeatDelay: 0.5, // Пауза после трех волн
+                                    delay: i * 0.4, // Волны идут друг за другом
                                 }}
                             >
-                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                             </motion.span>
                         ))}
                         Оформить заявку

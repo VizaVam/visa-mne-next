@@ -3,28 +3,30 @@
 import Contacts from "@/components/contacts";
 import Link from "next/link";
 import {notFound, useParams} from 'next/navigation';
-import {countries} from '@/components/serviceson';
+import {otherCountries, countries} from '@/components/serviceson';
 import Docs from "@/components/docs";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Image from "next/image";
 import {useModal} from "@/components/modalcontext";
 import {usePathname} from "next/navigation";
 import Steps1 from "@/components/steps1";
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import {router} from "next/client";
 
-export default function CountryPage({breadcrumbs}) {
+export default function OtherCountryPage({breadcrumbs}) {
     const {country} = useParams();
     const {openModal} = useModal();
-    const selectedCountry = countries.find(c => c.url === country);
+    const selectedCountry = otherCountries.find(c => c.url === country);
     const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
     const pathname = usePathname();
     const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
     const excludedCountries1 = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
+    const excludedLinkCountries = ["viza-v-velikobritaniyu", "viza-v-ssha"];
+    const isExcluded = excludedLinkCountries.includes(selectedCountry.url);
+
     // Найти текущую страну в списке
-    const currentCountry = countries.find(c => c.url === country);
+    const currentCountry = otherCountries.find(c => c.url === country);
 
     // Определяем, нужно ли ограничивать список стран
     const isLimited = currentCountry?.good === 0;
@@ -59,11 +61,6 @@ export default function CountryPage({breadcrumbs}) {
                     <nav className="mb-4 flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
                         <Link href="/"
                               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
-                        <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <Link href="/shengenskie-vizy"
-                              className={`text-orange-500 hover:underline ${pathname === "/shengenskie-vizy" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}>
-                            Шенгенские визы
-                        </Link>
                         <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
                         <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
                             {excludedCountries1.includes(selectedCountry.url)

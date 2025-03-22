@@ -6,7 +6,7 @@ import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import ScrollToTop from "@/components/scroll";
-import {countries} from "@/components/serviceson";
+import {countries, otherCountries} from "@/components/serviceson";
 import {motion, AnimatePresence} from "framer-motion";
 import {ChevronDown, ChevronUp} from "lucide-react";
 
@@ -23,11 +23,11 @@ export default function Header() {
     const [showFloatingButton, setShowFloatingButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     const menuItems = [
         {name: "Шенгенские визы", link: "/shengenskie-vizy", hasSubmenu: true, state: isOpen, setState: setIsOpen},
-        {name: "Другие визы", link: "/shengenskie-vizy", hasSubmenu: true, state: isOpenn, setState: setIsOpenn},
+        {name: "Другие визы", link: "/", hasSubmenu: true, state: isOpenn, setState: setIsOpenn},
         {name: "О нас", link: "/o-nas", hasSubmenu: false},
         {name: "Контакты", link: "/kontakty", hasSubmenu: false},
     ];
@@ -88,6 +88,13 @@ export default function Header() {
         }),
         exit: {opacity: 0, y: -10, transition: {duration: 0.2}}
     };
+
+    useEffect(() => {
+        if (!isMenuOpen) {
+            setIsSchengenOpen(false);
+            setIsOtherVisasOpen(false);
+        }
+    }, [isMenuOpen]);
 
     return (
         <>
@@ -217,10 +224,10 @@ export default function Header() {
                                     <div
                                         className="absolute left-0 mt-0 pt-4 w-[250px] bg-white border-gray-200 z-20 rounded-b-lg">
                                         <ul className="px-2 py-2">
-                                            {countries
+                                            {otherCountries
                                                 .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
                                                 .map((visa) => {
-                                                    const isActive = pathname === `/shengenskie-vizy/${visa.url}`;
+                                                    const isActive = pathname === `/${visa.url}`;
                                                     return (
                                                         <li key={visa.url}>
                                                             {isActive ? (
@@ -229,7 +236,7 @@ export default function Header() {
                                                                         Виза в {visa.n}
                                                                 </span>
                                                             ) : (
-                                                                <Link href={`/shengenskie-vizy/${visa.url}`}
+                                                                <Link href={`/${visa.url}`}
                                                                       className="block px-2 py-1 transition-colors hover:underline">
                                                                     Виза в {visa.n}
                                                                 </Link>
@@ -268,17 +275,17 @@ export default function Header() {
                                 <motion.span
                                     key={i}
                                     className="absolute inset-0 flex items-center justify-center"
-                                    initial={{scale: 0, opacity: 0.5}}
+                                    initial={{scale: 0, opacity: 1.5}}
                                     animate={{scale: 4, opacity: 0}}
                                     transition={{
                                         duration: 2,
                                         repeat: Infinity,
                                         ease: "easeOut",
-                                        repeatDelay: 1.5, // Пауза после трех волн
-                                        delay: i * 0.7, // Волны идут друг за другом
+                                        repeatDelay: 0.5, // Пауза после трех волн
+                                        delay: i * 0.4, // Волны идут друг за другом
                                     }}
                                 >
-                                    <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full"/>
+                                    <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                                 </motion.span>
                             ))}
                             Оформить заявку
@@ -403,12 +410,12 @@ export default function Header() {
                                                     }}
                                                     className="pl-4 mt-2 space-y-2 text-lg font-normal"
                                                 >
-                                                    {countries
+                                                    {otherCountries
                                                         .filter(c => ["viza-v-ssha", "viza-v-velikobritaniyu"].includes(c.url))
                                                         .map((country, index) => (
                                                             <motion.li key={country.url} variants={listItemVariants}
                                                                        custom={index}>
-                                                                <Link href={`/shengenskie-vizy/${country.url}`}>
+                                                                <Link href={`/${country.url}`}>
                                                                     Виза в {country.n}
                                                                 </Link>
                                                             </motion.li>
@@ -484,17 +491,17 @@ export default function Header() {
                             <motion.span
                                 key={i}
                                 className="absolute inset-0 flex items-center justify-center"
-                                initial={{scale: 0, opacity: 0.5}}
+                                initial={{scale: 0, opacity: 1.5}}
                                 animate={{scale: 4, opacity: 0}}
                                 transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     ease: "easeOut",
-                                    repeatDelay: 1.5,
-                                    delay: i * 0.7
+                                    repeatDelay: 0.5, // Пауза после трех волн
+                                    delay: i * 0.4, // Волны идут друг за другом
                                 }}
                             >
-                                <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-50 rounded-full"/>
+                                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                             </motion.span>
                         ))}
 

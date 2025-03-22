@@ -22,7 +22,7 @@ export default function HomePage({onOpenModal}) {
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-full lg:w-1/2 text-left lg:text-left z-10">
                     <div className={"flex flex-col lg:w-[85%] md:w-[90%] sm:w-[90%] mdd:w-[90%]"}>
                         <h1 className="text-[34px] mdd:text-[24px] font-semibold text-black">Оформи свою визу вместе с <span className="lg:text-[55px] text-[45px] mdd:text-[35px] font-bold leading-none">VISA VAM</span></h1>
-                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[75%] md:top-[8%] sm:top-[9%] mdd:top-[8%] lg:left-[%] mdd:left-[25%] left-[15%] text-[34px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[75%] md:top-[5%] sm:top-[7%] mdd:top-[6%] lg:left-[30%] mdd:left-[35%] left-[25%] text-[34px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
                             Помогаем оформить визы во все страны мира
                         </p>
                     </div>
@@ -48,17 +48,17 @@ export default function HomePage({onOpenModal}) {
                                 <motion.span
                                     key={i}
                                     className="absolute inset-0 flex items-center justify-center"
-                                    initial={{ scale: 0, opacity: 0.5 }}
-                                    animate={{ scale: 4, opacity: 0 }}
+                                    initial={{scale: 0, opacity: 1.5}}
+                                    animate={{scale: 4, opacity: 0}}
                                     transition={{
                                         duration: 2,
                                         repeat: Infinity,
                                         ease: "easeOut",
-                                        repeatDelay: 1.5,
-                                        delay: i * 0.7,
+                                        repeatDelay: 0.5, // Пауза после трех волн
+                                        delay: i * 0.4, // Волны идут друг за другом
                                     }}
                                 >
-                                    <span className="absolute w-24 h-24 bg-gray-300 bg-opacity-40 rounded-full" />
+                                    <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                                 </motion.span>
                             ))}
                             Оформить заявку

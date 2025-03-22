@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import {countries} from "@/components/serviceson";
+import {countries, otherCountries} from "@/components/serviceson";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
@@ -23,11 +23,11 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className={"footer__top-right"}>
-                    <div className={"footer__top-right-main mdd:flex-col mdd:gap-0"}>
+                    <div className={"footer__top-right-main mdd:flex-col"}>
                         <div className={"footer__top-right-main-left"}>
-                            <div>
+                            <div className={"mdd:hidden"}>
                                 <a href={"/shengenskie-vizy"} className={"font-medium text-xl"}>Шенгенские визы</a>
-                                <ul className="my-6 mdd:my-1 grid grid-cols-2">
+                                <ul className="my-6 mdd:my-0 grid grid-cols-2">
                                     {countries
                                         .filter(country => !excludedCountries.includes(country.url))
                                         .map((country) => {
@@ -52,13 +52,16 @@ export default function Footer() {
                                         })}
                                 </ul>
                             </div>
+                            <div className={"sm:hidden py-2"}>
+                                <a href={"/shengenskie-vizy"} className={"font-medium text-xl py-2"}>Шенгенские визы</a>
+                            </div>
                             <div className={"mdd:hidden"}>
                                 <p className={"font-medium text-xl"}>Другие визы</p>
                                 <ul className="my-6 mdd:my-1 grid">
-                                    {countries
+                                    {otherCountries
                                         .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
                                         .map((visa) => {
-                                            const isActive = pathname === `/shengenskie-vizy/${visa.url}`;
+                                            const isActive = pathname === `/${visa.url}`;
                                             return (
                                                 <li key={visa.url} className={"py-2 mdd:hidden pr-2"}>
                                                     {isActive ? (
@@ -67,7 +70,7 @@ export default function Footer() {
                                                                         Виза в {visa.n}
                                                                 </span>
                                                     ) : (
-                                                        <Link href={`/shengenskie-vizy/${visa.url}`}
+                                                        <Link href={`/${visa.url}`}
                                                               className="py-2 transition-colors hover:underline">
                                                             Виза в {visa.n}
                                                         </Link>
@@ -78,11 +81,11 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className={"sm:hidden"}>
-                                <ul className="my-6 mdd:my-1 grid">
-                                    {countries
+                                <ul className="my-6 mdd:my-0 grid">
+                                    {otherCountries
                                         .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
                                         .map((visa) => {
-                                            const isActive = pathname === `/shengenskie-vizy/${visa.url}`;
+                                            const isActive = pathname === `/${visa.url}`;
                                             return (
                                                 <li key={visa.url} className={"py-2 pr-2"}>
                                                     {isActive ? (
@@ -91,7 +94,7 @@ export default function Footer() {
                                                                         Виза в {visa.n}
                                                                 </span>
                                                     ) : (
-                                                        <Link href={`/shengenskie-vizy/${visa.url}`}
+                                                        <Link href={`/${visa.url}`}
                                                               className="py-2 font-medium text-xl">
                                                             Виза в {visa.n}
                                                         </Link>
@@ -102,10 +105,10 @@ export default function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div className={"footer__top-right-main-left w-[120px]"}>
+                        <div className={"footer__top-right-main-left w-[120px] mdd:py-2"}>
                             <a href={"/o-nas"} className={"block font-medium text-xl"}>О нас</a>
                         </div>
-                        <div className={"footer__top-right-main-right"}>
+                        <div className={"footer__top-right-main-right mdd:py-2"}>
                             <a href={"/kontakty"} className={"font-medium text-xl"}>Контакты</a>
                             <div className={"footer__top-right-main-right-lists"}>
                                 <div className={"footer__top-right-main-right-lists-list"}>

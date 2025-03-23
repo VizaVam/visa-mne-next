@@ -16,6 +16,7 @@ export default {
         "mddd": { max: "600px" },
         "ht": { min: "1500px" },
         "dr": { max: "400px" },
+        "br": { max: "1280px" },
       },
     },
   },

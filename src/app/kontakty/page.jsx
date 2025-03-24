@@ -11,15 +11,17 @@ export const structuredData = {
     "image": "https://visamne.vercel.app/new-logo.svg",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "пр. Победителей 17",
+        "streetAddress": "пр. Победителей 17, офис 1204",
         "addressLocality": "Минск",
         "addressRegion": "Минская область",
         "postalCode": "220004",
         "addressCountry": "BY"
     },
     "telephone": "+375 29 68 00 620",
-    "email": "mailto:l336906097@gmail.com",
-    "openingHours": "Mo-Fr 09:00-18:00"
+    "email": "info@visavam.by",
+    "openingHours": "Пн-пт: 09:00-19:00\n" +
+        "\n" +
+        "Сб: 10:00-14:00"
 };
 
 export default function Page() {

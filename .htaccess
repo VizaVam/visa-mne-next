@@ -1,8 +1,12 @@
+Options +FollowSymLinks
+AllowOverride All
+Require all granted
+
 # Включение модуля переписывания
 RewriteEngine On
 
 # Разрешаем доступ к robots.txt и sitemap.xml
-RewriteRule ^(robots\.txt|sitemap\.xml)$ public/$1 [L]
+RewriteRule ^(robots\.txt|sitemap\.xml)$ - [L]
 
 # Раздача статических файлов (Next.js `_next/static` и `public`)
 RewriteCond %{REQUEST_URI} ^/_next/static/ [OR]
@@ -15,5 +19,6 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Перенаправляем все остальные запросы на Next.js
-RewriteRule ^(.*)$ index.html [L,QSA]
+# Проксируем все запросы на Next.js сервер
+ProxyPass / http://localhost:3000/
+ProxyPassReverse / http://localhost:3000/

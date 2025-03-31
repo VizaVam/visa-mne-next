@@ -1,24 +1,15 @@
-Options +FollowSymLinks
-AllowOverride All
-Require all granted
-
-# Включение модуля переписывания
 RewriteEngine On
 
-# Разрешаем доступ к robots.txt и sitemap.xml
-RewriteRule ^(robots\.txt|sitemap\.xml)$ - [L]
-
-# Раздача статических файлов (Next.js `_next/static` и `public`)
-RewriteCond %{REQUEST_URI} ^/_next/static/ [OR]
-RewriteCond %{REQUEST_URI} ^/public/
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^ - [L]
-
-# Разрешаем доступ к изображениям, CSS, JS
+# Статические файлы
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Проксируем все запросы на Next.js сервер
-ProxyPass / http://localhost:3000/
-ProxyPassReverse / http://localhost:3000/
+# Перенаправление на Next.js (для cPanel лучше использовать сокет)
+RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
+
+# ИЛИ для Passenger (альтернативный вариант):
+# PassengerNodejs /path/to/node
+# PassengerAppRoot /home/user/your_app
+# PassengerAppType node
+# PassengerStartupFile server.js

@@ -8,7 +8,6 @@ import Footer from '../components/footer';
 import Modal from "@/components/modal";
 import { ModalProvider } from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Script from "next/script";
 
 const interSans = Inter({
     variable: '--font-inter-sans',

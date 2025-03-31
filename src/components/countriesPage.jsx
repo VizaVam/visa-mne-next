@@ -3,16 +3,15 @@
 import Contacts from "@/components/contacts";
 import Link from "next/link";
 import {notFound, useParams} from 'next/navigation';
-import {countries} from '@/components/serviceson';
+import {countries} from "@/data/countries";
 import Docs from "@/components/docs";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Image from "next/image";
 import {useModal} from "@/components/modalcontext";
 import {usePathname} from "next/navigation";
 import Steps1 from "@/components/steps1";
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import {router} from "next/client";
 
 export default function CountryPage({breadcrumbs}) {
     const {country} = useParams();

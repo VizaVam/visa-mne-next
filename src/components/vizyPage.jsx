@@ -7,7 +7,6 @@ import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
 import Serviceson from "@/components/serviceson";
-import {countries} from "@/components/serviceson";
 
 import { useModal } from "@/components/modalcontext";
 import Image from "next/image";

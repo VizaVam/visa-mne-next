@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { useModal } from "@/components/modalcontext";
 import {usePathname} from "next/navigation";
-import {countries} from "@/components/serviceson";
+import {countries} from "@/data/countries";
 import Reviews from "@/components/reviews";
 import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";

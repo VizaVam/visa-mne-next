@@ -3,7 +3,8 @@
 import Contacts from "@/components/contacts";
 import Link from "next/link";
 import {notFound, useParams} from 'next/navigation';
-import {otherCountries, countries} from '@/components/serviceson';
+import {otherCountries} from '@/components/serviceson';
+import {countries} from '@/data/countries';
 import Docs from "@/components/docs";
 import {useState} from "react";
 import Image from "next/image";

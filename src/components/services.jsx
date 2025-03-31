@@ -1,7 +1,7 @@
 'use client'
 
 import {useEffect, useState} from "react";
-import { countries } from "@/components/serviceson";
+import { countries } from "@/data/countries";
 import Image from "next/image";
 import Link from "next/link";
 

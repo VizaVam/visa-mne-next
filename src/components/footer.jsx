@@ -1,7 +1,8 @@
 'use client'
 
 import Image from "next/image";
-import {countries, otherCountries} from "@/components/serviceson";
+import {otherCountries} from "@/components/serviceson";
+import {countries} from "@/data/countries";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 

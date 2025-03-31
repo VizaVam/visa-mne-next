@@ -1,12 +1,13 @@
 'use client'
 
-import {useEffect, useState, useTransition} from "react";
+import {useEffect, useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import ScrollToTop from "@/components/scroll";
-import {countries, otherCountries} from "@/components/serviceson";
+import {otherCountries} from "@/components/serviceson";
+import {countries} from "@/data/countries";
 import {motion, AnimatePresence} from "framer-motion";
 import {ChevronDown, ChevronUp} from "lucide-react";
 
@@ -24,13 +25,6 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
-
-    const menuItems = [
-        {name: "Шенгенские визы", link: "/shengenskie-vizy", hasSubmenu: true, state: isOpen, setState: setIsOpen},
-        {name: "Другие визы", link: "/", hasSubmenu: true, state: isOpenn, setState: setIsOpenn},
-        {name: "О нас", link: "/o-nas", hasSubmenu: false},
-        {name: "Контакты", link: "/kontakty", hasSubmenu: false},
-    ];
 
     useEffect(() => {
         setIsOpen(false);
@@ -178,7 +172,8 @@ export default function Header() {
                                     {isOpen ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
                                 </div>
                                 {isOpen && (
-                                    <div className="absolute left-0 mt-0 pt-4 w-[350px] bg-white border-gray-200 z-20 rounded-b-lg">
+                                    <div
+                                        className="absolute left-0 mt-0 pt-4 w-[350px] bg-white border-gray-200 z-20 rounded-b-lg">
                                         <ul className="px-2 py-2 grid grid-cols-2 gap-2">
                                             {countries
                                                 .filter(country => !excludedCountries.includes(country.url))
@@ -437,45 +432,147 @@ export default function Header() {
                     )}
                 </AnimatePresence>
             </header>
-            <ScrollToTop showFloatingButton={showFloatingButton} isFloatingMenuOpen={isFloatingMenuOpen}
-                         isMenuOpen={isMenuOpen}/>
-            {!isMenuOpen && (
-                <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-3"} right-3 z-[60] md:hidden`}>
-                    <button
-                        onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
-                        className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
-                    >
-                        <img src="/request.svg" alt="Контакты" className="w-12 h-12"/>
-                    </button>
-                </div>
+            {!isFloatingMenuOpen && !isMenuOpen && (
+                <ScrollToTop showFloatingButton={showFloatingButton} />
             )}
-            {isFloatingMenuOpen && (
-                <div className="md:hidden">
-                    <div
-                        className={`fixed ${showFloatingButton ? (isMenuOpen ? "bottom-28" : "bottom-28") : (!isMenuOpen ? "bottom-16" : "bottom-16")} right-3 flex flex-col items-center justify-between z-50`}>
-                        <a href="tel:+375296800620"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center bg-white">
-                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
-                        </a>
-                        <a href="viber://chat?number=375295648334" target="_blank" rel="noopener noreferrer"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center bg-white">
-                            <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
-                        </a>
-                        <a href="https://t.me/+375295648334" target="_blank" rel="noopener noreferrer"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
-                        </a>
-                        <a href="https://wa.me/375257654320" target="_blank" rel="noopener noreferrer"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
-                        </a>
-                        <a href="mailto:l336906097@gmail.com"
-                           className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center">
-                            <img src="/email.svg" alt="Email" className="w-12 h-12"/>
-                        </a>
+            {!isMenuOpen && (
+                <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-16"} right-7 z-50 md:hidden`}>
+                    {/* Затемнение фона */}
+                    <AnimatePresence>
+                        {isFloatingMenuOpen && (
+                            <>
+                                <motion.div
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 0.5}}
+                                    exit={{opacity: 0}}
+                                    className="fixed inset-0 bg-black z-40"
+                                    onClick={() => setIsFloatingMenuOpen(false)}
+                                />
+                                {/* Блокировка скролла */}
+                                <style jsx global>{`
+                                    body {
+                                        overflow: hidden;
+                                        position: relative;
+                                        height: 100%;
+                                        touch-action: none;
+                                    }
+                                `}</style>
+                            </>
+                        )}
+                    </AnimatePresence>
+
+                    <div className="relative">
+                        {/* Анимированные волны вокруг кнопки */}
+                        {!isFloatingMenuOpen && [0].map((i) => (
+                            <motion.span
+                                key={i}
+                                className="absolute top-0 left-0 inset-0 w-12 h-12 rounded-full border-2 border-yellow-400 pointer-events-none"
+                                initial={{scale: 1, opacity: 0.7}}
+                                animate={{scale: 2, opacity: 0}}
+                                transition={{
+                                    duration: 0.8,
+                                    repeat: Infinity,
+                                    ease: "easeOut",
+                                    delay: 1 + (i * 0.2),
+                                    repeatDelay: 1,
+                                }}
+                            />
+                        ))}
+
+                        {/* Кнопка с анимацией иконки */}
+                        <motion.button
+                            onClick={() => setIsFloatingMenuOpen(!isFloatingMenuOpen)}
+                            className="relative z-50 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-all"
+                            whileTap={{scale: 0.9}}
+                        >
+                            <AnimatePresence mode="wait">
+                                {!isFloatingMenuOpen ? (
+                                    <motion.img
+                                        key="request-icon"
+                                        src="/request.svg"
+                                        alt="Контакты"
+                                        className="w-12 h-12"
+                                        initial={{rotate: 0}}
+                                        animate={{rotate: 0}}
+                                        exit={{rotate: 180, opacity: 0}}
+                                        transition={{duration: 0.3}}
+                                    />
+                                ) : (
+                                    <motion.span
+                                        key="close-icon"
+                                        initial={{rotate: -180, opacity: 0}}
+                                        animate={{rotate: 0, opacity: 1}}
+                                        exit={{rotate: 180, opacity: 0}}
+                                        transition={{duration: 0.3}}
+                                        className="text-2xl font-bold flex items-center justify-center w-full h-full"
+                                    >
+                                        ×
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </motion.button>
                     </div>
                 </div>
             )}
+
+            {/* Всплывающее меню контактов */}
+            {/* Всплывающее меню */}
+            <AnimatePresence>
+                {isFloatingMenuOpen && (
+                    <motion.div
+                        initial={{opacity: 0, y: 20}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: 20}}
+                        transition={{duration: 0.3}}
+                        className="fixed bottom-32 right-7 flex flex-col items-center gap-3 z-50 md:hidden"
+                        onClick={(e) => e.stopPropagation()} // Предотвращаем закрытие при клике внутри меню
+                    >
+                        <motion.a
+                            href="tel:+375296800620"
+                            className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
+                            whileHover={{scale: 1.1}}
+                            whileTap={{scale: 0.9}}
+                        >
+                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
+                        </motion.a>
+                        <motion.a
+                            href="viber://chat?number=375295648334"
+                            target="_blank"
+                            className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
+                            whileHover={{scale: 1.1}}
+                            whileTap={{scale: 0.9}}
+                        >
+                            <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
+                        </motion.a>
+                        <motion.a
+                            href="https://t.me/+375295648334"
+                            target="_blank"
+                            className="w-12 h-12 rounded-full flex items-center justify-center"
+                            whileHover={{scale: 1.1}}
+                            whileTap={{scale: 0.9}}
+                        >
+                            <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
+                        </motion.a>
+                        <motion.a
+                            href="https://wa.me/375257654320"
+                            target="_blank"
+                            className="w-12 h-12 rounded-full flex items-center justify-center"
+                            whileHover={{scale: 1.1}}
+                            whileTap={{scale: 0.9}}
+                        >
+                            <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
+                        </motion.a>
+                        <motion.a
+                            href="mailto:l336906097@gmail.com"
+                            className="w-12 h-12 rounded-full flex items-center justify-center"
+                            whileHover={{scale: 1.1}}
+                            whileTap={{scale: 0.9}}
+                        >
+                            <img src="/email.svg" alt="Email" className="w-12 h-12"/>
+                        </motion.a>
+                    </motion.div>
+                )}
+            </AnimatePresence>
             {showFloatingButton && !isMenuOpen && (
                 <div className="fixed bottom-3 w-full px-[7%] flex justify-center z-50">
                     <button

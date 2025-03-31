@@ -1,102 +1,117 @@
-    'use client'
+'use client'
 
-    import { useState } from "react";
-    import { useModal } from "@/components/modalcontext";
-    import { IMaskInput } from "react-imask";
+import { useState } from "react";
+import { useModal } from "@/components/modalcontext";
+import { IMaskInput } from "react-imask";
 
-    const Modal = () => {
-        const [formData, setFormData] = useState({ name: "", phone: null, email: "" });
-        const [errors, setErrors] = useState({});
-        const [isSubmitting, setIsSubmitting] = useState(false);
-        const [message, setMessage] = useState("");
-        const [isAgreed, setIsAgreed] = useState(true);
-        const { isModalOpen, closeModal } = useModal();
+const Modal = () => {
+    const [formData, setFormData] = useState({ name: "", phone: null, email: "" });
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isAgreed, setIsAgreed] = useState(true);
+    const { isModalOpen, closeModal } = useModal();
 
-        if (!isModalOpen) return null;
+    if (!isModalOpen) return null;
 
-        const validatePhone = (phone) => {
-            const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
-            return phoneRegex.test(phone);
-        };
+    const validatePhone = (phone) => {
+        const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
+        return phoneRegex.test(phone);
+    };
 
-        const handleInputChange = (e) => {
-            const { name, value } = e.target;
-            setFormData((prev) => ({ ...prev, [name]: value }));
-            setErrors((prev) => ({ ...prev, [name]: "" }));
-        };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+        setErrors((prev) => ({ ...prev, [name]: "" }));
+    };
 
-        const handlePhoneInput = (e) => {
-            const { value } = e.target;
-            setFormData({ ...formData, phone: event.target.value });
-            setErrors((prev) => ({ ...prev, phone: "" }));
-        };
+    const handlePhoneInput = (e) => {
+        const { value } = e.target;
+        setFormData({ ...formData, phone: value });
+        setErrors((prev) => ({ ...prev, phone: "" }));
+    };
 
-        const handleCheckboxChange = (e) => {
-            setIsAgreed(e.target.checked);
-            setErrors((prev) => ({ ...prev, agreement: "" }));
-        };
+    const handleCheckboxChange = (e) => {
+        setIsAgreed(e.target.checked);
+        setErrors((prev) => ({ ...prev, agreement: "" }));
+    };
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const { name, phone, email } = formData;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { name, phone, email } = formData;
 
-            const newErrors = {};
-            if (!name?.trim()) newErrors.name = "Поле обязательно к заполнению";
-            if (!phone || !phone.trim()) { // Ensure phone is not null
-                newErrors.phone = "Поле обязательно к заполнению";
-            } else if (!validatePhone(phone)) {
-                newErrors.phone = "Некорректный формат данных";
-            }
-            if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
+        const newErrors = {};
+        if (!name?.trim()) newErrors.name = "Поле обязательно к заполнению";
+        if (!phone || !phone.trim()) {
+            newErrors.phone = "Поле обязательно к заполнению";
+        } else if (!validatePhone(phone)) {
+            newErrors.phone = "Некорректный формат данных";
+        }
+        if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
-            if (Object.keys(newErrors).length > 0) {
-                setErrors(newErrors);
-                return;
-            }
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
 
-            try {
-                const formattedPhone = phone.replace(/\D/g, "");
-                setIsSubmitting(true);
+        try {
+            const formattedPhone = phone.replace(/\D/g, "");
+            setIsSubmitting(true);
 
-                const params = new URLSearchParams();
-                params.append("u_name", name);
-                params.append("u_phone", formattedPhone);
-                params.append("u_email", email);
-                params.append("source", "заявка с сайта visavampro.by");
+            const params = new URLSearchParams();
+            params.append("u_name", name);
+            params.append("u_phone", formattedPhone);
+            params.append("u_email", email);
+            params.append("source", "заявка с сайта visavampro.by");
 
-                const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: params.toString(),
-                });
+            const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            });
 
-                console.log("Request sent. Response status:", response.status);
-                setMessage("Заявка успешно отправлена. С Вами свяжутся в ближайшее время.");
-            } catch (error) {
-                console.error("Ошибка отправки данных:", error);
-                setMessage("Произошла ошибка при отправке заявки. Попробуйте повторно позже.");
-            } finally {
-                setIsSubmitting(false);
-            }
-        };
+            console.log("Request sent. Response status:", response.status);
+            setIsSuccess(true);
+        } catch (error) {
+            console.error("Ошибка отправки данных:", error);
+            setIsSuccess(false);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
+    const handleNewRequest = () => {
+        setIsSuccess(false);
+        setFormData({ name: "", phone: null, email: "" });
+    };
 
-        return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
-                <div className="bg-white p-8 rounded-[4px] shadow-lg max-w-md w-full relative">
-                    <button
-                        onClick={closeModal}
-                        className="absolute top-2 right-2 text-[#F86F00] font-bold text-lg"
-                    >
-                        <img src="/close.svg" alt="Закрыть" />
-                    </button>
-                    <h2 className="text-2xl font-medium mb-4">Оформить заявку</h2>
-                    {message && (
-                        <div className="mb-4 p-4 bg-gray-100 text-center rounded">
-                            {message}
+    // Функция для сброса состояния при закрытии модала
+    const handleCloseModal = () => {
+        setIsSuccess(false); // Сбрасываем состояние успеха
+        setFormData({ name: "", phone: null, email: "" }); // Сбрасываем форму
+        setErrors({}); // Сбрасываем ошибки
+        closeModal(); // Закрываем модал
+    };
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
+            <div className="bg-white p-12 rounded-[4px] shadow-lg max-w-md w-full relative">
+                <button
+                    onClick={handleCloseModal}
+                    className="absolute top-8 right-8 text-[#F86F00] font-bold text-lg"
+                >
+                    <img src="/close.svg" alt="Закрыть" />
+                </button>
+
+                <h2 className="text-2xl font-medium mb-4">Оформить заявку</h2>
+
+                {isSuccess ? (
+                    <div className="text-center">
+                        <div className="p-4 bg-gray-100 rounded">
+                            Заявка успешно отправлена. С Вами свяжутся в ближайшее время.
                         </div>
-                    )}
+                    </div>
+                ) : (
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <input
@@ -115,9 +130,9 @@
                         </div>
                         <div className="mb-4">
                             <IMaskInput
-                                mask="+000 00 000-00-00" // 000 вместо 999, чтобы избежать автозаполнения
+                                mask="+000 00 000-00-00"
                                 definitions={{
-                                    0: /[0-9]/, // Позволяет вводить только цифры
+                                    0: /[0-9]/,
                                 }}
                                 name="phone"
                                 placeholder="Телефон*"
@@ -178,9 +193,10 @@
                             </button>
                         </div>
                     </form>
-                </div>
+                )}
             </div>
-        );
-    };
+        </div>
+    );
+};
 
-    export default Modal;
+export default Modal;

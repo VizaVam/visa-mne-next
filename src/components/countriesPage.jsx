@@ -13,14 +13,14 @@ import Steps1 from "@/components/steps1";
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
-export default function CountryPage({breadcrumbs}) {
+export default function  CountryPage({breadcrumbs}) {
     const {country} = useParams();
     const {openModal} = useModal();
     const selectedCountry = countries.find(c => c.url === country);
     const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
     const pathname = usePathname();
     const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
-    const excludedCountries1 = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries1 = ["rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     // Найти текущую страну в списке
     const currentCountry = countries.find(c => c.url === country);
@@ -145,7 +145,7 @@ export default function CountryPage({breadcrumbs}) {
                 <div className={"w-full"}>
                     <Steps1/>
                     <div className={"px-[7%]"}>
-                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
+                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-bolgariyu", "rabochaya-viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
                             <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
@@ -221,7 +221,7 @@ export default function CountryPage({breadcrumbs}) {
                                         {selectedCountry.variants3.map((variant, index) => (
                                             <li key={index} className="flex gap-2">
                                                 <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                {variant}
+                                                {parseText(variant)}
                                             </li>
                                         ))}
                                     </ul>
@@ -229,10 +229,18 @@ export default function CountryPage({breadcrumbs}) {
                                 {selectedCountry.priceGood !== 0 ? (
                                     <div className="flex flex-col gap-6 lg:w-[80%]">
                                         {selectedCountry.price1 &&
-                                            <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Наша
-                                                услуга: <span
-                                                    className="text-orange-500">{parseText(selectedCountry.price1)}</span> бел.
-                                                руб. {parseText(selectedCountry.priceType)}</p>}
+                                            <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                                Наша услуга:{" "}
+                                                {['Польша', 'Болгария'].includes(selectedCountry.name) ? (
+                                                    <>
+                                                         от <span className="text-orange-500">{parseText(selectedCountry.price1)}</span> бел. руб. {parseText(selectedCountry.priceType)}
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <span className="text-orange-500">{parseText(selectedCountry.price1)}</span> бел. руб. {parseText(selectedCountry.priceType)}
+                                                    </>
+                                                )}
+                                            </p>}
                                     </div>
                                 ) : (
                                     <div className="flex flex-col gap-6 lg:w-[80%]">

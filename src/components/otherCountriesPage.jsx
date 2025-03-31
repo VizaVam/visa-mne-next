@@ -20,10 +20,10 @@ export default function OtherCountryPage({breadcrumbs}) {
     const selectedCountry = otherCountries.find(c => c.url === country);
     const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
     const pathname = usePathname();
-    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
     const excludedCountries1 = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
-    const excludedLinkCountries = ["viza-v-velikobritaniyu", "viza-v-ssha"];
+    const excludedLinkCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj"];
     const isExcluded = excludedLinkCountries.includes(selectedCountry.url);
 
     // Найти текущую страну в списке
@@ -144,8 +144,8 @@ export default function OtherCountryPage({breadcrumbs}) {
                 <div className={"w-full"}>
                     <Steps1/>
                     <div className={"px-[7%]"}>
-                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
-                            <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
+                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-kitaj", "viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
+                            <div className="pb-24 flex flex-col gap-6 lg:w-[70%]">
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
                                 {selectedCountry.textTop &&

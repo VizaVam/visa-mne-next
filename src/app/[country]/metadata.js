@@ -9,6 +9,11 @@ const countries = [
         url: "viza-v-velikobritaniyu",
         metaTitle: "Виза в Великобританию",
     },
+    {
+        name: "Китай",
+        url: "viza-v-kitaj",
+        metaTitle: "Виза в Китай",
+    },
 ];
 
 export async function generateMetadata({ params }) {

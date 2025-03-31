@@ -24,7 +24,7 @@ export default function Header() {
     const [showFloatingButton, setShowFloatingButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const excludedCountries = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     useEffect(() => {
         setIsOpen(false);
@@ -219,7 +219,7 @@ export default function Header() {
                                         className="absolute left-0 mt-0 pt-4 w-[250px] bg-white border-gray-200 z-20 rounded-b-lg">
                                         <ul className="px-2 py-2">
                                             {otherCountries
-                                                .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
+                                                .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu" || visa.url === "viza-v-kitaj")
                                                 .map((visa) => {
                                                     const isActive = pathname === `/${visa.url}`;
                                                     return (
@@ -405,7 +405,7 @@ export default function Header() {
                                                     className="pl-4 mt-2 space-y-2 text-lg font-normal"
                                                 >
                                                     {otherCountries
-                                                        .filter(c => ["viza-v-ssha", "viza-v-velikobritaniyu"].includes(c.url))
+                                                        .filter(c => ["viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-kitaj"].includes(c.url))
                                                         .map((country, index) => (
                                                             <motion.li key={country.url} variants={listItemVariants}
                                                                        custom={index}>

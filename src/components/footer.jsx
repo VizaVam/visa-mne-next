@@ -9,7 +9,7 @@ import {usePathname} from "next/navigation";
 
 export default function Footer() {
     const pathname = usePathname();
-    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     return (
         <footer className={"footer"}>
@@ -60,7 +60,7 @@ export default function Footer() {
                                 <p className={"font-medium text-xl"}>Другие визы</p>
                                 <ul className="my-6 mdd:my-1 grid">
                                     {otherCountries
-                                        .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
+                                        .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu" || visa.url === "viza-v-kitaj")
                                         .map((visa) => {
                                             const isActive = pathname === `/${visa.url}`;
                                             return (
@@ -84,7 +84,7 @@ export default function Footer() {
                             <div className={"sm:hidden"}>
                                 <ul className="my-6 mdd:my-0 grid">
                                     {otherCountries
-                                        .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu")
+                                        .filter(visa => visa.url === "viza-v-ssha" || visa.url === "viza-v-velikobritaniyu" || visa.url === "viza-v-kitaj")
                                         .map((visa) => {
                                             const isActive = pathname === `/${visa.url}`;
                                             return (

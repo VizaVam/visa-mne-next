@@ -3,24 +3,6 @@ import { countries } from '@/data/countries';
 import CountryPage from '@/components/countriesPage';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
-export async function generateStaticParams() {
-    return countries.map((country) => ({
-        country: country.url
-    }));
-}
-
-export async function generateMetadata({ params }) {
-    const countryData = countries.find(c => c.url === params.country);
-
-    return {
-        title: `Виза в ${countryData?.n} | Визы в Шенген`,
-        description: countryData?.text1,
-        openGraph: {
-            images: [countryData?.banner || '']
-        }
-    };
-}
-
 export default function Page({ params }) {
     const countryData = countries.find(c => c.url === params.country);
 

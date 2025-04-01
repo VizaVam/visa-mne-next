@@ -260,20 +260,38 @@ export default function  CountryPage({breadcrumbs}) {
                                 )}
                                 {selectedCountry.typev &&
                                     <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{parseText(selectedCountry.typev)}</p>}
-                                {selectedCountry.typevb && selectedCountry.typevb.length > 0 && (
-                                    <>
-                                        {selectedCountry.typevb.map((text, index) => (
-                                            <div key={index} className="flex flex-col items-start">
-                                                <a
-                                                    href={`/shengenskie-vizy/${selectedCountry.typevl[index]}`}
-                                                    className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
-                                                >
-                                                    {text}
-                                                </a>
-                                            </div>
-                                        ))}
-                                    </>
-                                )}
+
+                                {
+                                    selectedCountry?.typevb && selectedCountry.typevb.length > 0 && (
+                                        <>
+                                            {selectedCountry.typevb.map((text, index) => {
+                                                // Для Болгарии активна только "Рабочая", для Польши — все
+                                                const isBulgaria = selectedCountry.url === "viza-v-bolgariyu";
+                                                const isWorkVisa = text.includes("Рабочая");
+                                                const isEnabled = !isBulgaria || (isBulgaria && isWorkVisa);
+
+                                                return (
+                                                    <div key={index} className="flex flex-col items-start">
+                                                        {isEnabled ? (
+                                                            <a
+                                                                href={`/shengenskie-vizy/${selectedCountry.typevl[index]}`}
+                                                                className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                                                            >
+                                                                {text}
+                                                            </a>
+                                                        ) : (
+                                                            <div
+                                                                className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] cursor-not-allowed pointer-events-none select-none"
+                                                            >
+                                                                {text}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </>
+                                    )
+                                }
                             </div>
                         )}
                     </div>

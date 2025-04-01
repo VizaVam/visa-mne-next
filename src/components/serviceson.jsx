@@ -67,7 +67,7 @@ export const otherCountries = [
         priceGood: 0,
         priceTitle: "Наша услуга",
         priceVariants: [
-            <span>Подготовка полного пакета документов и запись ля подачи
+            <span>Подготовка полного пакета документов и запись для подачи
 визового заявления - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">690</span> бел. руб.</span>,
         ]
     },

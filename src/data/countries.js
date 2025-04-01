@@ -18,7 +18,8 @@ export const countries = [
         price1: "500",
         typev: "Типы виз",
         typevl: ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"],
-        typevb: ["Рабочая виза в Польшу", "Деловая виза в Польшу", "Учебная виза в Польшу", "Гостевая виза в Польшу", "Виза по карте Поляка"]
+        typevb: ["Рабочая виза в Польшу", "Деловая виза в Польшу", "Учебная виза в Польшу", "Гостевая виза в Польшу", "Виза по карте Поляка"],
+        enabled: [true, true, true, true]
     },
     {
         name: "Словения",
@@ -154,8 +155,10 @@ export const countries = [
             "силы, а также повысит шанс одобрения заявки.",
         priceGood: 1,
         price1: "400",
-        typevl: ["rabochaya-viza-v-bolgariyu"],
-        typevb: ["Рабочая виза в Болгарию"]
+        typev: "Типы виз",
+        typevb: ["Туристическая", "Деловая", "Гостевая", "Рабочая"],
+        typevl: ["turisticheskaya-viza", "delovaya-viza", "gostevaya-viza", "rabochaya-viza-v-bolgariyu"],
+        enabled: [false, false, false, true]
     },
     {
         name: "США",

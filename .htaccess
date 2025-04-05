@@ -1,15 +1,22 @@
+# Enable URL rewriting
 RewriteEngine On
 
-# Статические файлы
+# Remove trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Redirect www to non-www (or vice versa)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Serve existing files/directories
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Перенаправление на Next.js (для cPanel лучше использовать сокет)
-RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
-
-# ИЛИ для Passenger (альтернативный вариант):
-# PassengerNodejs /path/to/node
-# PassengerAppRoot /home/user/your_app
-# PassengerAppType node
-# PassengerStartupFile server.js
+# Fallback to index.html for SPAs (React/Vue/Angular)
+RewriteRule ^ index.html [L]

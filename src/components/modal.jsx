@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useModal } from "@/components/modalcontext";
 import { IMaskInput } from "react-imask";
+import {motion} from "framer-motion";
 
 const Modal = () => {
     const [formData, setFormData] = useState({ name: "", phone: null, email: "" });
@@ -13,6 +14,12 @@ const Modal = () => {
     const { isModalOpen, closeModal } = useModal();
 
     if (!isModalOpen) return null;
+
+    const modalVariants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+        exit: { opacity: 0 }
+    };
 
     const validatePhone = (phone) => {
         const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
@@ -94,26 +101,39 @@ const Modal = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
-            <div className="bg-white p-12 rounded-[4px] shadow-lg max-w-md w-full relative">
+        <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] md:p-0 sm:p-4 mdd:p-4"
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={modalVariants}
+            transition={{ duration: 0.3 }}
+        >
+            <motion.div
+                className="bg-white md:p-12 sm:p-6 mdd:p-6 rounded-[4px] shadow-lg w-full max-w-md relative"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+            >
                 <button
                     onClick={handleCloseModal}
-                    className="absolute top-8 right-8 text-[#F86F00] font-bold text-lg"
+                    className="absolute top-6 right-6 text-[#F86F00] font-bold text-lg"
                 >
-                    <img src="/close.svg" alt="Закрыть" />
+                    <img src="/close.svg" alt="Закрыть" className="w-6 h-6" />
                 </button>
 
-                <h2 className="text-2xl font-medium mb-4">Оформить заявку</h2>
+                <h2 className="text-2xl font-medium mb-6">Оформить заявку</h2>
 
                 {isSuccess ? (
-                    <div className="text-center">
-                        <div className="p-4 bg-gray-100 rounded">
+                    <div className="text-center p-4">
+                        <div className="p-4 bg-gray-100 rounded text-sm">
                             Заявка успешно отправлена. С Вами свяжутся в ближайшее время.
                         </div>
                     </div>
                 ) : (
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
                             <input
                                 type="text"
                                 name="name"
@@ -122,41 +142,42 @@ const Modal = () => {
                                 onChange={handleInputChange}
                                 className={`w-full border ${
                                     errors.name ? "border-red-500" : "border-gray-300"
-                                } rounded-[4px] p-2`}
+                                } rounded-[4px] p-3 text-sm`}
                             />
                             {errors.name && (
-                                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
                             )}
                         </div>
-                        <div className="mb-4">
+
+                        <div>
                             <IMaskInput
                                 mask="+000 00 000-00-00"
-                                definitions={{
-                                    0: /[0-9]/,
-                                }}
+                                definitions={{ 0: /[0-9]/ }}
                                 name="phone"
                                 placeholder="Телефон*"
                                 value={formData.phone || ""}
                                 onChange={handlePhoneInput}
                                 className={`w-full border ${
                                     errors.phone ? "border-red-500" : "border-gray-300"
-                                } rounded-[4px] p-2`}
+                                } rounded-[4px] p-3 text-sm`}
                             />
                             {errors.phone && (
-                                <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                                <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
                             )}
                         </div>
-                        <div className="mb-1">
+
+                        <div>
                             <input
                                 type="email"
                                 name="email"
                                 placeholder="Email"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                className="w-full border border-gray-300 rounded-[4px] p-2"
+                                className="w-full border border-gray-300 rounded-[4px] p-3 text-sm"
                             />
                         </div>
-                        <div className="flex items-center mt-5 mb-5">
+
+                        <div className="flex mt-4 items-center">
                             <input
                                 type="checkbox"
                                 id="agreement"
@@ -164,7 +185,7 @@ const Modal = () => {
                                 onChange={handleCheckboxChange}
                                 className="mr-2 accent-[#F86F00]"
                             />
-                            <label htmlFor="agreement" className="text-sm">
+                            <label htmlFor="agreement" className="text-xs">
                                 Я согласен с{" "}
                                 <a
                                     href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf"
@@ -176,13 +197,15 @@ const Modal = () => {
                                 </a>
                             </label>
                         </div>
+
                         {errors.agreement && (
-                            <p className="text-red-500 text-sm mt-1 mb-4">{errors.agreement}</p>
+                            <p className="text-red-500 text-xs mt-1">{errors.agreement}</p>
                         )}
-                        <div className="flex justify-center">
+
+                        <div className="pt-1">
                             <button
                                 type="submit"
-                                className={`py-3 px-4 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] w-[220px] active:scale-95 transition-transform duration-150 ease-in-out ${
+                                className={`w-full py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
                                     isSubmitting
                                         ? "bg-gray-500 cursor-not-allowed"
                                         : "bg-customBlue hover:bg-blue-700 text-white"
@@ -194,8 +217,8 @@ const Modal = () => {
                         </div>
                     </form>
                 )}
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 

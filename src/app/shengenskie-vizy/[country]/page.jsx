@@ -131,11 +131,8 @@ const countries = [
 ];
 
 export async function generateMetadata({ params }) {
-    // Ожидаем разрешения Promise
-    const resolvedParams = await Promise.resolve(params);
-    const countryParam = resolvedParams.country;
-    console.log(countryParam);
-    const countryData = countries.find(c => c.url === countryParam);
+    const { country } = params; // Распаковываем params напрямую
+    const countryData = countries.find(c => c.url === country);
 
     if (!countryData) {
         return {
@@ -151,12 +148,18 @@ export async function generateMetadata({ params }) {
 }
 
 export default function Page({params}) {
-    const countryData = countries.find(c => c.url === params.country);
+    const { country } = params;
+
+    // Находим данные страны по url
+    const countryData = countries.find(c => c.url === country);
+
+    // Если страна не найдена, можно добавить запасной вариант
+    const displayName = countryData ? countryData.metaTitle : "Неизвестная виза";
 
     const breadcrumbs = [
-        {name: "Главная", url: "/"},
-        {name: "Шенгенские визы", url: "/shengenskie-vizy"},
-        {name: `Виза в ${countryData.n}`, url: `/shengenskie-vizy/${countryData.url}`}
+        { name: "Главная", url: "https://visavampro.by/" },
+        { name: "Шенгенские визы", url: "https://visavampro.by/shengenskie-vizy" },
+        { name: displayName, url: `https://visavampro.by/shengenskie-vizy/${country}` }
     ];
 
     return (

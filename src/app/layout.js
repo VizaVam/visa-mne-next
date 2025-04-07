@@ -28,7 +28,7 @@ const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "VISA VAM",
-    "image": "https://visamne.vercel.app/new-logo.svg",
+    "image": "https://visavampro.by/new-logo.svg",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "пр. Победителей 17, офис 1204",

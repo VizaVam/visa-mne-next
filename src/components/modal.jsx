@@ -6,12 +6,13 @@ import { IMaskInput } from "react-imask";
 import {motion} from "framer-motion";
 
 const Modal = () => {
-    const [formData, setFormData] = useState({ name: "", phone: null, email: "" });
+    const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAgreed, setIsAgreed] = useState(true);
     const { isModalOpen, closeModal } = useModal();
+    const [message, setMessage] = useState("");
 
     if (!isModalOpen) return null;
 

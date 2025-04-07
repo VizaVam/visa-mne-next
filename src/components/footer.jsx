@@ -148,39 +148,39 @@ export default function Footer() {
                                     <p>Суббота c 10:00 до 14:00</p>
                                     <p>Воскресенье: выходной</p>
                                 </div>
+                                <div className={"footer__top-right-main-right-lists-socs"}>
+                                    <a
+                                        href="https://www.instagram.com/visavam.by/profilecard/?igsh=YnRwZGh4Y3Jld2pj"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
+                                    </a>
+                                    <a
+                                        href="viber://chat?number=375295648334"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Image width={1000} height={800} src="/viber.svg" alt="Viber"/>
+                                    </a>
+                                    <a
+                                        href="https://t.me/+375295648334"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Image width={1000} height={800} src="/telegram.svg" alt="Telegram"/>
+                                    </a>
+                                    <a
+                                        href="https://wa.me/375257654320"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+
+                                    >
+                                        <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={"footer__top-right-socs"}>
-                        <a
-                            href="https://www.instagram.com/visavam.by/profilecard/?igsh=YnRwZGh4Y3Jld2pj"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
-                        </a>
-                        <a
-                            href="viber://chat?number=375295648334"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Image width={1000} height={800} src="/viber.svg" alt="Viber"/>
-                        </a>
-                        <a
-                            href="https://t.me/+375295648334"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Image width={1000} height={800} src="/telegram.svg" alt="Telegram"/>
-                        </a>
-                        <a
-                            href="https://wa.me/375257654320"
-                            target="_blank"
-                            rel="noopener noreferrer"
-
-                        >
-                            <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>
-                        </a>
                     </div>
                 </div>
             </div>

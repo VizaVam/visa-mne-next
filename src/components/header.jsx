@@ -529,20 +529,35 @@ export default function Header() {
                     >
                         <motion.a
                             href="tel:+375296800620"
-                            className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
+                            className="relative w-12 h-12 flex items-center justify-center"
                             whileHover={{scale: 1.1}}
                             whileTap={{scale: 0.9}}
                         >
-                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12"/>
+                            <motion.span
+                                className="absolute w-9 h-9 rounded-full bg-white"
+                                style={{ zIndex: 0 }}
+                            />
+                            <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12 z-10"/>
                         </motion.a>
                         <motion.a
                             href="viber://chat?number=375295648334"
                             target="_blank"
-                            className="w-12 h-12 rounded-full bg-white flex items-center justify-center"
-                            whileHover={{scale: 1.1}}
-                            whileTap={{scale: 0.9}}
+                            className="relative w-12 h-12 flex items-center justify-center"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                         >
-                            <img src="/fixed-viber.svg" alt="Viber" className="w-12 h-12"/>
+                            {/* Белый фон (меньше основной иконки) */}
+                            <motion.span
+                                className="absolute w-9 h-9 rounded-full bg-white"
+                                style={{ zIndex: 0 }}
+                            />
+
+                            {/* Сама иконка Viber (немного больше фона) */}
+                            <img
+                                src="/fixed-viber.svg"
+                                alt="Viber"
+                                className="relative w-12 h-12 z-10"
+                            />
                         </motion.a>
                         <motion.a
                             href="https://t.me/+375295648334"

@@ -114,13 +114,15 @@
   display: flex;
   gap: 0.5rem;
 }
-.footer__top-right-socs {
+.footer__top-right-main-right-lists-socs {
   display: flex;
   gap: 2rem;
   justify-content: end;
+  margin-top: 1rem;
 }
-.footer__top-right-socs img {
-  width: 1.8rem;
+.footer__top-right-main-right-lists-socs img {
+  width: 2.3rem;
+  height: 2.3rem;
 }
 .footer__bottom {
   background: #15419E;

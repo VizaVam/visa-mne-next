@@ -157,7 +157,7 @@ export default function Footer() {
                                         <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
                                     </a>
                                     <a
-                                        href="viber://chat?number=375295648334"
+                                        href="viber://chat?number=+375293734870"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

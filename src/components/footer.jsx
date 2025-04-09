@@ -157,41 +157,43 @@ export default function Footer() {
                                         <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
                                     </a>
                                     <a
-                                        href="#"
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            const number = "375293734870"; // International format without + or spaces
-                                            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-                                            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                                            const number = "375293734870"; // No +, no spaces
+                                            const userAgent = navigator.userAgent;
+                                            const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+                                            const isAndroid = /Android/i.test(userAgent);
 
-                                            // Try to open Viber app
+                                            // 1. First try opening Viber directly
                                             window.location.href = `viber://chat?number=${number}`;
 
-                                            // Fallback for different scenarios
+                                            // 2. Fallback after short delay
                                             setTimeout(() => {
-                                                if (isMobile) {
-                                                    // Mobile devices - open app store if Viber not installed
-                                                    window.open(
-                                                        isIOS
-                                                            ? "https://apps.apple.com/app/viber-messenger-chats-calls/id382617920"
-                                                            : "https://play.google.com/store/apps/details?id=com.viber.voip",
-                                                        "_blank"
-                                                    );
+                                                if (isIOS) {
+                                                    // iOS - try universal link first, then App Store
+                                                    window.open(`https://viber.com/link?number=${number}`, '_blank');
+                                                    setTimeout(() => {
+                                                        window.open('https://apps.apple.com/app/viber/id382617920', '_blank');
+                                                    }, 500);
+                                                } else if (isAndroid) {
+                                                    // Android - try intent first, then Play Store
+                                                    window.open(`intent://chat?number=${number}#Intent;package=com.viber.voip;scheme=viber;end;`, '_blank');
+                                                    setTimeout(() => {
+                                                        window.open('https://play.google.com/store/apps/details?id=com.viber.voip', '_blank');
+                                                    }, 500);
                                                 } else {
-                                                    // Desktop - open web version
-                                                    window.open(`https://chats.viber.com/user/${number}`, "_blank");
+                                                    // Desktop - use web version
+                                                    window.open(`https://chats.viber.com/user/${number}`, '_blank');
                                                 }
-                                            }, 200);
+                                            }, 100);
                                         }}
-                                        rel="noopener noreferrer"
-                                        style={{ display: 'inline-block' }} // Ensures proper image sizing
+                                        style={{ cursor: 'pointer' }}
                                     >
-                                        <Image
+                                        <img
                                             src="/viber.svg"
                                             alt="Chat on Viber"
-                                            width={1000}  // Reasonable default size
+                                            width={1000}
                                             height={800}
-                                            priority // If using Next.js
                                         />
                                     </a>
                                     <a

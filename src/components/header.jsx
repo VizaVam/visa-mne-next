@@ -588,11 +588,11 @@ export default function Header() {
 
                                     // Если через 500ms страница еще видна - значит приложение не установлено
                                     setTimeout(() => {
-                                        if (Date.now() - timestamp < 450) return; // Защита от ложных срабатываний
+                                        if (Date.now() - timestamp < 900) return; // Защита от ложных срабатываний
                                         if (!document.hidden) {
                                             window.location.href = "https://apps.apple.com/app/viber/id382617920";
                                         }
-                                    }, 500);
+                                    }, 1000);
                                 } else {
                                     // Логика для Android/Desktop
                                     window.location.href = `viber://chat?number=${number}`;

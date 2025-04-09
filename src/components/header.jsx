@@ -116,39 +116,40 @@ export default function Header() {
                                 +375293734870
                             </a>
                             <a
-                                onClick={(e) => {
+                                onClick={async (e) => {
                                     e.preventDefault();
-                                    const number = "375293734870"; // No +, no spaces
-                                    const userAgent = navigator.userAgent;
-                                    const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
-                                    const isAndroid = /Android/i.test(userAgent);
+                                    const number = "375293734870";
+                                    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-                                    // 2. Fallback after short delay
-                                    setTimeout(() => {
-                                        if (isIOS) {
-                                            // iOS - try universal link first, then App Store
-                                            window.open(`https://viber.com/link?number=${number}`, '_blank');
+                                    if (isIOS) {
+                                        // 1. Проверяем, установлен ли Viber
+                                        try {
+                                            // Пробуем открыть приложение
+                                            window.location.href = `viber://chat?number=${number}`;
+
+                                            // Если через 250ms страница еще видна - значит приложение не установлено
                                             setTimeout(() => {
-                                                window.open('https://apps.apple.com/app/viber/id382617920', '_blank');
-                                            }, 500);
-                                        } else if (isAndroid) {
-                                            // Android - try intent first, then Play Store
-                                            window.open(`intent://chat?number=${number}#Intent;package=com.viber.voip;scheme=viber;end;`, '_blank');
-                                            setTimeout(() => {
-                                                window.open('https://play.google.com/store/apps/details?id=com.viber.voip', '_blank');
-                                            }, 500);
-                                        } else {
-                                            // Desktop - use web version
-                                            window.open(`https://chats.viber.com/user/${number}`, '_blank');
+                                                if (!document.hidden) return;
+                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                            }, 1000);
+                                        } catch (e) {
+                                            // Если ошибка - открываем App Store
+                                            window.location.href = "https://apps.apple.com/app/viber/id382617920";
                                         }
-                                    }, 100);
+                                    } else {
+                                        // Логика для Android/Desktop
+                                        window.location.href = `viber://chat?number=${number}`;
+                                        setTimeout(() => {
+                                            window.open(`https://chats.viber.com/user/${number}`, "_blank");
+                                        }, 200);
+                                    }
                                 }}
                                 style={{ cursor: 'pointer' }}
                             >
                                 <img
                                     src="/viber.svg"
                                     alt="Chat on Viber"
-                                    width={1000}
+                                    width={1000}  // Рекомендую уменьшить для мобильных устройств
                                     height={800}
                                 />
                             </a>
@@ -575,16 +576,26 @@ export default function Header() {
                             whileTap={{ scale: 0.9 }}
                             onClick={async (e) => {
                                 e.preventDefault();
-                                const number = "375295648334"; // Номер без + и пробелов
+                                const number = "375293734870";
                                 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
                                 if (isIOS) {
-                                    // 2. Фолбэк на App Store через 300мс если Viber не открылся
-                                    setTimeout(() => {
+                                    // 1. Проверяем, установлен ли Viber
+                                    try {
+                                        // Пробуем открыть приложение
+                                        window.location.href = `viber://chat?number=${number}`;
+
+                                        // Если через 250ms страница еще видна - значит приложение не установлено
+                                        setTimeout(() => {
+                                            if (!document.hidden) return;
+                                            window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                        }, 250);
+                                    } catch (e) {
+                                        // Если ошибка - открываем App Store
                                         window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                    }, 300);
+                                    }
                                 } else {
-                                    // Для Android/Desktop
+                                    // Логика для Android/Desktop
                                     window.location.href = `viber://chat?number=${number}`;
                                     setTimeout(() => {
                                         window.open(`https://chats.viber.com/user/${number}`, "_blank");

@@ -128,6 +128,16 @@ const countries = [
         url: "rabochaya-viza-v-bolgariyu",
         metaTitle: "Рабочая виза в Болгарию",
     },
+    {
+        name: "Рабочая виза в Германию",
+        url: "rabochaya-viza-v-germaniyu",
+        metaTitle: "Рабочая виза в Германию",
+    },
+    {
+        name: "Рабочая виза в Испанию",
+        url: "rabochaya-viza-v-ispaniyu",
+        metaTitle: "Рабочая виза в Испанию",
+    },
 ];
 
 export async function generateMetadata({ params }) {

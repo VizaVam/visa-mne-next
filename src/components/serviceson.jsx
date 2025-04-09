@@ -80,7 +80,7 @@ export const otherCountries = [
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [showAllCountries, setShowAllCountries] = useState(false);
-    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["rabochaya-viza-v-ispaniyu","rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);

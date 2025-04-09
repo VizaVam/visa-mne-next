@@ -19,8 +19,8 @@ export default function  CountryPage({breadcrumbs}) {
     const selectedCountry = countries.find(c => c.url === country);
     const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
     const pathname = usePathname();
-    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
-    const excludedCountries1 = ["rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["rabochaya-viza-v-ispaniyu","viza-v-velikobritaniyu", "viza-v-ssha","rabochaya-viza-v-germaniyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries1 = ["rabochaya-viza-v-germaniyu", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "rabochaya-viza-v-ispaniyu"];
 
     // Найти текущую страну в списке
     const currentCountry = countries.find(c => c.url === country);
@@ -145,7 +145,7 @@ export default function  CountryPage({breadcrumbs}) {
                 <div className={"w-full"}>
                     <Steps1/>
                     <div className={"px-[7%]"}>
-                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-bolgariyu", "rabochaya-viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
+                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "rabochaya-viza-v-germaniyu", "viza-v-ispaniyu", "rabochaya-viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-bolgariyu", "rabochaya-viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
                             <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
                                 {selectedCountry.title &&
                                     <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
@@ -259,39 +259,45 @@ export default function  CountryPage({breadcrumbs}) {
                                     </div>
                                 )}
                                 {selectedCountry.typev &&
-                                    <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{parseText(selectedCountry.typev)}</p>}
-
-                                {
-                                    selectedCountry?.typevb && selectedCountry.typevb.length > 0 && (
-                                        <>
-                                            {selectedCountry.typevb.map((text, index) => {
-                                                // Для Болгарии активна только "Рабочая", для Польши — все
-                                                const isBulgaria = selectedCountry.url === "viza-v-bolgariyu";
-                                                const isWorkVisa = text.includes("Рабочая");
-                                                const isEnabled = !isBulgaria || (isBulgaria && isWorkVisa);
-
-                                                return (
-                                                    <div key={index} className="flex flex-col items-start">
-                                                        {isEnabled ? (
-                                                            <a
-                                                                href={`/shengenskie-vizy/${selectedCountry.typevl[index]}`}
-                                                                className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
-                                                            >
-                                                                {text}
-                                                            </a>
-                                                        ) : (
-                                                            <div
-                                                                className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] cursor-not-allowed pointer-events-none select-none"
-                                                            >
-                                                                {text}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                );
-                                            })}
-                                        </>
-                                    )
+                                    <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                        {parseText(selectedCountry.typev)}
+                                    </p>
                                 }
+
+                                {selectedCountry?.typevb && selectedCountry.typevb.length > 0 && (
+                                    <>
+                                        {selectedCountry.typevb.map((text, index) => {
+                                            // Для Болгарии и Германии активна только "Рабочая" виза
+                                            const isSpecialCountry = selectedCountry.url === "viza-v-bolgariyu" ||
+                                                selectedCountry.url === "viza-v-germaniyu";
+                                            const isWorkVisa = text.includes("Рабочая");
+
+                                            // Используем массив enabled из конфига, если он есть, иначе определяем по стандартной логике
+                                            const isEnabled = selectedCountry.enabled
+                                                ? selectedCountry.enabled[index]
+                                                : (!isSpecialCountry || (isSpecialCountry && isWorkVisa));
+
+                                            return (
+                                                <div key={index} className="flex flex-col items-start">
+                                                    {isEnabled ? (
+                                                        <a
+                                                            href={`/shengenskie-vizy/${selectedCountry.typevl[index]}`}
+                                                            className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                                                        >
+                                                            {text}
+                                                        </a>
+                                                    ) : (
+                                                        <div
+                                                            className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] cursor-not-allowed pointer-events-none select-none"
+                                                        >
+                                                            {text}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </>
+                                )}
                             </div>
                         )}
                     </div>

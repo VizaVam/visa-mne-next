@@ -57,6 +57,10 @@ export const countries = [
         text3: "Все документы для подачи визового заявления собираются заранее.",
         priceGood: 1,
         price1: "400",
+        typev: "Типы виз",
+        typevb: ["Туристическая", "Рабочая", "Гостевая", "Деловая"],
+        typevl: ["turisticheskaya-viza", "rabochaya-viza-v-germaniyu", "gostevaya-viza", "delovaya-viza"],
+        enabled: [false, true, false, false]
     },
     {
         name: "Испания",
@@ -87,7 +91,11 @@ export const countries = [
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">790</span> бел. руб.</span>,
             <span>Сопровождение под ключ с безличной подачей - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">1800</span> бел. руб.</span>
-        ]
+        ],
+        typev: "Типы виз",
+        typevb: ["Туристическая", "Рабочая", "Гостевая", "Деловая"],
+        typevl: ["turisticheskaya-viza", "rabochaya-viza-v-ispaniyu", "gostevaya-viza", "delovaya-viza"],
+        enabled: [false, true, false, false]
     },
     {
         name: "Франция",
@@ -157,9 +165,9 @@ export const countries = [
         priceGood: 1,
         price1: "400",
         typev: "Типы виз",
-        typevb: ["Туристическая", "Деловая", "Гостевая", "Рабочая"],
-        typevl: ["turisticheskaya-viza", "delovaya-viza", "gostevaya-viza", "rabochaya-viza-v-bolgariyu"],
-        enabled: [false, false, false, true]
+        typevb: ["Туристическая", "Рабочая", "Гостевая", "Деловая"],
+        typevl: ["turisticheskaya-viza", "rabochaya-viza-v-germaniyu", "gostevaya-viza", "delovaya-viza"],
+        enabled: [false, true, false, false]
     },
     {
         name: "США",
@@ -573,5 +581,55 @@ export const countries = [
         "Подойдет для иностранных граждан", "Отсутствие верификации"],
         priceGood: 1,
         price1: "2800",
+    },
+
+    // subcountriesgermany
+    {
+        name: "Рабочая виза в Германию",
+        n: "Рабочая виза в Германию",
+        rb: 0,
+        img: "/germany.png",
+        banner: "/germany-banner.png",
+        svg: "/germany_flag.svg",
+        url: "rabochaya-viza-v-germaniyu",
+        good: 1,
+        text2: "Наша компания предоставляет услугу по оформлению необходимого пакета \n" +
+            "документов и записи на подачу визового заявления для получения **немецкой рабочей визы.**",
+        text3: "Преимущества рабочей визы в Германию:",
+        variants3: ["Превосходная альтернатива рабочим польским визам","**Возможностью пребывания в шенгенской зоне до 365 дней**",
+            "Подойдет для иностранных граждан", "Отсутствие верификации", "Быстрая запись на подачу визового заявления"],
+        priceGood: 0,
+        priceTitle: "Наша услуга",
+        priceVariants: [
+            <span>Ваши документы-основания для получения визы - <span
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">400</span> бел. руб.</span>,
+            <span>Сопровождение под ключ - <span
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">4100</span> бел. руб.</span>
+        ]
+    },
+
+    // subcountriesspain
+    {
+        name: "Рабочая виза в Испанию",
+        n: "Рабочая виза в Испанию",
+        rb: 0,
+        img: "/spain.png",
+        banner: "/spain-banner.png",
+        svg: "/spain_flag.svg",
+        url: "rabochaya-viza-v-ispaniyu",
+        good: 1,
+        text2: "Наша компания предоставляет услугу по оформлению необходимого пакета \n" +
+            "документов и записи на подачу визового заявления для получения **испанской рабочей визы.**",
+        text3: "Преимущества рабочей визы в Испанию:",
+        variants3: ["Превосходная альтернатива рабочим польским визам","**Возможностью пребывания в шенгенской зоне до 365 дней**",
+            "Подойдет для иностранных граждан", "Отсутствие верификации"],
+        priceGood: 0,
+        priceTitle: "Наша услуга",
+        priceVariants: [
+            <span>Ваши документы-основания для получения визы - <span
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">690</span> бел. руб.</span>,
+            <span>Сопровождение под ключ - <span
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">4100</span> бел. руб.</span>
+        ]
     },
 ];

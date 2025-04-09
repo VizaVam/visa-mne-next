@@ -8,7 +8,7 @@ import Link from "next/link";
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [showAllCountries, setShowAllCountries] = useState(false);
-    const excludedCountries = ["rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["rabochaya-viza-v-ispaniyu","rabochaya-viza-v-germaniyu","rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     // Проверяем ширину экрана
     useEffect(() => {

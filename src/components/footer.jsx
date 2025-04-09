@@ -172,7 +172,7 @@ export default function Footer() {
                                                     setTimeout(() => {
                                                         if (!document.hidden) return;
                                                         window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                    }, 250);
+                                                    }, 1000);
                                                 } catch (e) {
                                                     // Если ошибка - открываем App Store
                                                     window.location.href = "https://apps.apple.com/app/viber/id382617920";

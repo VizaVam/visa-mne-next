@@ -579,9 +579,6 @@ export default function Header() {
                                 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
                                 if (isIOS) {
-                                    // 1. Пробуем универсальную ссылку (не показывает предупреждение)
-                                    window.location.href = `https://viber.com/link?number=${number}`;
-
                                     // 2. Фолбэк на App Store через 300мс если Viber не открылся
                                     setTimeout(() => {
                                         window.location.href = "https://apps.apple.com/app/viber/id382617920";

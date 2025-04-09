@@ -580,15 +580,11 @@ export default function Header() {
                                 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
                                 if (isIOS) {
-                                    // Создаем временную метку для отслеживания перехода
-                                    const timestamp = Date.now();
-
                                     // Пробуем открыть приложение
                                     window.location.href = `viber://chat?number=${number}`;
 
                                     // Если через 500ms страница еще видна - значит приложение не установлено
                                     setTimeout(() => {
-                                        if (Date.now() - timestamp < 900) return; // Защита от ложных срабатываний
                                         if (!document.hidden) {
                                             window.location.href = "https://apps.apple.com/app/viber/id382617920";
                                         }

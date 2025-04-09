@@ -154,11 +154,23 @@ const Modal = () => {
                         <div>
                             <IMaskInput
                                 mask="+000 00 000-00-00"
-                                definitions={{ 0: /[0-9]/ }}
+                                definitions={{ '0': { mask: /[0-9]/, placeholderChar: '_' } }}
                                 name="phone"
-                                placeholder="Телефон*"
+                                placeholder="Телефон*"  // Показывается ТОЛЬКО когда поле пустое и не в фокусе
                                 value={formData.phone || ""}
                                 onChange={handlePhoneInput}
+                                lazy={true}  // Маска появится ТОЛЬКО при фокусе
+                                overwrite="shift"
+                                onFocus={(e) => {
+                                    // При фокусе меняем плейсхолдер на маску
+                                    e.target.placeholder = "+___ __ ___-__-__";
+                                }}
+                                onBlur={(e) => {
+                                    // При потере фокуса возвращаем обычный текст
+                                    if (!e.target.value) {
+                                        e.target.placeholder = "Телефон*";
+                                    }
+                                }}
                                 className={`w-full border ${
                                     errors.phone ? "border-red-500" : "border-gray-300"
                                 } rounded-[4px] p-3 text-sm`}

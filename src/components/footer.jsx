@@ -159,22 +159,26 @@ export default function Footer() {
                                     <a
                                         onClick={async (e) => {
                                             e.preventDefault();
-                                            const number = "375293734870"; // Номер без + и пробелов
+                                            const number = "375293734870";
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
                                             if (isIOS) {
-                                                // 1. Пробуем открыть приложение через универсальную ссылку
-                                                window.location.href = `viber://chat?number=${number}`;
+                                                // 1. Проверяем, установлен ли Viber
+                                                try {
+                                                    // Пробуем открыть приложение
+                                                    window.location.href = `viber://chat?number=${number}`;
 
-                                                // 2. Если приложение не открылось - через 250ms пробуем App Store
-                                                setTimeout(() => {
-                                                    // Проверяем, остались ли мы на той же странице
-                                                    if (!document.hidden) {
+                                                    // Если через 250ms страница еще видна - значит приложение не установлено
+                                                    setTimeout(() => {
+                                                        if (!document.hidden) return;
                                                         window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                    }
-                                                }, 250);
+                                                    }, 250);
+                                                } catch (e) {
+                                                    // Если ошибка - открываем App Store
+                                                    window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                                }
                                             } else {
-                                                // Для Android/Desktop оставляем текущую логику
+                                                // Логика для Android/Desktop
                                                 window.location.href = `viber://chat?number=${number}`;
                                                 setTimeout(() => {
                                                     window.open(`https://chats.viber.com/user/${number}`, "_blank");
@@ -186,7 +190,7 @@ export default function Footer() {
                                         <img
                                             src="/viber.svg"
                                             alt="Chat on Viber"
-                                            width={1000}
+                                            width={1000}  // Рекомендую уменьшить для мобильных устройств
                                             height={800}
                                         />
                                     </a>

@@ -157,32 +157,29 @@ export default function Footer() {
                                         <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
                                     </a>
                                     <a
-                                        onClick={(e) => {
+                                        onClick={async (e) => {
                                             e.preventDefault();
-                                            const number = "375293734870"; // No +, no spaces
-                                            const userAgent = navigator.userAgent;
-                                            const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
-                                            const isAndroid = /Android/i.test(userAgent);
+                                            const number = "375293734870"; // Номер без + и пробелов
+                                            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-                                            // 2. Fallback after short delay
-                                            setTimeout(() => {
-                                                if (isIOS) {
-                                                    // iOS - try universal link first, then App Store
-                                                    window.open(`https://viber.com/link?number=${number}`, '_blank');
-                                                    setTimeout(() => {
-                                                        window.open('https://apps.apple.com/app/viber/id382617920', '_blank');
-                                                    }, 500);
-                                                } else if (isAndroid) {
-                                                    // Android - try intent first, then Play Store
-                                                    window.open(`intent://chat?number=${number}#Intent;package=com.viber.voip;scheme=viber;end;`, '_blank');
-                                                    setTimeout(() => {
-                                                        window.open('https://play.google.com/store/apps/details?id=com.viber.voip', '_blank');
-                                                    }, 500);
-                                                } else {
-                                                    // Desktop - use web version
-                                                    window.open(`https://chats.viber.com/user/${number}`, '_blank');
-                                                }
-                                            }, 100);
+                                            if (isIOS) {
+                                                // 1. Пробуем открыть приложение через универсальную ссылку
+                                                window.location.href = `viber://chat?number=${number}`;
+
+                                                // 2. Если приложение не открылось - через 250ms пробуем App Store
+                                                setTimeout(() => {
+                                                    // Проверяем, остались ли мы на той же странице
+                                                    if (!document.hidden) {
+                                                        window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                                    }
+                                                }, 250);
+                                            } else {
+                                                // Для Android/Desktop оставляем текущую логику
+                                                window.location.href = `viber://chat?number=${number}`;
+                                                setTimeout(() => {
+                                                    window.open(`https://chats.viber.com/user/${number}`, "_blank");
+                                                }, 200);
+                                            }
                                         }}
                                         style={{ cursor: 'pointer' }}
                                     >

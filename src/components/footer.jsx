@@ -159,26 +159,32 @@ export default function Footer() {
                                     <a
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            const number = "375293734870"; // Без + и пробелов
-                                            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                                            const number = "375293734870"; // No +, no spaces
+                                            const userAgent = navigator.userAgent;
+                                            const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+                                            const isAndroid = /Android/i.test(userAgent);
 
-                                            if (isIOS) {
-                                                // 1. Пробуем универсальную ссылку (не показывает предупреждение)
-                                                window.location.href = `https://viber.com/link?number=${number}`;
-
-                                                // 2. Фолбэк на App Store через 300 мс (если Viber не установлен)
-                                                setTimeout(() => {
-                                                    window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                }, 300);
-                                            } else {
-                                                // Для Android/Desktop используем стандартный подход
-                                                window.location.href = `viber://chat?number=${number}`;
-                                                setTimeout(() => {
-                                                    window.open(`https://chats.viber.com/user/${number}`, "_blank");
-                                                }, 200);
-                                            }
+                                            // 2. Fallback after short delay
+                                            setTimeout(() => {
+                                                if (isIOS) {
+                                                    // iOS - try universal link first, then App Store
+                                                    window.open(`https://viber.com/link?number=${number}`, '_blank');
+                                                    setTimeout(() => {
+                                                        window.open('https://apps.apple.com/app/viber/id382617920', '_blank');
+                                                    }, 500);
+                                                } else if (isAndroid) {
+                                                    // Android - try intent first, then Play Store
+                                                    window.open(`intent://chat?number=${number}#Intent;package=com.viber.voip;scheme=viber;end;`, '_blank');
+                                                    setTimeout(() => {
+                                                        window.open('https://play.google.com/store/apps/details?id=com.viber.voip', '_blank');
+                                                    }, 500);
+                                                } else {
+                                                    // Desktop - use web version
+                                                    window.open(`https://chats.viber.com/user/${number}`, '_blank');
+                                                }
+                                            }, 100);
                                         }}
-                                        style={{ cursor: "pointer" }}
+                                        style={{ cursor: 'pointer' }}
                                     >
                                         <img
                                             src="/viber.svg"

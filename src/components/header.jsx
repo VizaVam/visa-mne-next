@@ -580,25 +580,26 @@ export default function Header() {
                                 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
                                 if (isIOS) {
-                                    // 1. Проверяем, установлен ли Viber
-                                    try {
-                                        // Пробуем открыть приложение
-                                        window.location.href = `viber://chat?number=${number}`;
+                                    // Создаем временную метку для отслеживания перехода
+                                    const timestamp = Date.now();
 
-                                        // Если через 250ms страница еще видна - значит приложение не установлено
-                                        setTimeout(() => {
-                                            if (!document.hidden) return;
+                                    // Пробуем открыть приложение
+                                    window.location.href = `viber://chat?number=${number}`;
+
+                                    // Если через 500ms страница еще видна - значит приложение не установлено
+                                    setTimeout(() => {
+                                        if (Date.now() - timestamp < 450) return; // Защита от ложных срабатываний
+                                        if (!document.hidden) {
                                             window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                        }, 250);
-                                    } catch (e) {
-                                        // Если ошибка - открываем App Store
-                                        window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                    }
+                                        }
+                                    }, 500);
                                 } else {
                                     // Логика для Android/Desktop
                                     window.location.href = `viber://chat?number=${number}`;
                                     setTimeout(() => {
-                                        window.open(`https://chats.viber.com/user/${number}`, "_blank");
+                                        if (!document.hidden) {
+                                            window.open(`https://chats.viber.com/user/${number}`, "_blank");
+                                        }
                                     }, 200);
                                 }
                             }}

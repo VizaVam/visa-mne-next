@@ -63,9 +63,7 @@ const Modal = () => {
         }
 
         try {
-            // Всегда добавляем "+", даже если его нет в вводе
-            const digitsOnly = phone.replace(/\D/g, "");
-            const formattedPhone = digitsOnly.startsWith('+') ? digitsOnly : `+${digitsOnly}`;
+            const formattedPhone = `+${phone.replace(/\D/g, "")}`;
 
             // Email оставляем пустым, если не введен
             const finalEmail = email?.trim() || '';
@@ -74,7 +72,7 @@ const Modal = () => {
 
             const params = new URLSearchParams();
             params.append("u_name", name);
-            params.append("u_phone", formattedPhone); // Гарантированно с "+"
+            params.append("u_phone", formattedPhone);
             params.append("u_email", finalEmail);
             params.append("source", "заявка с сайта visavampro.by");
 
@@ -86,6 +84,12 @@ const Modal = () => {
             });
 
             console.log("Request sent. Response status:", response.status);
+
+            console.log("Отправляемые данные:", {
+                name: formData.name,
+                phone: formattedPhone, // Должно быть "+375291234567"
+                email: finalEmail,
+            });
             setIsSuccess(true);
         } catch (error) {
             console.error("Ошибка отправки данных:", error);

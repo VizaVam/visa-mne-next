@@ -164,6 +164,35 @@ export default function  CountryPage({breadcrumbs}) {
                                         ))}
                                     </ul>
                                 )}
+                                {selectedCountry?.typevb1 && selectedCountry.typevb1.length > 0 && (
+                                    <>
+                                        {selectedCountry.typevb1.map((text, index) => {
+                                            // Используем массив enabled из конфига, если он есть, иначе определяем по стандартной логике
+                                            const isEnabled = selectedCountry.enabled1
+                                                ? selectedCountry.enabled1[index]
+                                                : (!isSpecialCountry || (isSpecialCountry && isWorkVisa));
+
+                                            return (
+                                                <div key={index} className="flex flex-col items-start">
+                                                    {isEnabled ? (
+                                                        <a
+                                                            href={`/shengenskie-vizy/${selectedCountry.typevl1[index]}`}
+                                                            className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                                                        >
+                                                            {text}
+                                                        </a>
+                                                    ) : (
+                                                        <div
+                                                            className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] cursor-not-allowed pointer-events-none select-none"
+                                                        >
+                                                            {text}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </>
+                                )}
                                 {Array.isArray(selectedCountry.text11) &&
                                     <div>
                                         <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text11[0] || "")}</p>
@@ -267,11 +296,6 @@ export default function  CountryPage({breadcrumbs}) {
                                 {selectedCountry?.typevb && selectedCountry.typevb.length > 0 && (
                                     <>
                                         {selectedCountry.typevb.map((text, index) => {
-                                            // Для Болгарии и Германии активна только "Рабочая" виза
-                                            const isSpecialCountry = selectedCountry.url === "viza-v-bolgariyu" ||
-                                                selectedCountry.url === "viza-v-germaniyu";
-                                            const isWorkVisa = text.includes("Рабочая");
-
                                             // Используем массив enabled из конфига, если он есть, иначе определяем по стандартной логике
                                             const isEnabled = selectedCountry.enabled
                                                 ? selectedCountry.enabled[index]

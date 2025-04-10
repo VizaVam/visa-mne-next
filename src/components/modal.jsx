@@ -63,13 +63,19 @@ const Modal = () => {
         }
 
         try {
-            const formattedPhone = phone.replace(/\D/g, "");
+            // Всегда добавляем "+", даже если его нет в вводе
+            const digitsOnly = phone.replace(/\D/g, "");
+            const formattedPhone = digitsOnly.startsWith('+') ? digitsOnly : `+${digitsOnly}`;
+
+            // Email оставляем пустым, если не введен
+            const finalEmail = email?.trim() || '';
+
             setIsSubmitting(true);
 
             const params = new URLSearchParams();
             params.append("u_name", name);
-            params.append("u_phone", formattedPhone);
-            params.append("u_email", email);
+            params.append("u_phone", formattedPhone); // Гарантированно с "+"
+            params.append("u_email", finalEmail);
             params.append("source", "заявка с сайта visavampro.by");
 
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {

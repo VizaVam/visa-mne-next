@@ -84,12 +84,6 @@ const Modal = () => {
             });
 
             console.log("Request sent. Response status:", response.status);
-
-            console.log("Отправляемые данные:", {
-                name: formData.name,
-                phone: formattedPhone, // Должно быть "+375291234567"
-                email: finalEmail,
-            });
             setIsSuccess(true);
         } catch (error) {
             console.error("Ошибка отправки данных:", error);

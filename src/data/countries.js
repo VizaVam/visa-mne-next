@@ -162,12 +162,8 @@ export const countries = [
         variants2: ["Барановичи","Брест","Гомель","Гродно","Лида","Могилев","Пинск"],
         text6: "Мы предлагаем вам помощь с оформлением — это сэкономит не только времени, но и \n" +
             "силы, а также повысит шанс одобрения заявки.",
-        priceGood: 0,
-        priceTitle: "Наша услуга",
-        priceVariants: [
-            <span>Ваши документы-основания для получения визы - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">400</span> бел. руб.</span>,
-            <span>Сопровождение под ключ - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2800</span> бел. руб.</span>,
-        ],
+        priceGood: 1,
+        price1: "400",
         typev: "Типы виз",
         typevb: ["Туристическая", "Рабочая", "Гостевая", "Деловая"],
         typevl: ["turisticheskaya-viza", "rabochaya-viza-v-bolgariyu", "gostevaya-viza", "delovaya-viza"],
@@ -581,10 +577,14 @@ export const countries = [
         text2: "Наша компания предоставляет услугу по оформлению необходимого пакета \n" +
             "документов и записи на подачу визового заявления для получения **болгарской рабочей визы.**",
         text3: "Преимущества рабочей визы в Болгарию:",
-        variants3: ["Превосходная альтернатива рабочим польским визам","**Возможностью пребывания в шенгенской зоне до 180 дней**",
+        variants3: ["Превосходная альтернатива рабочим польским визам","Возможностью пребывания в шенгенской зоне **до 180 дней**",
         "Подойдет для иностранных граждан", "Отсутствие верификации"],
-        priceGood: 1,
-        price1: "2800",
+        priceGood: 0,
+        priceTitle: "Наша услуга",
+        priceVariants: [
+            <span>Ваши документы-основания для получения визы - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">400</span> бел. руб.</span>,
+            <span>Сопровождение под ключ - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2800</span> бел. руб.</span>,
+        ]
     },
 
     // subcountriesgermany

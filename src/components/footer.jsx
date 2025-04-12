@@ -162,40 +162,41 @@ export default function Footer() {
                                             e.preventDefault();
                                             const number = "375293734870";
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-                                            // For regular user accounts, we need to use 'add' instead of 'chat'
+                                            const isAndroid = /Android/i.test(navigator.userAgent);
                                             const viberUri = `viber://add?number=${number}`;
 
-                                            if (isIOS) {
-                                                // Try to open Viber app
-                                                window.location.href = viberUri;
+                                            // Попытка открыть через iframe (лучше работает на iOS)
+                                            const iframe = document.createElement('iframe');
+                                            iframe.style.display = 'none';
+                                            iframe.src = viberUri;
+                                            document.body.appendChild(iframe);
 
-                                                // Fallback to App Store if Viber isn't installed
-                                                setTimeout(() => {
-                                                    if (!document.hidden) {
+                                            setTimeout(() => {
+                                                document.body.removeChild(iframe);
+
+                                                // Проверка, открылся ли Viber
+                                                if (!document.hidden) {
+                                                    // Fallback для разных платформ
+                                                    if (isIOS) {
                                                         window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                    }
-                                                }, 1000);
-                                            } else {
-                                                // For Android/Desktop
-                                                window.location.href = viberUri;
-
-                                                // Fallback to Viber download page
-                                                setTimeout(() => {
-                                                    if (!document.hidden) {
+                                                    } else if (isAndroid) {
+                                                        window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
+                                                    } else {
                                                         window.open("https://www.viber.com/download/", "_blank");
                                                     }
-                                                }, 500);
-                                            }
+                                                }
+                                            }, isIOS ? 1000 : 500);
                                         }}
                                         href="viber://add?number=375293734870"
                                         style={{ cursor: 'pointer' }}
+                                        title="Открыть в Viber"
                                     >
                                         <img
                                             src="/viber.svg"
                                             alt="Chat on Viber"
                                             width={40}
                                             height={40}
+                                            style={{ display: 'block' }}
                                         />
                                     </a>
                                     <a

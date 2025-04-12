@@ -116,41 +116,44 @@ export default function Header() {
                                 +375293734870
                             </a>
                             <a
-                                onClick={async (e) => {
+                                onClick={(e) => {
                                     e.preventDefault();
                                     const number = "375293734870";
                                     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-                                    if (isIOS) {
-                                        // 1. Проверяем, установлен ли Viber
-                                        try {
-                                            // Пробуем открыть приложение
-                                            window.location.href = `viber://chat?number=${number}`;
+                                    // For regular user accounts, we need to use 'add' instead of 'chat'
+                                    const viberUri = `viber://add?number=${number}`;
 
-                                            // Если через 250ms страница еще видна - значит приложение не установлено
-                                            setTimeout(() => {
-                                                if (!document.hidden) return;
-                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                            }, 1000);
-                                        } catch (e) {
-                                            // Если ошибка - открываем App Store
-                                            window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                        }
-                                    } else {
-                                        // Логика для Android/Desktop
-                                        window.location.href = `viber://chat?number=${number}`;
+                                    if (isIOS) {
+                                        // Try to open Viber app
+                                        window.location.href = viberUri;
+
+                                        // Fallback to App Store if Viber isn't installed
                                         setTimeout(() => {
-                                            window.open(`https://chats.viber.com/user/${number}`, "_blank");
-                                        }, 200);
+                                            if (!document.hidden) {
+                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                            }
+                                        }, 1000);
+                                    } else {
+                                        // For Android/Desktop
+                                        window.location.href = viberUri;
+
+                                        // Fallback to Viber download page
+                                        setTimeout(() => {
+                                            if (!document.hidden) {
+                                                window.open("https://www.viber.com/download/", "_blank");
+                                            }
+                                        }, 500);
                                     }
                                 }}
+                                href="viber://add?number=375293734870"
                                 style={{ cursor: 'pointer' }}
                             >
                                 <img
                                     src="/viber.svg"
                                     alt="Chat on Viber"
-                                    width={1000}  // Рекомендую уменьшить для мобильных устройств
-                                    height={800}
+                                    width={40}
+                                    height={40}
                                 />
                             </a>
                             <a

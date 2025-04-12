@@ -157,7 +157,47 @@ export default function Footer() {
                                         <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
                                     </a>
 
+                                    <a
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            const number = "375293734870";
+                                            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
+                                            // For regular user accounts, we need to use 'add' instead of 'chat'
+                                            const viberUri = `viber://add?number=${number}`;
+
+                                            if (isIOS) {
+                                                // Try to open Viber app
+                                                window.location.href = viberUri;
+
+                                                // Fallback to App Store if Viber isn't installed
+                                                setTimeout(() => {
+                                                    if (!document.hidden) {
+                                                        window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                                    }
+                                                }, 1000);
+                                            } else {
+                                                // For Android/Desktop
+                                                window.location.href = viberUri;
+
+                                                // Fallback to Viber download page
+                                                setTimeout(() => {
+                                                    if (!document.hidden) {
+                                                        window.open("https://www.viber.com/download/", "_blank");
+                                                    }
+                                                }, 500);
+                                            }
+                                        }}
+                                        href="viber://add?number=375293734870"
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        <img
+                                            src="/viber.svg"
+                                            alt="Chat on Viber"
+                                            width={40}
+                                            height={40}
+                                        />
+                                    </a>
                                     <a
                                         href="https://t.me/+375295648334"
                                         target="_blank"

@@ -156,44 +156,8 @@ export default function Footer() {
                                     >
                                         <Image width={1000} height={800} src={"/instagram.png"} alt={""}/>
                                     </a>
-                                    <a
-                                        onClick={async (e) => {
-                                            e.preventDefault();
-                                            const number = "375293734870";
-                                            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-                                            if (isIOS) {
-                                                // 1. Проверяем, установлен ли Viber
-                                                try {
-                                                    // Пробуем открыть приложение
-                                                    window.location.href = `viber://chat?number=${number}`;
 
-                                                    // Если через 250ms страница еще видна - значит приложение не установлено
-                                                    setTimeout(() => {
-                                                        if (!document.hidden) return;
-                                                        window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                    }, 1000);
-                                                } catch (e) {
-                                                    // Если ошибка - открываем App Store
-                                                    window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                }
-                                            } else {
-                                                // Логика для Android/Desktop
-                                                window.location.href = `viber://chat?number=${number}`;
-                                                setTimeout(() => {
-                                                    window.open(`https://chats.viber.com/user/${number}`, "_blank");
-                                                }, 200);
-                                            }
-                                        }}
-                                        style={{ cursor: 'pointer' }}
-                                    >
-                                        <img
-                                            src="/viber.svg"
-                                            alt="Chat on Viber"
-                                            width={1000}  // Рекомендую уменьшить для мобильных устройств
-                                            height={800}
-                                        />
-                                    </a>
                                     <a
                                         href="https://t.me/+375295648334"
                                         target="_blank"

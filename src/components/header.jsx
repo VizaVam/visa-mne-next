@@ -116,7 +116,7 @@ export default function Header() {
                                 +375293734870
                             </a>
                             <a
-                                href="viber://chat?number=%2B375293734870"
+                                href="viber://chat?number=%2B375293734870/"
                                 style={{ cursor: 'pointer' }}
                                 title="Открыть в Viber"
                             >
@@ -546,7 +546,7 @@ export default function Header() {
                             <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12 z-10"/>
                         </motion.a>
                         <motion.a
-                            href="viber://chat?number=%2B375293734870"
+                            href="viber://chat?number=%2B375293734870/"
                             className="relative w-12 h-12 flex items-center justify-center"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}

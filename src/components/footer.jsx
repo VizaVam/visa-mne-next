@@ -158,7 +158,7 @@ export default function Footer() {
                                     </a>
 
                                     <a
-                                        href="viber://chat?number=+375293734870"
+                                        href="viber://chat?number=%2B375293734870"
                                         style={{ cursor: 'pointer' }}
                                         title="Открыть в Viber"
                                     >

@@ -158,35 +158,37 @@ export default function Footer() {
                                     </a>
 
                                     <a
-                                        onClick={async (e) => {
+                                        onClick={(e) => {
                                             e.preventDefault();
-                                            const number = "+375293734870"; // Номер в международном формате
+                                            const number = "+375293734870";
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                                            const viberUri = `viber://chat?number=${number}`;
 
-                                            // 1. Пытаемся открыть чат напрямую
-                                            window.location.href = `viber://chat?number=${number}`;
+                                            // 1. Попытка открыть через window.location (лучше работает на iOS)
+                                            window.location.href = viberUri;
 
-                                            // 2. Fallback-проверка для Android (через таймаут)
-                                            if (!isIOS) {
-                                                await new Promise(resolve => setTimeout(resolve, 300));
+                                            // 2. Fallback с задержкой
+                                            setTimeout(() => {
                                                 if (!document.hidden) {
-                                                    window.location.href = `intent://chat?number=${number}#Intent;package=com.viber.voip;scheme=viber;end;`;
-                                                }
-                                            }
+                                                    if (isIOS) {
+                                                        // Альтернативный вариант для iOS - открыть через universal link
+                                                        window.location.href = `https://viber.com/contact/${number}`;
 
-                                            // 3. Если ничего не сработало - предлагаем установку (без сайта)
-                                            await new Promise(resolve => setTimeout(resolve, 1500));
-                                            if (!document.hidden) {
-                                                if (isIOS) {
-                                                    window.location.href = "itms-apps://itunes.apple.com/app/id382617920";
-                                                } else {
-                                                    window.location.href = "market://details?id=com.viber.voip";
+                                                        // Если и это не сработает - предложить App Store
+                                                        setTimeout(() => {
+                                                            if (!document.hidden) {
+                                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                                            }
+                                                        }, 500);
+                                                    } else {
+                                                        window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
+                                                    }
                                                 }
-                                            }
+                                            }, isIOS ? 1500 : 1000); // Увеличил таймаут для iOS
                                         }}
-                                        href="#"
+                                        href="viber://chat?number=375293734870"
                                         style={{ cursor: 'pointer' }}
-                                        title="Написать в Viber"
+                                        title="Открыть в Viber"
                                     >
                                         <img
                                             src="/viber.svg"

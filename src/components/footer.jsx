@@ -158,46 +158,25 @@ export default function Footer() {
                                     </a>
 
                                     <a
-                                        onClick={(e) => {
+                                        onClick={async (e) => {
                                             e.preventDefault();
-                                            const number = "+375293734870";
+                                            const number = "+375293734870"; // Номер в международном формате
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-                                            // Пытаемся определить, установлен ли Viber
-                                            const isViberInstalled = () => {
-                                                // Для iOS проверяем через попытку открытия схемы
-                                                if (isIOS) {
-                                                    window.location.href = "viber://";
-                                                    return true; // iOS всегда вернет true из-за особенностей работы
+                                            // 1. Пытаемся открыть чат напрямую
+                                            window.location.href = `viber://chat?number=${number}`;
+
+                                            // 2. Fallback-проверка для Android (через таймаут)
+                                            if (!isIOS) {
+                                                await new Promise(resolve => setTimeout(resolve, 300));
+                                                if (!document.hidden) {
+                                                    window.location.href = `intent://chat?number=${number}#Intent;package=com.viber.voip;scheme=viber;end;`;
                                                 }
+                                            }
 
-                                                // Для Android создаем невидимый iframe
-                                                const iframe = document.createElement("iframe");
-                                                iframe.style.display = "none";
-                                                iframe.src = "viber://";
-                                                document.body.appendChild(iframe);
-
-                                                setTimeout(() => {
-                                                    document.body.removeChild(iframe);
-                                                }, 100);
-
-                                                return true; // Android сложно точно определить
-                                            };
-
-                                            if (isViberInstalled()) {
-                                                // Если Viber установлен - открываем чат
-                                                window.location.href = `viber://chat?number=${number}`;
-
-                                                // Дополнительный таймаут для iOS
-                                                if (isIOS) {
-                                                    setTimeout(() => {
-                                                        if (!document.hidden) {
-                                                            // Если не открылось - не делаем ничего (не перенаправляем на сайт)
-                                                        }
-                                                    }, 1000);
-                                                }
-                                            } else {
-                                                // Если Viber не установлен - предлагаем установку без открытия сайта
+                                            // 3. Если ничего не сработало - предлагаем установку (без сайта)
+                                            await new Promise(resolve => setTimeout(resolve, 1500));
+                                            if (!document.hidden) {
                                                 if (isIOS) {
                                                     window.location.href = "itms-apps://itunes.apple.com/app/id382617920";
                                                 } else {

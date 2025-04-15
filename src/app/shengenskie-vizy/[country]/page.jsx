@@ -39,21 +39,6 @@ const countries = [
         metaTitle: "Виза в Латвию",
     },
     {
-        name: "США",
-        url: "viza-v-ssha",
-        metaTitle: "Виза в США",
-    },
-    {
-        name: "Великобритания",
-        url: "viza-v-velikobritaniyu",
-        metaTitle: "Виза в Великобританию",
-    },
-    {
-        name: "Китай",
-        url: "viza-v-kitaj",
-        metaTitle: "Виза в Китай",
-    },
-    {
         name: "Болгария",
         url: "viza-v-bolgariyu",
         metaTitle: "Виза в Болгарию",

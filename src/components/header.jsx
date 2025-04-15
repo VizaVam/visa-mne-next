@@ -116,36 +116,7 @@ export default function Header() {
                                 +375293734870
                             </a>
                             <a
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    const number = "375293734870";
-                                    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-                                    const isAndroid = /Android/i.test(navigator.userAgent);
-                                    const viberUri = `viber://add?number=${number}`;
-
-                                    // Попытка открыть через iframe (лучше работает на iOS)
-                                    const iframe = document.createElement('iframe');
-                                    iframe.style.display = 'none';
-                                    iframe.src = viberUri;
-                                    document.body.appendChild(iframe);
-
-                                    setTimeout(() => {
-                                        document.body.removeChild(iframe);
-
-                                        // Проверка, открылся ли Viber
-                                        if (!document.hidden) {
-                                            // Fallback для разных платформ
-                                            if (isIOS) {
-                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                            } else if (isAndroid) {
-                                                window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
-                                            } else {
-                                                window.open("https://www.viber.com/download/", "_blank");
-                                            }
-                                        }
-                                    }, isIOS ? 1000 : 500);
-                                }}
-                                href="viber://add?number=375293734870"
+                                href="viber://chat?number=+375293734870"
                                 style={{ cursor: 'pointer' }}
                                 title="Открыть в Viber"
                             >
@@ -574,39 +545,11 @@ export default function Header() {
                             />
                             <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12 z-10"/>
                         </motion.a>
-                        <motion.div
+                        <motion.a
+                            href="viber://chat?number=+375293734870"
                             className="relative w-12 h-12 flex items-center justify-center"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={async (e) => {
-                                e.preventDefault();
-                                const number = "375293734870";
-                                const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-                                const isAndroid = /Android/i.test(navigator.userAgent);
-                                const viberUri = `viber://add?number=${number}`;
-
-                                // Попытка открыть через iframe (лучше работает на iOS)
-                                const iframe = document.createElement('iframe');
-                                iframe.style.display = 'none';
-                                iframe.src = viberUri;
-                                document.body.appendChild(iframe);
-
-                                setTimeout(() => {
-                                    document.body.removeChild(iframe);
-
-                                    // Проверка, открылся ли Viber
-                                    if (!document.hidden) {
-                                        // Fallback для разных платформ
-                                        if (isIOS) {
-                                            window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                        } else if (isAndroid) {
-                                            window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
-                                        } else {
-                                            window.open(`https://chats.viber.com/user/${number}`, "_blank");
-                                        }
-                                    }
-                                }, isIOS ? 1000 : 500);
-                            }}
                             style={{ cursor: "pointer" }}
                         >
                             {/* Белый фон (меньше основной иконки) */}
@@ -622,7 +565,7 @@ export default function Header() {
                                 className="relative w-12 h-12 z-10"
                                 draggable="false"
                             />
-                        </motion.div>
+                        </motion.a>
                         <motion.a
                             href="https://t.me/+375295648334"
                             target="_blank"

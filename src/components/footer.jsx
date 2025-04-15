@@ -162,30 +162,29 @@ export default function Footer() {
                                             e.preventDefault();
                                             const number = "375293734870";
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-                                            const isAndroid = /Android/i.test(navigator.userAgent);
                                             const viberUri = `viber://add?number=${number}`;
 
-                                            // Попытка открыть через iframe (лучше работает на iOS)
-                                            const iframe = document.createElement('iframe');
-                                            iframe.style.display = 'none';
-                                            iframe.src = viberUri;
-                                            document.body.appendChild(iframe);
+                                            // 1. Попытка открыть через window.location (лучше работает на iOS)
+                                            window.location.href = viberUri;
 
+                                            // 2. Fallback с задержкой
                                             setTimeout(() => {
-                                                document.body.removeChild(iframe);
-
-                                                // Проверка, открылся ли Viber
                                                 if (!document.hidden) {
-                                                    // Fallback для разных платформ
                                                     if (isIOS) {
-                                                        window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                    } else if (isAndroid) {
-                                                        window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
+                                                        // Альтернативный вариант для iOS - открыть через universal link
+                                                        window.location.href = `https://viber.com/contact/${number}`;
+
+                                                        // Если и это не сработает - предложить App Store
+                                                        setTimeout(() => {
+                                                            if (!document.hidden) {
+                                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
+                                                            }
+                                                        }, 500);
                                                     } else {
-                                                        window.open("https://www.viber.com/download/", "_blank");
+                                                        window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
                                                     }
                                                 }
-                                            }, isIOS ? 1000 : 500);
+                                            }, isIOS ? 1500 : 1000); // Увеличил таймаут для iOS
                                         }}
                                         href="viber://add?number=375293734870"
                                         style={{ cursor: 'pointer' }}

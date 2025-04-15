@@ -158,25 +158,21 @@ export default function Footer() {
                                     </a>
 
                                     <a
-                                        onClick={(e) => {
-                                            e.preventDefault();
+                                        onClick={() => {
                                             const number = "+375293734870";
-                                            const viberUri = `viber://pa/info?uri=${encodeURIComponent(`viber://chat?number=${number}`)}`;
+                                            const links = [
+                                                `viber://pa/info?uri=${encodeURIComponent(`viber://chat?number=${number}`)}`,
+                                                `viber://profile?phone=${number.replace('+', '')}`,
+                                                `viber://forward?text=&number=${number}`
+                                            ];
 
-                                            // 1. Основная попытка открыть профиль
-                                            window.location.href = viberUri;
-
-                                            // 2. Fallback для iOS (если Viber не установлен)
-                                            setTimeout(() => {
-                                                if (!document.hidden) {
-                                                    // Открываем App Store напрямую, без веб-страниц
-                                                    window.location.href = "itms-apps://itunes.apple.com/app/id382617920";
-                                                }
-                                            }, 1500); // Таймаут увеличен для iOS
+                                            links.forEach((link, i) => {
+                                                setTimeout(() => {
+                                                    console.log(`Trying link ${i+1}:`, link);
+                                                    window.location.href = link;
+                                                }, i * 1500);
+                                            });
                                         }}
-                                        href="#"
-                                        style={{ cursor: 'pointer' }}
-                                        title="Профиль в Viber"
                                     >
                                         <img
                                             src="/viber-profile.svg"

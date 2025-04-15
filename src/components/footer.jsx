@@ -158,25 +158,17 @@ export default function Footer() {
                                     </a>
 
                                     <a
-                                        onClick={() => {
-                                            const number = "+375293734870";
-                                            const links = [
-                                                `viber://pa/info?uri=${encodeURIComponent(`viber://chat?number=${number}`)}`,
-                                                `viber://profile?phone=${number.replace('+', '')}`,
-                                                `viber://forward?text=&number=${number}`
-                                            ];
-
-                                            links.forEach((link, i) => {
-                                                setTimeout(() => {
-                                                    console.log(`Trying link ${i+1}:`, link);
-                                                    window.location.href = link;
-                                                }, i * 1500);
-                                            });
+                                        href="viber://chat?number=+375293734870"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            window.location.href = "viber://chat?number=+375293734870";
                                         }}
+                                        style={{ cursor: 'pointer' }}
+                                        title="Открыть в Viber"
                                     >
                                         <img
-                                            src="/viber-profile.svg"
-                                            alt="Viber Profile"
+                                            src="/viber.svg"
+                                            alt="Chat on Viber"
                                             width={40}
                                             height={40}
                                             style={{ display: 'block' }}

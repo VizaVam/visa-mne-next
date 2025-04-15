@@ -160,35 +160,38 @@ export default function Footer() {
                                     <a
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            const number = "375293734870";
+                                            const number = "+375293734870"; // Обязательно с + в начале
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-                                            const viberUri = `viber://add?number=${number}`;
 
-                                            // 1. Попытка открыть через window.location (лучше работает на iOS)
+                                            // Для этого номера мы ЗНАЕМ, что он есть в Viber, поэтому сразу открываем чат
+                                            const viberUri = `viber://chat?number=${number}`;
+
+                                            // 1. Попытка открыть чат в Viber
                                             window.location.href = viberUri;
 
-                                            // 2. Fallback с задержкой
+                                            // 2. Fallback если Viber не установлен
                                             setTimeout(() => {
                                                 if (!document.hidden) {
                                                     if (isIOS) {
-                                                        // Альтернативный вариант для iOS - открыть через universal link
+                                                        // Для iOS пробуем universal link
                                                         window.location.href = `https://viber.com/contact/${number}`;
 
-                                                        // Если и это не сработает - предложить App Store
+                                                        // Если не сработало - предлагаем App Store
                                                         setTimeout(() => {
                                                             if (!document.hidden) {
                                                                 window.location.href = "https://apps.apple.com/app/viber/id382617920";
                                                             }
                                                         }, 500);
                                                     } else {
+                                                        // Для Android - Play Market
                                                         window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
                                                     }
                                                 }
-                                            }, isIOS ? 1500 : 1000); // Увеличил таймаут для iOS
+                                            }, isIOS ? 1500 : 1000);
                                         }}
-                                        href="viber://add?number=375293734870"
+                                        href="viber://chat?number=+375293734870"
                                         style={{ cursor: 'pointer' }}
-                                        title="Открыть в Viber"
+                                        title="Написать в Viber"
                                     >
                                         <img
                                             src="/viber.svg"

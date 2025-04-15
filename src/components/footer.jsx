@@ -159,10 +159,6 @@ export default function Footer() {
 
                                     <a
                                         href="viber://chat?number=+375293734870"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            window.location.href = "viber://chat?number=+375293734870";
-                                        }}
                                         style={{ cursor: 'pointer' }}
                                         title="Открыть в Viber"
                                     >

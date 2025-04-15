@@ -160,36 +160,52 @@ export default function Footer() {
                                     <a
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            const number = "+375293734870"; // Обязательно с + в начале
+                                            const number = "+375293734870";
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-                                            // Для этого номера мы ЗНАЕМ, что он есть в Viber, поэтому сразу открываем чат
-                                            const viberUri = `viber://chat?number=${number}`;
-
-                                            // 1. Попытка открыть чат в Viber
-                                            window.location.href = viberUri;
-
-                                            // 2. Fallback если Viber не установлен
-                                            setTimeout(() => {
-                                                if (!document.hidden) {
-                                                    if (isIOS) {
-                                                        // Для iOS пробуем universal link
-                                                        window.location.href = `https://viber.com/contact/${number}`;
-
-                                                        // Если не сработало - предлагаем App Store
-                                                        setTimeout(() => {
-                                                            if (!document.hidden) {
-                                                                window.location.href = "https://apps.apple.com/app/viber/id382617920";
-                                                            }
-                                                        }, 500);
-                                                    } else {
-                                                        // Для Android - Play Market
-                                                        window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
-                                                    }
+                                            // Пытаемся определить, установлен ли Viber
+                                            const isViberInstalled = () => {
+                                                // Для iOS проверяем через попытку открытия схемы
+                                                if (isIOS) {
+                                                    window.location.href = "viber://";
+                                                    return true; // iOS всегда вернет true из-за особенностей работы
                                                 }
-                                            }, isIOS ? 1500 : 1000);
+
+                                                // Для Android создаем невидимый iframe
+                                                const iframe = document.createElement("iframe");
+                                                iframe.style.display = "none";
+                                                iframe.src = "viber://";
+                                                document.body.appendChild(iframe);
+
+                                                setTimeout(() => {
+                                                    document.body.removeChild(iframe);
+                                                }, 100);
+
+                                                return true; // Android сложно точно определить
+                                            };
+
+                                            if (isViberInstalled()) {
+                                                // Если Viber установлен - открываем чат
+                                                window.location.href = `viber://chat?number=${number}`;
+
+                                                // Дополнительный таймаут для iOS
+                                                if (isIOS) {
+                                                    setTimeout(() => {
+                                                        if (!document.hidden) {
+                                                            // Если не открылось - не делаем ничего (не перенаправляем на сайт)
+                                                        }
+                                                    }, 1000);
+                                                }
+                                            } else {
+                                                // Если Viber не установлен - предлагаем установку без открытия сайта
+                                                if (isIOS) {
+                                                    window.location.href = "itms-apps://itunes.apple.com/app/id382617920";
+                                                } else {
+                                                    window.location.href = "market://details?id=com.viber.voip";
+                                                }
+                                            }
                                         }}
-                                        href="viber://chat?number=+375293734870"
+                                        href="#"
                                         style={{ cursor: 'pointer' }}
                                         title="Написать в Viber"
                                     >

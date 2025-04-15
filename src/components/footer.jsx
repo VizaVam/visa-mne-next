@@ -162,19 +162,19 @@ export default function Footer() {
                                             e.preventDefault();
                                             const number = "375293734870";
                                             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                                            const viberUri = `viber://add?number=${number}`;
 
-                                            // 1. Пробуем открыть меню вызова в Viber
-                                            const viberCallUri = `viber://call?number=${number}`;
-                                            window.location.href = viberCallUri;
+                                            // 1. Попытка открыть через window.location (лучше работает на iOS)
+                                            window.location.href = viberUri;
 
-                                            // 2. Fallback для iOS (если deeplink не сработал)
+                                            // 2. Fallback с задержкой
                                             setTimeout(() => {
                                                 if (!document.hidden) {
                                                     if (isIOS) {
-                                                        // Пробуем Universal Link
+                                                        // Альтернативный вариант для iOS - открыть через universal link
                                                         window.location.href = `https://viber.com/contact/${number}`;
 
-                                                        // Если и это не сработало — открываем App Store
+                                                        // Если и это не сработает - предложить App Store
                                                         setTimeout(() => {
                                                             if (!document.hidden) {
                                                                 window.location.href = "https://apps.apple.com/app/viber/id382617920";
@@ -184,15 +184,15 @@ export default function Footer() {
                                                         window.open("https://play.google.com/store/apps/details?id=com.viber.voip", "_blank");
                                                     }
                                                 }
-                                            }, isIOS ? 1500 : 1000);
+                                            }, isIOS ? 1500 : 1000); // Увеличил таймаут для iOS
                                         }}
-                                        href="viber://call?number=375293734870"
+                                        href="viber://add?number=375293734870"
                                         style={{ cursor: 'pointer' }}
-                                        title="Call via Viber"
+                                        title="Открыть в Viber"
                                     >
                                         <img
                                             src="/viber.svg"
-                                            alt="Call on Viber"
+                                            alt="Chat on Viber"
                                             width={40}
                                             height={40}
                                             style={{ display: 'block' }}

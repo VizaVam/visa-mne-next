@@ -147,7 +147,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                         {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-kitaj", "viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
                             <div className="pb-24 flex flex-col gap-6 lg:w-[70%]">
                                 {selectedCountry.title &&
-                                    <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h1>}
+                                    <h2 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h2>}
                                 {selectedCountry.textTop &&
                                     <p className="text-black text-[14px]">
                                         {parseText(selectedCountry.textTop)}</p>}
@@ -170,7 +170,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                                         <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text11[2] || "")}</p>
                                     </div>}
                                 {selectedCountry.title22 &&
-                                    <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title22}</h1>}
+                                    <h2 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title22}</h2>}
                                 {selectedCountry.text2 &&
                                     <p className="text-black text-[14px]">{parseText(selectedCountry.text2)}</p>}
                                 {selectedCountry.text3 &&
@@ -210,7 +210,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                                 {selectedCountry.text6 && (
                                     <p className="text-black text-[14px]">{parseText(selectedCountry.text6)}</p>)}
                                 {selectedCountry.title33 &&
-                                    <h1 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title33}</h1>}
+                                    <h2 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title33}</h2>}
                                 {selectedCountry.text7 && (
                                     <p className="text-black text-[14px]">{parseText(selectedCountry.text7)}</p>)}
                                 {selectedCountry.text8 && (
@@ -275,7 +275,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                     {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"].includes(selectedCountry.url) && (
                         <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
                             {selectedCountry.title &&
-                                <h1 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">{selectedCountry.title}</h1>}
+                                <h2 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">{selectedCountry.title}</h2>}
                             <div className="flex flex-col gap-6">
                                 {selectedCountry.text1 &&
                                     <p className="text-black text-[14px]">{parseText(selectedCountry.text1)}</p>}

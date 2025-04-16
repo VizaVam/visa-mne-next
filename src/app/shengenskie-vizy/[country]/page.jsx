@@ -1,7 +1,9 @@
 // src/app/shengenskie-vizy/[country]/page.jsx
+import notFound from '@/app/not-found';
 import CountryPage from '@/components/countriesPage';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
+// List of valid Schengen visa countries
 const countries = [
     {
         name: "Польша",
@@ -125,8 +127,16 @@ const countries = [
     },
 ];
 
+// Generate static paths for valid Schengen countries only
+export async function generateStaticParams() {
+    return countries.map((country) => ({
+        country: country.url,
+    }));
+}
+
+// Dynamic metadata for SEO
 export async function generateMetadata({ params }) {
-    const { country } = params; // Распаковываем params напрямую
+    const { country } = params;
     const countryData = countries.find(c => c.url === country);
 
     if (!countryData) {
@@ -142,25 +152,26 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default function Page({params}) {
+// Main page component
+export default function Page({ params }) {
     const { country } = params;
-
-    // Находим данные страны по url
     const countryData = countries.find(c => c.url === country);
 
-    // Если страна не найдена, можно добавить запасной вариант
-    const displayName = countryData ? countryData.metaTitle : "Неизвестная виза";
+    // Return 404 if country not found
+    if (!countryData) {
+        notFound();
+    }
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
         { name: "Шенгенские визы", url: "https://visavampro.by/shengenskie-vizy" },
-        { name: displayName, url: `https://visavampro.by/shengenskie-vizy/${country}` }
+        { name: countryData.metaTitle, url: `https://visavampro.by/shengenskie-vizy/${country}` }
     ];
 
     return (
         <>
-            <Breadcrumbs breadcrumbs={breadcrumbs}/>
-            <CountryPage countryData={countryData}/>
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <CountryPage countryData={countryData} />
         </>
     );
 }

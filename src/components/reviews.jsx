@@ -57,7 +57,7 @@ const Reviews = () => {
                             className="w-auto mdd:w-[100%] xl:w-[24.2%] lg:w-[32%] sm:w-[49%] flex-shrink-0 bg-[#FAFAFA] border-[1px] border-[#ECECEC] rounded-[4px] p-6 text-center"
                         >
                             <Image width={1000} height={800}  src={review.image} alt={review.name} className="w-36 h-36 mx-auto rounded-full mb-4 object-cover"/>
-                            <h3 className="text-xl font-medium mb-2">{review.name}</h3>
+                            <p className="text-xl font-medium mb-2">{review.name}</p>
                             <p className="text-[16px] text-gray-600">{review.text}</p>
                         </div>
                     ))}

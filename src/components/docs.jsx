@@ -5,9 +5,9 @@ const Docs = () => {
         <div className="bg-[#15419E] px-[7%] py-6">
             <div className="docs">
                 {/* Left Side: Heading */}
-                <h1 className="docs-left rounded-[4px]">
+                <h2 className="docs-left rounded-[4px]">
                     Основные документы
-                </h1>
+                </h2>
 
                 {/* Right Side: Documents List */}
                 <div className="docs-right rounded-[4px]">
@@ -21,7 +21,7 @@ const Docs = () => {
                         <div key={index} className="flex gap-3 items-center mb-3">
                             <Image width={1000} height={800} className="w-6 h-6" src="/docs-check.png" alt=""/>
                             <div>
-                                <h2 className="lg:text-xl">{doc.title}</h2>
+                                <p className="lg:text-xl">{doc.title}</p>
                                 {doc.desc && <p className="text-[#CCCCCC] font-normal">{doc.desc}</p>}
                             </div>
                         </div>

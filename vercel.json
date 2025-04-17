@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "www.visavampro.by",
+      "destination": "https://visavampro.by",
+      "permanent": true
+    }
+  ]
+}

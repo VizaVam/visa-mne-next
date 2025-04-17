@@ -12,7 +12,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600"
+          "value": "public, max-age=1800"
         }
       ]
     },
@@ -21,11 +21,38 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=1800, must-revalidate"
+          "value": "public, max-age=1800"
         },
         {
           "key": "Vary",
           "value": "Accept-Encoding"
+        }
+      ]
+    },
+    {
+      "source": "/o-nas",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800"
+        }
+      ]
+    },
+    {
+      "source": "/kontakty",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800"
         }
       ]
     }

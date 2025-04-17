@@ -21,6 +21,7 @@ const countries = [
 ];
 
 export async function generateStaticParams() {
+    console.log("Generating static params:", countries);
     return countries.map((country) => ({
         country: country.url,
     }));

@@ -15,6 +15,15 @@
           "value": "public, max-age=3600"
         }
       ]
+    },
+    {
+      "source": "/shengenskie-vizy/:country",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800, must-revalidate"
+        }
+      ]
     }
   ]
 }

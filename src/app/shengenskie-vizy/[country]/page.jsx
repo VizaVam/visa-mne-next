@@ -133,24 +133,6 @@ export async function generateStaticParams() {
         country: country.url,
     }));
 }
-
-// Настройка заголовков для кэширования
-export const dynamic = 'force-static'; // Убедитесь, что страница статическая
-
-export async function headers() {
-    return [
-        {
-            source: '/shengenskie-vizy/:country',
-            headers: [
-                {
-                    key: 'Cache-Control',
-                    value: 'public, max-age=1800, must-revalidate', // Кэш на 30 минут (1800 секунд)
-                },
-            ],
-        },
-    ];
-}
-
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }) {
     const { country } = params;

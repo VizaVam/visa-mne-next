@@ -134,7 +134,22 @@ export async function generateStaticParams() {
     }));
 }
 
-export const revalidate = 3600; // Обновление каждые 3600 секунд (1 час)
+// Настройка заголовков для кэширования
+export const dynamic = 'force-static'; // Убедитесь, что страница статическая
+
+export async function headers() {
+    return [
+        {
+            source: '/shengenskie-vizy/:country',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'public, max-age=1800, must-revalidate', // Кэш на 30 минут (1800 секунд)
+                },
+            ],
+        },
+    ];
+}
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }) {

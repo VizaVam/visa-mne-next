@@ -26,7 +26,7 @@ export default function HomePage({onOpenModal}) {
                             с <span className="lg:text-[48px] text-[40px] mdd:text-[32px] font-semibold leading-none">VISA VAM</span>
                         </h1>
                         <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[80%] md:top-[7%] sm:top-[10%] mdd:top-[5%] mddd:top-[6%] dr:top-[7%] lg:left-[35%] mdd:left-[30%] left-[25%] text-[36px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
-                            Все хлопоты - нам, виза - Вам
+                            уоуоуоуоуоу
                         </p>
                     </div>
                 </div>

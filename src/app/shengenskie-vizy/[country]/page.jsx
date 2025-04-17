@@ -134,6 +134,8 @@ export async function generateStaticParams() {
     }));
 }
 
+export const revalidate = 3600; // Обновление каждые 3600 секунд (1 час)
+
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }) {
     const { country } = params;

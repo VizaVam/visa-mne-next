@@ -5,5 +5,16 @@
       "destination": "https://visavampro.by",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/viza-v-(kitaj|ssha|velikobritaniyu)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
   ]
 }

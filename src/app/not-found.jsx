@@ -1,3 +1,8 @@
+export const metadata = {
+    title: "Страница не найдена – компания VISA VAM",
+    description: "Запрошенная страница не существует...",
+};
+
 export default function NotFound() {
     return (
         <div className={"h-dvh flex flex-col items-center justify-center px-[7%]"}>
@@ -7,7 +12,9 @@ export default function NotFound() {
                 <p className={"text-xl mdd:text-[16px] font-medium"}>Возможно страница была удалена или перенесена на другой адрес</p>
             </div>
             <a href={"/"} className={"mt-8 mdd:w-full"}>
-                <button className={"bg-[#15419E] rounded-[2px] py-4 px-8 text-white mdd:w-full"}>Вернуть на главную</button>
+                <button className={"bg-[#15419E] rounded-[2px] py-4 px-8 text-white mdd:w-full"}>
+                    Вернуться на главную
+                </button>
             </a>
         </div>
     );

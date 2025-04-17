@@ -1,6 +1,7 @@
-export {generateMetadata} from "./metadata";
+export { generateMetadata } from "./metadata";
 import OtherCountryPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { notFound } from 'next/navigation'; // Добавлен импорт
 
 const countries = [
     {
@@ -20,21 +21,29 @@ const countries = [
     },
 ];
 
-export default function Page({params}) {
+export default function Page({ params }) {
     const { country } = params;
 
+    // Находим данные страны
     const countryData = countries.find(item => item.url === country);
-    const displayName = countryData ? countryData.metaTitle : `Виза в ${country}`;
+
+    // Если страна не найдена - показываем 404
+    if (!countryData) {
+        notFound();
+    }
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
-        { name: displayName, url: `https://visavampro.by/${country}` }
+        { name: countryData.metaTitle, url: `https://visavampro.by/${country}` }
     ];
 
     return (
         <>
-            <Breadcrumbs breadcrumbs={breadcrumbs}/>
-            <OtherCountryPage country={country}/>
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <OtherCountryPage
+                country={country}
+                selectedCountry={countryData} // Передаем данные страны
+            />
         </>
     );
 }

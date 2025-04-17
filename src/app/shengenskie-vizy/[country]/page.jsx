@@ -1,7 +1,7 @@
 // src/app/shengenskie-vizy/[country]/page.jsx
-import notFound from '@/app/not-found';
 import CountryPage from '@/components/countriesPage';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { notFound } from 'next/navigation'; // Добавлен импорт
 
 // List of valid Schengen visa countries
 const countries = [
@@ -158,7 +158,7 @@ export default function Page({ params }) {
     const countryData = countries.find(c => c.url === country);
 
     // Return 404 if country not found
-    if (!countryData) {
+    if (!countryData || !countryData.metaTitle) {
         notFound();
     }
 
@@ -171,7 +171,10 @@ export default function Page({ params }) {
     return (
         <>
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <CountryPage countryData={countryData} />
+            <CountryPage
+                countryData={countryData}
+                countryUrl={country} // Дополнительная передача URL
+            />
         </>
     );
 }

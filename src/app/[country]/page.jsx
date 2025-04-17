@@ -1,7 +1,7 @@
 export { generateMetadata } from "./metadata";
 import OtherCountryPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { notFound } from 'next/navigation'; // Добавлен импорт
+import { notFound } from 'next/navigation';
 
 const countries = [
     {
@@ -20,6 +20,16 @@ const countries = [
         metaTitle: "Виза в Китай",
     },
 ];
+
+// Генерируем статические параметры для всех стран
+export async function generateStaticParams() {
+    return countries.map((country) => ({
+        country: country.url,
+    }));
+}
+
+// Указываем, что страница должна обновляться (аналог revalidate)
+export const revalidate = 3600; // Обновление каждые 3600 секунд (1 час)
 
 export default function Page({ params }) {
     const { country } = params;
@@ -42,7 +52,7 @@ export default function Page({ params }) {
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <OtherCountryPage
                 country={country}
-                selectedCountry={countryData} // Передаем данные страны
+                selectedCountry={countryData}
             />
         </>
     );

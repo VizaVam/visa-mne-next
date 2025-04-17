@@ -1,9 +1,7 @@
-// src/app/shengenskie-vizy/[country]/page.jsx
 import CountryPage from '@/components/countriesPage';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { notFound } from 'next/navigation'; // Добавлен импорт
+import { notFound } from 'next/navigation';
 
-// List of valid Schengen visa countries
 const countries = [
     {
         name: "Польша",
@@ -127,20 +125,19 @@ const countries = [
     },
 ];
 
-// Generate static paths for valid Schengen countries only
 export async function generateStaticParams() {
     return countries.map((country) => ({
         country: country.url,
     }));
 }
-// Dynamic metadata for SEO
+
 export async function generateMetadata({ params }) {
     const { country } = params;
     const countryData = countries.find(c => c.url === country);
 
     if (!countryData) {
         return {
-            title: "Страна не найдена – компания VISA VAM",
+            title: "Страница не найдена – компания VISA VAM",
             description: "Описание недоступно – компания VISA VAM. 📞 +375 29 68 00 620",
         };
     }
@@ -151,12 +148,10 @@ export async function generateMetadata({ params }) {
     };
 }
 
-// Main page component
 export default function Page({ params }) {
     const { country } = params;
     const countryData = countries.find(c => c.url === country);
 
-    // Return 404 if country not found
     if (!countryData || !countryData.metaTitle) {
         notFound();
     }

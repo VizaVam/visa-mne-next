@@ -1,4 +1,3 @@
-export { generateMetadata } from "./metadata";
 import OtherCountryPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { notFound } from 'next/navigation';
@@ -21,21 +20,33 @@ const countries = [
     },
 ];
 
-// Генерируем статические параметры для всех стран
 export async function generateStaticParams() {
     return countries.map((country) => ({
         country: country.url,
     }));
 }
 
-// Указываем, что страница должна обновляться (аналог revalidate)
-export const revalidate = 3600; // Обновление каждые 3600 секунд (1 час)
+export async function generateMetadata({ params }) {
+    const countryParam = decodeURIComponent(params?.country || "");
+    const countryData = countries.find(c => c.url === countryParam);
+
+    if (!countryData) {
+        return {
+            title: "Страница не найдена – компания VISA VAM",
+            description: "Описание недоступно – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+        };
+    }
+
+    return {
+        title: `${countryData.metaTitle} – компания VISA VAM`,
+        description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
+    };
+}
 
 export default function Page({ params }) {
     const { country } = params;
     const countryData = countries.find(item => item.url === country);
 
-    // Return 404 if country not found
     if (!countryData || !countryData.metaTitle) {
         notFound();
     }

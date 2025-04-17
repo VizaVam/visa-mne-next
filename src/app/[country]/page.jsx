@@ -33,12 +33,10 @@ export const revalidate = 3600; // Обновление каждые 3600 сек
 
 export default function Page({ params }) {
     const { country } = params;
-
-    // Находим данные страны
     const countryData = countries.find(item => item.url === country);
 
-    // Если страна не найдена - показываем 404
-    if (!countryData) {
+    // Return 404 if country not found
+    if (!countryData || !countryData.metaTitle) {
         notFound();
     }
 

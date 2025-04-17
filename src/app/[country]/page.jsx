@@ -2,7 +2,6 @@ export { generateMetadata } from "./metadata";
 import OtherCountryPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { notFound } from 'next/navigation';
-import { headers } from 'next/headers'; // Импортируем headers
 
 const countries = [
     {
@@ -22,7 +21,17 @@ const countries = [
     },
 ];
 
-export default async function Page({ params }) {
+// Генерируем статические параметры для всех стран
+export async function generateStaticParams() {
+    return countries.map((country) => ({
+        country: country.url,
+    }));
+}
+
+// Указываем, что страница должна обновляться (аналог revalidate)
+export const revalidate = 3600; // Обновление каждые 3600 секунд (1 час)
+
+export default function Page({ params }) {
     const { country } = params;
 
     // Находим данные страны
@@ -32,10 +41,6 @@ export default async function Page({ params }) {
     if (!countryData) {
         notFound();
     }
-
-    // Устанавливаем заголовок Cache-Control
-    const headersList = headers();
-    headersList.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },

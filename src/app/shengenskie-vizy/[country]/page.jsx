@@ -142,6 +142,10 @@ export async function generateMetadata({ params }) {
         };
     }
 
+    if (!countryData) {
+        notFound(); // 👈 Это гарантирует 404 статус
+    }
+
     return {
         title: `${countryData.metaTitle} – компания VISA VAM`,
         description: `${countryData.metaTitle} – компания VISA VAM. 📞 +375 29 68 00 620`,

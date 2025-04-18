@@ -1,13 +1,21 @@
 import { NextResponse } from 'next/server';
 
-// Основные визы
+// Список статических маршрутов
+const staticRoutes = [
+    '/',
+    '/shengenskie-vizy',
+    '/kontakty',
+    '/o-nas',
+];
+
+// Динамические маршруты из массива countries
 const countries = [
     { url: 'viza-v-ssha' },
     { url: 'viza-v-velikobritaniyu' },
     { url: 'viza-v-kitaj' },
 ];
 
-// Шенгенские визы
+// Шенгенские визы (дополнительные динамические маршруты)
 const shengenVisas = [
     { url: 'viza-v-polshu' },
     { url: 'viza-v-sloveniu' },
@@ -35,8 +43,9 @@ const shengenVisas = [
     { url: 'rabochaya-viza-v-ispaniyu' },
 ];
 
-// Собираем все проверяемые маршруты
-const visaRoutes = [
+// Все допустимые маршруты
+const validRoutes = [
+    ...staticRoutes,
     ...countries.map(country => `/${country.url}`),
     ...shengenVisas.map(visa => `/shengenskie-vizy/${visa.url}`),
 ];
@@ -44,16 +53,34 @@ const visaRoutes = [
 export function middleware(request) {
     const { pathname } = request.nextUrl;
 
-    // Проверяем только маршруты виз
-    if (visaRoutes.includes(pathname)) {
+
+    // Разрешаем все запросы к изображениям и статическим файлам
+    if (
+        pathname.startsWith('/_next') ||
+        pathname.includes('.') || // Все файлы с расширениями (изображения, css, js)
+        pathname.startsWith('/api/')
+    ) {
         return NextResponse.next();
     }
 
-    // Все остальные запросы пропускаем (включая изображения)
+    // Проверяем, существует ли маршрут
+    if (!validRoutes.includes(pathname)) {
+        // Возвращаем 404 для несуществующих маршрутов
+        return new Response('Страница не найдена', {
+            status: 404,
+            headers: {
+                'Cache-Control': 'public, max-age=3600', // Кэшировать 404 на 1 час
+            },
+        });
+    }
+
+    // Продолжаем обработку запроса, если маршрут существует
     return NextResponse.next();
 }
 
-// Отключаем middleware для всех маршрутов, кроме визовых
+// Указываем, к каким маршрутам применять middleware
 export const config = {
-    matcher: visaRoutes
+    matcher: [
+        '/((?!_next/static|_next/image|images|img|assets|favicon.ico|robots.txt).*)',
+    ],
 };

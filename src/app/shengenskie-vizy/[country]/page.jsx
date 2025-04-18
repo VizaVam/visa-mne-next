@@ -136,13 +136,6 @@ export async function generateMetadata({ params }) {
     const countryData = countries.find(c => c.url === country);
 
     if (!countryData) {
-        return {
-            title: "Страница не найдена – компания VISA VAM",
-            description: "Описание недоступно – компания VISA VAM. 📞 +375 29 68 00 620",
-        };
-    }
-
-    if (!countryData) {
         notFound(); // 👈 Это гарантирует 404 статус
     }
 

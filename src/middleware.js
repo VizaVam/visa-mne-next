@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 
-// Динамические маршруты из массива countries
+// Основные визы
 const countries = [
     { url: 'viza-v-ssha' },
     { url: 'viza-v-velikobritaniyu' },
     { url: 'viza-v-kitaj' },
 ];
 
-// Шенгенские визы (дополнительные динамические маршруты)
+// Шенгенские визы
 const shengenVisas = [
     { url: 'viza-v-polshu' },
     { url: 'viza-v-sloveniu' },
@@ -35,8 +35,8 @@ const shengenVisas = [
     { url: 'rabochaya-viza-v-ispaniyu' },
 ];
 
-// Все допустимые маршруты
-const validRoutes = [
+// Собираем все проверяемые маршруты
+const visaRoutes = [
     ...countries.map(country => `/${country.url}`),
     ...shengenVisas.map(visa => `/shengenskie-vizy/${visa.url}`),
 ];
@@ -44,34 +44,16 @@ const validRoutes = [
 export function middleware(request) {
     const { pathname } = request.nextUrl;
 
-
-    // Разрешаем все запросы к изображениям и статическим файлам
-    if (
-        pathname.startsWith('/_next') ||
-        pathname.includes('.') || // Все файлы с расширениями (изображения, css, js)
-        pathname.startsWith('/api/')
-    ) {
+    // Проверяем только маршруты виз
+    if (visaRoutes.includes(pathname)) {
         return NextResponse.next();
     }
 
-    // Проверяем, существует ли маршрут
-    if (!validRoutes.includes(pathname)) {
-        // Возвращаем 404 для несуществующих маршрутов
-        return new Response('Страница не найдена', {
-            status: 404,
-            headers: {
-                'Cache-Control': 'public, max-age=3600', // Кэшировать 404 на 1 час
-            },
-        });
-    }
-
-    // Продолжаем обработку запроса, если маршрут существует
+    // Все остальные запросы пропускаем (включая изображения)
     return NextResponse.next();
 }
 
-// Указываем, к каким маршрутам применять middleware
+// Отключаем middleware для всех маршрутов, кроме визовых
 export const config = {
-    matcher: [
-        '/((?!_next/static|_next/image|images|img|assets|favicon.ico|robots.txt).*)',
-    ],
+    matcher: visaRoutes
 };

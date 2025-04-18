@@ -1,13 +1,5 @@
 import { NextResponse } from 'next/server';
 
-// Список статических маршрутов
-const staticRoutes = [
-    '/',
-    '/shengenskie-vizy',
-    '/kontakty',
-    '/o-nas',
-];
-
 // Динамические маршруты из массива countries
 const countries = [
     { url: 'viza-v-ssha' },
@@ -45,7 +37,6 @@ const shengenVisas = [
 
 // Все допустимые маршруты
 const validRoutes = [
-    ...staticRoutes,
     ...countries.map(country => `/${country.url}`),
     ...shengenVisas.map(visa => `/shengenskie-vizy/${visa.url}`),
 ];

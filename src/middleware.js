@@ -1,36 +1,66 @@
-// Файл: app/middleware.js
+// app/middleware.js
 import { NextResponse } from 'next/server';
 
-// Белый список статических страниц
-const STATIC_PAGES = new Set([
-    '/kontakty',
-    '/o-nas',
-    '/shengenskie-vizy'
+// Все валидные URL из app/[country] и app/shengenskie-vizy/[country]
+const VALID_ROUTES = new Set([
+    // Обычные визы (из app/[country])
+    'viza-v-ssha',
+    'viza-v-velikobritaniyu',
+    'viza-v-kitaj',
+
+    // Шенгенские визы (из app/shengenskie-vizy/[country])
+    'viza-v-polshu',
+    'viza-v-sloveniu',
+    'viza-v-germaniyu',
+    'viza-v-ispaniyu',
+    'viza-vo-francziyu',
+    'viza-v-litvu',
+    'viza-v-latviyu',
+    'viza-v-bolgariyu',
+    'viza-v-horvatiu',
+    'viza-v-niderlandy',
+    'viza-v-grecziyu',
+    'viza-v-vengriyu',
+    'viza-v-italiyu',
+    'viza-v-rumyniyu',
+    'viza-v-avstriyu',
+    'viza-v-chehiyu',
+    'rabochaya-viza-v-polshu',
+    'delovaya-viza-v-polshu',
+    'uchebnaya-viza-v-polshu',
+    'gostevaya-polskaya-viza',
+    'viza-v-polsy-po-karte-polyaka',
+    'rabochaya-viza-v-bolgariyu',
+    'rabochaya-viza-v-germaniyu',
+    'rabochaya-viza-v-ispaniyu'
 ]);
 
 export function middleware(request) {
     const pathname = request.nextUrl.pathname;
 
-    // Пропускаем всё, кроме статических страниц
-    if (!STATIC_PAGES.has(pathname)) {
-        return NextResponse.next();
+    // Проверяем маршруты /[country] и /shengenskie-vizy/[country]
+    const segments = pathname.split('/').filter(Boolean);
+
+    if (segments.length === 1) {
+        // Проверка для /[country]
+        const countryParam = segments[0];
+        if (!VALID_ROUTES.has(countryParam)) {
+            return NextResponse.rewrite(new URL('/404', request.url));
+        }
+    } else if (segments.length === 2 && segments[0] === 'shengenskie-vizy') {
+        // Проверка для /shengenskie-vizy/[country]
+        const countryParam = segments[1];
+        if (!VALID_ROUTES.has(countryParam)) {
+            return NextResponse.rewrite(new URL('/404', request.url));
+        }
     }
 
-    // Если запрос к статической странице - разрешаем доступ
     return NextResponse.next();
 }
 
 export const config = {
     matcher: [
-        /*
-         * Проверяем только явные статические пути:
-         * - Главная (/)
-         * - Контакты (/kontakty)
-         * - О нас (/o-nas)
-         * - Шенген (/shengenskie-vizy)
-         */
-        '/kontakty',
-        '/o-nas',
-        '/shengenskie-vizy'
+        '/:path', // /viza-v-ssha, /viza-v-polshu и т.д.
+        '/shengenskie-vizy/:path*' // /shengenskie-vizy/viza-v-polshu и т.д.
     ]
 };

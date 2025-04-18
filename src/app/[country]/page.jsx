@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
     const countryData = countries.find(c => c.url === countryParam);
 
     if (!countryData) {
-        notFound(); // 👈 Это гарантирует 404 статус
+        notFound();
     }
 
     return {
@@ -43,10 +43,6 @@ export async function generateMetadata({ params }) {
 export default function Page({ params }) {
     const { country } = params;
     const countryData = countries.find(item => item.url === country);
-
-    if (!countryData) {
-        notFound();
-    }
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },

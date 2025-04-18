@@ -1,65 +1,86 @@
 import { NextResponse } from 'next/server';
 
-// Динамические маршруты стран
-const countryRoutes = [
-    'viza-v-ssha',
-    'viza-v-velikobritaniyu',
-    'viza-v-kitaj'
-].map(path => `/${path}`);
+// Список статических маршрутов
+const staticRoutes = [
+    '/',
+    '/shengenskie-vizy',
+    '/kontakty',
+    '/o-nas',
+];
 
-// Шенгенские визы
-const schengenRoutes = [
-    'viza-v-polshu',
-    'viza-v-sloveniu',
-    'viza-v-germaniyu',
-    'viza-v-ispaniyu',
-    'viza-vo-francziyu',
-    'viza-v-litvu',
-    'viza-v-latviyu',
-    'viza-v-bolgariyu',
-    'viza-v-horvatiu',
-    'viza-v-niderlandy',
-    'viza-v-grecziyu',
-    'viza-v-vengriyu',
-    'viza-v-italiyu',
-    'viza-v-rumyniyu',
-    'viza-v-avstriyu',
-    'viza-v-chehiyu',
-    'rabochaya-viza-v-polshu',
-    'delovaya-viza-v-polshu',
-    'uchebnaya-viza-v-polshu',
-    'gostevaya-polskaya-viza',
-    'viza-v-polsy-po-karte-polyaka',
-    'rabochaya-viza-v-bolgariyu',
-    'rabochaya-viza-v-germaniyu',
-    'rabochaya-viza-v-ispaniyu',
-].map(path => `/shengenskie-vizy/${path}`);
+// Динамические маршруты из массива countries
+const countries = [
+    { url: 'viza-v-ssha' },
+    { url: 'viza-v-velikobritaniyu' },
+    { url: 'viza-v-kitaj' },
+];
 
-// Объединяем все динамические маршруты для проверки
-const dynamicRoutesToValidate = [...countryRoutes, ...schengenRoutes];
+// Шенгенские визы (дополнительные динамические маршруты)
+const shengenVisas = [
+    { url: 'viza-v-polshu' },
+    { url: 'viza-v-sloveniu' },
+    { url: 'viza-v-germaniyu' },
+    { url: 'viza-v-ispaniyu' },
+    { url: 'viza-vo-francziyu' },
+    { url: 'viza-v-litvu' },
+    { url: 'viza-v-latviyu' },
+    { url: 'viza-v-bolgariyu' },
+    { url: 'viza-v-horvatiu' },
+    { url: 'viza-v-niderlandy' },
+    { url: 'viza-v-grecziyu' },
+    { url: 'viza-v-vengriyu' },
+    { url: 'viza-v-italiyu' },
+    { url: 'viza-v-rumyniyu' },
+    { url: 'viza-v-avstriyu' },
+    { url: 'viza-v-chehiyu' },
+    { url: 'rabochaya-viza-v-polshu' },
+    { url: 'delovaya-viza-v-polshu' },
+    { url: 'uchebnaya-viza-v-polshu' },
+    { url: 'gostevaya-polskaya-viza' },
+    { url: 'viza-v-polsy-po-karte-polyaka' },
+    { url: 'rabochaya-viza-v-bolgariyu' },
+    { url: 'rabochaya-viza-v-germaniyu' },
+    { url: 'rabochaya-viza-v-ispaniyu' },
+];
+
+// Все допустимые маршруты
+const validRoutes = [
+    ...staticRoutes,
+    ...countries.map(country => `/${country.url}`),
+    ...shengenVisas.map(visa => `/shengenskie-vizy/${visa.url}`),
+];
 
 export function middleware(request) {
     const { pathname } = request.nextUrl;
 
-    // 1. Пропускаем ВСЕ запросы к файлам (изображения, CSS, JS и т.д.)
-    if (pathname.includes('.') || pathname.startsWith('/_next/')) {
+
+    // Разрешаем все запросы к изображениям и статическим файлам
+    if (
+        pathname.startsWith('/_next') ||
+        pathname.includes('.') || // Все файлы с расширениями (изображения, css, js)
+        pathname.startsWith('/api/')
+    ) {
         return NextResponse.next();
     }
 
-    // 2. Пропускаем API маршруты
-    if (pathname.startsWith('/api/')) {
-        return NextResponse.next();
+    // Проверяем, существует ли маршрут
+    if (!validRoutes.includes(pathname)) {
+        // Возвращаем 404 для несуществующих маршрутов
+        return new Response('Страница не найдена', {
+            status: 404,
+            headers: {
+                'Cache-Control': 'public, max-age=3600', // Кэшировать 404 на 1 час
+            },
+        });
     }
 
-    // 3. Проверяем только динамические маршруты стран и шенгенские визы
-    if (dynamicRoutesToValidate.includes(pathname)) {
-        return NextResponse.next();
-    }
-
-    // Для всех остальных маршрутов (не динамических) пропускаем без проверки
+    // Продолжаем обработку запроса, если маршрут существует
     return NextResponse.next();
 }
 
+// Указываем, к каким маршрутам применять middleware
 export const config = {
-    matcher: dynamicRoutesToValidate
+    matcher: [
+        '/((?!_next/static|_next/image|images|img|assets|favicon.ico|robots.txt).*)',
+    ],
 };

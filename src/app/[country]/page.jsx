@@ -44,6 +44,10 @@ export default function Page({ params }) {
     const { country } = params;
     const countryData = countries.find(item => item.url === country);
 
+    if (!countryData) {
+        notFound();
+    }
+
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
         { name: countryData.metaTitle, url: `https://visavampro.by/${country}` }

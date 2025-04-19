@@ -58,20 +58,20 @@ export function middleware(request) {
         if (
             pathname.startsWith('/_next') ||
             pathname.includes('.') ||
-            pathname.startsWith('/api/')
+            pathname.startsWith('/api/') ||
+            pathname === '/not-found'
         ) {
             return NextResponse.next();
         }
 
-        if (!validRoutes.includes(pathname)) {
-            // Возвращаем 404 для несуществующих маршрутов
-            return new Response('Страница не найдена', {
-                status: 404,
-                headers: {
-                    'Cache-Control': 'public, max-age=3600', // Кэшировать 404 на 1 час
-                },
-            });
-            return NextResponse.rewrite(new URL('/not-found', request.url));
+        // Нормализация пути (удаление конечных слешей)
+        const normalizedPathname = pathname.replace(/\/+$/, '');
+
+        // Если маршрут невалидный - редирект на /not-found
+        if (!validRoutes.includes(normalizedPathname)) {
+            console.error(`404 Error: Invalid route - ${pathname}`);
+            // Instead of redirecting, return a 404 response directly
+            return new NextResponse('Page Not Found', { status: 404 });
         }
 
         // Продолжаем обработку запроса, если маршрут существует

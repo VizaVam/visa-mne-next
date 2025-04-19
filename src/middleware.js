@@ -63,15 +63,9 @@ export function middleware(request) {
         return NextResponse.next();
     }
 
-    // Проверяем, существует ли маршрут
+    // Если маршрут невалидный - редирект на /not-found
     if (!validRoutes.includes(pathname)) {
-        // Возвращаем 404 для несуществующих маршрутов
-        return new Response('Страница не найдена', {
-            status: 404,
-            headers: {
-                'Cache-Control': 'public, max-age=3600', // Кэшировать 404 на 1 час
-            },
-        });
+        return NextResponse.rewrite(new URL('/not-found', request.url));
     }
 
     // Продолжаем обработку запроса, если маршрут существует

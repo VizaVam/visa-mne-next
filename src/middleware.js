@@ -67,14 +67,15 @@ export function middleware(request) {
     // Для невалидных маршрутов
     if (!validRoutes.includes(pathname)) {
         const notFoundUrl = new URL('/not-found', request.url);
+        notFoundUrl.searchParams.set('from', pathname); // Добавляем оригинальный путь
 
-        // Создаем респонс с rewrite И изменением статуса
+        // Вариант 1: Редирект с 404 статусом (меняет URL в браузере)
+        // return NextResponse.redirect(notFoundUrl, 404);
+
+        // Вариант 2: Rewrite с 404 статусом (сохраняет оригинальный URL)
         const response = NextResponse.rewrite(notFoundUrl);
         response.status = 404;
-
-        // Добавляем заголовки для кэширования
-        response.headers.set('Cache-Control', 'public, max-age=3600');
-
+        response.headers.set('Cache-Control', 'no-store');
         return response;
     }
 

@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-// Список статических маршрутов
 const staticRoutes = [
     '/',
     '/shengenskie-vizy',
@@ -8,14 +7,12 @@ const staticRoutes = [
     '/o-nas',
 ];
 
-// Динамические маршруты из массива countries
 const countries = [
     { url: 'viza-v-ssha' },
     { url: 'viza-v-velikobritaniyu' },
     { url: 'viza-v-kitaj' },
 ];
 
-// Шенгенские визы (дополнительные динамические маршруты)
 const shengenVisas = [
     { url: 'viza-v-polshu' },
     { url: 'viza-v-sloveniu' },
@@ -43,40 +40,47 @@ const shengenVisas = [
     { url: 'rabochaya-viza-v-ispaniyu' },
 ];
 
-// Все допустимые маршруты
 const validRoutes = [
     ...staticRoutes,
     ...countries.map(country => `/${country.url}`),
     ...shengenVisas.map(visa => `/shengenskie-vizy/${visa.url}`),
 ];
 
+const uniqueRoutes = [...new Set(validRoutes)];
+if (uniqueRoutes.length !== validRoutes.length) {
+    console.warn('Обнаружены дубликаты маршрутов:', validRoutes);
+}
+
 export function middleware(request) {
-    const { pathname } = request.nextUrl;
+    try {
+        const { pathname } = request.nextUrl;
 
+        if (
+            pathname.startsWith('/_next') ||
+            pathname.includes('.') ||
+            pathname.startsWith('/api/') ||
+            pathname === '/not-found'
+        ) {
+            return NextResponse.next();
+        }
 
-    // Разрешаем все запросы к изображениям и статическим файлам
-    if (
-        pathname.startsWith('/_next') ||
-        pathname.includes('.') || // Все файлы с расширениями (изображения, css, js)
-        pathname.startsWith('/api/') ||
-        pathname === '/not-found'
-    ) {
+        // Нормализация пути (удаление конечных слешей)
+        const normalizedPathname = pathname.replace(/\/+$/, '');
+
+        // Если маршрут невалидный - редирект на /not-found
+        if (!validRoutes.includes(normalizedPathname)) {
+            console.error(`404 Ошибка: Неверный маршрут - ${pathname}`);
+            const notFoundUrl = new URL('/not-found', request.url);
+            notFoundUrl.searchParams.set('from', pathname);
+            return NextResponse.redirect(notFoundUrl, 404);
+        }
+
+        // Продолжаем обработку запроса, если маршрут существует
         return NextResponse.next();
+    } catch (error) {
+        console.error(`Middleware error: ${error.message}`);
+        return new NextResponse('Internal Server Error', { status: 500 });
     }
-
-    // Если маршрут невалидный - редирект на /not-found
-    if (!validRoutes.includes(pathname)) {
-        const notFoundUrl = new URL('/not-found', request.url);
-        notFoundUrl.searchParams.set('from', pathname);
-
-        const response = NextResponse.rewrite(notFoundUrl);
-        response.status = 404;
-        response.headers.set('Cache-Control', 'no-store');
-        return response;
-    }
-
-    // Продолжаем обработку запроса, если маршрут существует
-    return NextResponse.next();
 }
 
 // Указываем, к каким маршрутам применять middleware

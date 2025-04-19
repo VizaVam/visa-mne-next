@@ -54,6 +54,7 @@ if (uniqueRoutes.length !== validRoutes.length) {
 export function middleware(request) {
     try {
         const { pathname } = request.nextUrl;
+        console.log('Requested pathname:', pathname); // Log the requested pathname
 
         if (
             pathname.startsWith('/_next') ||
@@ -61,20 +62,20 @@ export function middleware(request) {
             pathname.startsWith('/api/') ||
             pathname === '/not-found'
         ) {
+            console.log('Skipping middleware for:', pathname);
             return NextResponse.next();
         }
 
-        // Нормализация пути (удаление конечных слешей)
         const normalizedPathname = pathname.replace(/\/+$/, '');
+        console.log('Normalized pathname:', normalizedPathname); // Log the normalized pathname
+        console.log('Valid routes:', validRoutes); // Log the valid routes array
 
-        // Если маршрут невалидный - редирект на /not-found
         if (!validRoutes.includes(normalizedPathname)) {
             console.error(`404 Error: Invalid route - ${pathname}`);
-            // Instead of redirecting, return a 404 response directly
             return new NextResponse('Page Not Found', { status: 404 });
         }
 
-        // Продолжаем обработку запроса, если маршрут существует
+        console.log('Route is valid, proceeding:', normalizedPathname);
         return NextResponse.next();
     } catch (error) {
         console.error(`Middleware error: ${error.message}`);

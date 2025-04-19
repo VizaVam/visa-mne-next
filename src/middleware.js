@@ -69,11 +69,8 @@ export function middleware(request) {
         return NextResponse.next();
     }
 
-    console.log(`Invalid route: ${normalizedPathname}, rewriting to /not-found`);
-    // Используем rewrite вместо redirect
-    const response = NextResponse.rewrite(new URL('/not-found', request.url));
-    response.status = 404; // Устанавливаем статус 404
-    return response;
+    console.log(`Invalid route: ${normalizedPathname}, redirecting to /not-found`);
+    return NextResponse.redirect(new URL('/not-found', request.url));
 }
 
 export const config = {

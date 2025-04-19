@@ -3,10 +3,6 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from "react";
 
-import { notFoundMetadata } from './layout';
-
-export const metadata = notFoundMetadata;
-
 export default function NotFound() {
     const params = useSearchParams();
     const from = params.get('from');

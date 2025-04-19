@@ -58,8 +58,7 @@ export function middleware(request) {
     if (
         pathname.startsWith('/_next') ||
         pathname.includes('.') || // Все файлы с расширениями (изображения, css, js)
-        pathname.startsWith('/api/') ||
-        pathname === '/not-found'
+        pathname.startsWith('/api/')
     ) {
         return NextResponse.next();
     }
@@ -67,15 +66,14 @@ export function middleware(request) {
     // Для невалидных маршрутов
     if (!validRoutes.includes(pathname)) {
         const notFoundUrl = new URL('/not-found', request.url);
-        notFoundUrl.searchParams.set('from', pathname); // Добавляем оригинальный путь
 
-        // Вариант 1: Редирект с 404 статусом (меняет URL в браузере)
-        // return NextResponse.redirect(notFoundUrl, 404);
-
-        // Вариант 2: Rewrite с 404 статусом (сохраняет оригинальный URL)
+        // Создаем респонс с rewrite И изменением статуса
         const response = NextResponse.rewrite(notFoundUrl);
         response.status = 404;
-        response.headers.set('Cache-Control', 'no-store');
+
+        // Добавляем заголовки для кэширования
+        response.headers.set('Cache-Control', 'public, max-age=3600');
+
         return response;
     }
 

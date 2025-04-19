@@ -1,11 +1,11 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useEffect } from "react";
 
-export const metadata = {
-    title: "Страница не найдена – компания VISA VAM",
-    description: "Запрошенная страница не существует...",
-};
+import { notFoundMetadata } from './layout';
+
+export const metadata = notFoundMetadata;
 
 export default function NotFound() {
     const params = useSearchParams();
@@ -14,8 +14,6 @@ export default function NotFound() {
     // Логирование 404 ошибок (опционально)
     useEffect(() => {
         console.error(`404 Error: Page not found - ${from || 'unknown path'}`);
-        // Здесь можно добавить отправку в аналитику:
-        // analytics.track('404_error', { path: from });
     }, [from]);
 
     return (

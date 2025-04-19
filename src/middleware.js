@@ -46,48 +46,28 @@ const validRoutes = [
     ...shengenVisas.map(visa => `/shengenskie-vizy/${visa.url}`),
 ];
 
-const uniqueRoutes = [...new Set(validRoutes)];
-if (uniqueRoutes.length !== validRoutes.length) {
-    console.warn('Обнаружены дубликаты маршрутов:', validRoutes);
-}
-
 export function middleware(request) {
-    try {
-        const { pathname } = request.nextUrl;
+    const { pathname } = request.nextUrl;
 
-        if (
-            pathname.startsWith('/_next') ||
-            pathname.includes('.') ||
-            pathname.startsWith('/api/') ||
-            pathname === '/not-found'
-        ) {
-            return NextResponse.next();
-        }
-
-        // Нормализация пути (удаление конечных слешей)
-        const normalizedPathname = pathname.replace(/\/+$/, '');
-
-        // Если маршрут невалидный - редирект на /not-found
-        if (!validRoutes.includes(normalizedPathname)) {
-            console.error(`404 Error: Invalid route - ${pathname}`);
-            const notFoundUrl = new URL('/not-found', request.url);
-            notFoundUrl.searchParams.set('from', pathname);
-
-            // Модифицируем ответ, чтобы установить статус 404
-            const response = NextResponse.redirect(notFoundUrl);
-            response.status = 404; // Устанавливаем статус 404
-            return response;
-        }
-
-        // Продолжаем обработку запроса, если маршрут существует
+    if (
+        pathname.startsWith('/_next') ||
+        pathname.includes('.') ||
+        pathname.startsWith('/api/') ||
+        pathname === '/not-found'
+    ) {
         return NextResponse.next();
-    } catch (error) {
-        console.error(`Middleware error: ${error.message}`);
-        return new NextResponse('Internal Server Error', { status: 500 });
     }
+
+    const normalizedPathname = pathname === '' ? '/' : pathname.replace(/\/+$/, '');
+
+    if (!validRoutes.includes(normalizedPathname)) {
+        console.log(`Invalid route: ${normalizedPathname}, redirecting to /not-found`);
+        return NextResponse.redirect(new URL('/not-found', request.url));
+    }
+
+    return NextResponse.next();
 }
 
-// Указываем, к каким маршрутам применять middleware
 export const config = {
     matcher: [
         '/((?!_next/static|_next/image|images|img|assets|favicon.ico|robots.txt).*)',

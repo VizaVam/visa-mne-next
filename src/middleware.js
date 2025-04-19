@@ -58,22 +58,20 @@ export function middleware(request) {
     if (
         pathname.startsWith('/_next') ||
         pathname.includes('.') || // Все файлы с расширениями (изображения, css, js)
-        pathname.startsWith('/api/')
+        pathname.startsWith('/api/') ||
+        pathname === '/not-found'
     ) {
         return NextResponse.next();
     }
 
-    // Для невалидных маршрутов
+    // Если маршрут невалидный - редирект на /not-found
     if (!validRoutes.includes(pathname)) {
         const notFoundUrl = new URL('/not-found', request.url);
+        notFoundUrl.searchParams.set('from', pathname);
 
-        // Создаем респонс с rewrite И изменением статуса
         const response = NextResponse.rewrite(notFoundUrl);
         response.status = 404;
-
-        // Добавляем заголовки для кэширования
-        response.headers.set('Cache-Control', 'public, max-age=3600');
-
+        response.headers.set('Cache-Control', 'no-store');
         return response;
     }
 

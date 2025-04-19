@@ -1,17 +1,4 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
-import { useEffect } from "react";
-
 export default function NotFound() {
-    const params = useSearchParams();
-    const from = params.get('from');
-
-    // Логирование 404 ошибок (опционально)
-    useEffect(() => {
-        console.error(`404 Error: Page not found - ${from || 'unknown path'}`);
-    }, [from]);
-
     return (
         <div className={"h-dvh flex flex-col items-center justify-center px-[7%]"}>
             <h1 className={"lg:text-[180px] md:text-[160px] sm:text-[140px] mdd:text-[130px] font-bold"}>404</h1>

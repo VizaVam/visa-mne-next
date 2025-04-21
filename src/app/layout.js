@@ -8,6 +8,7 @@ import Footer from '../components/footer';
 import Modal from "@/components/modal";
 import { ModalProvider } from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import {Suspense} from "react";
 
 const interSans = Inter({
     variable: '--font-inter-sans',
@@ -60,7 +61,9 @@ export default function RootLayout({ children }) {
         <ModalProvider>
             <Header />
             <Breadcrumbs />
-            <main>{children}</main>
+            <Suspense fallback={null}>
+                <main>{children}</main>
+            </Suspense>
             <Footer />
             <Modal />
         </ModalProvider>

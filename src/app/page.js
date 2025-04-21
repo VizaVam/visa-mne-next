@@ -10,6 +10,7 @@ import Steps from "@/components/steps";
 import Image from "next/image";
 import { useModal } from "@/components/modalcontext";
 import { motion } from "framer-motion";
+import Announcement from "@/components/announcement";
 
 export default function HomePage({onOpenModal}) {
     const { openModal } = useModal();
@@ -68,6 +69,11 @@ export default function HomePage({onOpenModal}) {
                         </button>
                     </div>
                 </div>
+
+                <div className={"md:hidden"}>
+                    <Announcement />
+                </div>
+
                 {/* Список преимуществ */}
                 <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 rounded-md pl-[7%]">
                     <li className="flex items-center text-lg">
@@ -104,6 +110,9 @@ export default function HomePage({onOpenModal}) {
                 </ul>
             </section>
             <Slider/>
+            <div className={"mdd:hidden"}>
+                <Announcement/>
+            </div>
             <div>
                 <h2 className="px-[7%] mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">Оформление документов для
                     подачи на визы</h2>

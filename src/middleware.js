@@ -48,7 +48,7 @@ const validRoutes = [
 
 export function middleware(request) {
     const { pathname } = request.nextUrl;
-    console.log(`Original pathname: ${pathname}`);
+    // console.log(`Original pathname: ${pathname}`);
 
     if (
         pathname.startsWith('/_next') ||
@@ -56,21 +56,21 @@ export function middleware(request) {
         pathname.startsWith('/api/') ||
         pathname === '/not-found'
     ) {
-        console.log(`Skipping middleware for: ${pathname}`);
+        // console.log(`Skipping middleware for: ${pathname}`);
         return NextResponse.next();
     }
 
     const normalizedPathname = pathname === '/' || pathname === '' ? '/' : pathname.replace(/\/+$/, '');
-    console.log(`Normalized pathname: ${normalizedPathname}`);
+    // console.log(`Normalized pathname: ${normalizedPathname}`);
 
     // Дополнительная проверка для корневого маршрута
     if (normalizedPathname === '/' || validRoutes.includes(normalizedPathname)) {
-        console.log(`Route is valid: ${normalizedPathname}`);
+        // console.log(`Route is valid: ${normalizedPathname}`);
         return NextResponse.next();
     }
 
-    console.log(`Invalid route: ${normalizedPathname}, redirecting to /not-found`);
-    return NextResponse.redirect(new URL('/not-found', request.url));
+    // console.log(`Invalid route: ${normalizedPathname}, redirecting to /not-found`);
+    return NextResponse.rewrite(new URL('/not-found', request.url));
 }
 
 export const config = {

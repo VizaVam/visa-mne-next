@@ -8,7 +8,7 @@ const Announcement = () => {
             const now = new Date();
 
             // First announcement period (April 25-29)
-            const firstStart = new Date("2025-04-21T00:00:00+05:00");
+            const firstStart = new Date("2025-04-25T00:00:00+05:00");
             const firstEnd = new Date("2025-04-29T23:59:59+05:00");
 
             // Second announcement period (April 30-May 4)

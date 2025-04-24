@@ -3,6 +3,7 @@
 import {useEffect, useState} from "react";
 import { countries } from "@/data/countries";
 import Link from "next/link";
+import Image from "next/image";
 
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -36,17 +37,17 @@ const Services = () => {
                             <Link href={href} key={index}>
                                 <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer
                                     transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-                                    <img src={country.img} alt={country.name} className="w-full object-cover"/>
+                                    <Image src={country.img} alt={country.name} width={308} height={288} className="w-full object-cover"/>
                                     <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
                                         <div className="flex flex-row justify-between items-center">
                                             <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
-                                                <img src={country.svg} alt={country.name} className="h-6"/>
+                                                <Image src={country.svg} alt={country.name} width={24} height={24} className="h-6"/>
                                                 <p className="font-medium mdd:text-[16px] dr:text-[14px] sm:text-lg md:text-xl lg:text-xl">
                                                     {country.name}
                                                 </p>
                                             </div>
-                                            <img className="lg:w-6 md:w-6 sm:w-4 mdd:hidden" src="/Line 5.png" alt=""/>
-                                            <img className={"mdd:w-3 dr:w-3 sm:hidden"} src={"/line123.png"} alt={""}/>
+                                            <Image className="lg:w-6 md:w-6 sm:w-4 mdd:hidden" src="/Line 5.png" alt="" width={24} height={24}/>
+                                            <Image className={"mdd:w-3 dr:w-3 sm:hidden"} src={"/line123.png"} alt={""} width={24} height={24}/>
                                         </div>
                                     </div>
                                 </div>

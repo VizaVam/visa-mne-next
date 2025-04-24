@@ -19,7 +19,7 @@ const Docs = () => {
                         {title: "Страховка"}
                     ].map((doc, index) => (
                         <div key={index} className="flex gap-3 items-center mb-3">
-                            <Image width={1000} height={800} className="w-6 h-6" src="/docs-check.png" alt=""/>
+                            <Image width={24} height={24} className="w-6 h-6" src="/docs-check.png" alt=""/>
                             <div>
                                 <p className="lg:text-xl">{doc.title}</p>
                                 {doc.desc && <p className="text-[#CCCCCC] font-normal">{doc.desc}</p>}

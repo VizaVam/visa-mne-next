@@ -35,12 +35,12 @@ export default function HomePage({onOpenModal}) {
                 {/* Правая часть */}
                 <div className="w-full lg:flex items-center -mt-[20%] lg:mt-0 relative z-5">
                     {/* Изображение */}
-                    <Image width={2000} height={1000}
+                    <Image width={840} height={802}
                            src="/banner-hero.svg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
                     />
-                    <Image width={1000} height={1000}
+                    <Image width={840} height={802}
                         src={"/main-m.svg"} alt={"Оформление виз с VisaVam.by – Легко и Доступно"} className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden" />
 
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
@@ -77,7 +77,7 @@ export default function HomePage({onOpenModal}) {
                 {/* Список преимуществ */}
                 <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 rounded-md pl-[7%]">
                     <li className="flex items-center text-lg">
-                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={24} height={24} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <div>
                             <p className="font-[500] text-[20px] mdd:leading-none">
                                 Более 10 лет
@@ -86,7 +86,7 @@ export default function HomePage({onOpenModal}) {
                         </div>
                     </li>
                     <li className="flex items-center text-lg">
-                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={24} height={24} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <div>
                             <p className="font-[500] text-[20px]  mdd:leading-none">
                                 20 000+
@@ -95,7 +95,7 @@ export default function HomePage({onOpenModal}) {
                         </div>
                     </li>
                     <li className="flex items-center text-lg">
-                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={24} height={24} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         <div>
                             <p className="font-[500] text-[20px] mdd:leading-none">
                                 10 000+
@@ -104,7 +104,7 @@ export default function HomePage({onOpenModal}) {
                         </div>
                     </li>
                     <li className="flex items-center text-lg font-[500] text-[20px]">
-                        <Image width={1000} height={800} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                        <Image width={24} height={24} src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                         Персональный подход
                     </li>
                 </ul>

@@ -77,9 +77,11 @@ const Slider = () => {
                                 isLgScreen ? "w-[100%]" : "w-[85%]"
                             } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-36 flex-shrink-0 relative mr-2 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
                         >
-                            <img
+                            <Image
                                 src={slide.image}
                                 alt={`Slide ${slide.id}`}
+                                width={800}
+                                height={600}
                                 loading="lazy"
                                 className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-36 object-cover rounded-[4px]`}
                                 style={{

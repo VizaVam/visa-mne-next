@@ -51,9 +51,9 @@ export function middleware(request) {
     // console.log(`Original pathname: ${pathname}`);
     const response = NextResponse.next();
 
-    // 1. Добавляем заголовки сжатия для JS/CSS
-    if (pathname.match(/\.(js|css)$/)) {
-        response.headers.set('Vary', 'Accept-Encoding');
+    if (pathname.match(/\.js$/)) {
+        const newUrl = new URL(`/api/compress?url=${request.nextUrl.href}`, request.url);
+        return NextResponse.rewrite(newUrl);
     }
 
     if (

@@ -1,3 +1,8 @@
+export const metadata = {
+    title: "Страница не найдена – компания VISA VAM",
+    description: "Запрошенная страница не существует."
+};
+
 export default function NotFound() {
     return (
         <div className={"h-dvh flex flex-col items-center justify-center px-[7%]"}>

@@ -70,7 +70,11 @@ export function middleware(request) {
     }
 
     // console.log(`Invalid route: ${normalizedPathname}, redirecting to /not-found`);
-    return NextResponse.rewrite(new URL('/not-found', request.url));
+    return NextResponse.rewrite(new URL('/not-found', request.url), {
+        headers: {
+            'x-not-found': 'true', // Пример кастомного заголовка
+        },
+    });
 }
 
 export const config = {

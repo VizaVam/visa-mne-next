@@ -135,6 +135,10 @@ export async function generateMetadata({ params }) {
     const { country } = params;
     const countryData = countries.find(c => c.url === country);
 
+    if (!countryData || !countryData.metaTitle) {
+        notFound();
+    }
+
     return {
         title: `${countryData.metaTitle} – компания VISA VAM`,
         description: `${countryData.metaTitle} – компания VISA VAM. 📞 +375 29 68 00 620`,

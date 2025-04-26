@@ -25,11 +25,6 @@ export const metadata = {
     description: "Компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70"
 };
 
-export const notFoundMetadata = {
-    title: "Страница не найдена – компания VISA VAM",
-    description: "Запрошенная страница не существует..."
-};
-
 const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",

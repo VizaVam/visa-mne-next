@@ -140,17 +140,17 @@ export default function OnasPage({ breadcrumbs }) {
             {/* Banner Section */}
             <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">
                 <Image
-                    src="/onasmobile.JPG"
+                    src="/onaspc.JPG"
                     alt="О компании VisaVam"
-                    width={1200}
-                    height={400}
+                    width={1600}
+                    height={1000}
                     className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                 />
                 <Image
                     src="/onasmobile.JPG"
                     alt="О компании VisaVam"
-                    width={1200}
-                    height={300}
+                    width={600}
+                    height={400}
                     className="w-full object-cover px-0 lg:px-[7%] md:px-[7%] sm:hidden"
                 />
             </div>

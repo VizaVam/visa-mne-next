@@ -1,373 +1,412 @@
-"use client"
+'use client'
 
-import Contacts from "@/components/contacts";
+import { useMemo } from "react";
 import Link from "next/link";
-import {notFound, useParams} from 'next/navigation';
-import {otherCountries} from '@/components/serviceson';
-import {countries} from '@/data/countries';
-import Docs from "@/components/docs";
-import {useState} from "react";
 import Image from "next/image";
-import {useModal} from "@/components/modalcontext";
-import {usePathname} from "next/navigation";
-import Steps1 from "@/components/steps1";
+import { notFound, useParams, usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
+import { countries } from '@/data/countries';
+import { otherCountries } from "@/components/serviceson";
+import { useModal } from "@/components/modalcontext";
+import Contacts from "@/components/contacts";
+import Docs from "@/components/docs";
+import Steps1 from "@/components/steps1";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
-export default function OtherCountryPage({breadcrumbs}) {
-    const {country} = useParams();
-    const {openModal} = useModal();
-    const selectedCountry = otherCountries.find(c => c.url === country);
-    const countryOrder = {"viza-v-grecziyu": 1, "viza-v-sloveniu": 2, "viza-v-germaniyu": 3, "viza-v-ispaniyu": 4};
+// Компонент для кнопки с эффектом ripple
+const RippleButton = ({ onClick, children }) => (
+    <button
+        onClick={onClick}
+        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+    >
+        {[0, 1, 2].map((i) => (
+            <motion.span
+                key={i}
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ scale: 0, opacity: 1.5 }}
+                animate={{ scale: 4, opacity: 0 }}
+                transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                    repeatDelay: 0.5,
+                    delay: i * 0.4,
+                }}
+            >
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full" />
+            </motion.span>
+        ))}
+        {children}
+    </button>
+);
+
+// Компонент для хлебных крошек
+const CountryBreadcrumbs = ({ country, pathname, excludedCountries1 }) => (
+    <nav className="mb-4 flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+        <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+            Главная
+        </Link>
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2" />
+        <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
+      {excludedCountries1.includes(country.url)
+          ? country.n
+          : country.n.includes("в ") || country.n.includes("во ")
+              ? country.n
+              : `Виза ${country.n === "Францию" ? "во" : "в"} ${country.n}`}
+    </span>
+    </nav>
+);
+
+// Компонент для отображения вариантов
+const VariantsList = ({ variants }) => (
+    <ul className="text-black text-[14px] flex flex-col gap-2">
+        {variants.map((variant, index) => (
+            <li key={index} className="flex gap-2">
+                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" />
+                {variant}
+            </li>
+        ))}
+    </ul>
+);
+
+// Компонент для кнопок типов виз
+const VisaTypeButtons = ({ types, links }) => (
+    <>
+        {types.map((text, index) => (
+            <div key={index} className="flex flex-col items-start">
+                <Link
+                    href={`/shengenskie-vizy/${links[index]}`}
+                    className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                >
+                    {text}
+                </Link>
+            </div>
+        ))}
+    </>
+);
+
+// Функция для форматирования текста с жирным шрифтом
+const parseText = (text) => {
+    if (typeof text !== "string") return text || "";
+    const parts = text.split(/\*\*(.*?)\*\*/g);
+    return parts.map((part, index) =>
+        index % 2 === 1 ? <b key={index}>{part}</b> : part
+    );
+};
+
+// Компонент для отображения текстового блока
+const TextBlock = ({ text, parseText, className = "" }) => (
+    text && <p className={`text-black text-[14px] ${className}`}>
+        {parseText(text)}
+    </p>
+);
+
+// Компонент для отображения заголовка
+const SectionTitle = ({ title, className = "" }) => (
+    title && <h3 className={`text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
+        {title}
+    </h3>
+);
+
+// Компонент для отображения цены
+const PriceDisplay = ({ price1, priceType }) => (
+    <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+        Наша услуга: <span className="text-orange-500">{parseText(price1)}</span> бел. руб. {parseText(priceType)}
+    </p>
+);
+
+// Компонент для отображения альтернативного ценообразования
+const AlternativePricing = ({ priceTitle, priceVariants }) => (
+    <div className="flex flex-col gap-6 lg:w-[80%]">
+        {priceTitle && (
+            <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">
+                {priceTitle}
+            </p>
+        )}
+        {priceVariants?.length > 0 && (
+            <VariantsList variants={priceVariants} />
+        )}
+    </div>
+);
+
+// Компонент для отображения карточки страны
+const CountryCard = ({ country }) => (
+    <Link href={`/shengenskie-vizy/${country.url}`}>
+        <div className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+            <Image
+                src={country.img}
+                alt={country.name}
+                width={300}
+                height={200}
+                className="w-full object-cover"
+            />
+            <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
+                <div className="flex flex-row justify-between items-center">
+                    <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
+                        <Image src={country.svg} alt={country.name} width={24} height={24} />
+                        <p className="font-medium mdd:text-[14px] sm:text-lg md:text-xl lg:text-xl">
+                            {country.name}
+                        </p>
+                    </div>
+                    <Image
+                        src="/Line 5.png"
+                        alt=""
+                        width={24}
+                        height={24}
+                        className="lg:w-6 md:w-6 sm:w-6 mdd:hidden"
+                    />
+                </div>
+            </div>
+        </div>
+    </Link>
+);
+
+export default function OtherCountryPage({ breadcrumbs }) {
+    const { country: countryUrl } = useParams();
+    const { openModal } = useModal();
     const pathname = usePathname();
-    const excludedCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
-    const excludedCountries1 = ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
-    const excludedLinkCountries = ["viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj"];
-    const isExcluded = excludedLinkCountries.includes(selectedCountry.url);
+    // Константы для исключенных стран
+    const excludedCountries1 = useMemo(() => [
+        "rabochaya-viza-v-polshu",
+        "delovaya-viza-v-polshu",
+        "uchebnaya-viza-v-polshu",
+        "gostevaya-polskaya-viza",
+        "viza-v-polsy-po-karte-polyaka"
+    ], []);
 
-    // Найти текущую страну в списке
-    const currentCountry = otherCountries.find(c => c.url === country);
+    // Находим данные страны
+    const selectedCountry = useMemo(() =>
+            otherCountries.find(c => c.url === countryUrl),
+        [countryUrl]
+    );
 
-    // Определяем, нужно ли ограничивать список стран
-    const isLimited = currentCountry?.good === 0;
-    const [showAll, setShowAll] = useState(!isLimited); // Если ограничение, скрываем
-
-    // Определяем список отображаемых стран
-    const displayedCountries = showAll ? countries : countries.slice(0, 4);
-
-    const sortedCountries = [...displayedCountries].sort((a, b) => {
-        const order = ["viza-v-grecziyu", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu"];
-        return order.indexOf(a.url.toLowerCase()) - order.indexOf(b.url.toLowerCase());
-    });
+    // Сортируем страны для рекомендаций
+    const recommendedCountries = useMemo(() =>
+            ["viza-v-grecziyu", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu"]
+                .map(url => countries.find(c => c.url === url))
+                .filter(Boolean),
+        []
+    );
 
     if (!selectedCountry) {
         return notFound();
     }
 
-    const parseText = (text) => {
-        if (typeof text !== "string") return text || ""; // Если не строка, вернуть пустую строку
-        const parts = text.split(/\*\*(.*?)\*\*/g); // Разделяем текст по **жирным фрагментам**
-        return parts.map((part, index) =>
-            index % 2 === 1 ? <b key={index}>{part}</b> : part
-        );
-    };
+    // Определяем, нужно ли показывать расширенный контент
+    const showExtendedContent = selectedCountry.good !== 0;
 
     return (
-        <div className={"flex flex-col items-center"}>
+        <div className="flex flex-col items-center">
             {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
-            <div className={"w-full relative flex flex-col lg:flex-row sm:flex-col justify-between"}>
-                <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
-                    <nav className="mb-4 flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
-                        <Link href="/"
-                              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Главная</Link>
-                        <span><img className="w-2" src="/nav-icon.png" alt=">"/></span>
-                        <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
-                            {excludedCountries1.includes(selectedCountry.url)
-                                ? selectedCountry.n
-                                : selectedCountry.n.includes("в ") || selectedCountry.n.includes("во ")
-                                    ? selectedCountry.n
-                                    : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
-                        </span>
-                    </nav>
+
+            {/* Шапка страницы */}
+            <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
+                <div className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
+                    <CountryBreadcrumbs
+                        country={selectedCountry}
+                        pathname={pathname}
+                        excludedCountries1={excludedCountries1}
+                    />
                     <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
                         {excludedCountries1.includes(selectedCountry.url)
-                            ? ""  // Убираем "В" или "Во" для исключенных стран
-                            : `Виза ${selectedCountry.n === "Францию" ? "Во" : "В"} `}
-                        <span
-                            className={`${
-                                ["Великобританию", "Нидерланды"].includes(selectedCountry.n)
-                                    ? "ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px]"
-                                    : "ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px]"
-                            } font-semibold text-black uppercase block"
-                            `}
-                        >
-                            {selectedCountry.n}
-                        </span>
+                            ? ""
+                            : `Виза ${selectedCountry.n === "Францию" ? "Во" : "В"} `}{selectedCountry.n}
                     </h1>
                 </div>
+
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
-                    {selectedCountry.rb === 1 ? (
-                        <Image src={"/visa-c.png"} alt={""} width={1000}
-                               height={1000}
-                               className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
-                    ) : (
-                        <Image src={"/visa-cc.png"} alt={""} width={1000}
-                               height={1000}
-                               className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"/>
-                    )}
-                    {selectedCountry.rb === 1 ? (
-                        <Image src={"/visa-1.svg"} alt={""} width={1000}
-                               height={1000} className="relative top-[20%] -z-50 sm:hidden"/>
-                    ) : (
-                        <Image src={"/visa-0.svg"} alt={""} width={1000}
-                               height={1000} className="relative top-[20%] -z-50 sm:hidden"/>
-                    )}
+                    <Image
+                        src={selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
+                        alt=""
+                        width={1000}
+                        height={1000}
+                        className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
+                        priority
+                    />
+                    <Image
+                        src={selectedCountry.rb === 1 ? "/visa-1.svg" : "/visa-0.svg"}
+                        alt=""
+                        width={1000}
+                        height={1000}
+                        className="relative top-[20%] -z-50 sm:hidden"
+                        priority
+                    />
                 </div>
+
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
-                    <button
-                        onClick={openModal}
-                        className="bbbt relative overflow-hidden w-[100%] bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
-                    >
-                        {[0, 1, 2].map((i) => (
-                            <motion.span
-                                key={i}
-                                className="absolute inset-0 flex items-center justify-center"
-                                initial={{scale: 0, opacity: 1.5}}
-                                animate={{scale: 4, opacity: 0}}
-                                transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    ease: "easeOut",
-                                    repeatDelay: 0.5, // Пауза после трех волн
-                                    delay: i * 0.4, // Волны идут друг за другом
-                                }}
-                            >
-                                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
-                            </motion.span>
-                        ))}
+                    <RippleButton onClick={openModal}>
                         Оформить заявку
-                    </button>
-
+                    </RippleButton>
                 </div>
             </div>
-            <div className={"w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]"}>
-                <img
-                    src={`${selectedCountry.banner}`}
-                    alt=""
-                    className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
-                />
+
+            {/* Баннер страны с адаптивным изображением */}
+            <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
+                <picture>
+                    {/* Мобильная версия (до 768px) */}
+                    <source
+                        media="(max-width: 768px)"
+                        srcSet={selectedCountry.bannerMobile || selectedCountry.banner}
+                        width={600}
+                        height={400}
+                    />
+                    {/* Десктопная версия */}
+                    <Image
+                        src={selectedCountry.banner}
+                        alt={`Визовые услуги для ${selectedCountry.name}`}
+                        width={1800}
+                        height={1200}
+                        className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
+                        priority
+                    />
+                </picture>
             </div>
 
-            {selectedCountry.good !== 0 ? (
-                <div className={"w-full"}>
-                    <Steps1/>
-                    <div className={"px-[7%]"}>
-                        {["viza-v-polshu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu", "viza-vo-francziyu", "viza-v-ssha", "viza-v-velikobritaniyu", "viza-v-kitaj", "viza-v-bolgariyu", "viza-v-horvatiu", "viza-v-niderlandy", "viza-v-grecziyu", "viza-v-vengriyu", "viza-v-rumyniyu", "viza-v-avstriyu"].includes(selectedCountry.url) && (
-                            <div className="pb-24 flex flex-col gap-6 lg:w-[70%]">
-                                {selectedCountry.title &&
-                                    <h3 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title}</h3>}
-                                {selectedCountry.textTop &&
-                                    <p className="text-black text-[14px]">
-                                        {parseText(selectedCountry.textTop)}</p>}
-                                {selectedCountry.text1 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text1)}</p>}
-                                {selectedCountry.variants && selectedCountry.variants.length > 0 && (
-                                    <ul className="text-black text-[14px] flex flex-col gap-2">
-                                        {selectedCountry.variants.map((variant, index) => (
-                                            <li key={index} className="flex gap-2">
-                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                {variant}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {Array.isArray(selectedCountry.text11) &&
-                                    <div>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text11[0] || "")}</p>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text11[1] || "")}</p>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text11[2] || "")}</p>
-                                    </div>}
-                                {selectedCountry.title22 &&
-                                    <h3 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title22}</h3>}
-                                {selectedCountry.text2 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text2)}</p>}
-                                {selectedCountry.text3 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text3)}</p>}
-                                {selectedCountry.variants11 && selectedCountry.variants11.length > 0 && (
-                                    <ul className="text-black text-[14px] flex flex-col gap-2">
-                                        {selectedCountry.variants11.map((variant, index) => (
-                                            <li key={index} className="flex gap-2">
-                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                {variant}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {selectedCountry.text4 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text4)}</p>}
-                                {selectedCountry.text5 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text5)}</p>}
-                                {selectedCountry.title2 &&
-                                    <h3 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title2}</h3>}
-                                {selectedCountry.variants2 && selectedCountry.variants2.length > 0 && (
-                                    <ul className="text-black text-[14px] flex flex-col gap-2">
-                                        {selectedCountry.variants2.map((variant, index) => (
-                                            <li key={index} className="flex gap-2">
-                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                {variant}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {Array.isArray(selectedCountry.text22) &&
-                                    <div>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text22[0] || "")}</p>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text22[1] || "")}</p>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text22[2] || "")}</p>
-                                    </div>}
-                                {selectedCountry.text6 && (
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text6)}</p>)}
-                                {selectedCountry.title33 &&
-                                    <h3 className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.title33}</h3>}
-                                {selectedCountry.text7 && (
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text7)}</p>)}
-                                {selectedCountry.text8 && (
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text8)}</p>)}
-                                {selectedCountry.variants3 && selectedCountry.variants3.length > 0 && (
-                                    <ul className="text-black text-[14px] flex flex-col gap-2">
-                                        {selectedCountry.variants3.map((variant, index) => (
-                                            <li key={index} className="flex gap-2">
-                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                {variant}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {selectedCountry.priceGood !== 0 ? (
-                                    <div className="flex flex-col gap-6 lg:w-[80%]">
-                                        {selectedCountry.price1 &&
-                                            <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Наша
-                                                услуга: <span
-                                                    className="text-orange-500">{parseText(selectedCountry.price1)}</span> бел.
-                                                руб. {parseText(selectedCountry.priceType)}</p>}
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col gap-6 lg:w-[80%]">
-                                        {selectedCountry.priceTitle &&
-                                            <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{selectedCountry.priceTitle}</p>}
-                                        {selectedCountry.priceVariants && selectedCountry.priceVariants.length > 0 && (
-                                            <ul className="text-black text-[14px] flex flex-col gap-2">
-                                                {selectedCountry.priceVariants.map((variant, index) => (
-                                                    <li key={index} className="flex gap-2 items-center">
-                                                        <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                        {variant}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </div>
-                                )}
-                                {selectedCountry.typev &&
-                                    <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">{parseText(selectedCountry.typev)}</p>}
-                                {selectedCountry.typevb && selectedCountry.typevb.length > 0 && (
-                                    <>
-                                        {selectedCountry.typevb.map((text, index) => (
-                                            <div key={index} className="flex flex-col items-start">
-                                                <a
-                                                    href={`/shengenskie-vizy/${selectedCountry.typevl[index]}`}
-                                                    className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
-                                                >
-                                                    {text}
-                                                </a>
-                                            </div>
-                                        ))}
-                                    </>
-                                )}
-                            </div>
-                        )}
+            {showExtendedContent ? (
+                <div className="w-full">
+                    <Steps1 />
+                    <div className="px-[7%]">
+                        <div className="pb-24 flex flex-col gap-6 lg:w-[70%]">
+                            <SectionTitle title={selectedCountry.title} />
+                            <TextBlock text={selectedCountry.textTop} parseText={parseText} />
+                            <TextBlock text={selectedCountry.text1} parseText={parseText} />
+
+                            {selectedCountry.variants?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants} />
+                            )}
+
+                            {Array.isArray(selectedCountry.text11) && (
+                                <div>
+                                    {selectedCountry.text11.slice(0, 3).map((text, i) => (
+                                        <TextBlock key={i} text={text} parseText={parseText} />
+                                    ))}
+                                </div>
+                            )}
+
+                            <SectionTitle title={selectedCountry.title22} />
+                            <TextBlock text={selectedCountry.text2} parseText={parseText} />
+                            <TextBlock text={selectedCountry.text3} parseText={parseText} />
+
+                            {selectedCountry.variants11?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants11} />
+                            )}
+
+                            <TextBlock text={selectedCountry.text4} parseText={parseText} />
+                            <TextBlock text={selectedCountry.text5} parseText={parseText} />
+
+                            <SectionTitle title={selectedCountry.title2} />
+                            {selectedCountry.variants2?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants2} />
+                            )}
+
+                            {Array.isArray(selectedCountry.text22) && (
+                                <div>
+                                    {selectedCountry.text22.slice(0, 3).map((text, i) => (
+                                        <TextBlock key={i} text={text} parseText={parseText} />
+                                    ))}
+                                </div>
+                            )}
+
+                            <TextBlock text={selectedCountry.text6} parseText={parseText} />
+
+                            <SectionTitle title={selectedCountry.title33} />
+                            <TextBlock text={selectedCountry.text7} parseText={parseText} />
+                            <TextBlock text={selectedCountry.text8} parseText={parseText} />
+
+                            {selectedCountry.variants3?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants3} />
+                            )}
+
+                            {selectedCountry.priceGood !== 0 ? (
+                                <PriceDisplay
+                                    price1={selectedCountry.price1}
+                                    priceType={selectedCountry.priceType}
+                                />
+                            ) : (
+                                <AlternativePricing
+                                    priceTitle={selectedCountry.priceTitle}
+                                    priceVariants={selectedCountry.priceVariants}
+                                />
+                            )}
+
+                            {selectedCountry.typev && (
+                                <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                    {parseText(selectedCountry.typev)}
+                                </p>
+                            )}
+
+                            {selectedCountry.typevb?.length > 0 && (
+                                <VisaTypeButtons
+                                    types={selectedCountry.typevb}
+                                    links={selectedCountry.typevl}
+                                />
+                            )}
+                        </div>
                     </div>
-                    <Docs/>
+                    <Docs />
                 </div>
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">
                     {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"].includes(selectedCountry.url) && (
                         <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
-                            {selectedCountry.title &&
-                                <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">{selectedCountry.title}</h3>}
+                            {selectedCountry.title && (
+                                <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
+                                    {selectedCountry.title}
+                                </h3>
+                            )}
                             <div className="flex flex-col gap-6">
-                                {selectedCountry.text1 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text1)}</p>}
-                                {selectedCountry.text2 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text2)}</p>}
-                                {selectedCountry.variants && selectedCountry.variants.length > 0 && (
-                                    <ul className="list-disc list-inside text-black text-[14px] flex flex-col gap-2">
-                                        {selectedCountry.variants.map((variant, index) => (
-                                            <li key={index} className="flex gap-2">
-                                                <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                {variant}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <TextBlock text={selectedCountry.text1} parseText={parseText} />
+                                <TextBlock text={selectedCountry.text2} parseText={parseText} />
+
+                                {selectedCountry.variants?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants} />
                                 )}
-                                {selectedCountry.text3 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text3)}</p>}
-                                {selectedCountry.text4 &&
-                                    <p className="text-black text-[14px]">{parseText(selectedCountry.text4)}</p>}
-                                {Array.isArray(selectedCountry.text22) &&
+
+                                <TextBlock text={selectedCountry.text3} parseText={parseText} />
+                                <TextBlock text={selectedCountry.text4} parseText={parseText} />
+
+                                {Array.isArray(selectedCountry.text22) && (
                                     <div>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text22[0] || "")}</p>
-                                        <p className={"text-black text-[14px]"}>{parseText(selectedCountry.text22[1] || "")}</p>
-                                    </div>}
-                                {selectedCountry.priceGood !== 0 ? (
-                                    <></>
-                                ) : (
-                                    <div className="flex flex-col gap-6 lg:w-[80%]">
-                                        {selectedCountry.priceTitle &&
-                                            <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">{selectedCountry.priceTitle}</p>}
-                                        {selectedCountry.priceVariants && selectedCountry.priceVariants.length > 0 && (
-                                            <ul className="text-black text-[14px] flex flex-col gap-2">
-                                                {selectedCountry.priceVariants.map((variant, index) => (
-                                                    <li key={index} className="flex gap-2 items-center">
-                                                        <img className="w-4 h-4" src="/check-0.png" alt=""/>
-                                                        {variant}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
+                                        {selectedCountry.text22.slice(0, 2).map((text, i) => (
+                                            <TextBlock key={i} text={text} parseText={parseText} />
+                                        ))}
                                     </div>
+                                )}
+
+                                {selectedCountry.priceGood === 0 && (
+                                    <AlternativePricing
+                                        priceTitle={selectedCountry.priceTitle}
+                                        priceVariants={selectedCountry.priceVariants}
+                                    />
                                 )}
                             </div>
                         </div>
                     )}
 
-                    <div className={"flex flex-col gap-4 mt-16"}>
-                        <p className={"text-black text-[14px]"}>Для
-                            получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:</p>
-                        <div
-                            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
-                            {Object.keys(countryOrder).map((countryKey, index) => {
-                                const c = countries.find(c => c.url.toLowerCase() === countryKey);
-                                if (!c) return null; // Пропускаем, если страны нет в списке
+                    <div className="flex flex-col gap-4 mt-16">
+                        <p className="text-black text-[14px]">
+                            Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
+                        </p>
 
-                                return (
-                                    <Link href={`/shengenskie-vizy/${c.url}`} key={index}>
-                                        <div
-                                            className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-                                            <img src={c.img} alt={c.name} className="w-full object-cover"/>
-                                            <div
-                                                className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
-                                                <div className="flex flex-row justify-between items-center">
-                                                    <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
-                                                        <img src={c.svg} alt={c.name} className="h-6"/>
-                                                        <p className="font-medium mdd:text-[14px] sm:text-lg md:text-xl lg:text-xl">
-                                                            {c.name}
-                                                        </p>
-                                                    </div>
-                                                    <img className="lg:w-6 md:w-6 sm:w-6 mdd:hidden" src="/Line 5.png"
-                                                         alt=""/>
-                                                    <img className={"mdd:w-3 dr:w-3 sm:hidden"} src={"/line123.png"}
-                                                         alt={""}/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                );
-                            })}
+                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
+                            {recommendedCountries.map((country, index) => (
+                                <CountryCard key={index} country={country} />
+                            ))}
                         </div>
                     </div>
+
                     <div className="sm:mt-6 text-center w-full">
                         <Link href="/shengenskie-vizy">
-                            <button
-                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            <button className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                                 Еще больше стран
                             </button>
                         </Link>
                     </div>
                 </div>
             )}
-            <Contacts/>
+
+            <Contacts />
         </div>
     );
 }

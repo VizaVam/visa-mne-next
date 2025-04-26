@@ -1,7 +1,10 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
+import AboutUsPage from "@/components/onasPage";
 
-export { metadata } from "./metadata";
-import OnasPage from "@/components/onasPage";
+export const metadata = {
+    title: "О НАС – компания VISA VAM",
+    description: "О НАС - компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+};
 
 export default function Page() {
    const breadcrumbs = [
@@ -12,7 +15,7 @@ export default function Page() {
    return (
        <>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <OnasPage />
+          <AboutUsPage />
        </>
    )
 };

@@ -164,7 +164,7 @@ export default function Page({ params }) {
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <CountryPage
                 countryData={countryData}
-                countryUrl={country} // Дополнительная передача URL
+                countryUrl={country}
             />
         </>
     );

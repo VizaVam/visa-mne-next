@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound, useParams, usePathname } from 'next/navigation';
@@ -54,8 +54,14 @@ const CountryBreadcrumbs = ({ country, pathname }) => (
         </Link>
         <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2" />
         <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
-      {country.n}
-    </span>
+            {!excludedCountries1.includes(country.url) && (
+                <>
+                Виза{" "}
+            {country.n === "Францию" ? "во" : "в"}{" "}
+            </>
+                )}
+            {country.n}
+        </span>
     </nav>
 );
 
@@ -178,6 +184,17 @@ const CountryCard = ({ country }) => (
     </Link>
 );
 
+const excludedCountries1 = [
+    "rabochaya-viza-v-polshu",
+    "delovaya-viza-v-polshu",
+    "uchebnaya-viza-v-polshu",
+    "gostevaya-polskaya-viza",
+    "viza-v-polsy-po-karte-polyaka",
+    "rabochaya-viza-v-bolgariyu",
+    "rabochaya-viza-v-germaniyu",
+    "rabochaya-viza-v-ispaniyu"
+];
+
 export default function CountryPage({ breadcrumbs }) {
     const { country: countryUrl } = useParams();
     const { openModal } = useModal();
@@ -216,20 +233,9 @@ export default function CountryPage({ breadcrumbs }) {
                 <div className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
                     <CountryBreadcrumbs country={selectedCountry} pathname={pathname} />
                     <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
-                        {[
-                            "rabochaya-viza-v-polshu",
-                            "delovaya-viza-v-polshu",
-                            "uchebnaya-viza-v-polshu",
-                            "gostevaya-polskaya-viza",
-                            "viza-v-polsy-po-karte-polyaka",
-                            "rabochaya-viza-v-bolgariyu",
-                            "rabochaya-viza-v-germaniyu",
-                            "rabochaya-viza-v-ispaniyu"
-                        ].includes(selectedCountry.url) ? (
-                            selectedCountry.n
-                        ) : (
-                            `Виза в ${selectedCountry.n}`
-                        )}
+                        {excludedCountries1.includes(selectedCountry.url)
+                            ? selectedCountry.n
+                            : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
                     </h1>
                 </div>
 
@@ -259,16 +265,26 @@ export default function CountryPage({ breadcrumbs }) {
                 </div>
             </div>
 
-            {/* Баннер страны */}
+            {/* Баннер страны с адаптивным изображением */}
             <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
-                <Image
-                    src={selectedCountry.banner}
-                    alt={`Визовые услуги для ${selectedCountry.name}`}
-                    width={1200}
-                    height={400}
-                    className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
-                    priority
-                />
+                <picture>
+                    {/* Мобильная версия (до 768px) */}
+                    <source
+                        media="(max-width: 768px)"
+                        srcSet={selectedCountry.bannerMobile || selectedCountry.banner}
+                        width={600}
+                        height={400}
+                    />
+                    {/* Десктопная версия */}
+                    <Image
+                        src={selectedCountry.banner}
+                        alt={`Визовые услуги для ${selectedCountry.name}`}
+                        width={1800}
+                        height={1200}
+                        className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
+                        priority
+                    />
+                </picture>
             </div>
 
             {showExtendedContent ? (

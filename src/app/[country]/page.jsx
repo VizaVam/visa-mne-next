@@ -1,4 +1,4 @@
-import OtherCountryPage from "@/components/otherCountriesPage";
+import OtherCountriesPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { notFound } from 'next/navigation';
 
@@ -56,9 +56,9 @@ export default function Page({ params }) {
     return (
         <>
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <OtherCountryPage
-                country={country}
+            <OtherCountriesPage
                 selectedCountry={countryData}
+                countryUrl={country}
             />
         </>
     );

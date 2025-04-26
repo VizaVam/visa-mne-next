@@ -50,12 +50,12 @@ export function middleware(request) {
     const { pathname } = request.nextUrl;
     // console.log(`Original pathname: ${pathname}`);
     const response = NextResponse.next();
-
-    // 1. Добавляем заголовки сжатия для JS/CSS
-    if (pathname.match(/\.(js|css)$/)) {
-        response.headers.set('Content-Encoding', 'gzip');
-        response.headers.set('Vary', 'Accept-Encoding');
-    }
+    //
+    // // 1. Добавляем заголовки сжатия для JS/CSS
+    // if (pathname.match(/\.(js|css)$/)) {
+    //     response.headers.set('Content-Encoding', 'gzip');
+    //     response.headers.set('Vary', 'Accept-Encoding');
+    // }
 
     if (
         pathname.startsWith('/_next') ||

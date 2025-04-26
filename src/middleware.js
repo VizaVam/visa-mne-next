@@ -53,7 +53,6 @@ export function middleware(request) {
 
     // 1. Добавляем заголовки сжатия для JS/CSS
     if (pathname.match(/\.(js|css)$/)) {
-        response.headers.set('Content-Encoding', 'gzip');
         response.headers.set('Vary', 'Accept-Encoding');
     }
 

@@ -49,6 +49,13 @@ const validRoutes = [
 export function middleware(request) {
     const { pathname } = request.nextUrl;
     // console.log(`Original pathname: ${pathname}`);
+    const response = NextResponse.next();
+
+    // 1. Добавляем заголовки сжатия для JS/CSS
+    if (pathname.match(/\.(js|css)$/)) {
+        response.headers.set('Content-Encoding', 'gzip');
+        response.headers.set('Vary', 'Accept-Encoding');
+    }
 
     if (
         pathname.startsWith('/_next') ||
@@ -57,7 +64,7 @@ export function middleware(request) {
         pathname === '/not-found'
     ) {
         // console.log(`Skipping middleware for: ${pathname}`);
-        return NextResponse.next();
+        return response;
     }
 
     const normalizedPathname = pathname === '/' || pathname === '' ? '/' : pathname.replace(/\/+$/, '');
@@ -66,7 +73,7 @@ export function middleware(request) {
     // Дополнительная проверка для корневого маршрута
     if (normalizedPathname === '/' || validRoutes.includes(normalizedPathname)) {
         // console.log(`Route is valid: ${normalizedPathname}`);
-        return NextResponse.next();
+        return response;
     }
 
     // console.log(`Invalid route: ${normalizedPathname}, redirecting to /not-found`);

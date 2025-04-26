@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Steps = () => {
     return (
         <div className="w-full px-[7%] lg:pb-24 lg:py-0 md:py-24 sm:py-24 mdd:py-24">
@@ -14,18 +16,22 @@ const Steps = () => {
                         border: "1px solid #ECECEC",
                     }}
                 >
-                    <img
+                    <Image
                         src="/step-1.svg"
                         alt="Заявка"
+                        width={93}
+                        height={94}
                         className="h-14 lg:h-20 rotate-[-9deg] lg:rotate-[-5deg]"
                     />
                     <p className="text-sm font-medium px-2 h-10 lg:px-0">Оформление<br/>заявки на сайте</p>
                 </div>
 
                 {/* Connector (скрываем на мобильных) */}
-                <img
+                <Image
                     src="/curve-1.svg"
                     alt="Curve"
+                    width={230}
+                    height={48}
                     className="lg:block mdd:h-9 ml-6 relative top-[16%] z-[-1] rotate-[25deg] lg:rotate-0 lg:left-2"
                 />
 
@@ -34,7 +40,7 @@ const Steps = () => {
                     className="flex flex-col items-center text-center bg-[#FAFAFA] rounded-[2px] lg:w-60 md:w-48 py-8 relative lg:left-[0] self-end"
                     style={{border: "1px solid #ECECEC"}}
                 >
-                    <img src="/step-2.svg" alt="Документы" className="h-14 lg:h-20"/>
+                    <Image src="/step-2.svg" alt="Документы" width={101} height={100} className="h-14 lg:h-20"/>
                     <p className="text-sm font-medium px-2 lg:px-0">
             <span
                 className="block lg:hidden">Проверка<br/>документов<br/>(в офисе/удаленно)</span> {/* Текст для телефона */}
@@ -45,9 +51,11 @@ const Steps = () => {
                 </div>
 
                 {/* Connector (скрываем на мобильных) */}
-                <img
+                <Image
                     src="/curve-1.svg"
                     alt="Curve"
+                    width={230}
+                    height={48}
                     className="lg:block lg:h-12 mdd:h-9 relative top-[54%] z-[-1] rotate-[-33deg] lg:rotate-180 lg:right-2"
                 />
 
@@ -58,9 +66,11 @@ const Steps = () => {
                         border: "1px solid #ECECEC",
                     }}
                 >
-                    <img
+                    <Image
                         src="/step-3.svg"
                         alt="Одобрение"
+                        width={103}
+                        height={103}
                         className="h-14 lg:h-20"
                         style={{transform: "rotate(9deg)"}}
                     />

@@ -22,7 +22,14 @@ const caveatSans = Caveat({
 
 export const metadata = {
     title: "Компания VISA VAM",
-    description: "Компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70"
+    description: "Компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+    openGraph: {
+        title: "Компания VISA VAM",
+        description: "Компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+        url: "https://visavampro.by",
+        type: "website",
+        siteName: "VISA VAM",
+    },
 };
 
 const structuredData = {

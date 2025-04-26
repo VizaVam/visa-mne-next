@@ -141,7 +141,13 @@ export async function generateMetadata({ params }) {
 
     return {
         title: `${countryData.metaTitle} – компания VISA VAM`,
-        description: `${countryData.metaTitle} – компания VISA VAM. 📞 +375 29 68 00 620`,
+        description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
+        openGraph: {
+            title: `${countryData.metaTitle} – компания VISA VAM`,
+            description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
+            url: `https://visavampro.by/shengenskie-vizy/${countryData.url}`,
+            type: "website",
+        },
     };
 }
 

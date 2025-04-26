@@ -4,6 +4,12 @@ import ContactsPage from "@/components/contactsPage";
 export const metadata = {
     title: "Контакты – компания VISA VAM",
     description: "Контакты – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+    openGraph: {
+        title: "Контакты – компания VISA VAM",
+        description: "Контакты – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+        url: "https://visavampro.by/kontakty",
+        type: "website",
+    },
 };
 
 

@@ -105,7 +105,6 @@ export default function OnasPage({ breadcrumbs }) {
             {/* Header Section */}
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
                 <div className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
-                    <BreadcrumbNav pathname={pathname} />
                     <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black">
                         О НАС
                     </h1>
@@ -118,15 +117,13 @@ export default function OnasPage({ breadcrumbs }) {
                         width={1000}
                         height={1000}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
-                        priority
                     />
                     <Image
                         src="/visabanner-f.svg"
                         alt="VisaVam услуги"
-                        width={375}
-                        height={553}
+                        width={600}
+                        height={600}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
-                        priority
                     />
                 </div>
 

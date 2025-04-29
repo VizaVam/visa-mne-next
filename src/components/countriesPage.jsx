@@ -241,7 +241,7 @@ export default function CountryPage({ breadcrumbs }) {
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     <Image
-                        src={selectedCountry.rb === 1 ? "/visa-112.jpg" : "/visa-001.jpg"}
+                        src={selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
                         alt=""
                         width={600}
                         height={600}
@@ -255,7 +255,6 @@ export default function CountryPage({ breadcrumbs }) {
                         alt=""
                         width={1000}
                         height={1000}
-                        priority={true}
                         className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
                     />
                 </div>

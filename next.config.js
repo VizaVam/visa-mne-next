@@ -6,5 +6,18 @@ const nextConfig = {
         // Подгружает только необходимые полифиллы
         modern: true,
     },
+    // Отключаем дублирование полифиллов
+    future: {
+        webpack5: true,
+    },
+    webpack: (config) => {
+        // Убираем дублирующиеся полифиллы
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            'core-js': false,
+            'regenerator-runtime': false,
+        };
+        return config;
+    },
 };
 module.exports = nextConfig;

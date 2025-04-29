@@ -57,6 +57,21 @@ export default function RootLayout({ children }) {
             <script type="application/ld+json">
                 {JSON.stringify(structuredData)}
             </script>
+            <script
+                src="/_next/static/chunks/polyfills.js"
+                defer
+                crossOrigin="anonymous"
+                noModule
+            />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+              if ('noModule' in HTMLScriptElement.prototype) {
+                document.write('<script type="module">window.__skipPolyfills=true</'+'script>');
+              }
+            `,
+                }}
+            />
         </head>
         <body className={`${interSans.variable} ${caveatSans.variable} antialiased`}>
         <GoogleTagManager />

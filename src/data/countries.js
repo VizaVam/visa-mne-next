@@ -419,7 +419,7 @@ export const countries = [
     {
         name: "Рабочая виза в Польшу",
         n: "Рабочая виза в Польшу",
-        rb: 0,
+        rb: 1,
         img: "/poland1.svg",
         banner: "/poland-banner.png",
         bannerMobile: "/poland-banner.png",
@@ -448,7 +448,7 @@ export const countries = [
     {
         name: "Деловая виза в Польшу",
         n: "Деловая виза в Польшу",
-        rb: 0,
+        rb: 1,
         img: "/poland1.svg",
         banner: "/poland-banner.png",
         bannerMobile: "/poland-banner.png",
@@ -489,7 +489,7 @@ export const countries = [
     {
         name: "Учебная виза в Польшу",
         n: "Учебная виза в Польшу",
-        rb: 0,
+        rb: 1,
         img: "/poland1.svg",
         banner: "/poland-banner.png",
         bannerMobile: "/poland-banner.png",
@@ -521,7 +521,7 @@ export const countries = [
     {
         name: "Гостевая виза в Польшу",
         n: "Гостевая виза в Польшу",
-        rb: 0,
+        rb: 1,
         img: "/poland1.svg",
         banner: "/poland-banner.png",
         bannerMobile: "/poland-banner.png",
@@ -552,7 +552,7 @@ export const countries = [
     {
         name: "Виза по карте Поляка",
         n: "Виза по карте Поляка",
-        rb: 0,
+        rb: 1,
         img: "/poland1.svg",
         banner: "/poland-banner.png",
         bannerMobile: "/poland-banner.png",

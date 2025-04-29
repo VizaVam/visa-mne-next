@@ -142,6 +142,7 @@ export default function OnasPage({ breadcrumbs }) {
                     alt="О компании VisaVam"
                     width={1600}
                     height={1000}
+                    priority={true}
                     className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                 />
                 <Image
@@ -149,6 +150,9 @@ export default function OnasPage({ breadcrumbs }) {
                     alt="О компании VisaVam"
                     width={600}
                     height={400}
+                    quality={80}
+                    priority={true}
+                    loading="eager"
                     className="w-full object-cover px-0 lg:px-[7%] md:px-[7%] sm:hidden"
                 />
             </div>

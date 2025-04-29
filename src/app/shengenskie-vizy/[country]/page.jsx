@@ -1,6 +1,5 @@
 import CountryPage from '@/components/countriesPage';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import Head from 'next/head';
 import { notFound } from 'next/navigation';
 
 const countries = [
@@ -166,23 +165,8 @@ export default function Page({ params }) {
         { name: countryData.metaTitle, url: `https://visavampro.by/shengenskie-vizy/${country}` }
     ];
 
-    const preloadImage = countryData.rb === 1 ? "/visa-112.webp" : "/visa-001.webp";
-
     return (
         <>
-            <Head>
-                <link
-                    rel="preload"
-                    href={preloadImage}
-                    as="image"
-                    imagesrcset="
-                        /_next/image?url=%2Foptimized-visa-001.webp&w=600&q=75 600w,
-                        /_next/image?url=%2Foptimized-visa-001.webp&w=1200&q=75 1200w
-                    "
-                    imagesizes="(max-width: 768px) 100vw, 50vw"
-                />
-            </Head>
-
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <CountryPage
                 countryData={countryData}

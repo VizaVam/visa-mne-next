@@ -241,19 +241,22 @@ export default function CountryPage({ breadcrumbs }) {
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     <Image
+                        src={selectedCountry.rb === 1 ? "/visa-c111.jpg" : "/visa-cc.png"}
+                        alt=""
+                        width={1000}
+                        height={1000}
+                        priority={true}
+                        className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
+                    />
+                    <Image
                         src={selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
                         alt=""
                         width={600}
                         height={600}
                         quality={80}
+                        priority={true}
+                        loading="eager"
                         className="relative top-[20%] -z-50 sm:hidden"
-                    />
-                    <Image
-                        src={selectedCountry.rb === 1 ? "/visa-c111.jpg" : "/visa-cc.png"}
-                        alt=""
-                        width={1000}
-                        height={1000}
-                        className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
                     />
                 </div>
 

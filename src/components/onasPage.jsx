@@ -120,7 +120,7 @@ export default function OnasPage({ breadcrumbs }) {
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
                     />
                     <Image
-                        src="/visabanner-f.svg"
+                        src="/visabanner-ff.webp"
                         alt="VisaVam услуги"
                         width={600}
                         height={600}

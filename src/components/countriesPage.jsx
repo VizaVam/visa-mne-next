@@ -246,15 +246,13 @@ export default function CountryPage({ breadcrumbs }) {
                         width={1000}
                         height={1000}
                         className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
-                        priority
                     />
                     <Image
                         src={selectedCountry.rb === 1 ? "/visa-112.jpg" : "/visa-001.jpg"}
                         alt=""
-                        width={1000}
-                        height={1000}
+                        width={600}
+                        height={600}
                         className="relative top-[20%] -z-50 sm:hidden"
-                        priority
                     />
                 </div>
 

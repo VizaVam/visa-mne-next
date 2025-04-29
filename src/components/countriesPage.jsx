@@ -246,8 +246,6 @@ export default function CountryPage({ breadcrumbs }) {
                         width={600}
                         height={600}
                         quality={80}
-                        priority={true}
-                        loading="eager"
                         className="relative top-[20%] -z-50 sm:hidden"
                     />
                     <Image

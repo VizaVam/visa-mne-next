@@ -123,8 +123,8 @@ export default function OnasPage({ breadcrumbs }) {
                     <Image
                         src="/visabanner-f.svg"
                         alt="VisaVam услуги"
-                        width={1000}
-                        height={1000}
+                        width={375}
+                        height={553}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
                         priority
                     />

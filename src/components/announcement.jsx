@@ -15,10 +15,16 @@ const Announcement = () => {
             const secondStart = new Date("2025-04-30T00:00:00+05:00");
             const secondEnd = new Date("2025-05-04T23:59:59+05:00");
 
+            // Third announcement period (May 30-May 10)
+            const thirdStart = new Date("2025-05-08T00:00:00+05:00");
+            const thirdEnd = new Date("2025-05-10T23:59:59+05:00");
+
             if (now >= firstStart && now <= firstEnd) {
                 setActiveAnnouncement('first');
             } else if (now >= secondStart && now <= secondEnd) {
                 setActiveAnnouncement('second');
+            } else if (now >= thirdStart && now <= thirdEnd) {
+                setActiveAnnouncement('third');
             } else {
                 setActiveAnnouncement(null);
             }
@@ -46,6 +52,13 @@ const Announcement = () => {
                 "пт 02.05. с 9:00 до 19:00",
                 "сб 03.05. с 10:00 до 14:00",
                 "вс 04.05. выходной день"
+            ]
+        },
+        third: {
+            title: "Изменился график работы!",
+            lines: [
+                "пт 09.05. выходной день",
+                "сб 10.05. с 10:00 до 14:00"
             ]
         }
     };

@@ -225,7 +225,7 @@ export default function OtherCountryPage({ breadcrumbs }) {
                         className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
                     />
                     <Image
-                        src={selectedCountry.rb === 1 ? "/visa-1.svg" : "/visa-0.svg"}
+                        src={selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
                         alt=""
                         width={600}
                         height={600}

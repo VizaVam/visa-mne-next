@@ -241,7 +241,7 @@ export default function CountryPage({ breadcrumbs }) {
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     <Image
-                        src={selectedCountry.rb === 1 ? "/visa-c111.jpg" : "/visa-cc.png"}
+                        src={selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
                         alt=""
                         width={1000}
                         height={1000}

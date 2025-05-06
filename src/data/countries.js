@@ -21,7 +21,7 @@ export const countries = [
         typev: "Типы виз",
         typevl: ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"],
         typevb: ["Рабочая виза в Польшу", "Деловая виза в Польшу", "Учебная виза в Польшу", "Гостевая виза в Польшу", "Виза по карте Поляка"],
-        enabled: [true, true, true, true]
+        enabled: [true, true, true, true, true]
     },
     {
         name: "Словения",

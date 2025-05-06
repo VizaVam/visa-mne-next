@@ -139,13 +139,18 @@ export async function generateMetadata({ params }) {
         notFound();
     }
 
+    const canonicalUrl = `https://visavampro.by/shengenskie-vizy/${countryData.url}`;
+
     return {
         title: `${countryData.metaTitle} – компания VISA VAM`,
         description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
+        alternates: {
+            canonical: canonicalUrl, // Добавлен канонический URL
+        },
         openGraph: {
             title: `${countryData.metaTitle} – компания VISA VAM`,
             description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
-            url: `https://visavampro.by/shengenskie-vizy/${countryData.url}`,
+            url: canonicalUrl,
             type: "website",
         },
     };

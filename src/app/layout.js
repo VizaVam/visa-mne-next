@@ -23,6 +23,9 @@ const caveatSans = Caveat({
 export const metadata = {
     title: "Компания VISA VAM",
     description: "Компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",
+    alternates: {
+        canonical: "https://visavampro.by",
+    },
     openGraph: {
         title: "Компания VISA VAM",
         description: "Компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70",

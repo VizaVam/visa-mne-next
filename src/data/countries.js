@@ -17,7 +17,7 @@ export const countries = [
         text6: "С нами получить визу проще – наши опытные специалисты проконсультируют вас и \n" +
             "помогут оформить как краткосрочную, так и долгосрочную визу.",
         priceGood: 1,
-        price1: "500",
+        price1: "790",
         typev: "Типы виз",
         typevl: ["rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"],
         typevb: ["Рабочая виза в Польшу", "Деловая виза в Польшу", "Учебная виза в Польшу", "Гостевая виза в Польшу", "Виза по карте Поляка"],
@@ -89,11 +89,11 @@ export const countries = [
         priceTitle: "Наша услуга",
         priceVariants: [
             <span>Сопровождение под ключ с подачей в Минске - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">690</span> бел. руб.</span>,
-            <span>Сопровождение под ключ с подачей в Москве - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">790</span> бел. руб.</span>,
+            <span>Сопровождение под ключ с подачей в Москве - <span
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">890</span> бел. руб.</span>,
             <span>Сопровождение под ключ с безличной подачей - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">1800</span> бел. руб.</span>
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">1850</span> бел. руб.</span>
         ],
         typev: "Типы виз",
         typevb: ["Туристическая", "Рабочая", "Гостевая", "Деловая"],
@@ -117,9 +117,9 @@ export const countries = [
         priceGood: 0,
         priceTitle: "Наша услуга",
         priceVariants: [
-            <span>гостевая - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">550</span> бел. руб.</span>,
+            <span>гостевая - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">650</span> бел. руб.</span>,
             <span>туристическая - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">1700</span> бел. руб.</span>,
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">1800</span> бел. руб.</span>,
         ]
     },
     {
@@ -170,7 +170,7 @@ export const countries = [
         text6: "Мы предлагаем вам помощь с оформлением — это сэкономит не только времени, но и \n" +
             "силы, а также повысит шанс одобрения заявки.",
         priceGood: 1,
-        price1: "400",
+        price1: "520",
         typev: "Типы виз",
         typevb: ["Туристическая", "Рабочая", "Гостевая", "Деловая"],
         typevl: ["turisticheskaya-viza", "rabochaya-viza-v-bolgariyu", "gostevaya-viza", "delovaya-viza"],
@@ -241,7 +241,7 @@ export const countries = [
         variants3: ["Путешествие, отдых;", "Бизнес, подписание контрактов;", "Спортивное мероприятия, соревнование, сборы;", "Транзит;",
             "Общение с близкими, проживающими заграницей;", "Лечение, оказание медицинских услуг;", "Культурное мероприятие."],
         priceGood: 1,
-        price1: "490",
+        price1: "620",
     },
     {
         name: "Нидерланды",
@@ -286,7 +286,7 @@ export const countries = [
         text6: "Есть возможность получить как однократные визы, так и визы для многократного вьезда.",
         text7: "Помимо этого, **можно сделать срочную запись на греческую визу, чтобы получить ее относительно быстро.** Консульский сбор за срочную визу выше и зависит от указанных мотивов и сроков, за которые ее надо оформить.",
         priceGood: 1,
-        price1: "390",
+        price1: "450",
     },
     {
         name: "Венгрия",
@@ -310,7 +310,7 @@ export const countries = [
             "от прописки (подробности уточняйте у наших специалистов).",
         text5: "Консульский сбор составляет 35 евро, а время оформления от 14 до 30 дней.",
         priceGood: 1,
-        price1: "790",
+        price1: "820",
     },
     {
         name: "Италия",
@@ -330,7 +330,7 @@ export const countries = [
         priceTitle: "Наша услуга",
         priceVariants: [
             <span>Сопровождение под ключ - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2700</span> бел. руб.</span>,
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2800</span> бел. руб.</span>,
             <span>Подготовка пакета документов без записи - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">350</span> бел. руб.</span>
         ]
@@ -356,7 +356,7 @@ export const countries = [
         text5: "Звоните или приходите к нам, чтобы получить полную консультацию по условиям \n" +
             "оформления румынской визы.",
         priceGood: 1,
-        price1: "400",
+        price1: "520",
     },
     {
         name: "Австрия",
@@ -606,8 +606,8 @@ export const countries = [
         priceGood: 0,
         priceTitle: "Наша услуга",
         priceVariants: [
-            <span>Ваши документы-основания для получения визы - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">400</span> бел. руб.</span>,
-            <span>Сопровождение под ключ - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2800</span> бел. руб.</span>,
+            <span>Ваши документы-основания для получения визы - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">520</span> бел. руб.</span>,
+            <span>Сопровождение под ключ - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2900</span> бел. руб.</span>,
         ]
     },
 

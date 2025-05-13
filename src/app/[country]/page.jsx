@@ -4,20 +4,23 @@ import { notFound } from 'next/navigation';
 
 const countries = [
     {
+        name: "Китай",
+        url: "viza-v-kitaj",
+        title: "Виза в Китай для белорусов в 2025 году - Оформить визу",
+        description: "Открытие визы в Китай. ✓ Оформляем все типы виз. ✓ Помощь в заполнении анкеты и подачи документов. ✓ Доступная стоимость. ✓ Срочная подача на китайскую визу."
+    },
+    {
         name: "США",
         url: "viza-v-ssha",
-        metaTitle: "Виза в США",
+        title: "Виза в США для белорусов в 2025 году",
+        description: "Открытие визы в США. ✓ Оформляем все типы виз. ✓ Помощь в заполнении анкеты и подачи документов. ✓ Доступная стоимость. ✓ Срочная подача на американскую визу."
     },
     {
         name: "Великобритания",
         url: "viza-v-velikobritaniyu",
-        metaTitle: "Виза в Великобританию",
-    },
-    {
-        name: "Китай",
-        url: "viza-v-kitaj",
-        metaTitle: "Виза в Китай",
-    },
+        title: "Виза в Великобританию для белорусов в 2025 году",
+        description: "Открытие визы в Англию. ✓ Помощь в заполнении анкеты и подачи документов. ✓ Доступная стоимость. ✓ Онлайн запись. ✓ Срочное оформление визы."
+    }
 ];
 
 export async function generateStaticParams() {
@@ -37,14 +40,14 @@ export async function generateMetadata({ params }) {
     const canonicalUrl = `https://visavampro.by/${countryData.url}`;
 
     return {
-        title: `${countryData.metaTitle} – компания VISA VAM`,
-        description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
+        title: `${countryData.title} – компания VISA VAM`,
+        description: `${countryData.description} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
         alternates: {
             canonical: canonicalUrl,
         },
         openGraph: {
-            title: `${countryData.metaTitle} – компания VISA VAM`,
-            description: `${countryData.metaTitle} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
+            title: `${countryData.title} – компания VISA VAM`,
+            description: `${countryData.description} – компания VISA VAM. 📞 По всем вопросам звоните: +375 29 68 00 620, +375 29 373 48 70`,
             url: canonicalUrl,
             type: "website",
         },
@@ -61,7 +64,7 @@ export default function Page({ params }) {
 
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
-        { name: countryData.metaTitle, url: `https://visavampro.by/${country}` }
+        { name: countryData.title, url: `https://visavampro.by/${country}` }
     ];
 
     return (

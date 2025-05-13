@@ -258,6 +258,16 @@ export default function Header() {
                                     нас</Link>
                             )}
 
+                            {pathname === "/poleznaya-informasia" ? (
+                                <span
+                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Полезная информация</span>
+                            ) : (
+                                <Link href="/poleznaya-informasia"
+                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+                                    Полезная информация
+                                </Link>
+                            )}
+
                             {pathname === "/kontakty" ? (
                                 <span
                                     className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Контакты</span>
@@ -428,6 +438,9 @@ export default function Header() {
                                     {/* О нас и Контакты */}
                                     <motion.div variants={listItemVariants}>
                                         <Link href="/o-nas">О нас</Link>
+                                    </motion.div>
+                                    <motion.div variants={listItemVariants}>
+                                        <Link href="/poleznaya-informasia">Полезная информация</Link>
                                     </motion.div>
                                     <motion.div variants={listItemVariants}>
                                         <Link href="/kontakty">Контакты</Link>

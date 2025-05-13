@@ -9,7 +9,7 @@ import {usePathname} from "next/navigation";
 
 export default function Footer() {
     const pathname = usePathname();
-    const excludedCountries = ["rabochaya-viza-v-ispaniyu","rabochaya-viza-v-germaniyu","viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["rabochaya-viza-v-ispaniyu", "rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     return (
         <footer className={"footer"}>
@@ -106,8 +106,10 @@ export default function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div className={"footer__top-right-main-left w-[120px] mdd:py-2"}>
-                            <a href={"/o-nas"} className={"block font-medium text-xl"}>О нас</a>
+                        <div className={"footer__top-right-main-left"}>
+                            <a href={"/o-nas"} className={"block font-medium text-xl mdd:py-2"}>О нас</a>
+                            <a href={"/poleznaya-informasia"} className={"block font-medium text-xl mdd:py-2 mt-0 md:mt-8"}>Полезная
+                                информация</a>
                         </div>
                         <div className={"footer__top-right-main-right mdd:py-2"}>
                             <a href={"/kontakty"} className={"font-medium text-xl"}>Контакты</a>
@@ -159,7 +161,7 @@ export default function Footer() {
 
                                     <a
                                         href="viber://chat?number=%2B375293734870/"
-                                        style={{ cursor: 'pointer' }}
+                                        style={{cursor: 'pointer'}}
                                         title="Открыть в Viber"
                                     >
                                         <img
@@ -167,7 +169,7 @@ export default function Footer() {
                                             alt="Chat on Viber"
                                             width={40}
                                             height={40}
-                                            style={{ display: 'block' }}
+                                            style={{display: 'block'}}
                                         />
                                     </a>
                                     <a

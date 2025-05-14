@@ -108,10 +108,10 @@ export default function PolInfo({breadcrumbs}) {
                                 >
                                     Читать полностью
                                 </span>
-                                <span className="text-[#FA9D3E] text-sm md:hidden">DD.05.2025</span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">13.05.2025</span>
                             </div>
                         </div>
-                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">DD.05.2025</span>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">13.05.2025</span>
                     </div>
                 </Link>
             </div>

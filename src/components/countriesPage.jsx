@@ -71,7 +71,7 @@ const VariantsList = ({ variants }) => (
         {variants.map((variant, index) => (
             <li key={index} className="flex gap-2">
                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" />
-                {variant}
+                {parseText(variant)}
             </li>
         ))}
     </ul>
@@ -349,7 +349,7 @@ export default function CountryPage({ breadcrumbs }) {
                             <TextBlock text={selectedCountry.text8} parseText={parseText} />
 
                             {selectedCountry.variants3?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants3} />
+                                <VariantsList variants={selectedCountry.variants3} parseText={parseText} />
                             )}
 
                             {selectedCountry.priceGood !== 0 ? (

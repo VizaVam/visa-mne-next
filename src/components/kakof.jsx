@@ -6,44 +6,17 @@ import {motion} from "framer-motion";
 import {usePathname} from "next/navigation";
 import {useModal} from "@/components/modalcontext";
 import {countries} from "@/data/countries";
-import Reviews from "@/components/reviews";
-import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Fag2 from "@/components/fag2";
 
-const RippleButton = ({onClick, children}) => (
-    <button
-        onClick={onClick}
-        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
-    >
-        {[0, 1, 2].map((i) => (
-            <motion.span
-                key={i}
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{scale: 0, opacity: 1.5}}
-                animate={{scale: 4, opacity: 0}}
-                transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                    repeatDelay: 0.5,
-                    delay: i * 0.4,
-                }}
-            >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
-            </motion.span>
-        ))}
-        {children}
-    </button>
-);
 
-const BreadcrumbNav = ({pathname}) => (
-    <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
-        <Link href="/"
-              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+const BreadcrumbNav = ({ pathname }) => (
+    <nav className="mb-4 flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+        <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
             Главная
         </Link>
-        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2" />
         <Link
             href="/poleznaya-informasia"
             className={`text-orange-500 hover:underline ${pathname === "/poleznaya-informasia" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
@@ -51,62 +24,12 @@ const BreadcrumbNav = ({pathname}) => (
             Полезная информация
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        {pathname === "/kak-oformit-vizu-v-polshu-dlya-belarusov" ? (
-            <span className="font-semibold text-gray-900 cursor-default">Как оформить визу в Польшу для белорусов</span>
-        ) : (
-            <Link href="/kak-oformit-vizu-v-polshu-dlya-belarusov"
-                  className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
-                Как оформить визу в Польшу для белорусов
-            </Link>
-        )}
+        <span className="font-semibold text-gray-900 cursor-default">Как оформить визу в Польшу для белорусов</span>
     </nav>
 );
 
-const CountryCard = ({country}) => (
-    <Link href={`/shengenskie-vizy/${country.url}`}>
-        <div
-            className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-            <Image
-                src={country.img}
-                alt={country.name}
-                width={300}
-                height={200}
-                className="w-full object-cover"
-            />
-            <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
-                <div className="flex flex-row justify-between items-center">
-                    <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
-                        <Image src={country.svg} alt={country.name} width={24} height={24}/>
-                        <p className="font-medium mdd:text-[14px] sm:text-lg md:text-xl lg:text-xl">
-                            {country.name}
-                        </p>
-                    </div>
-                    <Image
-                        src="/Line 5.png"
-                        alt=""
-                        width={24}
-                        height={24}
-                        className="lg:w-6 md:w-6 sm:w-6 mdd:hidden"
-                    />
-                </div>
-            </div>
-        </div>
-    </Link>
-);
-
 export default function OnasPage({breadcrumbs}) {
-    const {openModal} = useModal();
     const pathname = usePathname();
-    const countryOrder = {
-        "viza-v-polshu": 1,
-        "viza-v-sloveniu": 2,
-        "viza-v-germaniyu": 3,
-        "viza-v-ispaniyu": 4
-    };
-
-    const recommendedCountries = Object.keys(countryOrder)
-        .map(countryKey => countries.find(c => c.url.toLowerCase() === countryKey))
-        .filter(Boolean);
 
     return (
         <div>
@@ -164,20 +87,43 @@ export default function OnasPage({breadcrumbs}) {
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
                                 где подавать заявление;
                             </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                стоимость консульского и сервисного сбора;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                сколько времени занимает оформление;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                как оформить визу в Польшу;
+                            </li>
+
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                и какие ошибки чаще всего приводят к отказу.
+                            </li>
                         </ul>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[22px] font-medium">Кто может получить визу в Польшу?</h2>
+                        <p>Белорусы могут получить шенгенскую визу в Польшу, если цель их поездки соответствует одному
+                            из следующих типов:</p>
                         <div className="overflow-x-auto">
-                            <table className="w-[800px] border-collapse">
+                            <table className="w-full border-collapse">
                                 <colgroup>
-                                    <col className="w-1/2" />
-                                    <col className="w-1/2" />
+                                    <col className="w-1/2"/>
+                                    <col className="w-1/2"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/2">Тип визы</th>
-                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/2">Цель поездки</th>
+                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/2">
+                                        Тип визы
+                                    </th>
+                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/2">
+                                        Цель поездки
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -187,7 +133,23 @@ export default function OnasPage({breadcrumbs}) {
                                 </tr>
                                 <tr className="bg-gray-50">
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Гостевая</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Посещение друзей или родственников</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Посещение родственников или друзей</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Деловая</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Конференции, переговоры, командировки</td>
+                                </tr>
+                                <tr className="bg-gray-50">
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Студенческая/Учебная/Полицеальная</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Обучение в польских учебных заведениях</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Рабочая</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Для официального трудоустройства в Польше</td>
+                                </tr>
+                                <tr className="bg-gray-50">
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Карта Поляка</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">При ее наличии</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -197,9 +159,9 @@ export default function OnasPage({breadcrumbs}) {
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[22px] font-medium">Полный список документов на визу в Польшу</h2>
                         <p>
-                            Чтобы ваше заявление приняли без задержек, соберите полный пакет документов заранее. Вот что потребуется от большинства заявителей:
+                            Чтобы ваше заявление приняли без задержек, соберите полный пакет документов заранее. Вот что
+                            потребуется от большинства заявителей:
                         </p>
-                        <p>В этой статье мы подробно расскажем:</p>
                         <ul className="text-black flex flex-col gap-2">
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
@@ -209,14 +171,28 @@ export default function OnasPage({breadcrumbs}) {
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
                                 Анкета на визу в Польшу – заполненная в электронном виде или уже распечатанная;
                             </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Фотография на визу (35×45 мм) — соответствующее требованиям ICAO;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Копии паспорта — страницы с личными данными и регистрацией;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Медицинская страховка, покрывающая расходы на сумму не менее 30 000 евро, действующая в
+                                странах Шенгена;
+                            </li>
                             <li className="flex flex-col gap-2">
                                 <div className="flex gap-2 items-start">
-                                    <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4 mt-1 flex-shrink-0"/>
+                                    <Image src="/check-0.png" alt="" width={16} height={16}
+                                           className="w-4 h-4 mt-1 flex-shrink-0"/>
                                     <span>Подтверждение цели поездки:</span>
                                 </div>
                                 <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
                                     <li className="pl-1">
-                                        туристический ваучер или оплаченная бронь отеля,
+                                        туристический ваучер или оплаченная бронь отеля;
                                     </li>
                                     <li className="pl-1">
                                         официальное приглашение от польской стороны,
@@ -226,8 +202,33 @@ export default function OnasPage({breadcrumbs}) {
                                     </li>
                                 </ul>
                             </li>
+                            <li className="flex flex-col gap-2">
+                                <div className="flex gap-2 items-start">
+                                    <Image src="/check-0.png" alt="" width={16} height={16}
+                                           className="w-4 h-4 mt-1 flex-shrink-0"/>
+                                    <span>Финансовое обеспечение:</span>
+                                </div>
+                                <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
+                                    <li className="pl-1">
+                                        банковская выписка за последние 3 месяца;
+                                    </li>
+                                    <li className="pl-1">
+                                        спонсорское письмо (если поездку оплачивает другое лицо);
+                                    </li>
+                                </ul>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Оплаченная бронь места в автобусе или маршрут поездки;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Квитанция об оплате консульского сбора.
+                            </li>
                         </ul>
-                        <p className={"text-[#595959]"}>Для детей дополнительно: свидетельство о рождении, согласие на выезд от родителей (при необходимости), копия студенческого билета, спонсорство и копии паспортных данных спонсора.</p>
+                        <p className={"text-[#595959]"}>Для детей дополнительно: свидетельство о рождении, согласие на
+                            выезд от родителей (при необходимости), копия студенческого билета, спонсорство и копии
+                            паспортных данных спонсора.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[22px] font-medium">Где и как подать документы на визу в Польшу?</h2>
@@ -248,10 +249,117 @@ export default function OnasPage({breadcrumbs}) {
                                 Через <a href="/" className={"underline"}>визовые агентства.</a>
                             </li>
                         </ul>
-                        <p>Необходимо обязательно заранее записаться на подачу визы в Польшу через официальный сайт визового центра, либо воспользоваться нашими услугами.</p>
+                        <p>Необходимо обязательно заранее записаться на подачу визы в Польшу через официальный сайт
+                            визового центра, либо воспользоваться нашими услугами.</p>
+                    </div>
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <h2 className="text-[22px] font-medium">Сколько стоит виза в Польшу для белорусов?</h2>
+                        <p>Стоимость визы для граждан Республики Беларусь зависит от возраста заявителя и типа поездки:</p>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <colgroup>
+                                    <col className="w-1/2"/>
+                                    <col className="w-1/2"/>
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/2">
+                                        Категория
+                                    </th>
+                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/2">
+                                        Стоимость визы (в евро)
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Взрослые</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">от 35 € до 90 € в зависимости от выбранной категории визы</td>
+                                </tr>
+                                <tr className="bg-gray-50">
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Дети (до 12 лет)</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">бесплатно</td>
+                                </tr>
+                                <tr>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Участники культурных/спортивных мероприятий</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">бесплатно</td>
+                                </tr>
+                                <tr className="bg-gray-50">
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Члены официальных делегаций</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">бесплатно</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Дополнительно могут взиматься в обязательно порядке сервисные сборы визовых центров.</p>
+                    </div>
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <h2 className="text-[22px] font-medium">Сколько времени делается виза в Польшу?</h2>
+                        <p>
+                            Рассмотрение заявления на визу в Консульстве Польши обычно занимает до 21 календарного дня. Однако в сезон высокой нагрузки (лето, новогодние праздники) срок может увеличиться.
+                        </p>
+                        <p>
+                            <span className="font-semibold">Совет:</span> подавайте документы заранее, особенно если у вас жёсткие даты поездки.
+                        </p>
+                    </div>
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <h2 className="text-[22px] font-medium">Самые частые ошибки при подаче документов</h2>
+                        <p>
+                            Чтобы избежать отказа, проверьте, нет ли среди ваших документов следующих проблем:
+                        </p>
+                        <ul className="text-black flex flex-col gap-2">
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Неполный пакет документов;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Истекший срок действия паспорта по требованиям (см. выше);
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Неправильно оформленная анкета;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Отсутствие финансового подтверждения;
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Ошибки в страховке (недостаточное покрытие или даты).
+                            </li>
+                        </ul>
+                        <p>Если вы не уверены в правильности оформления, лучше обратиться к специалисту.</p>
                     </div>
                 </div>
-
+                <Fag2 />
+                <div className="w-full relative flex flex-col gap-12 px-[7%] pt-20 text-[16px] mdd:text-[14px]">
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <h2 className="text-[22px] font-medium">Получите помощь в оформлении визы</h2>
+                        <p>
+                            Не хотите рисковать? Мы предлагаем профессиональную помощь в <a href="/" className="underline">оформлении визы в Польшу для белорусов</a>:
+                        </p>
+                        <ul className="text-black flex flex-col gap-2">
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Заполним анкету правильно и запишем на визит в Визовый центр Польши
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Поможем подготовить полный пакет документов
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Проконсультируем по каждому пункту
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                                Поможем оформить страховку и бронь отеля
+                            </li>
+                        </ul>
+                        <p>📞 Свяжитесь с нами по номеру <a href="tel:+375296800620" className="underline">+375296800620</a>  уже сегодня и начните готовиться к поездке в Польшу без лишних хлопот!</p>
+                    </div>
+                </div>
                 <Contacts/>
             </div>
         </div>

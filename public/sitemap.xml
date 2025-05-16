@@ -1,196 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Main pages -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <url>
-        <loc>https://visavampro.by/</loc>
-        <lastmod>2025-04-15</lastmod>
+        <loc>https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov</loc>
+        <lastmod>2025-05-16T14:31:38.499Z</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/kontakty</loc>
+        <lastmod>2025-05-16T14:31:38.500Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
     </url>
     <url>
         <loc>https://visavampro.by/shengenskie-vizy</loc>
-        <lastmod>2025-04-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://visavampro.by/kontakty</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc>https://visavampro.by/o-nas</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Visa types by country - Schengen -->
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-polshu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-sloveniu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-germaniyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-ispaniyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-vo-francziyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-litvu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-latviyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-bolgariyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-horvatiu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-niderlandy</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-grecziyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-vengriyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-italiyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-rumyniyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-avstriyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-chehiyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Non-Schengen visas -->
-    <url>
-        <loc>https://visavampro.by/viza-v-ssha</loc>
-        <lastmod>2025-04-15</lastmod>
+        <lastmod>2025-05-16T14:31:38.500Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://visavampro.by/viza-v-velikobritaniyu</loc>
-        <lastmod>2025-04-15</lastmod>
+        <loc>https://visavampro.by/poleznaya-informasia</loc>
+        <lastmod>2025-05-16T14:31:38.500Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://visavampro.by/viza-v-kitaj</loc>
-        <lastmod>2025-04-15</lastmod>
+        <lastmod>2025-05-16T14:31:38.500Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
-
-    <!-- Special visa types -->
     <url>
-        <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-polshu</loc>
-        <lastmod>2025-04-15</lastmod>
+        <loc>https://visavampro.by/viza-v-ssha</loc>
+        <lastmod>2025-05-16T14:31:38.500Z</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/viza-v-velikobritaniyu</loc>
+        <lastmod>2025-05-16T14:31:38.500Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://visavampro.by/shengenskie-vizy/delovaya-viza-v-polshu</loc>
-        <lastmod>2025-04-15</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/uchebnaya-viza-v-polshu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://visavampro.by/shengenskie-vizy/gostevaya-polskaya-viza</loc>
-        <lastmod>2025-04-15</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/viza-v-polsy-po-karte-polyaka</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-germaniyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-ispaniyu</loc>
-        <lastmod>2025-04-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-bolgariyu</loc>
-        <lastmod>2025-04-15</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-germaniyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-ispaniyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/rabochaya-viza-v-polshu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/uchebnaya-viza-v-polshu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-avstriyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-bolgariyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-chehiyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-germaniyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-grecziyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-horvatiu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-ispaniyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-italiyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-latviyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-litvu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-niderlandy</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-polshu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-polsy-po-karte-polyaka</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-rumyniyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-sloveniu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-v-vengriyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://visavampro.by/shengenskie-vizy/viza-vo-francziyu</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
 </urlset>

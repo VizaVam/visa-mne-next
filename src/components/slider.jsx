@@ -8,23 +8,28 @@ import Image from "next/image";
 const slides = [
     {
         id: 1,
-        image: "/1.jpg",
-        text: "Хочешь в Испанию? Легко!",
+        image: "/slider1.png",
+        text: 'Виза с <span class="underline">гарантией возврата средств при отказе</span>',
     },
     {
         id: 2,
+        image: "/1.jpg",
+        text: 'Хочешь в Испанию? Испанская виза с <span class="underline">безличной подачей в Минске</span>'
+    },
+    {
+        id: 3,
+        image: "/444.png",
+        text: "5% скидка при повторном обращении",
+    },
+    {
+        id: 4,
         image: "/2.png",
         text: "11% семье из 3-х человек",
     },
     {
-        id: 3,
+        id: 5,
         image: "/33.png",
         text: "13% скидка для семьи от 4-х человек",
-    },
-    {
-        id: 4,
-        image: "/444.png",
-        text: "5% скидка при повторном обращении",
     },
 ];
 
@@ -61,9 +66,9 @@ const Slider = () => {
     return (
         <div className="relative w-full mx-auto overflow-hidden pl-[7%] sm:px-[7%]" {...swipeHandlers}>
             {/* Слайд */}
-            <div className="relative lg:h-96 md:h-60 sm:h-52 mdd:h-36 w-full overflow-hidden">
+            <div className="relative lg:h-96 md:h-60 sm:h-52 mdd:h-52 w-full overflow-hidden">
                 <div
-                    className="flex transition-transform duration-700 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]"
+                    className="flex transition-transform duration-700 rounded-[2px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]"
                     style={{
                         transform: `translateX(calc(-${currentIndex * (isLgScreen ? 100 : 85)}% - ${
                             currentIndex * 8
@@ -75,7 +80,7 @@ const Slider = () => {
                             key={slide.id}
                             className={`${
                                 isLgScreen ? "w-[100%]" : "w-[85%]"
-                            } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-36 flex-shrink-0 relative mr-2 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
+                            } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-[2px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
                         >
                             <Image
                                 src={slide.image}
@@ -83,14 +88,14 @@ const Slider = () => {
                                 width={800}
                                 height={600}
                                 loading="lazy"
-                                className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-36 object-cover rounded-[4px]`}
+                                className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-[2px]`}
                                 style={{
                                     objectPosition: slide.id === 2 ? "50% 71%" : "center",
                                 }}
                             />
                             <div
-                                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[4px]">
-                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold">{slide.text}</h4>
+                                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
+                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold" dangerouslySetInnerHTML={{ __html: slide.text }} />
                             </div>
                         </div>
                     ))}

@@ -114,6 +114,7 @@ export default function HomePage() {
                 {/* Список преимуществ */}
                 <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 rounded-md pl-[7%]">
                     <AdvantageItem value="Более 10 лет" description="на рынке" />
+                    <AdvantageItem value="98%" description="одобрения виз" />
                     <AdvantageItem value="20 000+" description="успешных кейсов" />
                     <AdvantageItem value="10 000+" description="довольных клиентов" />
                     <AdvantageItem value="Персональный подход" />

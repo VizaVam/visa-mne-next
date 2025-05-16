@@ -71,7 +71,7 @@ const VariantsList = ({ variants }) => (
         {variants.map((variant, index) => (
             <li key={index} className="flex gap-2">
                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" />
-                {parseText(variant)}
+                <span>{parseText(variant)}</span>
             </li>
         ))}
     </ul>

@@ -246,20 +246,13 @@ export default function OtherCountryPage({ breadcrumbs }) {
             {/* Баннер страны с адаптивным изображением */}
             <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
                 <picture>
-                    {/* Мобильная версия (до 768px) */}
-                    <source
-                        media="(max-width: 768px)"
-                        srcSet={selectedCountry.bannerMobile || selectedCountry.banner}
-                        width={600}
-                        height={400}
-                    />
                     {/* Десктопная версия */}
                     <Image
                         src={selectedCountry.banner}
                         alt={`Визовые услуги для ${selectedCountry.name}`}
                         width={1800}
                         height={1200}
-                        className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%]"
+                        className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                         priority
                     />
                 </picture>

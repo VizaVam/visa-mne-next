@@ -90,12 +90,16 @@ const Slider = () => {
                                 loading="lazy"
                                 className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-[2px]`}
                                 style={{
-                                    objectPosition: slide.id === 2 ? "50% 71%" : "center",
+                                    objectPosition: slide.id === 1 ? "50% 15%" :
+                                        slide.id === 2 ? "50% 71%" :
+                                            slide.id === 4 ? "50% 73%" :
+                                                slide.id === 5 ? "50% 43%" : "center",
                                 }}
                             />
                             <div
                                 className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
-                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold" dangerouslySetInnerHTML={{ __html: slide.text }} />
+                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold"
+                                    dangerouslySetInnerHTML={{__html: slide.text}}/>
                             </div>
                         </div>
                     ))}

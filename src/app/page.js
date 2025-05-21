@@ -111,6 +111,10 @@ export default function HomePage() {
                     <Announcement />
                 </div>
 
+                {/*<div className="sm:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1 text-center">*/}
+                {/*    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на заявку через “Оформить заявку”</p>*/}
+                {/*</div>*/}
+
                 {/* Список преимуществ */}
                 <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 mdd:-mt-[24%] rounded-md pl-[7%]">
                     <AdvantageItem value="Более 10 лет" description="на рынке" />

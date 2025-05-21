@@ -11,6 +11,7 @@ import Contacts from "@/components/contacts";
 import Docs from "@/components/docs";
 import Steps1 from "@/components/steps1";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import DownloadFiles from "@/components/downloadFiles";
 
 // Компонент для кнопки с эффектом ripple
 const RippleButton = ({ onClick, children }) => (
@@ -367,6 +368,7 @@ export default function CountryPage({ breadcrumbs }) {
                         </div>
                     </div>
                     <Docs />
+                    <DownloadFiles />
                 </div>
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">

@@ -38,7 +38,7 @@ const RippleButton = ({onClick, children}) => (
 );
 
 const BreadcrumbNav = ({pathname}) => (
-    <nav className="mb-4 flex items-center space-x-2 text-gray-600 gap-2">
+    <nav className="mb-4 mdd:text-xs flex items-center space-x-2 text-gray-600 gap-2">
         <Link href="/"
               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
             Главная
@@ -116,7 +116,7 @@ export default function PolInfo({breadcrumbs}) {
                 </Link>
             </div>
 
-            <div className="mdd:mt-40 mt-64 md:mt-80 lg:mt-96 mb-10">
+            <div className="mdd:mt-60 mt-64 md:mt-80 lg:mt-96 mb-10">
                 <Contacts/>
             </div>
         </div>

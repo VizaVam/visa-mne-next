@@ -12,7 +12,7 @@ import Fag2 from "@/components/fag2";
 
 
 const BreadcrumbNav = ({ pathname }) => (
-    <nav className="mb-4 flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+    <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
         <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
             Главная
         </Link>

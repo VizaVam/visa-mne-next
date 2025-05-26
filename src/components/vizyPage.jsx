@@ -119,7 +119,9 @@ export default function VisaPage({ breadcrumbs }) {
             <Docs />
             <Reviews />
             <Fag />
-            <Contacts />
+            <div className="pt-32">
+                <Contacts/>
+            </div>
         </div>
     );
 }

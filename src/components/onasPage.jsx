@@ -197,7 +197,9 @@ export default function OnasPage({ breadcrumbs }) {
 
             <Reviews />
             <Fag />
-            <Contacts />
+            <div className="pt-32">
+                <Contacts/>
+            </div>
         </div>
     );
 }

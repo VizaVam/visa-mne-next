@@ -196,7 +196,9 @@ export default function ContactsPage({ breadcrumbs }) {
                 </div>
             </div>
 
-            <Contacts />
+            <div className="pt-32">
+                <Contacts/>
+            </div>
         </div>
     );
 }

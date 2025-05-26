@@ -360,7 +360,9 @@ export default function OnasPage({breadcrumbs}) {
                         <p>📞 Свяжитесь с нами по номеру <a href="tel:+375296800620" className="underline hover:font-medium">+375296800620</a>  уже сегодня и начните готовиться к поездке в Польшу без лишних хлопот!</p>
                     </div>
                 </div>
-                <Contacts/>
+                <div className="pt-32">
+                    <Contacts/>
+                </div>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 'use client'
 
-import { memo } from 'react';
+import {memo} from 'react';
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useModal } from "@/components/modalcontext";
+import {motion} from "framer-motion";
+import {useModal} from "@/components/modalcontext";
 import Services from "@/components/services";
 import Slider from "@/components/slider";
 import Docs from "@/components/docs";
@@ -13,7 +13,7 @@ import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
 import Announcement from "@/components/announcement";
 
-const AdvantageItem = ({ value, description }) => (
+const AdvantageItem = ({value, description}) => (
     <li className="flex items-center text-lg">
         <Image
             width={24}
@@ -36,7 +36,7 @@ const AdvantageItem = ({ value, description }) => (
     </li>
 );
 
-const RippleButton = memo(({ onClick, children }) => (
+const RippleButton = memo(({onClick, children}) => (
     <button
         onClick={onClick}
         className="bbbt relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
@@ -45,8 +45,8 @@ const RippleButton = memo(({ onClick, children }) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
+                initial={{scale: 0, opacity: 1.5}}
+                animate={{scale: 4, opacity: 0}}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -55,7 +55,7 @@ const RippleButton = memo(({ onClick, children }) => (
                     delay: i * 0.4,
                 }}
             >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full" />
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
             </motion.span>
         ))}
         {children}
@@ -63,16 +63,17 @@ const RippleButton = memo(({ onClick, children }) => (
 ));
 
 export default function HomePage() {
-    const { openModal } = useModal();
+    const {openModal} = useModal();
 
     return (
         <div>
-            <section className="lg:px-16 lg:mt-[70px] mt-[130px] mdd:pb-8 pb-20 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
+            <section
+                className="lg:px-16 lg:mt-[70px] mt-[130px] mdd:pb-8 pb-20 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-[100%] lg:w-[50%] text-left lg:text-left z-10">
                     <div className="flex flex-col ht:w-[100%] lg:w-[125%] md:w-[100%] sm:w-[100%] mdd:w-[100%]">
                         <h1 className="text-[40px] mdd:text-[24px] font-semibold text-black leading-tight">
-                            Оформи свою визу вместе <br className="br:hidden" /> <br className="lg:hidden dr:hidden" />
+                            Оформи свою визу вместе <br className="br:hidden"/> <br className="lg:hidden dr:hidden"/>
                             с <span className="lg:text-[48px] text-[40px] mdd:text-[32px] font-semibold leading-none">VISA VAM</span>
                         </h1>
                         <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[80%] md:top-[7%] sm:top-[10%] mdd:top-[5%] mddd:top-[6%] dr:top-[7%] lg:left-[35%] mdd:left-[30%] left-[25%] text-[36px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
@@ -108,7 +109,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="md:hidden">
-                    <Announcement />
+                    <Announcement/>
                 </div>
 
                 {/*<div className="sm:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1 text-center">*/}
@@ -117,32 +118,34 @@ export default function HomePage() {
 
                 {/* Список преимуществ */}
                 <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 mdd:-mt-[24%] rounded-md pl-[7%]">
-                    <AdvantageItem value="Более 10 лет" description="на рынке" />
-                    <AdvantageItem value="98%" description="одобрения виз" />
-                    <AdvantageItem value="20 000+" description="успешных кейсов" />
-                    <AdvantageItem value="10 000+" description="довольных клиентов" />
-                    <AdvantageItem value="Персональный подход" />
+                    <AdvantageItem value="Более 10 лет" description="на рынке"/>
+                    <AdvantageItem value="98%" description="одобрения виз"/>
+                    <AdvantageItem value="20 000+" description="успешных кейсов"/>
+                    <AdvantageItem value="10 000+" description="довольных клиентов"/>
+                    <AdvantageItem value="Персональный подход"/>
                 </ul>
             </section>
 
-            <Slider />
+            <Slider/>
 
             <div className="mdd:hidden">
-                <Announcement />
+                <Announcement/>
             </div>
 
             <div>
                 <h2 className="px-[7%] mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">
                     Оформление документов для подачи на визы
                 </h2>
-                <Services />
+                <Services/>
             </div>
 
-            <Steps />
-            <Docs />
-            <Reviews />
-            <Fag />
-            <Contacts />
+            <Steps/>
+            <Docs/>
+            <Reviews/>
+            <Fag/>
+            <div className="pt-32">
+                <Contacts/>
+            </div>
         </div>
     );
 }

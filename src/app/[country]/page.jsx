@@ -1,6 +1,7 @@
 import OtherCountriesPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { notFound } from 'next/navigation';
+export const dynamicParams = false;
 
 const countries = [
     {

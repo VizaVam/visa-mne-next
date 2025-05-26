@@ -201,6 +201,15 @@ const excludedCountries1 = [
     "rabochaya-viza-v-ispaniyu"
 ];
 
+const excludedPoland = [
+    "viza-v-polshu",
+    "rabochaya-viza-v-polshu",
+    "delovaya-viza-v-polshu",
+    "uchebnaya-viza-v-polshu",
+    "gostevaya-polskaya-viza",
+    "viza-v-polsy-po-karte-polyaka"
+];
+
 export default function CountryPage({breadcrumbs}) {
     const {country: countryUrl} = useParams();
     const {openModal} = useModal();
@@ -230,6 +239,8 @@ export default function CountryPage({breadcrumbs}) {
     // Список стран с ограниченным контентом
     const limitedContentCountries = ["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"];
 
+    const isExcludedPoland = excludedPoland.includes(selectedCountry.url);
+
     return (
         <div className="flex flex-col items-center">
             {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
@@ -237,7 +248,7 @@ export default function CountryPage({breadcrumbs}) {
             {/* Шапка страницы */}
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
                 <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
+                    className={`mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] ${isExcludedPoland ? 'mdd:top-[100px]' : 'mdd:top-[135px]'} w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12`}>
                     <CountryBreadcrumbs country={selectedCountry} pathname={pathname}/>
                     <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
                         {excludedCountries1.includes(selectedCountry.url)

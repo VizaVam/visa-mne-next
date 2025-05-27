@@ -67,6 +67,10 @@ export default function RootLayout({ children }) {
                 noModule
             />
             <script
+                noModule
+                src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
+            />
+            <script
                 dangerouslySetInnerHTML={{
                     __html: `
               if ('noModule' in HTMLScriptElement.prototype) {
@@ -77,7 +81,7 @@ export default function RootLayout({ children }) {
             />
         </head>
         <body className={`${interSans.variable} ${caveatSans.variable} antialiased`}>
-        <GoogleTagManager />
+        <GoogleTagManager/>
         <ModalProvider>
             <Header />
             <Breadcrumbs />

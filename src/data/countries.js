@@ -633,7 +633,7 @@ export const countries = [
             <span>Ваши документы-основания для получения визы - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">400</span> бел. руб.</span>,
             <span>Сопровождение под ключ - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">4100</span> бел. руб.</span>
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">2450</span> бел. руб.</span>
         ]
     },
 

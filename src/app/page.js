@@ -68,7 +68,7 @@ export default function HomePage() {
     return (
         <div>
             <section
-                className="lg:px-16 lg:mt-[70px] mt-[130px] mdd:pb-8 pb-20 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
+                className="lg:px-16 lg:mt-[70px] mt-[150px] mdd:pb-8 pb-20 lg:pb-0 z-0 flex flex-col lg:flex-row lg:items-start relative">
                 {/* Левая часть */}
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-[100%] lg:w-[50%] text-left lg:text-left z-10">
                     <div className="flex flex-col ht:w-[100%] lg:w-[125%] md:w-[100%] sm:w-[100%] mdd:w-[100%]">
@@ -83,7 +83,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Правая часть */}
-                <div className="w-full lg:flex items-center -mt-[20%] lg:mt-0 relative z-5">
+                <div className="w-full lg:flex items-center -mt-[30%] lg:mt-0 relative z-5">
                     <Image
                         width={840}
                         height={802}
@@ -117,7 +117,7 @@ export default function HomePage() {
                 {/*</div>*/}
 
                 {/* Список преимуществ */}
-                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-0 mdd:-mt-[24%] rounded-md pl-[7%]">
+                <ul className="lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:pt-5 mdd:pb-5 mdd:-mt-[24%] rounded-md pl-[7%]">
                     <AdvantageItem value="Более 10 лет" description="на рынке"/>
                     <AdvantageItem value="98%" description="одобрения виз"/>
                     <AdvantageItem value="20 000+" description="успешных кейсов"/>

@@ -1,6 +1,7 @@
 import OtherCountriesPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { notFound } from 'next/navigation';
+import {notFound} from 'next/navigation';
+
 export const dynamicParams = false;
 
 const countries = [
@@ -30,7 +31,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({params}) {
     const countryParam = decodeURIComponent(params?.country || "");
     const countryData = countries.find(c => c.url === countryParam);
 
@@ -39,6 +40,83 @@ export async function generateMetadata({ params }) {
     }
 
     const canonicalUrl = `https://visavampro.by/${countryData.url}`;
+    const detailedCountryData = require('@/components/serviceson').otherCountries.find(c => c.url === countryParam);
+
+    const images = [
+        // Static images from OtherCountryPage
+        {
+            url: "/nav-icon.png",
+            width: 8,
+            height: 8,
+            alt: "Иконка навигации",
+        },
+        {
+            url: "/check-0.png",
+            width: 16,
+            height: 16,
+            alt: "Иконка проверки для визовых требований",
+        },
+        {
+            url: "/visa-c.png",
+            width: 1000,
+            height: 1000,
+            alt: `Визовые услуги для ${detailedCountryData?.name || countryData.name}`,
+        },
+        {
+            url: "/visa-cc.png",
+            width: 1000,
+            height: 1000,
+            alt: `Визовые услуги для ${detailedCountryData?.name || countryData.name}`,
+        },
+        {
+            url: "/visa-112.webp",
+            width: 600,
+            height: 600,
+            alt: `Мобильная визовая услуга для ${detailedCountryData?.name || countryData.name}`,
+        },
+        {
+            url: "/visa-001.webp",
+            width: 600,
+            height: 600,
+            alt: `Мобильная визовая услуга для ${detailedCountryData?.name || countryData.name}`,
+        },
+        {
+            url: "/Line 5.png",
+            width: 24,
+            height: 24,
+            alt: "Иконка стрелки для навигации",
+        },
+    ];
+
+    // Add country-specific images if detailedCountryData exists
+    if (detailedCountryData) {
+        images.push(
+            {
+                url: detailedCountryData.img,
+                width: 300,
+                height: 200,
+                alt: `Изображение ${detailedCountryData.name}`,
+            },
+            {
+                url: detailedCountryData.banner,
+                width: 1800,
+                height: 1200,
+                alt: `Визовые услуги для ${detailedCountryData.name}`,
+            },
+            {
+                url: detailedCountryData.bannerMobile || detailedCountryData.banner,
+                width: 1800,
+                height: 1200,
+                alt: `Мобильный баннер визовых услуг для ${detailedCountryData.name}`,
+            },
+            {
+                url: detailedCountryData.svg,
+                width: 24,
+                height: 24,
+                alt: `Флаг ${detailedCountryData.name}`,
+            }
+        );
+    }
 
     return {
         title: `${countryData.title}`,
@@ -51,12 +129,13 @@ export async function generateMetadata({ params }) {
             description: `${countryData.description}`,
             url: canonicalUrl,
             type: "website",
+            images,
         },
     };
 }
 
-export default function Page({ params }) {
-    const { country } = params;
+export default function Page({params}) {
+    const {country} = params;
     const countryData = countries.find(item => item.url === country);
 
     if (!countryData) {
@@ -64,13 +143,13 @@ export default function Page({ params }) {
     }
 
     const breadcrumbs = [
-        { name: "Главная", url: "https://visavampro.by/" },
-        { name: countryData.title, url: `https://visavampro.by/${country}` }
+        {name: "Главная", url: "https://visavampro.by/"},
+        {name: countryData.title, url: `https://visavampro.by/${country}`}
     ];
 
     return (
         <>
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <Breadcrumbs breadcrumbs={breadcrumbs}/>
             <OtherCountriesPage
                 selectedCountry={countryData}
                 countryUrl={country}

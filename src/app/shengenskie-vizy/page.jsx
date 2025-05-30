@@ -12,6 +12,26 @@ export const metadata = {
         description: "Оформление шенген визы для белорусов в 2025 году. ✓ Визы любого типа. ✓ Сделать визу в Европу срочно. ✓ Онлайн запись. ✓ Доступные цены.",
         url: "https://visavampro.by/shengenskie-vizy",
         type: "website",
+        images: [
+            {
+                url: "/visa-banner-new.png",
+                width: 1000,
+                height: 1000,
+                alt: "Оформление виз с VisaVam.by – Легко и Доступно",
+            },
+            {
+                url: "/visabanner-f.svg",
+                width: 1000,
+                height: 1000,
+                alt: "Оформление виз с VisaVam.by – Легко и Доступно",
+            },
+            {
+                url: "/nav-icon.png",
+                width: 8,
+                height: 8,
+                alt: "Иконка навигации",
+            },
+        ],
     },
 };
 

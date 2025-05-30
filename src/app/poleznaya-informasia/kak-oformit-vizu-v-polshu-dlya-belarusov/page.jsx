@@ -12,6 +12,32 @@ export const metadata = {
         description: "Как получить визу в Польшу для белорусов: список документов, стоимость, сроки, адреса визовых центров и агентств. Полное руководство от экспертов визового агентства Visa Vam.",
         url: "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov",
         type: "website",
+        images: [
+            {
+                url: "/poland-banner.png",
+                width: 1600,
+                height: 1000,
+                alt: "Оформление визы в Польшу с VisaVam",
+            },
+            {
+                url: "/poland-banner.png",
+                width: 600,
+                height: 400,
+                alt: "Оформление визы в Польшу с VisaVam",
+            },
+            {
+                url: "/check-0.png",
+                width: 16,
+                height: 16,
+                alt: "Иконка проверки для визовых требований",
+            },
+            {
+                url: "/nav-icon.png",
+                width: 8,
+                height: 8,
+                alt: "Иконка навигации",
+            },
+        ],
     },
 };
 

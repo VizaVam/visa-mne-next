@@ -7,7 +7,7 @@ const CallToAction = () => {
     const { openModal } = useModal();
 
     return (
-        <div className="pb-40 pt-8 px-[7%] flex flex-col items-center">
+        <div className="pb-40 pt-40 px-[7%] flex flex-col items-center">
             <h2 className="mdd:text-xl sm:text-2xl md:text-3xl lg:text-3xl font-medium mb-4 text-center">
                 Остались вопросы?
             </h2>

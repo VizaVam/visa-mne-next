@@ -329,7 +329,7 @@ export const countries = [
         priceGood: 0,
         priceTitle: "Наша услуга",
         priceVariants: [
-            <span>Сопровождение под ключ - <span
+            <span>Подготовка пакета документов и запись - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2800</span> бел. руб.</span>,
             <span>Подготовка пакета документов без записи - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">350</span> бел. руб.</span>
@@ -607,7 +607,7 @@ export const countries = [
         priceTitle: "Наша услуга",
         priceVariants: [
             <span>Ваши документы-основания для получения визы - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">520</span> бел. руб.</span>,
-            <span>Сопровождение под ключ - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2900</span> бел. руб.</span>,
+            <span>Полный пакет услуг - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2900</span> бел. руб.</span>,
         ]
     },
 

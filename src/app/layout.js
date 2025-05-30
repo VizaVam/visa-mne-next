@@ -61,12 +61,6 @@ export default function RootLayout({ children }) {
                 {JSON.stringify(structuredData)}
             </script>
             <script
-                src="/_next/static/chunks/polyfills.js"
-                defer
-                crossOrigin="anonymous"
-                noModule
-            />
-            <script
                 noModule
                 src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
             />

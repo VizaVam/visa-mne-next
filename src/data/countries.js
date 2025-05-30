@@ -119,7 +119,7 @@ export const countries = [
         priceVariants: [
             <span>гостевая - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">650</span> бел. руб.</span>,
             <span>туристическая - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">1800</span> бел. руб.</span>,
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">1800-2450</span> бел. руб.</span>,
         ]
     },
     {

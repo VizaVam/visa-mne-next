@@ -32,6 +32,46 @@ export const metadata = {
         url: "https://visavampro.by",
         type: "website",
         siteName: "VISA VAM",
+        images: [
+            // Existing images from the example
+            {
+                url: "/visa-banner-new.png",
+                width: 1000,
+                height: 1000,
+                alt: "Оформление виз с VisaVam.by – Легко и Доступно",
+            },
+            {
+                url: "/visabanner-f.svg",
+                width: 1000,
+                height: 1000,
+                alt: "Оформление виз с VisaVam.by – Легко и Доступно",
+            },
+            {
+                url: "/nav-icon.png",
+                width: 8,
+                height: 8,
+                alt: "Иконка навигации",
+            },
+            // New images from HomePage
+            {
+                url: "/check.svg",
+                width: 24,
+                height: 24,
+                alt: "Иконка преимущества работы с VisaVam.by",
+            },
+            {
+                url: "/banner-hero.svg",
+                width: 840,
+                height: 802,
+                alt: "Оформление виз с VisaVam.by – Легко и Доступно (десктопный баннер)",
+            },
+            {
+                url: "/main-m.svg",
+                width: 840,
+                height: 802,
+                alt: "Оформление виз с VisaVam.by – Легко и Доступно (мобильный баннер)",
+            },
+        ],
     },
 };
 

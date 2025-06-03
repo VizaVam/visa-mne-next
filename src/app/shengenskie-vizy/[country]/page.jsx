@@ -178,7 +178,7 @@ export async function generateMetadata({params}) {
             alt: "Иконка навигации",
         },
         {
-            url: "/check-0.png",
+            url: "https://visavampro.by/check-0.png",
             width: 16,
             height: 16,
             alt: "Иконка проверки для визовых требований",

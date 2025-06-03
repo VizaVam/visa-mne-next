@@ -12,6 +12,7 @@ import Docs from "@/components/docs";
 import Steps1 from "@/components/steps1";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadFiles from "@/components/downloadFiles";
+import PhoneForm from "@/components/newModal";
 
 // Компонент для кнопки с эффектом ripple
 const RippleButton = ({onClick, children}) => (
@@ -303,6 +304,7 @@ export default function CountryPage({breadcrumbs}) {
             {showExtendedContent ? (
                 <div className="w-full">
                     <Steps1/>
+                    <PhoneForm/>
                     <div className="px-[7%]">
                         <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
                             <SectionTitle title={selectedCountry.title}/>

@@ -203,7 +203,7 @@ export default function OtherCountryPage({breadcrumbs}) {
             {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
 
             {/* Шапка страницы */}
-            <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between mdd:-mt-6">
+            <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between mdd:-mt-10">
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] mdd:top-[150px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12">
                     <CountryBreadcrumbs

@@ -12,6 +12,7 @@ import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
 import Announcement from "@/components/announcement";
+import PhoneForm from "@/components/newModal"
 
 const AdvantageItem = ({value, description}) => (
     <li className="flex items-center text-lg">
@@ -140,6 +141,7 @@ export default function HomePage() {
             </div>
 
             <Steps/>
+            <PhoneForm />
             <Docs/>
             <Reviews/>
             <Fag/>

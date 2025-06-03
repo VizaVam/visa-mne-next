@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Steps = () => {
     return (
-        <div className="w-full px-[7%] py-24">
+        <div className="w-full px-[7%] pt-24 pb-16 mdd:pb-10">
             <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16">3 шага для получения визы</h2>
 
             {/* Контейнер шагов */}

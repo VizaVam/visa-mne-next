@@ -1,6 +1,6 @@
 import OtherCountriesPage from "@/components/otherCountriesPage";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import {notFound} from 'next/navigation';
+import { notFound } from 'next/navigation';
 
 export const dynamicParams = false;
 
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata({params}) {
+export async function generateMetadata({ params }) {
     const countryParam = decodeURIComponent(params?.country || "");
     const countryData = countries.find(c => c.url === countryParam);
 
@@ -40,7 +40,18 @@ export async function generateMetadata({params}) {
     }
 
     const canonicalUrl = `https://visavampro.by/${countryData.url}`;
-    const detailedCountryData = require('@/components/serviceson').otherCountries.find(c => c.url === countryParam);
+
+    let detailedCountryData = countryData; // Default to countryData as fallback
+    try {
+        const { otherCountries } = await import('@/components/serviceson');
+        if (Array.isArray(otherCountries)) {
+            detailedCountryData = otherCountries.find(c => c.url === countryParam) || countryData;
+        } else {
+            console.warn('otherCountries is not an array in@/components/serviceson, falling back to countryData');
+        }
+    } catch (error) {
+        console.error('Failed to import otherCountries:', error.message);
+    }
 
     const images = [
         // Static images from OtherCountryPage
@@ -60,25 +71,25 @@ export async function generateMetadata({params}) {
             url: "/visa-c.png",
             width: 1000,
             height: 1000,
-            alt: `Визовые услуги для ${detailedCountryData?.name || countryData.name}`,
+            alt: `Визовые услуги для ${detailedCountryData.name}`,
         },
         {
             url: "/visa-cc.png",
             width: 1000,
             height: 1000,
-            alt: `Визовые услуги для ${detailedCountryData?.name || countryData.name}`,
+            alt: `Визовые услуги для ${detailedCountryData.name}`,
         },
         {
             url: "/visa-112.webp",
             width: 600,
             height: 600,
-            alt: `Мобильная визовая услуга для ${detailedCountryData?.name || countryData.name}`,
+            alt: `Мобильная визовая услуга для ${detailedCountryData.name}`,
         },
         {
             url: "/visa-001.webp",
             width: 600,
             height: 600,
-            alt: `Мобильная визовая услуга для ${detailedCountryData?.name || countryData.name}`,
+            alt: `Мобильная визовая услуга для ${detailedCountryData.name}`,
         },
         {
             url: "/Line 5.png",
@@ -88,8 +99,8 @@ export async function generateMetadata({params}) {
         },
     ];
 
-    // Add country-specific images if detailedCountryData exists
-    if (detailedCountryData) {
+    // Add country-specific images if detailedCountryData has additional fields
+    if (detailedCountryData.img) {
         images.push(
             {
                 url: detailedCountryData.img,
@@ -134,8 +145,8 @@ export async function generateMetadata({params}) {
     };
 }
 
-export default function Page({params}) {
-    const {country} = params;
+export default function Page({ params }) {
+    const { country } = params;
     const countryData = countries.find(item => item.url === country);
 
     if (!countryData) {
@@ -143,13 +154,13 @@ export default function Page({params}) {
     }
 
     const breadcrumbs = [
-        {name: "Главная", url: "https://visavampro.by/"},
-        {name: countryData.title, url: `https://visavampro.by/${country}`}
+        { name: "Главная", url: "https://visavampro.by/" },
+        { name: countryData.title, url: `https://visavampro.by/${country}` }
     ];
 
     return (
         <>
-            <Breadcrumbs breadcrumbs={breadcrumbs}/>
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
             <OtherCountriesPage
                 selectedCountry={countryData}
                 countryUrl={country}

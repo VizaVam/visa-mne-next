@@ -106,7 +106,7 @@ export default function OnasPage({ breadcrumbs }) {
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
                 <div className="mdd:relative mdd:text-xs lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname} />
-                    <h1 className="mdd:text-[40px] lg:text-[64px] md:text-[58px] sm:text-[48px] font-semibold text-black">
+                    <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black">
                         О НАС
                     </h1>
                 </div>

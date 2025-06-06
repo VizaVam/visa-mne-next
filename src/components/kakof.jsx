@@ -40,7 +40,7 @@ export default function OnasPage({breadcrumbs}) {
                 <div
                     className="w-full text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
-                    <h1 className="dm:w-full md:w-[70%] mdd:text-[28px] lg:text-[40px] md:text-[40px] sm:text-[36px] font-medium text-black">
+                    <h1 className="dm:w-full ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-medium text-black">
                         Как оформить визу в Польшу для белорусов: документы, стоимость и сроки
                     </h1>
                 </div>

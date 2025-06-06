@@ -336,7 +336,7 @@ export default function OtherCountryPage({ breadcrumbs }) {
                         pathname={pathname}
                         excludedCountries1={excludedCountries1}
                     />
-                    <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
+                    <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
                         {excludedCountries1.includes(selectedCountry.url)
                             ? ""
                             : `Виза ${selectedCountry.n === "Францию" ? "Во" : "В"} `}{selectedCountry.n}

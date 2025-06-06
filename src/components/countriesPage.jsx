@@ -537,6 +537,10 @@ const excludedCountries1 = [
     "rabochaya-viza-v-ispaniyu"
 ];
 
+const subWorkGermany = [
+    "rabochaya-viza-v-germaniyu"
+]
+
 const excludedPoland = [
     "viza-v-polshu",
     "rabochaya-viza-v-polshu",
@@ -581,11 +585,12 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                 <div
                     className={`mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] ${isExcludedPoland ? 'mdd:top-[150px]' : 'mdd:top-[150px]'} w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12`}>
                     <CountryBreadcrumbs country={selectedCountry} pathname={pathname} />
-                    <h1 className="ht:text-[52px] lg:text-[52px] md:text-[50px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
+                    <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
                         {excludedCountries1.includes(selectedCountry.url)
                             ? selectedCountry.n
                             : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
                     </h1>
+                    <p>* оформление «под ключ» в Минске</p>
                 </div>
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">

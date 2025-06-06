@@ -15,6 +15,7 @@ import DownloadFiles from "@/components/downloadFiles";
 import PhoneForm from "@/components/newModal";
 import {useState} from "react";
 import DocsGer from "@/components/docsGer";
+import Slider from "@/components/slider";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -644,16 +645,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
             </div>
 
             <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
-                <picture>
-                    <Image
-                        src={selectedCountry.banner}
-                        alt={`Визовые услуги для ${selectedCountry.name}`}
-                        width={1800}
-                        height={1200}
-                        className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
-                        priority
-                    />
-                </picture>
+                <Slider/>
             </div>
 
             {showExtendedContent ? (

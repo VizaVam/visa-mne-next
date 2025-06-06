@@ -14,6 +14,7 @@ import Serviceson from "@/components/serviceson";
 import { useModal } from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PhoneForm from "@/components/newModal";
+import Slider from "@/components/slider";
 
 const RippleButton = memo(({ onClick, children }) => (
     <button
@@ -113,6 +114,10 @@ export default function VisaPage({ breadcrumbs }) {
                         Оформить заявку
                     </RippleButton>
                 </div>
+            </div>
+
+            <div className="mb-[100px]">
+                <Slider/>
             </div>
 
             <Serviceson />

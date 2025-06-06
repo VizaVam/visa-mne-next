@@ -69,6 +69,7 @@ export default function OnasPage({breadcrumbs}) {
                     />
                 </div>
 
+
                 {/* About Text Section */}
                 <div className="w-full relative flex flex-col gap-12 px-[7%] pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">

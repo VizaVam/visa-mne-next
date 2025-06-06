@@ -3,16 +3,17 @@
 import {useMemo, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound, useParams, usePathname } from 'next/navigation';
-import { motion } from "framer-motion";
-import { countries } from '@/data/countries';
-import { otherCountries } from "@/components/serviceson";
-import { useModal } from "@/components/modalcontext";
+import {notFound, useParams, usePathname} from 'next/navigation';
+import {motion} from "framer-motion";
+import {countries} from '@/data/countries';
+import {otherCountries} from "@/components/serviceson";
+import {useModal} from "@/components/modalcontext";
 import Contacts from "@/components/contacts";
 import Docs from "@/components/docs";
 import Steps1 from "@/components/steps1";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PhoneForm from "@/components/newModal";
+import Slider from "@/components/slider";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -73,7 +74,7 @@ const faqDataByCountry = {
 };
 
 // FAQ Component
-const FAQ = ({ countryUrl }) => {
+const FAQ = ({countryUrl}) => {
     const [openIndex, setOpenIndex] = useState(null);
     const faqData = faqDataByCountry[countryUrl] || [];
 
@@ -128,7 +129,7 @@ const FAQ = ({ countryUrl }) => {
                         {openIndex === index && (
                             <div
                                 className="mdd:text-[16px] text-[16px] bg-white rounded-[4px] py-4 px-6 text-gray-700"
-                                dangerouslySetInnerHTML={{ __html: faq.answer }}
+                                dangerouslySetInnerHTML={{__html: faq.answer}}
                             />
                         )}
                     </div>
@@ -139,7 +140,7 @@ const FAQ = ({ countryUrl }) => {
 };
 
 // Компонент для кнопки с эффектом ripple
-const RippleButton = ({ onClick, children }) => (
+const RippleButton = ({onClick, children}) => (
     <button
         onClick={onClick}
         className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
@@ -148,8 +149,8 @@ const RippleButton = ({ onClick, children }) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
+                initial={{scale: 0, opacity: 1.5}}
+                animate={{scale: 4, opacity: 0}}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -158,7 +159,7 @@ const RippleButton = ({ onClick, children }) => (
                     delay: i * 0.4,
                 }}
             >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full" />
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
             </motion.span>
         ))}
         {children}
@@ -166,13 +167,13 @@ const RippleButton = ({ onClick, children }) => (
 );
 
 // Компонент для хлебных крошек
-const CountryBreadcrumbs = ({ country, pathname, excludedCountries1 }) => (
+const CountryBreadcrumbs = ({country, pathname, excludedCountries1}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
         <Link href="/"
               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
             Главная
         </Link>
-        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2" />
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
         <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
       {excludedCountries1.includes(country.url)
           ? country.n
@@ -184,11 +185,11 @@ const CountryBreadcrumbs = ({ country, pathname, excludedCountries1 }) => (
 );
 
 // Компонент для отображения вариантов
-const VariantsList = ({ variants }) => (
+const VariantsList = ({variants}) => (
     <ul className="text-black text-[14px] flex flex-col gap-2">
         {variants.map((variant, index) => (
             <li key={index} className="flex gap-2 items-center">
-                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" />
+                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
                 {variant}
             </li>
         ))}
@@ -196,7 +197,7 @@ const VariantsList = ({ variants }) => (
 );
 
 // Компонент для кнопок типов виз
-const VisaTypeButtons = ({ types, links }) => (
+const VisaTypeButtons = ({types, links}) => (
     <>
         {types.map((text, index) => (
             <div key={index} className="flex flex-col items-start">
@@ -221,28 +222,28 @@ const parseText = (text) => {
 };
 
 // Компонент для отображения текстового блока
-const TextBlock = ({ text, parseText, className = "" }) => (
+const TextBlock = ({text, parseText, className = ""}) => (
     text && <p className={`text-black text-[14px] ${className}`}>
         {parseText(text)}
     </p>
 );
 
 // Компонент для отображения заголовка
-const SectionTitle = ({ title, className = "" }) => (
+const SectionTitle = ({title, className = ""}) => (
     title && <h3 className={`text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
         {title}
     </h3>
 );
 
 // Компонент для отображения цены
-const PriceDisplay = ({ price1, priceType }) => (
+const PriceDisplay = ({price1, priceType}) => (
     <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
         Наша услуга: <span className="text-orange-500">{parseText(price1)}</span> бел. руб. {parseText(priceType)}
     </p>
 );
 
 // Компонент для отображения альтернативного ценообразования
-const AlternativePricing = ({ priceTitle, priceVariants }) => (
+const AlternativePricing = ({priceTitle, priceVariants}) => (
     <div className="flex flex-col gap-6 lg:w-[80%]">
         {priceTitle && (
             <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">
@@ -250,13 +251,13 @@ const AlternativePricing = ({ priceTitle, priceVariants }) => (
             </p>
         )}
         {priceVariants?.length > 0 && (
-            <VariantsList variants={priceVariants} />
+            <VariantsList variants={priceVariants}/>
         )}
     </div>
 );
 
 // Компонент для отображения карточки страны
-const CountryCard = ({ country }) => (
+const CountryCard = ({country}) => (
     <Link href={`/shengenskie-vizy/${country.url}`}>
         <div
             className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
@@ -270,7 +271,7 @@ const CountryCard = ({ country }) => (
             <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
                 <div className="flex flex-row justify-between items-center">
                     <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
-                        <Image src={country.svg} alt={country.name} width={24} height={24} />
+                        <Image src={country.svg} alt={country.name} width={24} height={24}/>
                         <p className="font-medium mdd:text-[14px] sm:text-lg md:text-xl lg:text-xl">
                             {country.name}
                         </p>
@@ -288,9 +289,9 @@ const CountryCard = ({ country }) => (
     </Link>
 );
 
-export default function OtherCountryPage({ breadcrumbs }) {
-    const { country: countryUrl } = useParams();
-    const { openModal } = useModal();
+export default function OtherCountryPage({breadcrumbs}) {
+    const {country: countryUrl} = useParams();
+    const {openModal} = useModal();
     const pathname = usePathname();
 
     // Константы для исключенных стран
@@ -325,7 +326,7 @@ export default function OtherCountryPage({ breadcrumbs }) {
 
     return (
         <div className="flex flex-col items-center">
-            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
 
             {/* Шапка страницы */}
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between mdd:-mt-10">
@@ -373,73 +374,63 @@ export default function OtherCountryPage({ breadcrumbs }) {
 
             {/* Баннер страны с адаптивным изображением */}
             <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
-                <picture>
-                    {/* Десктопная версия */}
-                    <Image
-                        src={selectedCountry.banner}
-                        alt={`Визовые услуги для ${selectedCountry.name}`}
-                        width={1800}
-                        height={1200}
-                        className="w-full h-96 object-cover object-center px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
-                        priority
-                    />
-                </picture>
+                <Slider/>
             </div>
 
             {showExtendedContent ? (
                 <div className="w-full">
-                    <Steps1 />
-                    <PhoneForm />
+                    <Steps1/>
+                    <PhoneForm/>
                     <div className="px-[7%]">
                         <div className="pb-24 flex flex-col gap-6 lg:w-[70%]">
-                            <SectionTitle title={selectedCountry.title} />
-                            <TextBlock text={selectedCountry.textTop} parseText={parseText} />
-                            <TextBlock text={selectedCountry.text1} parseText={parseText} />
+                            <SectionTitle title={selectedCountry.title}/>
+                            <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
+                            <TextBlock text={selectedCountry.text1} parseText={parseText}/>
 
                             {selectedCountry.variants?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants} />
+                                <VariantsList variants={selectedCountry.variants}/>
                             )}
 
                             {Array.isArray(selectedCountry.text11) && (
                                 <div>
                                     {selectedCountry.text11.slice(0, 3).map((text, i) => (
-                                        <TextBlock key={i} text={text} parseText={parseText} />
+                                        <TextBlock key={i} text={text} parseText={parseText}/>
                                     ))}
                                 </div>
                             )}
 
-                            <SectionTitle title={selectedCountry.title22} />
-                            <TextBlock text={selectedCountry.text2} parseText={parseText} />
-                            <TextBlock text={selectedCountry.text3} parseText={parseText} />
+                            <SectionTitle title={selectedCountry.title22}/>
+                            <TextBlock text={selectedCountry.text2} parseText={parseText}/>
+                            <TextBlock text={selectedCountry.text3} parseText={parseText}/>
 
                             {selectedCountry.variants11?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants11} />
+                                <VariantsList variants={selectedCountry.variants11}/>
                             )}
 
-                            <TextBlock text={selectedCountry.text4} parseText={parseText} />
-                            <TextBlock text={selectedCountry.text5} parseText={parseText} />
+                            <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+                            <TextBlock text={selectedCountry.text5} parseText={parseText}/>
 
-                            <SectionTitle title={selectedCountry.title2} />
+                            <SectionTitle title={selectedCountry.title2}/>
                             {selectedCountry.variants2?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants2} />
+                                <VariantsList variants={selectedCountry.variants2}/>
                             )}
 
                             {Array.isArray(selectedCountry.text22) && (
                                 <div>
                                     {selectedCountry.text22.slice(0, 3).map((text, i) => (
-                                        <TextBlock key={i} text={text} parseText={parseText} />
+                                        <TextBlock key={i} text={text} parseText={parseText}/>
                                     ))}
                                 </div>
                             )}
 
-                            <TextBlock text={selectedCountry.text6} parseText={parseText} />
+                            <TextBlock text={selectedCountry.text6} parseText={parseText}/>
 
-                            <SectionTitle title={selectedCountry.title33} />
-                            <TextBlock text={selectedCountry.text7} parseText={parseText} />
-                            <TextBlock text={selectedCountry.text8} parseText={parseText} />
+                            <SectionTitle title={selectedCountry.title33}/>
+                            <TextBlock text={selectedCountry.text7} parseText={parseText}/>
+                            <TextBlock text={selectedCountry.text8} parseText={parseText}/>
 
                             {selectedCountry.variants3?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants3} />
+                                <VariantsList variants={selectedCountry.variants3}/>
                             )}
 
                             {selectedCountry.priceGood !== 0 ? (
@@ -468,8 +459,8 @@ export default function OtherCountryPage({ breadcrumbs }) {
                             )}
                         </div>
                     </div>
-                    <Docs />
-                    <FAQ countryUrl={countryUrl} />
+                    <Docs/>
+                    <FAQ countryUrl={countryUrl}/>
                 </div>
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">
@@ -481,20 +472,20 @@ export default function OtherCountryPage({ breadcrumbs }) {
                                 </h3>
                             )}
                             <div className="flex flex-col gap-6">
-                                <TextBlock text={selectedCountry.text1} parseText={parseText} />
-                                <TextBlock text={selectedCountry.text2} parseText={parseText} />
+                                <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text2} parseText={parseText}/>
 
                                 {selectedCountry.variants?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants} />
+                                    <VariantsList variants={selectedCountry.variants}/>
                                 )}
 
-                                <TextBlock text={selectedCountry.text3} parseText={parseText} />
-                                <TextBlock text={selectedCountry.text4} parseText={parseText} />
+                                <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text4} parseText={parseText}/>
 
                                 {Array.isArray(selectedCountry.text22) && (
                                     <div>
                                         {selectedCountry.text22.slice(0, 2).map((text, i) => (
-                                            <TextBlock key={i} text={text} parseText={parseText} />
+                                            <TextBlock key={i} text={text} parseText={parseText}/>
                                         ))}
                                     </div>
                                 )}
@@ -517,7 +508,7 @@ export default function OtherCountryPage({ breadcrumbs }) {
                         <div
                             className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
                             {recommendedCountries.map((country, index) => (
-                                <CountryCard key={index} country={country} />
+                                <CountryCard key={index} country={country}/>
                             ))}
                         </div>
                     </div>
@@ -530,12 +521,12 @@ export default function OtherCountryPage({ breadcrumbs }) {
                             </button>
                         </Link>
                     </div>
-                    <FAQ countryUrl={countryUrl} />
+                    <FAQ countryUrl={countryUrl}/>
                 </div>
             )}
 
             <div className="pt-32">
-                <Contacts />
+                <Contacts/>
             </div>
         </div>
     );

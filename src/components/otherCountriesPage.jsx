@@ -86,7 +86,7 @@ const FAQ = ({countryUrl}) => {
 
     return (
         <div className="pt-20 px-[7%]">
-            <h2 className="text-[24px] font-medium mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
+            <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
             <script type="application/ld+json">
                 {JSON.stringify({
                     "@context": "https://schema.org",
@@ -230,14 +230,14 @@ const TextBlock = ({text, parseText, className = ""}) => (
 
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
-    title && <h3 className={`text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
+    title && <h2 className={`text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
         {title}
-    </h3>
+    </h2>
 );
 
 // Компонент для отображения цены
 const PriceDisplay = ({price1, priceType}) => (
-    <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+    <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
         Наша услуга: <span className="text-orange-500">{parseText(price1)}</span> бел. руб. {parseText(priceType)}
     </p>
 );
@@ -337,7 +337,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                         pathname={pathname}
                         excludedCountries1={excludedCountries1}
                     />
-                    <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
+                    <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black uppercase leading-none">
                         {excludedCountries1.includes(selectedCountry.url)
                             ? ""
                             : `Виза ${selectedCountry.n === "Францию" ? "Во" : "В"} `}{selectedCountry.n}
@@ -467,9 +467,9 @@ export default function OtherCountryPage({breadcrumbs}) {
                     {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"].includes(countryUrl) && (
                         <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
                             {selectedCountry.title && (
-                                <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
+                                <h2 className="text-[#F86F00] text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                                     {selectedCountry.title}
-                                </h3>
+                                </h2>
                             )}
                             <div className="flex flex-col gap-6">
                                 <TextBlock text={selectedCountry.text1} parseText={parseText}/>

@@ -106,7 +106,7 @@ export default function OnasPage({ breadcrumbs }) {
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
                 <div className="mdd:relative mdd:text-xs lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname} />
-                    <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black">
+                    <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black">
                         О НАС
                     </h1>
                 </div>
@@ -176,7 +176,7 @@ export default function OnasPage({ breadcrumbs }) {
 
             {/* Countries Section */}
             <div className="flex flex-col gap-4 mt-2 p-[7%]">
-                <h2 className="mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4">
+                <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16 mdd:mb-4">
                     Оформление документов для подачи на визы
                 </h2>
 

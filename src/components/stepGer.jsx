@@ -2,15 +2,16 @@ import Image from "next/image";
 
 const Steps = () => {
     return (
-        <div className="w-full px-[7%] pt-24 pb-16 mdd:pb-10">
-            <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16">3 шага для получения визы</h2>
+        <div className="w-full px-[7%] pb-16 mdd:pb-10">
+            <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16">3 шага для получения
+                визы</h2>
 
             {/* Контейнер шагов */}
             <div style={{margin: "0 auto"}}
                  className="flex flex-col max-w-[320px] lg:max-w-none lg:flex-row items-center lg:justify-center lg:space-y-0 relative">
                 {/* Step 1 */}
                 <div
-                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[4px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:left-10"
+                    className="flex flex-col lg:rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:left-10"
                     style={{
                         border: "1px solid #ECECEC",
                     }}
@@ -36,7 +37,7 @@ const Steps = () => {
 
                 {/* Step 2 */}
                 <div
-                    className="flex flex-col items-center text-center bg-[#FAFAFA] rounded-[4px] lg:w-60 md:w-48 py-8 relative lg:left-[0] self-end"
+                    className="flex flex-col items-center text-center bg-[#FAFAFA] rounded-[2px] lg:w-60 md:w-48 py-8 relative lg:left-[0] self-end"
                     style={{border: "1px solid #ECECEC"}}
                 >
                     <Image src="/step-2.svg" alt="Документы" width={101} height={100} className="h-14 lg:h-20"/>
@@ -60,7 +61,7 @@ const Steps = () => {
 
                 {/* Step 3 */}
                 <div
-                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[4px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:right-4"
+                    className="flex flex-col lg:-rotate-[10deg] items-center justify-center text-center bg-[#FAFAFA] rounded-[2px] w-[50%] lg:w-60 md:w-48 py-8 relative self-start lg:right-4"
                     style={{
                         border: "1px solid #ECECEC",
                     }}

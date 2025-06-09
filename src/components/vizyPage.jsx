@@ -85,7 +85,7 @@ export default function VisaPage({ breadcrumbs }) {
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
                 <div className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname} />
-                    <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black leading-none">
+                    <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black leading-none">
                         ШЕНГЕНСКИЕ ВИЗЫ
                     </h1>
                 </div>

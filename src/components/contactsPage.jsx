@@ -122,7 +122,7 @@ export default function ContactsPage({ breadcrumbs }) {
                             <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2" />
                             <span className="font-semibold text-gray-900 cursor-default">Контакты</span>
                         </nav>
-                        <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black">
+                        <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black">
                             КОНТАКТЫ
                         </h1>
                     </div>

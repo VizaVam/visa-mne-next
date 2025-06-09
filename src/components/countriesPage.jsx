@@ -16,6 +16,7 @@ import PhoneForm from "@/components/newModal";
 import {useState} from "react";
 import DocsGer from "@/components/docsGer";
 import Slider from "@/components/slider";
+import StepGer from "@/components/stepGer";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -316,7 +317,8 @@ const FAQ = ({countryUrl}) => {
 
     return (
         <div className="pt-20 px-[7%]">
-            <h2 className="text-[24px] font-medium mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
+            <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-12">Часто задаваемые
+                вопросы</h2>
             <script type="application/ld+json">
                 {JSON.stringify({
                     "@context": "https://schema.org",
@@ -476,9 +478,9 @@ const TextBlock = ({text, parseText, className = ""}) => (
 
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
-    title && <h3 className={`text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
+    title && <h2 className={`text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
         {title}
-    </h3>
+    </h2>
 );
 
 // Компонент для отображения цены
@@ -607,12 +609,13 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                     className={`mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] ${isExcludedPoland ? 'mdd:top-[150px]' : 'mdd:top-[150px]'} w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12`}>
                     <CountryBreadcrumbs country={selectedCountry} pathname={pathname}/>
                     <span>
-                        <h1 className="ht:text-[54px] lg:text-[54px] md:text-[52px] sm:text-[48px] mdd:text-[30px] font-semibold text-black uppercase leading-none">
+                        <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black uppercase leading-none">
                         {excludedCountries1.includes(selectedCountry.url)
                             ? selectedCountry.n
                             : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
                         </h1>
-                        {subWorkGermany.includes(selectedCountry.url) && (<p className="mdd:text-[18px] sm:text-[26px]">* оформление «под ключ» в Минске</p>)}
+                        {subWorkGermany.includes(selectedCountry.url) && (
+                            <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске</p>)}
                     </span>
                 </div>
 
@@ -650,9 +653,17 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
             {showExtendedContent ? (
                 <div className="w-full">
-                    <Steps1/>
-                    <PhoneForm/>
-                    <div className="px-[7%]">
+                    {subWorkGermany.includes(selectedCountry.url) ? (
+                        <>
+
+                        </>
+                    ) : (
+                        <div className={'pt-24'}>
+                            <StepGer/>
+                            <PhoneForm/>
+                        </div>
+                    )}
+                    <div className={`px-[7%] ${subWorkGermany.includes(selectedCountry.url) ? 'pt-16' : 'pt-0'}`}>
                         <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
                             <SectionTitle title={selectedCountry.title}/>
                             <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
@@ -686,6 +697,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <VariantsList variants={selectedCountry.variants11}/>
                             )}
 
+                            <SectionTitle title={selectedCountry.title221}/>
                             <TextBlock text={selectedCountry.text4} parseText={parseText}/>
                             <TextBlock text={selectedCountry.text5} parseText={parseText}/>
 
@@ -696,7 +708,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                             <li key={i} className="mb-2">
                                                 {parseText(text)}
                                                 {selectedCountry.text1233[i] && selectedCountry.text1233[i].length > 0 && (
-                                                    <VariantsList variants={selectedCountry.text1233[i]} />
+                                                    <VariantsList variants={selectedCountry.text1233[i]}/>
                                                 )}
                                             </li>
                                         ))}
@@ -733,8 +745,13 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <AlternativePricing country={selectedCountry}/>
                             )}
 
+                            <TextBlock text={selectedCountry.text10} parseText={parseText}/>
+                            {selectedCountry.variants5?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants5} parseText={parseText}/>
+                            )}
+
                             {selectedCountry.typev && (
-                                <p className="text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                                     {parseText(selectedCountry.typev)}
                                 </p>
                             )}
@@ -748,7 +765,17 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             )}
                         </div>
                     </div>
-                    {subWorkGermany.includes(selectedCountry.url) ? <DocsGer /> : <Docs />}
+                    {subWorkGermany.includes(selectedCountry.url) ? (
+                        <>
+                            <StepGer/>
+                            <PhoneForm/>
+                        </>
+                    ) : (
+                        <>
+
+                        </>
+                    )}
+                    {subWorkGermany.includes(selectedCountry.url) ? <DocsGer/> : <Docs/>}
                     <DownloadFiles/>
                     <FAQ countryUrl={selectedCountry.url}/>
                     <Contacts/>

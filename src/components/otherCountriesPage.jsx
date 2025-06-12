@@ -14,6 +14,7 @@ import Steps1 from "@/components/steps1";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PhoneForm from "@/components/newModal";
 import Slider from "@/components/slider";
+import StepGer from "@/components/stepGer";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -197,16 +198,23 @@ const VariantsList = ({variants}) => (
 );
 
 // Компонент для кнопок типов виз
-const VisaTypeButtons = ({types, links}) => (
+const VisaTypeButtons = ({types, links, enabled}) => (
     <>
         {types.map((text, index) => (
             <div key={index} className="flex flex-col items-start">
-                <Link
-                    href={`/shengenskie-vizy/${links[index]}`}
-                    className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
-                >
-                    {text}
-                </Link>
+                {enabled[index] ? (
+                    <Link
+                        href={`/${links[index]}`}
+                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                    >
+                        {text}
+                    </Link>
+                ) : (
+                    <div
+                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] cursor-not-allowed pointer-events-none select-none">
+                        {text}
+                    </div>
+                )}
             </div>
         ))}
     </>
@@ -379,9 +387,7 @@ export default function OtherCountryPage({breadcrumbs}) {
 
             {showExtendedContent ? (
                 <div className="w-full">
-                    <Steps1/>
-                    <PhoneForm/>
-                    <div className="px-[7%]">
+                    <div className="px-[7%] pt-16">
                         <div className="pb-24 flex flex-col gap-6 lg:w-[70%]">
                             <SectionTitle title={selectedCountry.title}/>
                             <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
@@ -425,6 +431,20 @@ export default function OtherCountryPage({breadcrumbs}) {
 
                             <TextBlock text={selectedCountry.text6} parseText={parseText}/>
 
+                            {selectedCountry.typevc && (
+                                <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                    {parseText(selectedCountry.typevc)}
+                                </p>
+                            )}
+                            <TextBlock text={selectedCountry.textc} parseText={parseText} />
+                            {selectedCountry.typevbc?.length > 0 && (
+                                <VisaTypeButtons
+                                    types={selectedCountry.typevbc}
+                                    links={selectedCountry.typevlc}
+                                    enabled={selectedCountry.enabled || []}
+                                />
+                            )}
+
                             <SectionTitle title={selectedCountry.title33}/>
                             <TextBlock text={selectedCountry.text7} parseText={parseText}/>
                             <TextBlock text={selectedCountry.text8} parseText={parseText}/>
@@ -459,6 +479,8 @@ export default function OtherCountryPage({breadcrumbs}) {
                             )}
                         </div>
                     </div>
+                    <StepGer/>
+                    <PhoneForm/>
                     <Docs/>
                     <FAQ countryUrl={countryUrl}/>
                 </div>

@@ -17,6 +17,7 @@ import {useState} from "react";
 import DocsGer from "@/components/docsGer";
 import Slider from "@/components/slider";
 import StepGer from "@/components/stepGer";
+import DocsPol from "@/components/docsPol";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -478,7 +479,7 @@ const TextBlock = ({text, parseText, className = ""}) => (
 
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
-    title && <h2 className={`text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium ${className}`}>
+    title && <h2 className={`text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium`}>
         {title}
     </h2>
 );
@@ -505,7 +506,7 @@ const PriceDisplay = ({country}) => {
 const AlternativePricing = ({country}) => (
     <div className="flex flex-col gap-6 lg:w-[80%]">
         {country.priceTitle && (
-            <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">
+            <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                 {country.priceTitle}
             </p>
         )}
@@ -561,7 +562,11 @@ const excludedCountries1 = [
 
 const subWorkGermany = [
     "rabochaya-viza-v-germaniyu"
-]
+];
+
+const subWorkPoland = [
+    "rabochaya-viza-v-polshu"
+];
 
 const excludedPoland = [
     "viza-v-polshu",
@@ -614,8 +619,9 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             ? selectedCountry.n
                             : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
                         </h1>
-                        {subWorkGermany.includes(selectedCountry.url) && (
-                            <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске</p>)}
+                        {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) && (
+                            <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске</p>
+                        )}
                     </span>
                 </div>
 
@@ -653,7 +659,8 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
             {showExtendedContent ? (
                 <div className="w-full">
-                    {subWorkGermany.includes(selectedCountry.url) ? (
+
+                    {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) ? (
                         <>
 
                         </>
@@ -663,7 +670,8 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             <PhoneForm/>
                         </div>
                     )}
-                    <div className={`px-[7%] ${subWorkGermany.includes(selectedCountry.url) ? 'pt-16' : 'pt-0'}`}>
+                    <div
+                        className={`px-[7%] ${(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) ? 'pt-16' : 'pt-0'}`}>
                         <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
                             <SectionTitle title={selectedCountry.title}/>
                             <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
@@ -745,7 +753,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <AlternativePricing country={selectedCountry}/>
                             )}
 
-                            <TextBlock text={selectedCountry.text10} parseText={parseText}/>
+                            <SectionTitle title={selectedCountry.title5}/>
                             {selectedCountry.variants5?.length > 0 && (
                                 <VariantsList variants={selectedCountry.variants5} parseText={parseText}/>
                             )}
@@ -756,6 +764,8 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 </p>
                             )}
 
+                            <TextBlock text={selectedCountry.text00} parseText={parseText}/>
+
                             {selectedCountry.typevb?.length > 0 && (
                                 <VisaTypeButtons
                                     types={selectedCountry.typevb}
@@ -765,7 +775,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             )}
                         </div>
                     </div>
-                    {subWorkGermany.includes(selectedCountry.url) ? (
+                    {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) ? (
                         <>
                             <StepGer/>
                             <PhoneForm/>
@@ -775,7 +785,17 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
                         </>
                     )}
-                    {subWorkGermany.includes(selectedCountry.url) ? <DocsGer/> : <Docs/>}
+                    {subWorkGermany.includes(selectedCountry.url) ? (
+                        <>
+                            <DocsGer/>
+                        </>
+                    ) : subWorkPoland.includes(selectedCountry.url) ? (
+                        <>
+                            <DocsPol/>
+                        </>
+                    ) : (
+                        <Docs/>
+                    )}
                     <DownloadFiles/>
                     <FAQ countryUrl={selectedCountry.url}/>
                     <Contacts/>

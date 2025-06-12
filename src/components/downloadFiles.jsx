@@ -43,7 +43,7 @@ const DocumentSamples = () => {
             </div>
 
             {/* Mobile version */}
-            <div className="md:hidden space-y-4">
+            <div className="sm:hidden space-y-4">
                 {documents.map((doc) => (
                     <div key={doc.id} className="flex items-center gap-2">
                         <img src={`/pdf.png`} alt="PDF" className="h-8" />

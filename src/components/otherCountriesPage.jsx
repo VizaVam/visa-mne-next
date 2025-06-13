@@ -254,7 +254,7 @@ const PriceDisplay = ({price1, priceType}) => (
 const AlternativePricing = ({priceTitle, priceVariants}) => (
     <div className="pt-10 mdd:pt-4 flex flex-col gap-6 lg:w-[80%]">
         {priceTitle && (
-            <p className="text-black md:text-[26px] sm:text-[20px] mdd:text-[18px] font-medium">
+            <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                 {priceTitle}
             </p>
         )}

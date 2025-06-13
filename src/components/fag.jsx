@@ -69,7 +69,7 @@ const FAQ = () => {
     };
 
     return (
-        <div className="pt-20 px-[7%]">
+        <div className="pt-16 mdd:pt-10 px-[7%]">
             <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16">Часто задаваемые вопросы</h2>
             <div className="space-y-4">
                 {faqData.map((faq, index) => (

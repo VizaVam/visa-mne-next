@@ -42,7 +42,7 @@ const Reviews = () => {
     });
 
     return (
-        <div className="pt-20 px-[7%]" {...swipeHandlers}>
+        <div className="pt-16 mdd:pt-10 px-[7%]" {...swipeHandlers}>
             <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16">Отзывы наших клиентов</h2>
             <div className="relative overflow-hidden">
                 <div

@@ -134,20 +134,18 @@ export default function HomePage() {
             </div>
 
             <div>
-                <h2 className="px-[7%] mdd:text-2xl sm:text-3xl lg:text-4xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-14">
+                <h2 className="px-[7%] text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-16 mdd:pt-10">
                     Оформление документов для подачи на визы
                 </h2>
                 <Services/>
             </div>
 
             <Steps/>
-            <PhoneForm />
+            <PhoneForm/>
             <Docs/>
             <Reviews/>
             <Fag/>
-            <div className="pt-32">
-                <Contacts/>
-            </div>
+            <Contacts/>
         </div>
     );
 }

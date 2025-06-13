@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useModal } from "@/components/modalcontext";
+import {motion} from "framer-motion";
+import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Contacts from "@/components/contacts";
 
-const RippleButton = ({ onClick, children }) => (
+const RippleButton = ({onClick, children}) => (
     <button
         onClick={onClick}
         className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
@@ -16,8 +16,8 @@ const RippleButton = ({ onClick, children }) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
+                initial={{scale: 0, opacity: 1.5}}
+                animate={{scale: 4, opacity: 0}}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -26,14 +26,14 @@ const RippleButton = ({ onClick, children }) => (
                     delay: i * 0.4,
                 }}
             >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full" />
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
             </motion.span>
         ))}
         {children}
     </button>
 );
 
-const ContactInfoItem = ({ icon, alt, children }) => (
+const ContactInfoItem = ({icon, alt, children}) => (
     <div className="flex gap-4 items-start">
         <Image
             src={icon}
@@ -95,7 +95,7 @@ const ContactAddress = () => (
     </ContactInfoItem>
 );
 
-const LegalInfoSection = ({ title, children }) => (
+const LegalInfoSection = ({title, children}) => (
     <div className="mb-6">
         {title && <h3 className="font-semibold mb-2">{title}</h3>}
         <p className="text-[18px] mdd:text-[14px]">
@@ -104,22 +104,24 @@ const LegalInfoSection = ({ title, children }) => (
     </div>
 );
 
-export default function ContactsPage({ breadcrumbs }) {
-    const { openModal } = useModal();
+export default function ContactsPage({breadcrumbs}) {
+    const {openModal} = useModal();
 
     return (
         <div>
-            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
 
             <div className="flex flex-col items-center">
                 {/* Header Section */}
                 <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
-                    <div className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
+                    <div
+                        className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                         <nav className="mb-4 mdd:text-xs flex items-center space-x-2 text-gray-600 gap-2">
-                            <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+                            <Link href="/"
+                                  className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
                                 Главная
                             </Link>
-                            <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2" />
+                            <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
                             <span className="font-semibold text-gray-900 cursor-default">Контакты</span>
                         </nav>
                         <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black">
@@ -154,7 +156,8 @@ export default function ContactsPage({ breadcrumbs }) {
                 </div>
 
                 {/* Contact Info Section */}
-                <div className="w-full relative flex lg:flex-row sm:flex-col mdd:flex-col lg:gap-2 sm:gap-4 mdd:gap-20 justify-between px-[7%] pt-10">
+                <div
+                    className="w-full relative flex lg:flex-row sm:flex-col mdd:flex-col lg:gap-2 sm:gap-4 mdd:gap-20 justify-between px-[7%] pt-10">
                     <div className="w-full lg:flex items-center lg:mt-0 relative z-5">
                         <Image
                             src="/contacts-banner-2.png"
@@ -167,9 +170,9 @@ export default function ContactsPage({ breadcrumbs }) {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <ContactPhone />
-                        <ContactEmail />
-                        <ContactAddress />
+                        <ContactPhone/>
+                        <ContactEmail/>
+                        <ContactAddress/>
                     </div>
                 </div>
 
@@ -196,9 +199,7 @@ export default function ContactsPage({ breadcrumbs }) {
                 </div>
             </div>
 
-            <div className="pt-32">
-                <Contacts/>
-            </div>
+            <Contacts/>
         </div>
     );
 }

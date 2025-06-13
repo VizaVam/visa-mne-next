@@ -38,8 +38,8 @@ const FAQ = () => {
     };
 
     return (
-        <div className="pt-20 px-[7%]">
-            <h2 className="text-[24px] font-medium mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
+        <div className="pt-16 mdd:pt-10 px-[7%]">
+            <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
             <div className="space-y-4">
                 {faqData.map((faq, index) => (
                     <div key={index} className="mdd:text-[16px] text-[16px] border  rounded-[4px]">

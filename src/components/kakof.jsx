@@ -11,12 +11,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag2 from "@/components/fag2";
 
 
-const BreadcrumbNav = ({ pathname }) => (
+const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
-        <Link href="/" className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+        <Link href="/"
+              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
             Главная
         </Link>
-        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2" />
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
         <Link
             href="/poleznaya-informasia"
             className={`text-orange-500 hover:underline ${pathname === "/poleznaya-informasia" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
@@ -71,7 +72,8 @@ export default function OnasPage({breadcrumbs}) {
 
 
                 {/* About Text Section */}
-                <div className="w-full relative flex flex-col gap-12 px-[7%] pt-20 text-[16px] mdd:text-[14px]">
+                <div
+                    className="w-full relative flex flex-col gap-12 mdd:10 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
                             Если вы планируете поездку в Польшу, то вам обязательно понадобится шенгенская виза, т.к.
@@ -108,7 +110,8 @@ export default function OnasPage({breadcrumbs}) {
                         </ul>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Кто может получить визу в Польшу?</h2>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Кто может получить визу
+                            в Польшу?</h2>
                         <p>Белорусы могут получить шенгенскую визу в Польшу, если цель их поездки соответствует одному
                             из следующих типов:</p>
                         <div className="overflow-x-auto">
@@ -130,23 +133,33 @@ export default function OnasPage({breadcrumbs}) {
                                 <tbody>
                                 <tr>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Туристическая</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Отдых, экскурсии, путешествие</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Отдых, экскурсии,
+                                        путешествие
+                                    </td>
                                 </tr>
                                 <tr className="bg-gray-50">
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Гостевая</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Посещение родственников или друзей</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Посещение
+                                        родственников или друзей
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Деловая</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Конференции, переговоры, командировки</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Конференции,
+                                        переговоры, командировки
+                                    </td>
                                 </tr>
                                 <tr className="bg-gray-50">
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Студенческая/Учебная/Полицеальная</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Обучение в польских учебных заведениях</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Обучение в польских
+                                        учебных заведениях
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Рабочая</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Для официального трудоустройства в Польше</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Для официального
+                                        трудоустройства в Польше
+                                    </td>
                                 </tr>
                                 <tr className="bg-gray-50">
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Карта Поляка</td>
@@ -158,7 +171,8 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Выбор типа визы влияет на список необходимых документов и условия подачи.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Полный список документов на визу в Польшу</h2>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Полный список документов
+                            на визу в Польшу</h2>
                         <p>
                             Чтобы ваше заявление приняли без задержек, соберите полный пакет документов заранее. Вот что
                             потребуется от большинства заявителей:
@@ -232,7 +246,8 @@ export default function OnasPage({breadcrumbs}) {
                             паспортных данных спонсора.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Где и как подать документы на визу в Польшу?</h2>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Где и как подать
+                            документы на визу в Польшу?</h2>
                         <p>
                             Подача документов на шенгенскую визу в Польшу возможна в следующих местах:
                         </p>
@@ -254,8 +269,10 @@ export default function OnasPage({breadcrumbs}) {
                             визового центра, либо воспользоваться нашими услугами.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Сколько стоит виза в Польшу для белорусов?</h2>
-                        <p>Стоимость визы для граждан Республики Беларусь зависит от возраста заявителя и типа поездки:</p>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Сколько стоит виза в
+                            Польшу для белорусов?</h2>
+                        <p>Стоимость визы для граждан Республики Беларусь зависит от возраста заявителя и типа
+                            поездки:</p>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse">
                                 <colgroup>
@@ -275,18 +292,25 @@ export default function OnasPage({breadcrumbs}) {
                                 <tbody>
                                 <tr>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Взрослые</td>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">от 35 € до 90 € в зависимости от выбранной категории визы</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">от 35 € до 90 € в
+                                        зависимости от выбранной категории визы
+                                    </td>
                                 </tr>
                                 <tr className="bg-gray-50">
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Дети (до 12 лет)</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Дети (до 12 лет)
+                                    </td>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">бесплатно</td>
                                 </tr>
                                 <tr>
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Участники культурных/спортивных мероприятий</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Участники
+                                        культурных/спортивных мероприятий
+                                    </td>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">бесплатно</td>
                                 </tr>
                                 <tr className="bg-gray-50">
-                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Члены официальных делегаций</td>
+                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">Члены официальных
+                                        делегаций
+                                    </td>
                                     <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">бесплатно</td>
                                 </tr>
                                 </tbody>
@@ -295,16 +319,20 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Дополнительно могут взиматься в обязательно порядке сервисные сборы визовых центров.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Сколько времени делается виза в Польшу?</h2>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Сколько времени делается
+                            виза в Польшу?</h2>
                         <p>
-                            Рассмотрение заявления на визу в Консульстве Польши обычно занимает до 21 календарного дня. Однако в сезон высокой нагрузки (лето, новогодние праздники) срок может увеличиться.
+                            Рассмотрение заявления на визу в Консульстве Польши обычно занимает до 21 календарного дня.
+                            Однако в сезон высокой нагрузки (лето, новогодние праздники) срок может увеличиться.
                         </p>
                         <p>
-                            <span className="font-semibold">Совет:</span> подавайте документы заранее, особенно если у вас жёсткие даты поездки.
+                            <span className="font-semibold">Совет:</span> подавайте документы заранее, особенно если у
+                            вас жёсткие даты поездки.
                         </p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Самые частые ошибки при подаче документов</h2>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Самые частые ошибки при
+                            подаче документов</h2>
                         <p>
                             Чтобы избежать отказа, проверьте, нет ли среди ваших документов следующих проблем:
                         </p>
@@ -333,12 +361,15 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Если вы не уверены в правильности оформления, лучше обратиться к специалисту.</p>
                     </div>
                 </div>
-                <Fag2 />
-                <div className="w-full relative flex flex-col gap-12 px-[7%] pt-20 text-[16px] mdd:text-[14px]">
+                <Fag2/>
+                <div className="w-full relative flex flex-col gap-12 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Получите помощь в оформлении визы</h2>
+                        <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">Получите помощь в
+                            оформлении визы</h2>
                         <p>
-                            Не хотите рисковать? Мы предлагаем профессиональную помощь в <a href="/shengenskie-vizy/viza-v-polshu" className="underline hover:font-medium">оформлении визы в Польшу для белорусов</a>:
+                            Не хотите рисковать? Мы предлагаем профессиональную помощь в <a
+                            href="/shengenskie-vizy/viza-v-polshu" className="underline hover:font-medium">оформлении
+                            визы в Польшу для белорусов</a>:
                         </p>
                         <ul className="text-black flex flex-col gap-2">
                             <li className="flex gap-2 items-center">
@@ -358,12 +389,12 @@ export default function OnasPage({breadcrumbs}) {
                                 Поможем оформить страховку и бронь отеля
                             </li>
                         </ul>
-                        <p>📞 Свяжитесь с нами по номеру <a href="tel:+375296800620" className="underline hover:font-medium">+375296800620</a>  уже сегодня и начните готовиться к поездке в Польшу без лишних хлопот!</p>
+                        <p>📞 Свяжитесь с нами по номеру <a href="tel:+375296800620"
+                                                           className="underline hover:font-medium">+375296800620</a> уже
+                            сегодня и начните готовиться к поездке в Польшу без лишних хлопот!</p>
                     </div>
                 </div>
-                <div className="pt-32">
-                    <Contacts/>
-                </div>
+                <Contacts/>
             </div>
         </div>
     );

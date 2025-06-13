@@ -317,7 +317,7 @@ const FAQ = ({countryUrl}) => {
     if (!faqData.length) return null;
 
     return (
-        <div className="pt-20 px-[7%]">
+        <div className="pt-16 mdd:pt-10 px-[7%]">
             <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-12">Часто задаваемые
                 вопросы</h2>
             <script type="application/ld+json">
@@ -479,7 +479,7 @@ const TextBlock = ({text, parseText, className = ""}) => (
 
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
-    title && <h2 className={`text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium`}>
+    title && <h2 className={`pt-10 mdd:pt-4 text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium`}>
         {title}
     </h2>
 );
@@ -489,7 +489,7 @@ const PriceDisplay = ({country}) => {
     if (!country.price1) return null;
 
     return (
-        <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+        <p className="pt-10 mdd:pt-4 text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
             Наша услуга:{" "}
             {['Польша', 'Болгария'].includes(country.name) ? (
                 <>от <span className="text-orange-500">{parseText(country.price1)}</span> бел.
@@ -504,7 +504,7 @@ const PriceDisplay = ({country}) => {
 
 // Компонент для отображения альтернативного ценообразования
 const AlternativePricing = ({country}) => (
-    <div className="flex flex-col gap-6 lg:w-[80%]">
+    <div className="pt-10 mdd:pt-4 flex flex-col gap-6 lg:w-[80%]">
         {country.priceTitle && (
             <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                 {country.priceTitle}
@@ -666,9 +666,11 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
             {showExtendedContent ? (
                 <div className="w-full">
                     <div
-                        className={`px-[7%] pt-16`}>
-                        <div className="pb-24 flex flex-col gap-6 lg:w-[60%]">
-                            <SectionTitle title={selectedCountry.title}/>
+                        className={`px-[7%] pb-16 mdd:pb-10`}>
+                        <div className="pt-16 mdd:pt-10 flex flex-col gap-6 lg:w-[60%]">
+                            <h2 title={selectedCountry.title} className={`text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium`}>
+                                {selectedCountry.title}
+                            </h2>
                             <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
                             <TextBlock text={selectedCountry.text1} parseText={parseText}/>
 
@@ -692,7 +694,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 </div>
                             )}
 
-                            <SectionTitle title={selectedCountry.title22}/>
+                            <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title22}/>
                             <TextBlock text={selectedCountry.text2} parseText={parseText}/>
                             <TextBlock text={selectedCountry.text3} parseText={parseText}/>
 
@@ -700,12 +702,12 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <VariantsList variants={selectedCountry.variants11}/>
                             )}
 
-                            <SectionTitle title={selectedCountry.title221}/>
+                            <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title221}/>
                             <TextBlock text={selectedCountry.text4} parseText={parseText}/>
                             <TextBlock text={selectedCountry.text5} parseText={parseText}/>
 
                             {selectedCountry.typevc && (
-                                <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                <p className="pt-10 mdd:pt-4 text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                                     {parseText(selectedCountry.typevc)}
                                 </p>
                             )}
@@ -733,7 +735,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 </div>
                             )}
 
-                            <SectionTitle title={selectedCountry.title2}/>
+                            <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title2}/>
                             {selectedCountry.variants2?.length > 0 && (
                                 <VariantsList variants={selectedCountry.variants2}/>
                             )}
@@ -748,7 +750,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
                             <TextBlock text={selectedCountry.text6} parseText={parseText}/>
 
-                            <SectionTitle title={selectedCountry.title33}/>
+                            <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title33}/>
                             <TextBlock text={selectedCountry.text7} parseText={parseText}/>
                             <TextBlock text={selectedCountry.text8} parseText={parseText}/>
 
@@ -757,7 +759,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             )}
 
                             {selectedCountry.typevp && (
-                                <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                <p className="pt-10 mdd:pt-4 text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                                     {parseText(selectedCountry.typevp)}
                                 </p>
                             )}
@@ -775,13 +777,13 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <AlternativePricing country={selectedCountry}/>
                             )}
 
-                            <SectionTitle title={selectedCountry.title5}/>
+                            <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title5}/>
                             {selectedCountry.variants5?.length > 0 && (
                                 <VariantsList variants={selectedCountry.variants5} parseText={parseText}/>
                             )}
 
                             {selectedCountry.typev && (
-                                <p className="text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                <p className="pt-10 mdd:pt-4 text-black text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
                                     {parseText(selectedCountry.typev)}
                                 </p>
                             )}

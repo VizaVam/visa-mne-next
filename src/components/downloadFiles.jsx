@@ -21,7 +21,7 @@ const DocumentSamples = () => {
     ];
 
     return (
-        <section className="px-[7%] mt-10">
+        <section className="px-[7%] pt-16 mdd:pt-10">
             <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-6">Скачать образцы документов</h2>
 
             {/* Desktop version */}

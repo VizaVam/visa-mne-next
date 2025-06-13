@@ -102,7 +102,7 @@ const PhoneForm = () => {
     };
 
     return (
-        <div className="w-full bg-white pb-24 px-[7%]">
+        <div className="w-full bg-white pb-16 mdd:pb-10 px-[7%]">
             {isSuccess ? (
                 <div className="flex flex-col text-center gap-2 p-4 bg-gray-100 rounded text-sm max-w-md mx-auto">
                     Заявка успешно отправлена. С Вами свяжутся в ближайшее время.

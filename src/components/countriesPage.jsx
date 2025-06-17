@@ -9,15 +9,13 @@ import {countries} from "@/data/countries";
 import {useModal} from "@/components/modalcontext";
 import Contacts from "@/components/contacts";
 import Docs from "@/components/docs";
-import Steps1 from "@/components/steps1";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadFiles from "@/components/downloadFiles";
 import PhoneForm from "@/components/newModal";
 import {useState} from "react";
-import DocsGer from "@/components/docsGer";
 import Slider from "@/components/slider";
 import StepGer from "@/components/stepGer";
-import DocsPol from "@/components/docsPol";
+import DocsShengen from "@/components/docsShengen";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -568,6 +566,33 @@ const subWorkPoland = [
     "rabochaya-viza-v-polshu"
 ];
 
+const docs = [
+    "rabochaya-viza-v-germaniyu",
+    "rabochaya-viza-v-polshu",
+    "viza-v-polshu",
+    "delovaya-viza-v-polshu",
+    "uchebnaya-viza-v-polshu",
+    "gostevaya-polskaya-viza",
+    "viza-v-polsy-po-karte-polyaka",
+    "viza-v-germaniyu",
+    "viza-vo-francziyu",
+    "viza-v-horvatiu",
+    "viza-v-grecziyu",
+    "viza-v-italiyu",
+    "viza-v-avstriyu",
+    "viza-v-sloveniu",
+    "viza-v-ispaniyu",
+    "rabochaya-viza-v-ispaniyu",
+    "viza-v-bolgariyu",
+    "rabochaya-viza-v-bolgariyu",
+    "viza-v-niderlandy",
+    "viza-v-vengriyu",
+    "viza-v-rumyniyu",
+    "viza-v-ssha",
+    "viza-v-velikobritaniyu",
+    "viza-v-kitaj"
+];
+
 const typeV = [
     "viza-v-polshu",
     "viza-v-ispaniyu",
@@ -802,16 +827,10 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                     <StepGer/>
                     <PhoneForm/>
 
-                    {subWorkGermany.includes(selectedCountry.url) ? (
-                        <>
-                            <DocsGer/>
-                        </>
-                    ) : subWorkPoland.includes(selectedCountry.url) ? (
-                        <>
-                            <DocsPol/>
-                        </>
+                    {docs.includes(selectedCountry.url) ? (
+                        <DocsShengen countryUrl={selectedCountry.url} />
                     ) : (
-                        <Docs/>
+                        <Docs />
                     )}
 
                     <DownloadFiles/>

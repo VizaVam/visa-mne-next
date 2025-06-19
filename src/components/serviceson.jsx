@@ -34,10 +34,8 @@ export const otherCountries = [
             <span>Сопровождение под ключ - <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px]">2800</span> бел. руб.</span>,
         ],
         priceTable: [
-            { service: "Услуга компании (Ваши документы-основания)", cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">400</span> бел. руб.</span>, note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления; Важно! Документы-основания предоставляет клиент!" },
-            { service: "Услуга компании (сопровождение под ключ)", cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">2800</span> бел. руб.</span>, note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления; Важно! Подготовка документов-оснований включена в стоимость!" },
+            { service: "Услуга компании", cost: <span><span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">400</span> бел. руб.</span>, note: "Консультативная работа, помощь в подготовке необходимого пакета документов (включая перевод), запись на подачу визового заявления" },
             { service: "Консульский/сервисный/логистический сбор", cost: <span
                     className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">$195</span>, note: "Оплачивается лично в Консульстве США при подаче" },
             { service: "Медицинская страховка", cost: "Оплачивается отдельно", note: "Поможем подобрать оптимальный вариант!" }

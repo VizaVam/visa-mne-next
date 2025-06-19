@@ -5,8 +5,8 @@ const Docs = () => {
         <div className="bg-[#15419E] px-[7%] py-6">
             <div className="docs">
                 {/* Left Side: Heading */}
-                <h2 className="docs-left rounded-[4px]">
-                    Основные документы
+                <h2 className="docs-left text-[18px] md:text-[28px] sm:text-[22px] font-medium rounded-[4px] mb-4 md:mb-0 md:mr-4">
+                    Список необходимых документов в 2025 году
                 </h2>
 
                 {/* Right Side: Documents List */}

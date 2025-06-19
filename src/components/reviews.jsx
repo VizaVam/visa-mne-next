@@ -43,7 +43,7 @@ const Reviews = () => {
 
     return (
         <div className="pt-16 mdd:pt-10 px-[7%]" {...swipeHandlers}>
-            <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16">Отзывы наших клиентов</h2>
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-16">Отзывы наших клиентов</h2>
             <div className="relative overflow-hidden">
                 <div
                     className="flex gap-4 transition-transform duration-500 ease-in-out"

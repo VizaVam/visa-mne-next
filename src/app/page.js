@@ -134,7 +134,7 @@ export default function HomePage() {
             </div>
 
             <div>
-                <h2 className="px-[7%] text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16 mdd:mb-4 pt-16 mdd:pt-10">
+                <h2 className="px-[7%] text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-16 mdd:mb-4 pt-16 mdd:pt-10">
                     Оформление документов для подачи на визы
                 </h2>
                 <Services/>

@@ -180,7 +180,7 @@ export default function OnasPage({breadcrumbs}) {
 
             {/* Countries Section */}
             <div className="flex flex-col gap-4 pt-16 mdd:pt-10 px-[7%]">
-                <h2 className="text-xl lg:text-4xl md:text-3xl sm:text-2xl font-medium mb-8 lg:mb-16 mdd:mb-4">
+                <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-16 mdd:mb-4">
                     Оформление документов для подачи на визы
                 </h2>
 

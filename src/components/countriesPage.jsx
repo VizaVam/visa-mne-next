@@ -514,6 +514,43 @@ const AlternativePricing = ({country}) => (
     </div>
 );
 
+const Price = ({country}) => (
+    <div className="pt-10 mdd:pt-4">
+        <SectionTitle title={`Стоимость оформления визы ${country.n === "Францию" ? "во" : "в"} ${country.n}`}/>
+        <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+                <colgroup>
+                    <col className="w-1/3"/>
+                    <col className="w-1/3"/>
+                    <col className="w-1/3"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                        Услуга / Сбор
+                    </th>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                        Стоимость
+                    </th>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                        Примечание
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {country.priceTable && country.priceTable.map((row, index) => (
+                    <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                        <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                        <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                        <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        </div>
+    </div>
+)
+
 // Компонент для отображения карточки страны
 const CountryCard = ({country}) => (
     <Link href={`/shengenskie-vizy/${country.url}`}>
@@ -693,7 +730,8 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                     <div
                         className={`px-[7%] pb-16 mdd:pb-10`}>
                         <div className="pt-16 mdd:pt-10 flex flex-col gap-6 lg:w-[60%]">
-                            <h2 title={selectedCountry.title} className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
+                            <h2 title={selectedCountry.title}
+                                className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
                                 {selectedCountry.title}
                             </h2>
                             <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
@@ -736,7 +774,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     {parseText(selectedCountry.typevc)}
                                 </p>
                             )}
-                            <TextBlock text={selectedCountry.textc} parseText={parseText} />
+                            <TextBlock text={selectedCountry.textc} parseText={parseText}/>
                             {selectedCountry.typevbc?.length > 0 && (
                                 <VisaTypeButtons
                                     types={selectedCountry.typevbc}
@@ -796,24 +834,52 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 />
                             )}
 
-                            {selectedCountry.priceGood !== 0 ? (
-                                <PriceDisplay country={selectedCountry}/>
-                            ) : (
-                                <AlternativePricing country={selectedCountry}/>
-                            )}
-
                             <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title5}/>
                             {selectedCountry.variants5?.length > 0 && (
                                 <VariantsList variants={selectedCountry.variants5} parseText={parseText}/>
                             )}
+
+                            <TextBlock text={selectedCountry.text00} parseText={parseText}/>
+
+                            <SectionTitle className="pt-10 mdd:pt-4"
+                                          title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}/>
+                            <div className="overflow-x-auto">
+                                <table className="w-full border-collapse">
+                                    <colgroup>
+                                        <col className="w-1/3"/>
+                                        <col className="w-1/3"/>
+                                        <col className="w-1/3"/>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                            Услуга / Сбор
+                                        </th>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                            Стоимость
+                                        </th>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                            Примечание
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {selectedCountry.priceTable && selectedCountry.priceTable.map((row, index) => (
+                                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
 
                             {selectedCountry.typev && (
                                 <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
                                     {parseText(selectedCountry.typev)}
                                 </p>
                             )}
-
-                            <TextBlock text={selectedCountry.text00} parseText={parseText}/>
 
                             {selectedCountry.typevb?.length > 0 && (
                                 <VisaTypeButtons
@@ -828,9 +894,9 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                     <PhoneForm/>
 
                     {docs.includes(selectedCountry.url) ? (
-                        <DocsShengen countryUrl={selectedCountry.url} />
+                        <DocsShengen countryUrl={selectedCountry.url}/>
                     ) : (
-                        <Docs />
+                        <Docs/>
                     )}
 
                     <DownloadFiles/>
@@ -840,7 +906,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
             ) : (
                 <div className="px-[7%] flex flex-col gap-10 items-center">
                     {limitedContentCountries.includes(selectedCountry.url) && (
-                        <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
+                        <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%]">
                             {selectedCountry.title && (
                                 <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
                                     {selectedCountry.title}
@@ -866,8 +932,45 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     </div>
                                 )}
 
-                                {selectedCountry.priceGood === 0 && (
-                                    <AlternativePricing country={selectedCountry}/>
+                                {/* Показываем секцию стоимости только для Италии */}
+                                {selectedCountry.url === "viza-v-italiyu" && (
+                                    <>
+                                        <SectionTitle
+                                            className="pt-10 mdd:pt-4"
+                                            title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                                        />
+                                        <div className="overflow-x-auto">
+                                            <table className="w-full border-collapse">
+                                                <colgroup>
+                                                    <col className="w-1/3"/>
+                                                    <col className="w-1/3"/>
+                                                    <col className="w-1/3"/>
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                                        Услуга / Сбор
+                                                    </th>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                                        Стоимость
+                                                    </th>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                                        Примечание
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {selectedCountry.priceTable && selectedCountry.priceTable.map((row, index) => (
+                                                    <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                                                    </tr>
+                                                ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </>
                                 )}
                             </div>
                         </div>

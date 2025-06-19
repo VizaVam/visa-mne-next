@@ -455,17 +455,38 @@ export default function OtherCountryPage({breadcrumbs}) {
                                 <VariantsList variants={selectedCountry.variants3}/>
                             )}
 
-                            {selectedCountry.priceGood !== 0 ? (
-                                <PriceDisplay
-                                    price1={selectedCountry.price1}
-                                    priceType={selectedCountry.priceType}
-                                />
-                            ) : (
-                                <AlternativePricing
-                                    priceTitle={selectedCountry.priceTitle}
-                                    priceVariants={selectedCountry.priceVariants}
-                                />
-                            )}
+                            <SectionTitle className="pt-10 mdd:pt-4" title={`Стоимость оформления визы в ${selectedCountry.n}`} />
+                            <div className="overflow-x-auto">
+                                <table className="w-full border-collapse">
+                                    <colgroup>
+                                        <col className="w-1/3"/>
+                                        <col className="w-1/3"/>
+                                        <col className="w-1/3"/>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                            Услуга / Сбор
+                                        </th>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                            Стоимость
+                                        </th>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                            Примечание
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {selectedCountry.priceTable && selectedCountry.priceTable.map((row, index) => (
+                                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
 
                             {selectedCountry.typev && (
                                 <p className="pt-10 mdd:pt-4 text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">

@@ -87,7 +87,8 @@ const FAQ = ({countryUrl}) => {
 
     return (
         <div className="pt-16 mdd:pt-10 px-[7%]">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-12">Часто задаваемые
+                вопросы</h2>
             <script type="application/ld+json">
                 {JSON.stringify({
                     "@context": "https://schema.org",
@@ -238,7 +239,8 @@ const TextBlock = ({text, parseText, className = ""}) => (
 
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
-    title && <h2 className={`pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium ${className}`}>
+    title &&
+    <h2 className={`pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium ${className}`}>
         {title}
     </h2>
 );
@@ -388,74 +390,78 @@ export default function OtherCountryPage({breadcrumbs}) {
             {showExtendedContent ? (
                 <div className="w-full">
                     <div className="px-[7%] pb-16 mdd:pb-10">
-                        <div className="pt-16 mdd:pt-10 flex flex-col gap-6 lg:w-[70%]">
-                            <h2 title={selectedCountry.title} className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
-                                {selectedCountry.title}
-                            </h2>
-                            <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
-                            <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                        <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
+                            <div className="flex flex-col gap-6 lg:w-[70%]">
+                                <h2 title={selectedCountry.title}
+                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
+                                    {selectedCountry.title}
+                                </h2>
+                                <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text1} parseText={parseText}/>
 
-                            {selectedCountry.variants?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants}/>
-                            )}
+                                {selectedCountry.variants?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants}/>
+                                )}
 
-                            {Array.isArray(selectedCountry.text11) && (
-                                <div>
-                                    {selectedCountry.text11.slice(0, 3).map((text, i) => (
-                                        <TextBlock key={i} text={text} parseText={parseText}/>
-                                    ))}
-                                </div>
-                            )}
+                                {Array.isArray(selectedCountry.text11) && (
+                                    <div>
+                                        {selectedCountry.text11.slice(0, 3).map((text, i) => (
+                                            <TextBlock key={i} text={text} parseText={parseText}/>
+                                        ))}
+                                    </div>
+                                )}
 
-                            <SectionTitle title={selectedCountry.title22}/>
-                            <TextBlock text={selectedCountry.text2} parseText={parseText}/>
-                            <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+                                <SectionTitle title={selectedCountry.title22}/>
+                                <TextBlock text={selectedCountry.text2} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text3} parseText={parseText}/>
 
-                            {selectedCountry.variants11?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants11}/>
-                            )}
+                                {selectedCountry.variants11?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants11}/>
+                                )}
 
-                            <TextBlock text={selectedCountry.text4} parseText={parseText}/>
-                            <TextBlock text={selectedCountry.text5} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text5} parseText={parseText}/>
 
-                            <SectionTitle title={selectedCountry.title2}/>
-                            {selectedCountry.variants2?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants2}/>
-                            )}
+                                <SectionTitle title={selectedCountry.title2}/>
+                                {selectedCountry.variants2?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants2}/>
+                                )}
 
-                            {Array.isArray(selectedCountry.text22) && (
-                                <div>
-                                    {selectedCountry.text22.slice(0, 3).map((text, i) => (
-                                        <TextBlock key={i} text={text} parseText={parseText}/>
-                                    ))}
-                                </div>
-                            )}
+                                {Array.isArray(selectedCountry.text22) && (
+                                    <div>
+                                        {selectedCountry.text22.slice(0, 3).map((text, i) => (
+                                            <TextBlock key={i} text={text} parseText={parseText}/>
+                                        ))}
+                                    </div>
+                                )}
 
-                            <TextBlock text={selectedCountry.text6} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text6} parseText={parseText}/>
 
-                            {selectedCountry.typevc && (
-                                <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
-                                    {parseText(selectedCountry.typevc)}
-                                </p>
-                            )}
-                            <TextBlock text={selectedCountry.textc} parseText={parseText} />
-                            {selectedCountry.typevbc?.length > 0 && (
-                                <VisaTypeButtons
-                                    types={selectedCountry.typevbc}
-                                    links={selectedCountry.typevlc}
-                                    enabled={selectedCountry.enabled || []}
-                                />
-                            )}
+                                {selectedCountry.typevc && (
+                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                        {parseText(selectedCountry.typevc)}
+                                    </p>
+                                )}
+                                <TextBlock text={selectedCountry.textc} parseText={parseText}/>
+                                {selectedCountry.typevbc?.length > 0 && (
+                                    <VisaTypeButtons
+                                        types={selectedCountry.typevbc}
+                                        links={selectedCountry.typevlc}
+                                        enabled={selectedCountry.enabled || []}
+                                    />
+                                )}
 
-                            <SectionTitle title={selectedCountry.title33}/>
-                            <TextBlock text={selectedCountry.text7} parseText={parseText}/>
-                            <TextBlock text={selectedCountry.text8} parseText={parseText}/>
+                                <SectionTitle title={selectedCountry.title33}/>
+                                <TextBlock text={selectedCountry.text7} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text8} parseText={parseText}/>
 
-                            {selectedCountry.variants3?.length > 0 && (
-                                <VariantsList variants={selectedCountry.variants3}/>
-                            )}
+                                {selectedCountry.variants3?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants3}/>
+                                )}
+                            </div>
 
-                            <SectionTitle className="pt-10 mdd:pt-4" title={`Стоимость оформления визы в ${selectedCountry.n}`} />
+                            <SectionTitle className="pt-10 mdd:pt-4"
+                                          title={`Стоимость оформления визы в ${selectedCountry.n}`}/>
                             <div className="overflow-x-auto">
                                 <table className="w-full border-collapse">
                                     <colgroup>
@@ -488,18 +494,20 @@ export default function OtherCountryPage({breadcrumbs}) {
                                 </table>
                             </div>
 
-                            {selectedCountry.typev && (
-                                <p className="pt-10 mdd:pt-4 text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
-                                    {parseText(selectedCountry.typev)}
-                                </p>
-                            )}
+                            <div>
+                                {selectedCountry.typev && (
+                                    <p className="pt-10 mdd:pt-4 text-black text-2xl lg:text-4xl md:text-3xl sm:text-2xl font-medium">
+                                        {parseText(selectedCountry.typev)}
+                                    </p>
+                                )}
 
-                            {selectedCountry.typevb?.length > 0 && (
-                                <VisaTypeButtons
-                                    types={selectedCountry.typevb}
-                                    links={selectedCountry.typevl}
-                                />
-                            )}
+                                {selectedCountry.typevb?.length > 0 && (
+                                    <VisaTypeButtons
+                                        types={selectedCountry.typevb}
+                                        links={selectedCountry.typevl}
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
                     <StepGer/>

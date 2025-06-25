@@ -844,9 +844,12 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <TextBlock text={selectedCountry.text00} parseText={parseText}/>
                             </div>
 
-                            <SectionTitle className="pt-10 mdd:pt-4"
-                                          title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}/>
-                            <div className="overflow-x-auto">
+                            <SectionTitle
+                                className="pt-10 mdd:pt-4"
+                                title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                            />
+                            {/* Desktop Table (md: and above) */}
+                            <div className="overflow-x-auto w-full mdd:hidden">
                                 <table className="w-full border-collapse">
                                     <colgroup>
                                         <col className="w-1/3"/>
@@ -867,13 +870,44 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {selectedCountry.priceTable && selectedCountry.priceTable.map((row, index) => (
-                                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
-                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
-                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
-                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
-                                        </tr>
-                                    ))}
+                                    {selectedCountry.priceTable &&
+                                        selectedCountry.priceTable.map((row, index) => (
+                                            <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {/* Mobile Table (below md:) */}
+                            <div className="overflow-x-auto w-full md:hidden">
+                                <h3 className="text-lg font-semibold text-gray-800 mb-4">Стоимость услуг для мобильных
+                                    устройств</h3>
+                                <table className="w-full border-collapse">
+                                    <colgroup>
+                                        <col className="w-1/2"/>
+                                        <col className="w-1/2"/>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                            Услуга / Сбор
+                                        </th>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                            Стоимость
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {selectedCountry.priceTable &&
+                                        selectedCountry.priceTable.map((row, index) => (
+                                            <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.serviceMob)}</td>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.costMob)}</td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

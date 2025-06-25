@@ -310,9 +310,9 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                {/*<div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1 text-center">*/}
-                {/*    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на заявку через “Оформить заявку”</p>*/}
-                {/*</div>*/}
+                <div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+                </div>
                 <AnimatePresence>
                     {isMenuOpen && (
                         <>

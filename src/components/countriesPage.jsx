@@ -688,7 +688,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
                         </h1>
                         {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) && (
-                            <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске</p>
+                            <p className="mdd:text-[14px] sm:text-[20px]">* быстрое оформление «под ключ» в Минске и без верификации!</p>
                         )}
                     </span>
                 </div>

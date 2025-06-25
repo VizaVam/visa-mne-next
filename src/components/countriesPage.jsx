@@ -883,8 +883,6 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             </div>
                             {/* Mobile Table (below md:) */}
                             <div className="overflow-x-auto w-full md:hidden">
-                                <h3 className="text-lg font-semibold text-gray-800 mb-4">Стоимость услуг для мобильных
-                                    устройств</h3>
                                 <table className="w-full border-collapse">
                                     <colgroup>
                                         <col className="w-1/2"/>

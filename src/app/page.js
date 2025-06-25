@@ -113,7 +113,7 @@ export default function HomePage() {
                     <Announcement/>
                 </div>
 
-                <div className="sm:hidden -mt-24 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                <div className="sm:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
                     <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на заявку через “Оформить заявку”</p>
                 </div>
 

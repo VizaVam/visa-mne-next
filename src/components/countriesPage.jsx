@@ -341,21 +341,21 @@ const FAQ = ({countryUrl}) => {
                         >
                             <span>В: {faq.question}</span>
                             <span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className={`h-6 w-6 rotate-icon ${openIndex === index ? "open" : ""}`}
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            </span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className={`h-6 w-6 rotate-icon ${openIndex === index ? "open" : ""}`}
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </span>
                         </button>
                         {openIndex === index && (
                             <div
@@ -413,14 +413,14 @@ const CountryBreadcrumbs = ({country, pathname}) => (
         </Link>
         <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
         <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
-            {!excludedCountries1.includes(country.url) && (
-                <>
-                    Виза{" "}
-                    {country.n === "Францию" ? "во" : "в"}{" "}
-                </>
-            )}
+                {!excludedCountries1.includes(country.url) && (
+                    <>
+                        Виза{" "}
+                        {country.n === "Францию" ? "во" : "в"}{" "}
+                    </>
+                )}
             {country.n}
-        </span>
+            </span>
     </nav>
 );
 
@@ -682,15 +682,16 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                     className={`mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] ${isExcludedPoland ? 'mdd:top-[150px]' : 'mdd:top-[150px]'} w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12`}>
                     <CountryBreadcrumbs country={selectedCountry} pathname={pathname}/>
                     <span>
-                        <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black uppercase leading-none">
-                        {excludedCountries1.includes(selectedCountry.url)
-                            ? selectedCountry.n
-                            : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
-                        </h1>
+                            <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black uppercase leading-none">
+                            {excludedCountries1.includes(selectedCountry.url)
+                                ? selectedCountry.n
+                                : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                            </h1>
                         {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) && (
-                            <p className="mdd:text-[14px] sm:text-[20px]">* быстрое оформление «под ключ» в Минске и без верификации!</p>
+                            <p className="mdd:text-[14px] sm:text-[20px]">* быстрое оформление «под ключ» в Минске и без
+                                верификации!</p>
                         )}
-                    </span>
+                        </span>
                 </div>
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
@@ -786,7 +787,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
                                 {Array.isArray(selectedCountry.text123) && selectedCountry.text123.length > 0 && Array.isArray(selectedCountry.text1233) && selectedCountry.text1233.length > 0 && (
                                     <div>
-                                        <ol className="text-black text-[14px] list-decimal pl-5">
+                                        <ol className="text-black text-[14px] list-decimal pl-5 bold-list-numbers">
                                             {selectedCountry.text123.slice(0, 3).map((text, i) => (
                                                 <li key={i} className="mb-2">
                                                     {parseText(text)}
@@ -980,37 +981,41 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 </>
                             )}
                         </div>
-                        )}
+                    )}
 
-<div className="flex flex-col gap-4 mt-16">
-    <p className="text-black text-[14px]">
-        Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
-    </p>
+                    <div className="flex flex-col gap-4 mt-16">
+                        <p className="text-black text-[14px]">
+                            Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
+                        </p>
 
-    <div
-        className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
-        {recommendedCountries.map((country, index) => (
-            <CountryCard key={index} country={country}/>
-        ))}
-    </div>
-</div>
+                        <div
+                            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
+                            {recommendedCountries.map((country, index) => (
+                                <CountryCard key={index} country={country}/>
+                            ))}
+                        </div>
+                    </div>
 
-<div className="sm:mt-6 text-center w-full">
-    <Link href="/shengenskie-vizy">
-        <button
-            className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
-            Еще больше стран
-        </button>
-    </Link>
-</div>
-<FAQ countryUrl={selectedCountry.url}/>
-<div className="pt-32">
-    <Contacts/>
-</div>
-</div>
-)
-}
-</div>
-)
-;
-}
+                    <div className="sm:mt-6 text-center w-full">
+                        <Link href="/shengenskie-vizy">
+                            <button
+                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                                Еще больше стран
+                            </button>
+                        </Link>
+                    </div>
+                    <FAQ countryUrl={selectedCountry.url}/>
+                    <div className="pt-32">
+                        <Contacts/>
+                    </div>
+                </div>
+            )
+            }
+            <style jsx>{`
+                .bold-list-numbers ::marker {
+                    font-weight: bold;
+                }
+            `}</style>
+        </div>
+    );
+};

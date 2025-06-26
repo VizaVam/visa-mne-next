@@ -24,9 +24,9 @@ export const otherCountries = [
             "оплата пошлины;",
             "личное собеседование с Консулом на английском или русском языке."],
         typevc: "Типы виз в США",
-        typevbc: ["Туристическая", "Гостевая", "Условия", "Бизнес-виза", "Студенческая", "Визы членов экипажей", "Виза невесты/визы жены"],
-        typevlc: ["asd", "asd", "asd", "asd", "asd", "asd", "asd"],
-        enabled: [false, false, false, false, false, false, false],
+        typevbc: ["Деловая (B1)", "Туристическая (B2)", "B1/B2"],
+        typevlc: ["asd", "asd", "asd"],
+        enabled: [false, false, false],
         priceGood: 0,
         priceTitle: "Наши услуги",
         priceVariants: [

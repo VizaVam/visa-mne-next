@@ -114,7 +114,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="sm:hidden -mt-24 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на заявку через “Оформить заявку”</p>
+                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
                 </div>
 
                 {/* Список преимуществ */}

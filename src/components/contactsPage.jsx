@@ -155,6 +155,10 @@ export default function ContactsPage({breadcrumbs}) {
                     </div>
                 </div>
 
+                <div className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+                </div>
+
                 {/* Contact Info Section */}
                 <div
                     className="w-full relative flex lg:flex-row sm:flex-col mdd:flex-col lg:gap-2 sm:gap-4 mdd:gap-20 justify-between px-[7%] pt-10">

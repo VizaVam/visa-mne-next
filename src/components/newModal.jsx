@@ -46,7 +46,11 @@ const PhoneForm = () => {
     };
 
     const handlePhoneInput = (e) => {
-        const { value } = e.target;
+        let { value } = e.target;
+        // Ensure + is always present if digits are entered
+        if (value && !value.startsWith('+')) {
+            value = '+' + value.replace(/\D/g, '');
+        }
         setFormData({ ...formData, phone: value });
         setErrors((prev) => ({ ...prev, phone: "" }));
     };
@@ -79,6 +83,7 @@ const PhoneForm = () => {
             params.append("u_status", "Новый");
             params.append("source", "заявка с сайта visavampro.by");
 
+            console.log("Formatted phone before send:", formattedPhone); // Debug log
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
                 mode: "no-cors",
@@ -139,7 +144,7 @@ const PhoneForm = () => {
                                 type="submit"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? "Отправка..." : "Оформить заявку"}
+                                {isSubmitting ? "Отправка..." : "Оформить заявка"}
                             </RippleButton>
                         </div>
                     </div>

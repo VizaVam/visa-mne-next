@@ -1,25 +1,25 @@
 'use client'
 
-import { useState } from "react";
-import { useModal } from "@/components/modalcontext";
-import { IMaskInput } from "react-imask";
+import {useState} from "react";
+import {useModal} from "@/components/modalcontext";
+import {IMaskInput} from "react-imask";
 import {motion} from "framer-motion";
 
 const Modal = () => {
-    const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
+    const [formData, setFormData] = useState({name: "", phone: "", email: ""});
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAgreed, setIsAgreed] = useState(true);
-    const { isModalOpen, closeModal } = useModal();
+    const {isModalOpen, closeModal} = useModal();
     const [message, setMessage] = useState("");
 
     if (!isModalOpen) return null;
 
     const modalVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-        exit: { opacity: 0 }
+        hidden: {opacity: 0},
+        visible: {opacity: 1},
+        exit: {opacity: 0}
     };
 
     const validatePhone = (phone) => {
@@ -28,25 +28,28 @@ const Modal = () => {
     };
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-        setErrors((prev) => ({ ...prev, [name]: "" }));
+        const {name, value} = e.target;
+        setFormData((prev) => ({...prev, [name]: value}));
+        setErrors((prev) => ({...prev, [name]: ""}));
     };
 
     const handlePhoneInput = (e) => {
-        const { value } = e.target;
-        setFormData({ ...formData, phone: value });
-        setErrors((prev) => ({ ...prev, phone: "" }));
+        let {value} = e.target;
+        if (value && !value.startsWith('+')) {
+            value = '+' + value.replace(/\D/g, '');
+        }
+        setFormData({...formData, phone: value});
+        setErrors((prev) => ({...prev, phone: ""}));
     };
 
     const handleCheckboxChange = (e) => {
         setIsAgreed(e.target.checked);
-        setErrors((prev) => ({ ...prev, agreement: "" }));
+        setErrors((prev) => ({...prev, agreement: ""}));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, phone, email } = formData;
+        const {name, phone, email} = formData;
 
         const newErrors = {};
         if (!name?.trim()) newErrors.name = "Поле обязательно к заполнению";
@@ -76,10 +79,11 @@ const Modal = () => {
             params.append("u_email", finalEmail);
             params.append("source", "заявка с сайта visavampro.by");
 
+            console.log("Formatted phone:", formattedPhone); // Debug log
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
                 mode: "no-cors",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 body: params.toString(),
             });
 
@@ -95,15 +99,14 @@ const Modal = () => {
 
     const handleNewRequest = () => {
         setIsSuccess(false);
-        setFormData({ name: "", phone: null, email: "" });
+        setFormData({name: "", phone: null, email: ""});
     };
 
-    // Функция для сброса состояния при закрытии модала
     const handleCloseModal = () => {
-        setIsSuccess(false); // Сбрасываем состояние успеха
-        setFormData({ name: "", phone: null, email: "" }); // Сбрасываем форму
-        setErrors({}); // Сбрасываем ошибки
-        closeModal(); // Закрываем модал
+        setIsSuccess(false);
+        setFormData({name: "", phone: null, email: ""});
+        setErrors({});
+        closeModal();
     };
 
     return (
@@ -113,20 +116,20 @@ const Modal = () => {
             animate="visible"
             exit="hidden"
             variants={modalVariants}
-            transition={{ duration: 0.3 }}
+            transition={{duration: 0.3}}
         >
             <motion.div
                 className="bg-white md:p-12 sm:p-6 mdd:p-6 rounded-[4px] shadow-lg w-full max-w-md relative"
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.9 }}
-                transition={{ duration: 0.2 }}
+                initial={{scale: 0.9}}
+                animate={{scale: 1}}
+                exit={{scale: 0.9}}
+                transition={{duration: 0.2}}
             >
                 <button
                     onClick={handleCloseModal}
                     className="absolute top-6 right-6 text-[#F86F00] font-bold text-lg"
                 >
-                    <img src="/close.svg" alt="Закрыть" className="w-6 h-6" />
+                    <img src="/close.svg" alt="Закрыть" className="w-6 h-6"/>
                 </button>
 
                 <h2 className="text-2xl font-medium mb-6">Оформить заявку</h2>
@@ -158,19 +161,17 @@ const Modal = () => {
                         <div>
                             <IMaskInput
                                 mask="+000 00 000-00-00"
-                                definitions={{ '0': { mask: /[0-9]/, placeholderChar: '_' } }}
+                                definitions={{'0': {mask: /[0-9]/, placeholderChar: '_'}}}
                                 name="phone"
-                                placeholder="Телефон*"  // Показывается ТОЛЬКО когда поле пустое и не в фокусе
+                                placeholder="Телефон*"
                                 value={formData.phone || ""}
                                 onChange={handlePhoneInput}
-                                lazy={true}  // Маска появится ТОЛЬКО при фокусе
+                                lazy={true}
                                 overwrite="shift"
                                 onFocus={(e) => {
-                                    // При фокусе меняем плейсхолдер на маску
                                     e.target.placeholder = "+___ __ ___-__-__";
                                 }}
                                 onBlur={(e) => {
-                                    // При потере фокуса возвращаем обычный текст
                                     if (!e.target.value) {
                                         e.target.placeholder = "Телефон*";
                                     }

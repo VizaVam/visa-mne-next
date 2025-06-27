@@ -722,8 +722,10 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                 </div>
             </div>
 
-            <div className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+            <div
+                className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через
+                    “Оформить заявку”!</p>
             </div>
 
             <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
@@ -848,6 +850,58 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <TextBlock text={selectedCountry.text00} parseText={parseText}/>
                             </div>
 
+                            <div className="flex flex-col gap-6 lg:w-[60%]">
+                                {selectedCountry.typev && (
+                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                        {parseText(selectedCountry.typev)}
+                                    </p>
+                                )}
+
+                                {selectedCountry.typevb?.length > 0 && (
+                                    <VisaTypeButtons
+                                        types={selectedCountry.typevb}
+                                        links={selectedCountry.typevl}
+                                        enabled={selectedCountry.enabled || []}
+                                    />
+                                )}
+                            </div>
+
+                            {/* Кому подходит виза заголовок */}
+                            <SectionTitle
+                                className="pt-10 mdd:pt-4"
+                                title={`Кому подходит ${selectedCountry.match}`}
+                            />
+                            <TextBlock text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`} parseText={parseText}/>
+
+                            {/* Кому подходит виза лист*/}
+                            <div className="overflow-x-auto w-full">
+                                <table className="w-full border-collapse">
+                                    <colgroup>
+                                        <col className="w-1/2"/>
+                                        <col className="w-1/2"/>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                            {excludedCountries1.includes(selectedCountry.url) ? "Категории граждан" : "Типы визы"}
+                                        </th>
+                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                            Цель поездки
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {selectedCountry.matchTable &&
+                                        selectedCountry.matchTable.map((row, index) => (
+                                            <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.typeviza)}</td>
+                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.goaltrip)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
                             <SectionTitle
                                 className="pt-10 mdd:pt-4"
                                 title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
@@ -912,22 +966,6 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-
-                            <div className="flex flex-col gap-6 lg:w-[60%]">
-                                {selectedCountry.typev && (
-                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
-                                        {parseText(selectedCountry.typev)}
-                                    </p>
-                                )}
-
-                                {selectedCountry.typevb?.length > 0 && (
-                                    <VisaTypeButtons
-                                        types={selectedCountry.typevb}
-                                        links={selectedCountry.typevl}
-                                        enabled={selectedCountry.enabled || []}
-                                    />
-                                )}
                             </div>
                         </div>
                     </div>

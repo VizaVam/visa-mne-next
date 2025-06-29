@@ -313,6 +313,10 @@ export default function OtherCountryPage({breadcrumbs}) {
         "viza-v-polsy-po-karte-polyaka"
     ], []);
 
+    const china = useMemo(() => [
+        "viza-v-kitaj",
+    ], []);
+
     // Находим данные страны
     const selectedCountry = useMemo(() =>
             otherCountries.find(c => c.url === countryUrl),
@@ -469,8 +473,12 @@ export default function OtherCountryPage({breadcrumbs}) {
                                 className="pt-10 mdd:pt-4"
                                 title={`Кому подходит ${selectedCountry.match}`}
                             />
-                            <TextBlock text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`} parseText={parseText}/>
-
+                            {!china.includes(countryUrl) && (
+                                <TextBlock
+                                    text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`}
+                                    parseText={parseText}
+                                />
+                            )}
                             {/* Кому подходит виза лист*/}
                             <div className="overflow-x-auto w-full">
                                 <table className="w-full border-collapse">

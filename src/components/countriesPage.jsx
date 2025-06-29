@@ -595,6 +595,10 @@ const excludedCountries1 = [
     "rabochaya-viza-v-ispaniyu"
 ];
 
+const excludedCountries2 = [
+    "viza-v-polsy-po-karte-polyaka",
+];
+
 const subWorkGermany = [
     "rabochaya-viza-v-germaniyu"
 ];
@@ -866,41 +870,49 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 )}
                             </div>
 
-                            {/* Кому подходит виза заголовок */}
-                            <SectionTitle
-                                className="pt-10 mdd:pt-4"
-                                title={`Кому подходит ${selectedCountry.match}`}
-                            />
-                            <TextBlock text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`} parseText={parseText}/>
+                            {!excludedCountries2.includes(selectedCountry.url) && (
+                                <>
+                                    {/* Кому подходит виза заголовок */}
+                                    <SectionTitle
+                                        className="pt-10 mdd:pt-4"
+                                        title={`Кому подходит ${selectedCountry.match}`}
+                                    />
+                                    <TextBlock
+                                        text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`}
+                                        parseText={parseText}/>
 
-                            {/* Кому подходит виза лист*/}
-                            <div className="overflow-x-auto w-full">
-                                <table className="w-full border-collapse">
-                                    <colgroup>
-                                        <col className="w-1/2"/>
-                                        <col className="w-1/2"/>
-                                    </colgroup>
-                                    <thead>
-                                    <tr>
-                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
-                                            {excludedCountries1.includes(selectedCountry.url) ? "Категории граждан" : "Типы визы"}
-                                        </th>
-                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
-                                            Цель поездки
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {selectedCountry.matchTable &&
-                                        selectedCountry.matchTable.map((row, index) => (
-                                            <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
-                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.typeviza)}</td>
-                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.goaltrip)}</td>
+                                    {/* Кому подходит виза лист*/}
+                                    <div className="overflow-x-auto w-full">
+                                        <table className="w-full border-collapse">
+                                            <colgroup>
+                                                <col className="w-1/2"/>
+                                                <col className="w-1/2"/>
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                    {excludedCountries1.includes(selectedCountry.url) ? "Категории граждан" : "Типы визы"}
+                                                </th>
+                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                    Цель поездки
+                                                </th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </thead>
+                                            <tbody>
+                                            {selectedCountry.matchTable &&
+                                                selectedCountry.matchTable.map((row, index) => (
+                                                    <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.typeviza)}</td>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.goaltrip)}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </>
+                            )}
+
+                            <TextBlock text={selectedCountry.text001} parseText={parseText}/>
 
                             <SectionTitle
                                 className="pt-10 mdd:pt-4"

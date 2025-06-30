@@ -1643,6 +1643,7 @@ export const countries = [
     {
         name: "Виза по карте Поляка",
         n: "Виза по карте Поляка",
+        match: "виза по карте Поляка",
         rb: 1,
         img: "/poland1.svg",
         banner: "/poland-banner.png",
@@ -1707,6 +1708,8 @@ export const countries = [
                 costMob: "Оплачивается отдельно: подберем оптимальный вариант!!!\n" +
                     "\n",
             }
+        ],
+        matchTable: [
         ]
     },
 

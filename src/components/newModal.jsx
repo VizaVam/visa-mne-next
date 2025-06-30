@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useState } from "react";
 import { IMaskInput } from "react-imask";
@@ -39,6 +39,16 @@ const PhoneForm = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    // Function to trigger Yandex Metrika reachGoal
+    const triggerYandexGoal = () => {
+        if (typeof window.ym !== 'undefined') {
+            window.ym(100438805, 'reachGoal', 'leadform_submit');
+            console.log('Yandex Metrika goal leadform_submit triggered');
+        } else {
+            console.warn('Yandex Metrika not initialized');
+        }
+    };
 
     const validatePhone = (phone) => {
         const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
@@ -92,7 +102,12 @@ const PhoneForm = () => {
             });
 
             console.log("Request sent. Response status:", response.status);
-            setIsSuccess(true);
+            if (response.ok) {
+                setIsSuccess(true);
+                triggerYandexGoal(); // Only trigger on success
+            } else {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);

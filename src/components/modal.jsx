@@ -5,6 +5,16 @@ import {useModal} from "@/components/modalcontext";
 import {IMaskInput} from "react-imask";
 import {motion} from "framer-motion";
 
+// Function to trigger Yandex Metrika reachGoal
+const triggerYandexGoal = () => {
+    if (typeof window.ym !== 'undefined') {
+        window.ym(100438805, 'reachGoal', 'leadform_submit');
+        console.log('Yandex Metrika goal leadform_submit triggered');
+    } else {
+        console.warn('Yandex Metrika not initialized');
+    }
+};
+
 const Modal = () => {
     const [formData, setFormData] = useState({name: "", phone: "", email: ""});
     const [errors, setErrors] = useState({});
@@ -12,7 +22,6 @@ const Modal = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAgreed, setIsAgreed] = useState(true);
     const {isModalOpen, closeModal} = useModal();
-    const [message, setMessage] = useState("");
 
     if (!isModalOpen) return null;
 
@@ -67,8 +76,6 @@ const Modal = () => {
 
         try {
             const formattedPhone = `+${phone.replace(/\D/g, "")}`;
-
-            // Email оставляем пустым, если не введен
             const finalEmail = email?.trim() || '';
 
             setIsSubmitting(true);
@@ -79,7 +86,7 @@ const Modal = () => {
             params.append("u_email", finalEmail);
             params.append("source", "заявка с сайта visavampro.by");
 
-            console.log("Formatted phone:", formattedPhone); // Debug log
+            console.log("Formatted phone:", formattedPhone);
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
                 mode: "no-cors",
@@ -88,7 +95,12 @@ const Modal = () => {
             });
 
             console.log("Request sent. Response status:", response.status);
-            setIsSuccess(true);
+            if (response.ok) {
+                setIsSuccess(true);
+                triggerYandexGoal(); // Only trigger on success
+            } else {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);
@@ -99,12 +111,12 @@ const Modal = () => {
 
     const handleNewRequest = () => {
         setIsSuccess(false);
-        setFormData({name: "", phone: null, email: ""});
+        setFormData({name: "", phone: "", email: ""});
     };
 
     const handleCloseModal = () => {
         setIsSuccess(false);
-        setFormData({name: "", phone: null, email: ""});
+        setFormData({name: "", phone: "", email: ""});
         setErrors({});
         closeModal();
     };

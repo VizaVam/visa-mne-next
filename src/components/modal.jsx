@@ -95,12 +95,10 @@ const Modal = () => {
             });
 
             console.log("Request sent. Response status:", response.status);
-            if (response.ok) {
-                setIsSuccess(true);
-                triggerYandexGoal(); // Only trigger on success
-            } else {
-                throw new Error(`API request failed with status ${response.status}`);
-            }
+
+            setIsSuccess(true);
+            triggerYandexGoal(); // Only trigger on success
+
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);

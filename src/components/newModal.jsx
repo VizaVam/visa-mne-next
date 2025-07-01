@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from "react";
-import { IMaskInput } from "react-imask";
-import { motion } from "framer-motion";
+import {useState} from "react";
+import {IMaskInput} from "react-imask";
+import {motion} from "framer-motion";
 
 // RippleButton component with animation
-const RippleButton = ({ onClick, children, disabled }) => (
+const RippleButton = ({onClick, children, disabled}) => (
     <button
         onClick={onClick}
         disabled={disabled}
@@ -17,8 +17,8 @@ const RippleButton = ({ onClick, children, disabled }) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
+                initial={{scale: 0, opacity: 1.5}}
+                animate={{scale: 4, opacity: 0}}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -27,7 +27,7 @@ const RippleButton = ({ onClick, children, disabled }) => (
                     delay: i * 0.4,
                 }}
             >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full" />
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
             </motion.span>
         ))}
         {children}
@@ -35,7 +35,7 @@ const RippleButton = ({ onClick, children, disabled }) => (
 );
 
 const PhoneForm = () => {
-    const [formData, setFormData] = useState({ phone: "" });
+    const [formData, setFormData] = useState({phone: ""});
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -56,18 +56,18 @@ const PhoneForm = () => {
     };
 
     const handlePhoneInput = (e) => {
-        let { value } = e.target;
+        let {value} = e.target;
         // Ensure + is always present if digits are entered
         if (value && !value.startsWith('+')) {
             value = '+' + value.replace(/\D/g, '');
         }
-        setFormData({ ...formData, phone: value });
-        setErrors((prev) => ({ ...prev, phone: "" }));
+        setFormData({...formData, phone: value});
+        setErrors((prev) => ({...prev, phone: ""}));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { phone } = formData;
+        const {phone} = formData;
 
         const newErrors = {};
         if (!phone || !phone.trim()) {
@@ -97,17 +97,15 @@ const PhoneForm = () => {
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
                 mode: "no-cors",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 body: params.toString(),
             });
 
             console.log("Request sent. Response status:", response.status);
-            if (response.ok) {
-                setIsSuccess(true);
-                triggerYandexGoal(); // Only trigger on success
-            } else {
-                throw new Error(`API request failed with status ${response.status}`);
-            }
+
+            setIsSuccess(true);
+            triggerYandexGoal(); // Only trigger on success
+
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);
@@ -118,7 +116,7 @@ const PhoneForm = () => {
 
     const handleNewRequest = () => {
         setIsSuccess(false);
-        setFormData({ phone: "" });
+        setFormData({phone: ""});
     };
 
     return (
@@ -139,7 +137,7 @@ const PhoneForm = () => {
                         <div className="w-full md:w-2/3">
                             <IMaskInput
                                 mask="+000 00 000-00-00"
-                                definitions={{ "0": { mask: /[0-9]/, placeholderChar: "_" } }}
+                                definitions={{"0": {mask: /[0-9]/, placeholderChar: "_"}}}
                                 name="phone"
                                 placeholder="Телефон*"
                                 value={formData.phone || ""}

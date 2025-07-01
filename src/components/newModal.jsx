@@ -104,8 +104,6 @@ const PhoneForm = () => {
             console.log("Request sent. Response status:", response.status);
 
             setIsSuccess(true);
-            triggerYandexGoal(); // Only trigger on success
-
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);

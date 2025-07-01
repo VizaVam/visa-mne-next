@@ -913,8 +913,13 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
                             <SectionTitle
                                 className="pt-10 mdd:pt-4"
-                                title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                                title={
+                                    selectedCountry.url === "viza-v-polsy-po-karte-polyaka"
+                                        ? "Кому подходит виза по Карте Поляка"
+                                        : `Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`
+                                }
                             />
+
                             {/* Desktop Table (md: and above) */}
                             <div className="overflow-x-auto w-full mdd:hidden">
                                 <table className="w-full border-collapse">

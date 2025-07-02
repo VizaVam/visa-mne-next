@@ -13,6 +13,7 @@ import Contacts from "@/components/contacts";
 import Steps from "@/components/steps";
 import Announcement from "@/components/announcement";
 import PhoneForm from "@/components/newModal"
+import NewSteps from "@/components/newSteps";
 
 const AdvantageItem = ({value, description}) => (
     <li className="flex items-center text-lg">
@@ -65,6 +66,7 @@ const RippleButton = memo(({onClick, children}) => (
 
 export default function HomePage() {
     const {openModal} = useModal();
+
 
     return (
         <div>
@@ -140,7 +142,7 @@ export default function HomePage() {
                 <Services/>
             </div>
 
-            <Steps/>
+            <NewSteps/>
             <PhoneForm/>
             <Docs/>
             <Reviews/>

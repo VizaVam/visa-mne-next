@@ -119,6 +119,12 @@ const PhoneForm = () => {
 
     return (
         <div className="w-full bg-white pb-16 mdd:pb-10 px-[7%]">
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-4 text-center">
+                Остались вопросы?
+            </h2>
+            <p className="mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] font-medium mb-8 text-center">
+                Напишите нам — проконсультируем <span className="text-[#F86F00]">бесплатно в течение 5 минут!</span>
+            </p>
             {isSuccess ? (
                 <div className="flex flex-col text-center gap-2 p-4 bg-gray-100 rounded text-sm max-w-md mx-auto">
                     Заявка успешно отправлена. С Вами свяжутся в ближайшее время.

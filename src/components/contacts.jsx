@@ -12,7 +12,7 @@ const CallToAction = () => {
                 Остались вопросы?
             </h2>
             <p className="mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] font-medium mb-6 text-center">
-                Напишите нам — проконсультируем <span className="text-[#F86F00]">бесплатно в ближайшее время!</span>
+                Напишите нам — проконсультируем <span className="text-[#F86F00]">бесплатно в течение 5 минут!</span>
             </p>
             <button
                 onClick={openModal}

@@ -118,8 +118,8 @@ const PhoneForm = () => {
     };
 
     return (
-        <div className="w-full bg-white pb-16 mdd:pb-10 px-[7%]">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-4 text-center">
+        <div className="w-full bg-white pb-32 mdd:pb-20 px-[7%]">
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-4 text-center">
                 Остались вопросы?
             </h2>
             <p className="mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] font-medium mb-8 text-center">

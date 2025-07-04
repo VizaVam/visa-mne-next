@@ -15,6 +15,7 @@ import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PhoneForm from "@/components/newModal";
 import Slider from "@/components/slider";
+import NewSteps from "@/components/newSteps";
 
 const RippleButton = memo(({onClick, children}) => (
     <button
@@ -126,7 +127,7 @@ export default function VisaPage({breadcrumbs}) {
             </div>
 
             <Serviceson/>
-            <Steps/>
+            <NewSteps/>
             <PhoneForm/>
             <Docs/>
             <Reviews/>

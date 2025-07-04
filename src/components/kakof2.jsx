@@ -73,7 +73,7 @@ export default function OnasPage({breadcrumbs}) {
 
                 {/* About Text Section */}
                 <div
-                    className="w-full relative flex flex-col gap-12 mdd:10 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
+                    className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
                             Планируете путешествие в Европу в 2025 году? Мечтаете о прогулках по улочкам Парижа, отдыхе
@@ -91,7 +91,7 @@ export default function OnasPage({breadcrumbs}) {
                             документы, записаться на подачу и даст гарантию возврата средств при отказе!</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Актуальная ситуация с
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Актуальная ситуация с
                             визами в Европу для белорусов в 2025 году</h2>
                         <p>В 2025 году консульства стран Шенгенского соглашения продолжают принимать заявления от
                             граждан Беларуси. Наиболее лояльными и популярными направлениями для получения туристических
@@ -102,7 +102,7 @@ export default function OnasPage({breadcrumbs}) {
                             подаче документов за 2-3 месяца до планируемой поездки.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Типы виз в 2025 году</h2>
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Типы виз в 2025 году</h2>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse">
                                 <colgroup>
@@ -158,7 +158,7 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Выбор типа визы влияет на список документов и условия подачи.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Пошаговая инструкция по
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Пошаговая инструкция по
                             получению шенгенской визы:</h2>
                         <h3 className="text-[16px] md:text-[24px] sm:text-[20px] font-bold">Шаг 1: Определяемся со
                             страной и целью поездки</h3>
@@ -244,7 +244,7 @@ export default function OnasPage({breadcrumbs}) {
                             заявления обычно составляет от 15 до 45 календарных дней.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Особенности получения визы
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Особенности получения визы
                             в некоторые страны:</h2>
                         <h4 className="text-[16px] md:text-[24px] sm:text-[20px] font-bold">Испания: уникальная
                             возможность безличной подачи в Минске</h4>
@@ -264,14 +264,14 @@ export default function OnasPage({breadcrumbs}) {
                             настоятельно рекомендуем начинать процесс оформления визы заблаговременно.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Стоимость оформления
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Стоимость оформления
                             шенгенской визы</h2>
                         <p>На 2025 год консульский сбор для белорусов составляет <span
                             className={"font-bold"}>€35</span>. Дополнительно оплачивается сервисный сбор визового
                             центра (около €15-30) и услуги по оформлению (при обращении в агентство).</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Как увеличить шансы на
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Как увеличить шансы на
                             одобрение и получить визу в Европу?</h2>
                         <ul className="text-black flex flex-col gap-2">
                             <li className="flex gap-2 items-center">
@@ -301,7 +301,7 @@ export default function OnasPage({breadcrumbs}) {
                         </ul>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Почему стоит обратиться в
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Почему стоит обратиться в
                             визовое агентство?</h2>
                         <p>Самостоятельное оформление визы – это всегда риск допустить ошибку, которая может повлечь за
                             собой отказ. Обращаясь в <span
@@ -355,9 +355,9 @@ export default function OnasPage({breadcrumbs}) {
                 </div>
                 <Fag3/>
                 <div
-                    className="w-full relative flex flex-col gap-12 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
+                    className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Готовы начать свое путешествие по Европе?</h2>
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Готовы начать свое путешествие по Европе?</h2>
                         <p>📞 Свяжитесь с нами по номеру <a href="tel:+375296800620"
                                                            className="underline hover:font-medium cursor-pointer text-blue-500" target="_blank" rel="noopener noreferrer">+375296800620</a> и доверьте оформление вашей шенгенской визы профессионалам!</p>
                     </div>

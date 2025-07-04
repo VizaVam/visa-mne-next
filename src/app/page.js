@@ -67,7 +67,6 @@ const RippleButton = memo(({onClick, children}) => (
 export default function HomePage() {
     const {openModal} = useModal();
 
-
     return (
         <div>
             <section
@@ -136,7 +135,7 @@ export default function HomePage() {
             </div>
 
             <div>
-                <h2 className="px-[7%] text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-16 mdd:mb-4 pt-16 mdd:pt-10">
+                <h2 className="px-[7%] text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-16 mdd:mb-4 pt-32 mdd:pt-20">
                     Оформление документов для подачи на визы
                 </h2>
                 <Services/>

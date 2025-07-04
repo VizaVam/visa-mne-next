@@ -8,7 +8,7 @@ const CallToAction = () => {
 
     return (
         <div className="pb-40 pt-40 px-[7%] flex flex-col items-center">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-4 text-center">
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-4 text-center">
                 Остались вопросы?
             </h2>
             <p className="mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] font-medium mb-6 text-center">

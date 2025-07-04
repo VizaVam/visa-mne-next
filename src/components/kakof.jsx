@@ -73,7 +73,7 @@ export default function OnasPage({breadcrumbs}) {
 
                 {/* About Text Section */}
                 <div
-                    className="w-full relative flex flex-col gap-12 mdd:10 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
+                    className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
                             Если вы планируете поездку в Польшу, то вам обязательно понадобится шенгенская виза, т.к.
@@ -110,7 +110,7 @@ export default function OnasPage({breadcrumbs}) {
                         </ul>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Кто может получить визу
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Кто может получить визу
                             в Польшу?</h2>
                         <p>Белорусы могут получить шенгенскую визу в Польшу, если цель их поездки соответствует одному
                             из следующих типов:</p>
@@ -171,7 +171,7 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Выбор типа визы влияет на список необходимых документов и условия подачи.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Полный список документов
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Полный список документов
                             на визу в Польшу</h2>
                         <p>
                             Чтобы ваше заявление приняли без задержек, соберите полный пакет документов заранее. Вот что
@@ -246,7 +246,7 @@ export default function OnasPage({breadcrumbs}) {
                             паспортных данных спонсора.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Где и как подать
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Где и как подать
                             документы на визу в Польшу?</h2>
                         <p>
                             Подача документов на шенгенскую визу в Польшу возможна в следующих местах:
@@ -269,7 +269,7 @@ export default function OnasPage({breadcrumbs}) {
                             визового центра, либо воспользоваться нашими услугами.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Сколько стоит виза в
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Сколько стоит виза в
                             Польшу для белорусов?</h2>
                         <p>Стоимость визы для граждан Республики Беларусь зависит от возраста заявителя и типа
                             поездки:</p>
@@ -319,7 +319,7 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Дополнительно могут взиматься в обязательно порядке сервисные сборы визовых центров.</p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Сколько времени делается
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Сколько времени делается
                             виза в Польшу?</h2>
                         <p>
                             Рассмотрение заявления на визу в Консульстве Польши обычно занимает до 21 календарного дня.
@@ -331,7 +331,7 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Самые частые ошибки при
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Самые частые ошибки при
                             подаче документов</h2>
                         <p>
                             Чтобы избежать отказа, проверьте, нет ли среди ваших документов следующих проблем:
@@ -362,9 +362,9 @@ export default function OnasPage({breadcrumbs}) {
                     </div>
                 </div>
                 <Fag2/>
-                <div className="w-full relative flex flex-col gap-12 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
+                <div className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Получите помощь в
+                        <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Получите помощь в
                             оформлении визы</h2>
                         <p>
                             Не хотите рисковать? Мы предлагаем профессиональную помощь в <a

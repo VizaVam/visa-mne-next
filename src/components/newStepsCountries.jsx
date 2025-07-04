@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const NewSteps = () => {
     return (
-        <div className="w-full px-[7%] pt-32 mdd:pt-20 pb-16 mdd:pb-10 md:h-[1275px]">
+        <div className="w-full px-[7%] pb-16 mdd:pb-10 md:h-[1150px]">
             <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-2">Шаги для получения визы</h2>
             <p className="mdd:w-full w-[60%] mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] mb-8 lg:mb-16">
                 <span className="mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] text-black font-bold">Внимание!</span>

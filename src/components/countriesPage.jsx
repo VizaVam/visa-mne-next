@@ -16,6 +16,8 @@ import {useState} from "react";
 import Slider from "@/components/slider";
 import StepGer from "@/components/stepGer";
 import DocsShengen from "@/components/docsShengen";
+import NewSteps from "@/components/newSteps";
+import NewStepsCountries from "@/components/newStepsCountries";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -315,8 +317,8 @@ const FAQ = ({countryUrl}) => {
     if (!faqData.length) return null;
 
     return (
-        <div className="pt-16 mdd:pt-10 px-[7%]">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-12">Часто задаваемые
+        <div className="pt-32 mdd:pt-20 px-[7%]">
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-12">Часто задаваемые
                 вопросы</h2>
             <script type="application/ld+json">
                 {JSON.stringify({
@@ -477,7 +479,7 @@ const TextBlock = ({text, parseText, className = ""}) => (
 
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
-    title && <h2 className={`pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
+    title && <h2 className={`pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
         {title}
     </h2>
 );
@@ -487,7 +489,7 @@ const PriceDisplay = ({country}) => {
     if (!country.price1) return null;
 
     return (
-        <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+        <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
             Наша услуга:{" "}
             {['Польша', 'Болгария'].includes(country.name) ? (
                 <>от <span className="text-orange-500">{parseText(country.price1)}</span> бел.
@@ -502,9 +504,9 @@ const PriceDisplay = ({country}) => {
 
 // Компонент для отображения альтернативного ценообразования
 const AlternativePricing = ({country}) => (
-    <div className="pt-10 mdd:pt-4 flex flex-col gap-6 lg:w-[80%]">
+    <div className="pt-20 mdd:pt-8 flex flex-col gap-6 lg:w-[80%]">
         {country.priceTitle && (
-            <p className="text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+            <p className="text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                 {country.priceTitle}
             </p>
         )}
@@ -743,7 +745,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                         <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
                             <div className="flex flex-col gap-6 lg:w-[60%]">
                                 <h2 title={selectedCountry.title}
-                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
+                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
                                     {selectedCountry.title}
                                 </h2>
                                 <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
@@ -782,7 +784,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <TextBlock text={selectedCountry.text5} parseText={parseText}/>
 
                                 {selectedCountry.typevc && (
-                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                         {parseText(selectedCountry.typevc)}
                                     </p>
                                 )}
@@ -834,7 +836,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 )}
 
                                 {selectedCountry.typevp && (
-                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                         {parseText(selectedCountry.typevp)}
                                     </p>
                                 )}
@@ -856,7 +858,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
 
                             <div className="flex flex-col gap-6 lg:w-[60%]">
                                 {selectedCountry.typev && (
-                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                         {parseText(selectedCountry.typev)}
                                     </p>
                                 )}
@@ -983,7 +985,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             </div>
                         </div>
                     </div>
-                    <StepGer/>
+                    <NewStepsCountries/>
                     <PhoneForm/>
 
                     {docs.includes(selectedCountry.url) ? (

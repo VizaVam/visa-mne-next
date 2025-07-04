@@ -15,6 +15,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import PhoneForm from "@/components/newModal";
 import Slider from "@/components/slider";
 import StepGer from "@/components/stepGer";
+import NewSteps from "@/components/newSteps";
+import NewStepsCountries from "@/components/newStepsCountries";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -86,8 +88,8 @@ const FAQ = ({countryUrl}) => {
     if (!faqData.length) return null;
 
     return (
-        <div className="pt-16 mdd:pt-10 px-[7%]">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium mb-8 lg:mb-12">Часто задаваемые
+        <div className="pt-32 mdd:pt-20 px-[7%]">
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-12">Часто задаваемые
                 вопросы</h2>
             <script type="application/ld+json">
                 {JSON.stringify({
@@ -240,23 +242,23 @@ const TextBlock = ({text, parseText, className = ""}) => (
 // Компонент для отображения заголовка
 const SectionTitle = ({title, className = ""}) => (
     title &&
-    <h2 className={`pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium ${className}`}>
+    <h2 className={`pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold ${className}`}>
         {title}
     </h2>
 );
 
 // Компонент для отображения цены
 const PriceDisplay = ({price1, priceType}) => (
-    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
         Наша услуга: <span className="text-orange-500">{parseText(price1)}</span> бел. руб. {parseText(priceType)}
     </p>
 );
 
 // Компонент для отображения альтернативного ценообразования
 const AlternativePricing = ({priceTitle, priceVariants}) => (
-    <div className="pt-10 mdd:pt-4 flex flex-col gap-6 lg:w-[80%]">
+    <div className="pt-20 mdd:pt-8 flex flex-col gap-6 lg:w-[80%]">
         {priceTitle && (
-            <p className="text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+            <p className="text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                 {priceTitle}
             </p>
         )}
@@ -386,8 +388,10 @@ export default function OtherCountryPage({breadcrumbs}) {
                 </div>
             </div>
 
-            <div className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+            <div
+                className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через
+                    “Оформить заявку”!</p>
             </div>
 
             {/* Баннер страны с адаптивным изображением */}
@@ -401,7 +405,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                         <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
                             <div className="flex flex-col gap-6 lg:w-[70%]">
                                 <h2 title={selectedCountry.title}
-                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium`}>
+                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
                                     {selectedCountry.title}
                                 </h2>
                                 <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
@@ -446,7 +450,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                                 <TextBlock text={selectedCountry.text6} parseText={parseText}/>
 
                                 {selectedCountry.typevc && (
-                                    <p className="pt-10 mdd:pt-4 text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                         {parseText(selectedCountry.typevc)}
                                     </p>
                                 )}
@@ -590,7 +594,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                             </div>
                         </div>
                     </div>
-                    <StepGer/>
+                    <NewStepsCountries/>
                     <PhoneForm/>
                     <Docs/>
                     <FAQ countryUrl={countryUrl}/>
@@ -600,7 +604,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                     {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"].includes(countryUrl) && (
                         <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
                             {selectedCountry.title && (
-                                <h2 className="text-[#F86F00] text-[18px] md:text-[28px] sm:text-[22px] font-medium">
+                                <h2 className="text-[#F86F00] text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                     {selectedCountry.title}
                                 </h2>
                             )}
@@ -658,9 +662,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                 </div>
             )}
 
-            <div className="pt-32">
-                <Contacts/>
-            </div>
+            <Contacts/>
         </div>
     );
 }

@@ -487,7 +487,7 @@ const DoscShengen = ({ countryUrl }) => {
         <div className="bg-[#15419E] px-[7%] py-6">
             <div className="docs flex flex-col md:flex-row">
                 {/* Left Side: Heading */}
-                <h2 className="docs-left bg-[#DDE5F5] text-black text-[18px] md:text-[28px] sm:text-[22px] font-medium p-2 rounded-[4px] mb-4 md:mb-0 md:mr-4 w-full md:w-auto">
+                <h2 className="docs-left bg-[#DDE5F5] text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold p-2 rounded-[4px] mb-4 md:mb-0 md:mr-4 w-full md:w-auto">
                     {heading}
                 </h2>
 

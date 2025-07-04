@@ -171,7 +171,7 @@ export default function OnasPage({breadcrumbs}) {
                         <h3 className="text-[16px] md:text-[24px] sm:text-[20px] font-bold">Шаг 2: Собираем необходимый
                             пакет документов</h3>
                         <p>Это самый ответственный этап, требующий внимательности и аккуратности. Стандартный пакет
-                            документов для <Link href="/shengenskie-vizy" className="underline hover:font-medium cursor-pointer" target="_blank" rel="noopener noreferrer">оформления
+                            документов для <Link href="/shengenskie-vizy" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">оформления
                                 шенгенской визы</Link> включает:</p>
                         <ul className="text-black flex flex-col gap-2">
                             <li className="flex gap-2 items-center">
@@ -234,7 +234,7 @@ export default function OnasPage({breadcrumbs}) {
 
                         <p className={"italic text-[14px]"}>💡 <span className={"font-bold"}>Совет:</span> Хотите записаться на
                             подачу документов на визу без головной боли и стресса? Обратитесь к профессионалам! Мы
-                            поможем получить шенген в кратчайшие сроки — <a className="underline hover:font-medium cursor-pointer" target="_blank" rel="noopener noreferrer" onClick={openModal}>оставьте
+                            поможем получить шенген в кратчайшие сроки — <a className="underline hover:font-medium cursor-pointer text-blue-500" target="_blank" rel="noopener noreferrer" onClick={openModal}>оставьте
                                 заявку</a>.</p>
 
                         <h3 className="text-[16px] md:text-[24px] sm:text-[20px] font-bold">Шаг 5: Проходим процедуру
@@ -252,7 +252,7 @@ export default function OnasPage({breadcrumbs}) {
                             className={"font-bold"}>VISA VAM</span> предлагает эксклюзивную услугу – <span
                             className={"font-bold"}>безличную подачу документов на <Link
                             href="/shengenskie-vizy/viza-v-ispaniyu"
-                            className="underline hover:font-medium cursor-pointer" target="_blank" rel="noopener noreferrer">визу в Испанию</Link> в Минске</span>.
+                            className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">визу в Испанию</Link> в Минске</span>.
                             Это означает, что вам не придется лично присутствовать в визовом центре. Мы возьмем на себя
                             всю процедуру: от проверки документов до их подачи. Это идеальный вариант для занятых людей
                             и жителей других городов Беларуси.</p>
@@ -349,7 +349,7 @@ export default function OnasPage({breadcrumbs}) {
                         </ul>
                         <p className={"italic text-[14px]"}>💡 <span className={"font-bold"}>Совет:</span> Не хотите тратить время на бюрократию? Обратитесь в
                             <span
-                                className={"font-bold"}> VISA VAM —</span> ваша виза будет готова вовремя — <a className="underline hover:font-medium cursor-pointer" target="_blank" rel="noopener noreferrer" onClick={openModal}>оставьте
+                                className={"font-bold"}> VISA VAM —</span> ваша виза будет готова вовремя — <a className="underline hover:font-medium cursor-pointer text-blue-500" target="_blank" rel="noopener noreferrer" onClick={openModal}>оставьте
                                 заявку</a>.</p>
                     </div>
                 </div>
@@ -359,7 +359,7 @@ export default function OnasPage({breadcrumbs}) {
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-medium">Готовы начать свое путешествие по Европе?</h2>
                         <p>📞 Свяжитесь с нами по номеру <a href="tel:+375296800620"
-                                                           className="underline hover:font-medium cursor-pointer" target="_blank" rel="noopener noreferrer">+375296800620</a> и доверьте оформление вашей шенгенской визы профессионалам!</p>
+                                                           className="underline hover:font-medium cursor-pointer text-blue-500" target="_blank" rel="noopener noreferrer">+375296800620</a> и доверьте оформление вашей шенгенской визы профессионалам!</p>
                     </div>
                 </div>
                 <Contacts/>

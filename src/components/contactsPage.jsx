@@ -51,10 +51,10 @@ const ContactInfoItem = ({icon, alt, children}) => (
 const ContactPhone = () => (
     <ContactInfoItem icon="/contacts-call-icon.png" alt="Phone">
         <div className="flex flex-col">
-            <a href="tel:+375296800620" className="font-medium text-[18px] mdd:text-[14px] hover:underline">
+            <a href="tel:+375296800620" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
                 +375296800620
             </a>
-            <a href="tel:+375293734870" className="font-medium text-[18px] mdd:text-[14px] hover:underline">
+            <a href="tel:+375293734870" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
                 +375293734870
             </a>
             <p className="font-normal text-[14px] mdd:text-[12px] text-[#808080]">
@@ -66,7 +66,7 @@ const ContactPhone = () => (
 
 const ContactEmail = () => (
     <ContactInfoItem icon="/contacts-email-icon.png" alt="Email">
-        <a href="mailto:info@visavam.by" className="text-[18px] mdd:text-[14px] font-medium hover:underline">
+        <a href="mailto:info@visavam.by" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
             info@visavam.by
         </a>
     </ContactInfoItem>
@@ -82,7 +82,7 @@ const ContactAddress = () => (
                 href="https://www.google.com/maps/place/Visa+Vam/@53.910344,27.5447334,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcfe91ef014a9:0xa6163600e41617e9!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11x1ym4kj8?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline text-[#4472C4] hover:text-blue-700"
+                className="underline hover:font-normal font-medium text-blue-500"
             >
                 Google maps
             </a>

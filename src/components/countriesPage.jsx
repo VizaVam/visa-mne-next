@@ -985,16 +985,20 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             </div>
                         </div>
                     </div>
+
+                    <div className={"pt-16 mdd:pt-10"}>
+                        {docs.includes(selectedCountry.url) ? (
+                            <DocsShengen countryUrl={selectedCountry.url}/>
+                        ) : (
+                            <Docs/>
+                        )}
+                    </div>
+
+                    <DownloadFiles/>
+
                     <NewStepsCountries/>
                     <PhoneForm/>
 
-                    {docs.includes(selectedCountry.url) ? (
-                        <DocsShengen countryUrl={selectedCountry.url}/>
-                    ) : (
-                        <Docs/>
-                    )}
-
-                    <DownloadFiles/>
                     <FAQ countryUrl={selectedCountry.url}/>
                     <Contacts/>
                 </div>

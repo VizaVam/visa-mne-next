@@ -594,9 +594,13 @@ export default function OtherCountryPage({breadcrumbs}) {
                             </div>
                         </div>
                     </div>
-                    <NewStepsCountries/>
+                    <div className={"pt-16 mdd:pt-10"}>
+                        <Docs/>
+                    </div>
+                    <div className={"pt-32 mdd:pt-20"}>
+                        <NewStepsCountries/>
+                    </div>
                     <PhoneForm/>
-                    <Docs/>
                     <FAQ countryUrl={countryUrl}/>
                 </div>
             ) : (

@@ -19,9 +19,15 @@ const Announcement = () => {
                     const thirdStart = new Date("2025-05-08T00:00:00+05:00");
                     const thirdEnd = new Date("2025-05-10T23:59:59+05:00");
 
-                    // Fourth announcement period (May 30-May 10)
-                    const fourthStart = new Date("2025-07-02T00:00:00+05:00");
-                    const fourthEnd = new Date("2025-07-05T23:59:59+05:00");
+                    // Fourth announcement period
+                    const fourthStart = new Date("2025-07-3T00:00:00+05:00");
+                    const fourthEnd = new Date("2025-07-4T23:59:59+05:00");
+
+                    // Fifth announcement period (May 30-May 10)
+                    const fifthStart = new Date("2025-07-11T00:00:00+05:00");
+                    const fifthEnd = new Date("2025-07-12T23:59:59+05:00");
+
+
 
                     if (now >= firstStart && now <= firstEnd) {
                         setActiveAnnouncement('first');
@@ -31,6 +37,8 @@ const Announcement = () => {
                         setActiveAnnouncement('third');
                     } else if (now >= fourthStart && now <= fourthEnd) {
                         setActiveAnnouncement('fourth');
+                    } else if (now >= fifthStart && now <= fifthEnd) {
+                        setActiveAnnouncement('fifth');
                     } else {
                         setActiveAnnouncement(null);
                     }
@@ -74,6 +82,12 @@ const Announcement = () => {
                 lines: [
                     "чт 03.07. пт 04.07. - выходные дни",
                     "сб 05.07. - 10:00-14:00"
+                ]
+            },
+            fifth: {
+                title: "Изменился график работы!",
+                lines: [
+                    "сб 12.07. - 09:00-19:00"
                 ]
             }
         };

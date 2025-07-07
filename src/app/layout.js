@@ -113,6 +113,7 @@ export default function RootLayout({ children }) {
             `,
                 }}
             />
+            <script src="//web.it-center.by/nw" async></script>
         </head>
         <body className={`${interSans.variable} ${caveatSans.variable} antialiased`}>
         <GoogleTagManager/>

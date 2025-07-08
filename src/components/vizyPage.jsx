@@ -118,8 +118,10 @@ export default function VisaPage({breadcrumbs}) {
                 </div>
             </div>
 
-            <div className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+            <div
+                className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через
+                    “Оформить заявку”!</p>
             </div>
 
             <div className="mb-[100px]">
@@ -127,8 +129,10 @@ export default function VisaPage({breadcrumbs}) {
             </div>
 
             <Serviceson/>
-            <NewSteps/>
-            <PhoneForm/>
+            <div className={"pb-32 mdd:pb-20"}>
+                <NewSteps/>
+                <PhoneForm/>
+            </div>
             <Docs/>
             <Reviews/>
             <Fag/>

@@ -1003,105 +1003,135 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                     <Contacts/>
                 </div>
             ) : (
-                <div className="px-[7%] flex flex-col gap-10 items-center">
-                    {limitedContentCountries.includes(selectedCountry.url) && (
-                        <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center">
-                            <div className="flex flex-col gap-6 items-center lg:w-[60%]">
-                                {selectedCountry.title && (
-                                    <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
-                                        {selectedCountry.title}
-                                    </h3>
-                                )}
-                                <div className="flex flex-col gap-6">
-                                    <TextBlock text={selectedCountry.text1} parseText={parseText}/>
-                                    <TextBlock text={selectedCountry.text2} parseText={parseText}/>
-
-                                    {selectedCountry.variants?.length > 0 && (
-                                        <VariantsList variants={selectedCountry.variants}/>
+                <div className="w-full">
+                    <div className="px-[7%] flex flex-col gap-10">
+                        {limitedContentCountries.includes(selectedCountry.url) && (
+                            <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center">
+                                <div className="flex flex-col gap-6 items-center lg:w-[60%]">
+                                    {selectedCountry.title && (
+                                        <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
+                                            {selectedCountry.title}
+                                        </h3>
                                     )}
+                                    <div className="flex flex-col gap-6">
+                                        <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                                        <TextBlock text={selectedCountry.text2} parseText={parseText}/>
 
-                                    <TextBlock text={selectedCountry.text3} parseText={parseText}/>
-                                    <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+                                        {selectedCountry.variants?.length > 0 && (
+                                            <VariantsList variants={selectedCountry.variants}/>
+                                        )}
 
-                                    {Array.isArray(selectedCountry.text22) && (
-                                        <div>
-                                            {selectedCountry.text22.slice(0, 2).map((text, i) => (
-                                                <TextBlock key={i} text={text} parseText={parseText}/>
-                                            ))}
-                                        </div>
-                                    )}
+                                        <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+                                        <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+
+                                        {Array.isArray(selectedCountry.text22) && (
+                                            <div>
+                                                {selectedCountry.text22.slice(0, 2).map((text, i) => (
+                                                    <TextBlock key={i} text={text} parseText={parseText}/>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
                                 </div>
 
-                            </div>
-
-                            {/* Показываем секцию стоимости только для Италии */}
-                            {selectedCountry.url === "viza-v-italiyu" && (
-                                <>
-                                    <SectionTitle
-                                        className="pt-10 mdd:pt-4"
-                                        title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
-                                    />
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full border-collapse">
-                                            <colgroup>
-                                                <col className="w-1/3"/>
-                                                <col className="w-1/3"/>
-                                                <col className="w-1/3"/>
-                                            </colgroup>
-                                            <thead>
-                                            <tr>
-                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
-                                                    Услуга / Сбор
-                                                </th>
-                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
-                                                    Стоимость
-                                                </th>
-                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
-                                                    Примечание
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {selectedCountry.priceTable && selectedCountry.priceTable.map((row, index) => (
-                                                <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
-                                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
-                                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
-                                                    <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                                {/* Показываем секцию стоимости только для Италии */}
+                                {selectedCountry.url === "viza-v-italiyu" && (
+                                    <>
+                                        <SectionTitle
+                                            className="pt-10 mdd:pt-4"
+                                            title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                                        />
+                                        {/* Desktop Table (md: and above) */}
+                                        <div className="overflow-x-auto w-full mdd:hidden">
+                                            <table className="w-full border-collapse">
+                                                <colgroup>
+                                                    <col className="w-1/3"/>
+                                                    <col className="w-1/3"/>
+                                                    <col className="w-1/3"/>
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                                        Услуга / Сбор
+                                                    </th>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                                        Стоимость
+                                                    </th>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                                                        Примечание
+                                                    </th>
                                                 </tr>
-                                            ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </>
-                            )}
+                                                </thead>
+                                                <tbody>
+                                                {selectedCountry.priceTable &&
+                                                    selectedCountry.priceTable.map((row, index) => (
+                                                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                                                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {/* Mobile Table (below md:) */}
+                                        <div className="overflow-x-auto w-full md:hidden">
+                                            <table className="w-full border-collapse">
+                                                <colgroup>
+                                                    <col className="w-1/2"/>
+                                                    <col className="w-1/2"/>
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                        Услуга / Сбор
+                                                    </th>
+                                                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                        Стоимость
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {selectedCountry.priceTable &&
+                                                    selectedCountry.priceTable.map((row, index) => (
+                                                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                            <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.serviceMob)}</td>
+                                                            <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.costMob)}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        )}
+
+                        <div className="flex flex-col gap-4 mt-16">
+                            <p className="text-black text-[14px]">
+                                Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
+                            </p>
+
+                            <div
+                                className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
+                                {recommendedCountries.map((country, index) => (
+                                    <CountryCard key={index} country={country}/>
+                                ))}
+                            </div>
                         </div>
-                    )}
 
-                    <div className="flex flex-col gap-4 mt-16">
-                        <p className="text-black text-[14px]">
-                            Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
-                        </p>
-
-                        <div
-                            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
-                            {recommendedCountries.map((country, index) => (
-                                <CountryCard key={index} country={country}/>
-                            ))}
+                        <div className="sm:mt-6 text-center w-full">
+                            <Link href="/shengenskie-vizy">
+                                <button
+                                    className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                                    Еще больше стран
+                                </button>
+                            </Link>
                         </div>
-                    </div>
-
-                    <div className="sm:mt-6 text-center w-full">
-                        <Link href="/shengenskie-vizy">
-                            <button
-                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
-                                Еще больше стран
-                            </button>
-                        </Link>
                     </div>
                     <FAQ countryUrl={selectedCountry.url}/>
-                    <div className="pt-32">
-                        <Contacts/>
-                    </div>
+                    <Contacts/>
                 </div>
             )
             }

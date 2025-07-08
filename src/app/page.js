@@ -141,8 +141,11 @@ export default function HomePage() {
                 <Services/>
             </div>
 
-            <NewSteps/>
-            <PhoneForm/>
+            <div className={"pb-32 mdd:pb-20"}>
+                <NewSteps/>
+                <PhoneForm/>
+            </div>
+
             <Docs/>
             <Reviews/>
             <Fag/>

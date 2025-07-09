@@ -6,6 +6,7 @@ import {motion} from "framer-motion";
 import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Contacts from "@/components/contacts";
+import Discount from "@/components/discount";
 
 const RippleButton = ({onClick, children}) => (
     <button
@@ -150,14 +151,12 @@ export default function ContactsPage({breadcrumbs}) {
 
                     <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[27%]">
                         <RippleButton onClick={openModal}>
-                            Оформить заявку
+                            Получить консультацию
                         </RippleButton>
                     </div>
                 </div>
 
-                <div className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
-                </div>
+                <Discount/>
 
                 {/* Contact Info Section */}
                 <div

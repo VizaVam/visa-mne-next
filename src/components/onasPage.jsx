@@ -10,6 +10,7 @@ import Reviews from "@/components/reviews";
 import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Discount from "@/components/discount";
 
 const RippleButton = ({onClick, children}) => (
     <button
@@ -134,14 +135,12 @@ export default function OnasPage({breadcrumbs}) {
 
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
                     <RippleButton onClick={openModal}>
-                        Оформить заявку
+                        Получить консультацию
                     </RippleButton>
                 </div>
             </div>
 
-            <div className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
-            </div>
+            <Discount/>
 
             {/* Banner Section */}
             <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">

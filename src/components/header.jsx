@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
@@ -119,6 +119,7 @@ export default function Header() {
                                 href="viber://chat?number=%2B375293734870/"
                                 style={{ cursor: 'pointer' }}
                                 title="Открыть в Viber"
+                                data-itc-calltracking="off"
                             >
                                 <img
                                     src="/viber.svg"
@@ -132,6 +133,7 @@ export default function Header() {
                                 href="https://t.me/+375295648334"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-itc-calltracking="off"
                             >
                                 <Image width={1000} height={800} src="/telegram.svg" alt="Telegram"/>
                             </a>
@@ -139,6 +141,7 @@ export default function Header() {
                                 href="https://wa.me/375257654320"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-itc-calltracking="off"
 
                             >
                                 <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>
@@ -150,9 +153,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                <div className={`header__bottom mdd:bg-white ${
-                    isScrolled ? "bg-white" : "bg-transparent"
-                }`}>
+                <div className={`header__bottom mdd:bg-white ${isScrolled ? "bg-white" : "bg-transparent"}`}>
                     <div className={"header__bottom-left"}>
                         <a href={"/"} className={"header__bottom-left"}>
                             <Image width={600} height={600} src={"/new-logo.svg"} alt={""}
@@ -298,7 +299,7 @@ export default function Header() {
                                     <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                                 </motion.span>
                             ))}
-                            Оформить заявку
+                            Получить консультацию
                         </button>
 
 
@@ -311,7 +312,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+                    <p>Оставь заявку и получи <span className="font-bold text-blue-950 underline">скидку 5%</span> на услуги компании!</p>
                 </div>
                 <AnimatePresence>
                     {isMenuOpen && (
@@ -567,6 +568,7 @@ export default function Header() {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             style={{ cursor: "pointer" }}
+                            data-itc-calltracking="off"
                         >
                             {/* Белый фон (меньше основной иконки) */}
                             <motion.span
@@ -588,6 +590,7 @@ export default function Header() {
                             className="w-12 h-12 rounded-full flex items-center justify-center"
                             whileHover={{scale: 1.1}}
                             whileTap={{scale: 0.9}}
+                            data-itc-calltracking="off"
                         >
                             <img src="/telegram.svg" alt="Telegram" className="w-12 h-12"/>
                         </motion.a>
@@ -597,6 +600,7 @@ export default function Header() {
                             className="w-12 h-12 rounded-full flex items-center justify-center"
                             whileHover={{scale: 1.1}}
                             whileTap={{scale: 0.9}}
+                            data-itc-calltracking="off"
                         >
                             <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
                         </motion.a>
@@ -639,7 +643,7 @@ export default function Header() {
                             </motion.span>
                         ))}
 
-                        Оформить заявку
+                        Получить консультацию
                     </button>
                 </div>
             )}

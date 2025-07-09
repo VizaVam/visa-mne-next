@@ -17,6 +17,7 @@ import Slider from "@/components/slider";
 import StepGer from "@/components/stepGer";
 import NewSteps from "@/components/newSteps";
 import NewStepsCountries from "@/components/newStepsCountries";
+import Discount from "@/components/discount";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -383,16 +384,12 @@ export default function OtherCountryPage({breadcrumbs}) {
 
                 <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
                     <RippleButton onClick={openModal}>
-                        Оформить заявку
+                        Получить консультацию
                     </RippleButton>
                 </div>
             </div>
 
-            <div
-                className="sm:hidden -mt-20 mb-5 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через
-                    “Оформить заявку”!</p>
-            </div>
+            <Discount/>
 
             {/* Баннер страны с адаптивным изображением */}
             <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">

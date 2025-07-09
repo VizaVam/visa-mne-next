@@ -163,6 +163,7 @@ export default function Footer() {
                                         href="viber://chat?number=%2B375293734870/"
                                         style={{cursor: 'pointer'}}
                                         title="Открыть в Viber"
+                                        data-itc-calltracking="off"
                                     >
                                         <img
                                             src="/viber.svg"
@@ -176,6 +177,7 @@ export default function Footer() {
                                         href="https://t.me/+375295648334"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        data-itc-calltracking="off"
                                     >
                                         <Image width={1000} height={800} src="/telegram.svg" alt="Telegram"/>
                                     </a>
@@ -183,6 +185,7 @@ export default function Footer() {
                                         href="https://wa.me/375257654320"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        data-itc-calltracking="off"
 
                                     >
                                         <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>

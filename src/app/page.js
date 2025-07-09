@@ -1,6 +1,6 @@
 'use client'
 
-import {memo} from 'react';
+import React, {memo} from 'react';
 import Image from "next/image";
 import {motion} from "framer-motion";
 import {useModal} from "@/components/modalcontext";
@@ -105,7 +105,7 @@ export default function HomePage() {
 
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <RippleButton onClick={openModal}>
-                            Оформить заявку
+                            Получить консультацию
                         </RippleButton>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="sm:hidden -mt-24 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                    <p><span className="font-bold text-blue-950 underline">Скидка 5%</span> на услуги компании через “Оформить заявку”!</p>
+                    <p>Оставь заявку и получи <span className="font-bold text-blue-950 underline">скидку 5%</span> на услуги компании!</p>
                 </div>
 
                 {/* Список преимуществ */}

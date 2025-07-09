@@ -35,7 +35,7 @@ const CallToAction = () => {
                         <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
                     </motion.span>
                 ))}
-                Оформить заявку
+                Получить консультацию
             </button>
         </div>
     );

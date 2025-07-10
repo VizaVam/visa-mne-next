@@ -60,7 +60,7 @@ const Services = () => {
                 <div className="mt-8 text-center">
                     <Link href="/shengenskie-vizy">
                         <button
-                            className="bg-customBlue mdd:w-full hover:bg-blue-600 text-white py-4 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="bg-customBlue mdd:w-full hover:bg-blue-600 text-white py-4 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран
                         </button>
                     </Link>

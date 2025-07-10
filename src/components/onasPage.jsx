@@ -15,7 +15,7 @@ import Discount from "@/components/discount";
 const RippleButton = ({onClick, children}) => (
     <button
         onClick={onClick}
-        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
     >
         {[0, 1, 2].map((i) => (
             <motion.span
@@ -196,7 +196,7 @@ export default function OnasPage({breadcrumbs}) {
                 <div className="sm:mt-6 text-center">
                     <Link href="/shengenskie-vizy">
                         <button
-                            className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                            className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
                             Еще больше стран
                         </button>
                     </Link>

@@ -108,9 +108,9 @@ const FAQ = ({countryUrl}) => {
             </script>
             <div className="space-y-4">
                 {faqData.map((faq, index) => (
-                    <div key={index} className="mdd:text-[16px] text-[16px] border rounded-[4px]">
+                    <div key={index} className="mdd:text-[16px] text-[16px] border rounded-[30px] mdd:rounded-[55px]">
                         <button
-                            className="flex justify-between items-center w-full bg-orange-500 text-white py-4 px-6 font-medium text-left focus:outline-none"
+                            className="flex justify-between items-center w-full bg-orange-500 rounded-full text-white py-4 px-6 font-medium text-left focus:outline-none"
                             onClick={() => toggleFAQ(index)}
                         >
                             <span>В: {faq.question}</span>
@@ -133,7 +133,7 @@ const FAQ = ({countryUrl}) => {
                         </button>
                         {openIndex === index && (
                             <div
-                                className="mdd:text-[16px] text-[16px] bg-white rounded-[4px] py-4 px-6 text-gray-700"
+                                className="mdd:text-[16px] text-[16px] bg-white rounded-full py-4 px-6 text-gray-700"
                                 dangerouslySetInnerHTML={{__html: faq.answer}}
                             />
                         )}
@@ -148,7 +148,7 @@ const FAQ = ({countryUrl}) => {
 const RippleButton = ({onClick, children}) => (
     <button
         onClick={onClick}
-        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
     >
         {[0, 1, 2].map((i) => (
             <motion.span
@@ -209,13 +209,13 @@ const VisaTypeButtons = ({types, links, enabled}) => (
                 {enabled[index] ? (
                     <Link
                         href={`/${links[index]}`}
-                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
                     >
                         {text}
                     </Link>
                 ) : (
                     <div
-                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-[4px] cursor-not-allowed pointer-events-none select-none">
+                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-full cursor-not-allowed pointer-events-none select-none">
                         {text}
                     </div>
                 )}

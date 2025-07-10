@@ -9,7 +9,7 @@ const RippleButton = ({onClick, children, disabled}) => (
     <button
         onClick={onClick}
         disabled={disabled}
-        className={`bbbt relative overflow-hidden w-full py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
+        className={`bbbt relative overflow-hidden w-full py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
             disabled ? "bg-gray-500 cursor-not-allowed" : "bg-customBlue hover:bg-blue-700 text-white"
         }`}
     >
@@ -151,8 +151,8 @@ const PhoneForm = () => {
                                 onFocus={(e) => (e.target.placeholder = "+___ __ ___-__-__")}
                                 onBlur={(e) => (!e.target.value ? (e.target.placeholder = "Телефон*") : null)}
                                 className={`w-full border ${
-                                    errors.phone ? "border-red-500" : "border-gray-300"
-                                } rounded-[4px] p-3 text-sm`}
+                                    errors.phone ? "border-red-500" : "border-[#15419E]"
+                                } rounded-full p-3 text-sm`}
                             />
                             {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                         </div>

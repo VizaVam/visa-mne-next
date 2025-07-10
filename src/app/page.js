@@ -41,7 +41,7 @@ const AdvantageItem = ({value, description}) => (
 const RippleButton = memo(({onClick, children}) => (
     <button
         onClick={onClick}
-        className="bbbt relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+        className="bbbt relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
     >
         {[0, 1, 2].map((i) => (
             <motion.span

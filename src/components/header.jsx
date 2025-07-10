@@ -146,9 +146,6 @@ export default function Header() {
                             >
                                 <Image width={1000} height={800} src="/whatsapp.svg" alt="WhatsApp"/>
                             </a>
-                            <a href="mailto:l336906097@gmail.com">
-                                <Image width={1000} height={800} src="/mail.svg" alt="E-Mail"/>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -279,7 +276,7 @@ export default function Header() {
                         </div>
                         <button
                             onClick={openModal}
-                            className="header__bottom-right-btn relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
+                            className="header__bottom-right-btn relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
                         >
                             {/* Три медленные пульсирующие волны, затем пауза */}
                             {[0, 1, 2].map((i) => (
@@ -604,14 +601,6 @@ export default function Header() {
                         >
                             <img src="/whatsapp.svg" alt="WhatsApp" className="w-12 h-12"/>
                         </motion.a>
-                        <motion.a
-                            href="mailto:l336906097@gmail.com"
-                            className="w-12 h-12 rounded-full flex items-center justify-center"
-                            whileHover={{scale: 1.1}}
-                            whileTap={{scale: 0.9}}
-                        >
-                            <img src="/email.svg" alt="Email" className="w-12 h-12"/>
-                        </motion.a>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -622,7 +611,7 @@ export default function Header() {
                             setIsMenuOpen(false);
                             openModal();
                         }}
-                        className="relative overflow-hidden w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden z-50"
+                        className="relative overflow-hidden w-full bg-customBlue hover:bg-blue-500 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out md:hidden z-50"
                     >
                         {/* Три плавных волны */}
                         {[0, 1, 2].map((i) => (

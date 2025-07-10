@@ -158,8 +158,8 @@ const Modal = () => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 className={`w-full border ${
-                                    errors.name ? "border-red-500" : "border-gray-300"
-                                } rounded-[4px] p-3 text-sm`}
+                                    errors.name ? "border-red-500" : "border-[#15419E]"
+                                } rounded-full p-3 text-sm`}
                             />
                             {errors.name && (
                                 <p className="text-red-500 text-xs mt-1">{errors.name}</p>
@@ -185,8 +185,8 @@ const Modal = () => {
                                     }
                                 }}
                                 className={`w-full border ${
-                                    errors.phone ? "border-red-500" : "border-gray-300"
-                                } rounded-[4px] p-3 text-sm`}
+                                    errors.phone ? "border-red-500" : "border-[#15419E]"
+                                } rounded-full p-3 text-sm`}
                             />
                             {errors.phone && (
                                 <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
@@ -200,7 +200,7 @@ const Modal = () => {
                                 placeholder="Email"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                className="w-full border border-gray-300 rounded-[4px] p-3 text-sm"
+                                className="w-full border border-[#15419E] rounded-full p-3 text-sm"
                             />
                         </div>
 
@@ -232,7 +232,7 @@ const Modal = () => {
                         <div className="pt-1">
                             <button
                                 type="submit"
-                                className={`w-full py-3 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
+                                className={`w-full py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
                                     isSubmitting
                                         ? "bg-gray-500 cursor-not-allowed"
                                         : "bg-customBlue hover:bg-blue-700 text-white"

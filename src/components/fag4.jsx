@@ -47,9 +47,9 @@ const FAQ = () => {
             <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-12">FAQ: Коротко о главном</h2>
             <div className="space-y-4">
                 {faqData.map((faq, index) => (
-                    <div key={index} className="mdd:text-[16px] text-[16px] border  rounded-[4px]">
+                    <div key={index} className="mdd:text-[16px] text-[16px] border rounded-[30px] mdd:rounded-[55px]">
                         <button
-                            className="flex justify-between items-center w-full bg-orange-500 text-white py-4 px-6 font-medium text-left focus:outline-none"
+                            className="flex justify-between items-center w-full bg-orange-500 rounded-full text-white py-4 px-6 font-medium text-left focus:outline-none"
                             onClick={() => toggleFAQ(index)}
                         >
                             <span>В: {faq.question}</span>
@@ -72,7 +72,7 @@ const FAQ = () => {
                         </button>
                         {openIndex === index && (
                             <div
-                                className="mdd:text-[16px] text-[16px] bg-white rounded-[4px] py-4 px-6 text-gray-700"
+                                className="mdd:text-[16px] text-[16px] bg-white rounded-full py-4 px-6 text-gray-700"
                                 dangerouslySetInnerHTML={{__html: faq.answer}}
                             />
                         )}

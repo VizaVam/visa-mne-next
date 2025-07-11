@@ -145,7 +145,7 @@ export default function OnasPage({breadcrumbs}) {
             {/* Banner Section */}
             <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">
                 <Image
-                    src="/onaspc.JPG"
+                    src="/onaspc.jpg"
                     alt="О компании VisaVam"
                     width={1600}
                     height={1000}

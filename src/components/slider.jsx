@@ -68,7 +68,7 @@ const Slider = () => {
             {/* Слайд */}
             <div className="relative lg:h-96 md:h-60 sm:h-52 mdd:h-52 w-full overflow-hidden">
                 <div
-                    className="flex transition-transform duration-700 rounded-[2px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]"
+                    className="flex transition-transform duration-700 rounded-lg shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]"
                     style={{
                         transform: `translateX(calc(-${currentIndex * (isLgScreen ? 100 : 85)}% - ${
                             currentIndex * 8
@@ -80,7 +80,7 @@ const Slider = () => {
                             key={slide.id}
                             className={`${
                                 isLgScreen ? "w-[100%]" : "w-[85%]"
-                            } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-[2px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
+                            } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-lg shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
                         >
                             <Image
                                 src={slide.image}
@@ -88,7 +88,7 @@ const Slider = () => {
                                 width={800}
                                 height={600}
                                 loading="lazy"
-                                className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-[2px]`}
+                                className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-lg`}
                                 style={{
                                     objectPosition: slide.id === 1 ? "50% 15%" :
                                         slide.id === 2 ? "50% 71%" :
@@ -97,7 +97,7 @@ const Slider = () => {
                                 }}
                             />
                             <div
-                                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-[2px]">
+                                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
                                 <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold"
                                     dangerouslySetInnerHTML={{__html: slide.text}}/>
                             </div>

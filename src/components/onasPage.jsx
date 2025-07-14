@@ -123,6 +123,7 @@ export default function OnasPage({breadcrumbs}) {
                         width={1000}
                         height={1000}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
+                        priority={true}
                     />
                     <Image
                         src="/onas114.jpg"
@@ -130,6 +131,7 @@ export default function OnasPage({breadcrumbs}) {
                         width={600}
                         height={600}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
+                        priority={true}
                     />
                 </div>
 

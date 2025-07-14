@@ -610,6 +610,10 @@ const subWorkPoland = [
     "rabochaya-viza-v-polshu"
 ];
 
+const italy = [
+    "viza-v-italiyu"
+]
+
 const docs = [
     "rabochaya-viza-v-germaniyu",
     "rabochaya-viza-v-polshu",
@@ -695,8 +699,11 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
                             </h1>
                         {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) && (
-                            <p className="mdd:text-[14px] sm:text-[20px]">* быстрое оформление «под ключ» в Минске и без
-                                верификации!</p>
+                            <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске!</p>
+                        )}
+                        {(italy.includes(selectedCountry.url)) && (
+                            <p className="mdd:text-[14px] sm:text-[20px]">*полное сопровождение «под ключ» с подачей в
+                                Минске!</p>
                         )}
                         </span>
                 </div>
@@ -1003,8 +1010,8 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                 <div className="w-full">
                     <div className="px-[7%] flex flex-col gap-10">
                         {limitedContentCountries.includes(selectedCountry.url) && (
-                            <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center">
-                                <div className="flex flex-col gap-6 items-center lg:w-[60%]">
+                            <div className="xl:pt-0 pt-24 flex flex-col gap-6">
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
                                     {selectedCountry.title && (
                                         <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
                                             {selectedCountry.title}
@@ -1013,6 +1020,9 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     <div className="flex flex-col gap-6">
                                         <TextBlock text={selectedCountry.text1} parseText={parseText}/>
                                         <TextBlock text={selectedCountry.text2} parseText={parseText}/>
+
+                                        <SectionTitle title={selectedCountry.title1} parseText={parseText}/>
+                                        <TextBlock text={selectedCountry.text22} parseText={parseText}/>
 
                                         {selectedCountry.variants?.length > 0 && (
                                             <VariantsList variants={selectedCountry.variants}/>
@@ -1030,6 +1040,59 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                         )}
                                     </div>
 
+                                    <div className="flex flex-col gap-6 lg:w-[60%]">
+                                        {selectedCountry.typev && (
+                                            <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                                {parseText(selectedCountry.typev)}
+                                            </p>
+                                        )}
+
+                                        {selectedCountry.typevb?.length > 0 && (
+                                            <VisaTypeButtons
+                                                types={selectedCountry.typevb}
+                                                links={selectedCountry.typevl}
+                                                enabled={selectedCountry.enabled || []}
+                                            />
+                                        )}
+                                    </div>
+
+                                    {/* Кому подходит виза заголовок */}
+                                    <SectionTitle
+                                        className="pt-10 mdd:pt-4"
+                                        title={`Кому подходит ${selectedCountry.match}`}
+                                    />
+                                    <TextBlock
+                                        text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`}
+                                        parseText={parseText}/>
+
+                                    {/* Кому подходит виза лист*/}
+                                    <div className="overflow-x-auto w-full">
+                                        <table className="w-full border-collapse">
+                                            <colgroup>
+                                                <col className="w-1/2"/>
+                                                <col className="w-1/2"/>
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                    {excludedCountries1.includes(selectedCountry.url) ? "Категории граждан" : "Типы визы"}
+                                                </th>
+                                                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                    Цель поездки
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {selectedCountry.matchTable &&
+                                                selectedCountry.matchTable.map((row, index) => (
+                                                    <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.typeviza)}</td>
+                                                        <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.goaltrip)}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                                 {/* Показываем секцию стоимости только для Италии */}
@@ -1104,29 +1167,21 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 )}
                             </div>
                         )}
-
-                        <div className="flex flex-col gap-4 mt-16">
-                            <p className="text-black text-[14px]">
-                                Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
-                            </p>
-
-                            <div
-                                className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
-                                {recommendedCountries.map((country, index) => (
-                                    <CountryCard key={index} country={country}/>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="sm:mt-6 text-center w-full">
-                            <Link href="/shengenskie-vizy">
-                                <button
-                                    className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
-                                    Еще больше стран
-                                </button>
-                            </Link>
-                        </div>
                     </div>
+
+                    <div className={"pt-32 mdd:pt-20"}>
+                        {docs.includes(selectedCountry.url) ? (
+                            <DocsShengen countryUrl={selectedCountry.url}/>
+                        ) : (
+                            <Docs/>
+                        )}
+                    </div>
+
+                    <DownloadFiles/>
+
+                    <NewStepsCountries/>
+                    <PhoneForm/>
+
                     <FAQ countryUrl={selectedCountry.url}/>
                     <Contacts/>
                 </div>

@@ -97,7 +97,7 @@ const Announcement = () => {
                 {activeAnnouncement && (
                     <div className="px-[7%] md:pt-20 lg:pt-36 mdd:pb-28 -mt-24">
                         <div
-                            className="md:w-max dm:w-full md:py-6 dm:py-4 md:px-10 bg-orange-500 text-white text-center m-auto font-bold">
+                            className="md:w-max dm:w-full md:py-6 dm:py-4 md:px-10 bg-orange-500 rounded-lg text-white text-center m-auto font-bold">
                             <p className="md:text-2xl dm:text-lg">Внимание!</p>
                             <p className="md:text-2xl dm:text-lg">{announcements[activeAnnouncement].title}</p>
                             {announcements[activeAnnouncement].lines.map((line, index) => (

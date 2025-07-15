@@ -922,7 +922,9 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 title={
                                     selectedCountry.url === "viza-v-polsy-po-karte-polyaka"
                                         ? "Кому подходит виза по Карте Поляка"
-                                        : `Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`
+                                        : excludedCountries1.includes(selectedCountry.url)
+                                            ? selectedCountry.pr
+                                            : `Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`
                                 }
                             />
 

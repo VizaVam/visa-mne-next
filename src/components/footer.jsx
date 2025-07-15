@@ -120,9 +120,6 @@ export default function Footer() {
                                         <a className={"hover:underline"} href={"tel:+375296800620"}>
                                             +375296800620
                                         </a>
-                                        <a className={"hover:underline"} href={"tel:+375293734870"}>
-                                            +375293734870
-                                        </a>
                                     </div>
                                 </div>
                                 <div className={"footer__top-right-main-right-lists-list"}>

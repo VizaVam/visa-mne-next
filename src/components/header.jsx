@@ -24,7 +24,7 @@ export default function Header() {
     const [showFloatingButton, setShowFloatingButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const excludedCountries = ["rabochaya-viza-v-ispaniyu","rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+    const excludedCountries = ["rabochaya-viza-v-ispaniyu", "rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     useEffect(() => {
         setIsOpen(false);
@@ -106,16 +106,17 @@ export default function Header() {
                         </div>
                     </div>
                     <div className={"header__top-right"}>
+                        <a href="tel:+375296800620"
+                           className={"mdd:text-[16px] sm:hidden"}>
+                            +375296800620
+                        </a>
                         <div className={"header__top-right-num"}>
                             <a href="tel:+375296800620" className={"hover:underline"}>
                                 +375296800620
                             </a>
-                            <a href="tel:+375293734870" className={"hover:underline"}>
-                                +375293734870
-                            </a>
                             <a
                                 href="viber://chat?number=%2B375293734870/"
-                                style={{ cursor: 'pointer' }}
+                                style={{cursor: 'pointer'}}
                                 title="Открыть в Viber"
                                 data-itc-calltracking="off"
                             >
@@ -124,7 +125,7 @@ export default function Header() {
                                     alt="Chat on Viber"
                                     width={40}
                                     height={40}
-                                    style={{ display: 'block' }}
+                                    style={{display: 'block'}}
                                 />
                             </a>
                             <a
@@ -307,7 +308,8 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                    <p>Оставь заявку и получи <span className="font-bold text-blue-950 underline">скидку 5%</span> на услуги компании!</p>
+                    <p>Оставь заявку и получи <span className="font-bold text-blue-950 underline">скидку 5%</span> на
+                        услуги компании!</p>
                 </div>
                 <AnimatePresence>
                     {isMenuOpen && (
@@ -451,7 +453,7 @@ export default function Header() {
                 </AnimatePresence>
             </header>
             {!isFloatingMenuOpen && !isMenuOpen && (
-                <ScrollToTop showFloatingButton={showFloatingButton} />
+                <ScrollToTop showFloatingButton={showFloatingButton}/>
             )}
             {!isMenuOpen && (
                 <div className={`fixed ${showFloatingButton ? "bottom-16" : "bottom-16"} right-7 z-50 md:hidden`}>
@@ -553,22 +555,22 @@ export default function Header() {
                         >
                             <motion.span
                                 className="absolute w-9 h-9 rounded-full bg-white"
-                                style={{ zIndex: 0 }}
+                                style={{zIndex: 0}}
                             />
                             <img src="/fixed-call.svg" alt="Phone" className="w-12 h-12 z-10"/>
                         </motion.a>
                         <motion.a
                             href="viber://chat?number=%2B375293734870/"
                             className="relative w-12 h-12 flex items-center justify-center"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            style={{ cursor: "pointer" }}
+                            whileHover={{scale: 1.1}}
+                            whileTap={{scale: 0.9}}
+                            style={{cursor: "pointer"}}
                             data-itc-calltracking="off"
                         >
                             {/* Белый фон (меньше основной иконки) */}
                             <motion.span
                                 className="absolute w-9 h-9 rounded-full bg-white"
-                                style={{ zIndex: 0 }}
+                                style={{zIndex: 0}}
                             />
 
                             {/* Сама иконка Viber (немного больше фона) */}

@@ -176,7 +176,7 @@
   .header__top-left {
     flex-direction: column;
   }
-  .header__top-right {
+  .header__top-right-num {
     display: none;
   }
   .header__bottom {
@@ -246,7 +246,8 @@
 }
 @media (max-width: 480px) {
   .header__top {
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
   }
   .header__top-left {
     padding-top: 0.5rem;
@@ -261,7 +262,7 @@
   .header__top-left {
     flex-direction: column;
   }
-  .header__top-right {
+  .header__top-right-num {
     flex-direction: column;
   }
   .header__bottom-right {

@@ -18,6 +18,7 @@ export default {
         "ht": { min: "1500px" },
         "dr": { max: "400px" },
         "br": { max: "1280px" },
+        "1024m": { max: "1024px" },
       },
     },
   },

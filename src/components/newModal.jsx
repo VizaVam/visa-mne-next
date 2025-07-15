@@ -3,13 +3,14 @@
 import {useState} from "react";
 import {IMaskInput} from "react-imask";
 import {motion} from "framer-motion";
+import Link from "next/link";
 
 // RippleButton component with animation
 const RippleButton = ({onClick, children, disabled}) => (
     <button
         onClick={onClick}
         disabled={disabled}
-        className={`bbbt relative overflow-hidden w-full py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
+        className={`bbbt relative overflow-hidden w-full py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out ${
             disabled ? "bg-gray-500 cursor-not-allowed" : "bg-customBlue hover:bg-blue-700 text-white"
         }`}
     >
@@ -39,6 +40,7 @@ const PhoneForm = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isAgreed, setIsAgreed] = useState(true); // Default to true to match Modal behavior
 
     // Function to trigger Yandex Metrika reachGoal
     const triggerYandexGoal = () => {
@@ -57,12 +59,16 @@ const PhoneForm = () => {
 
     const handlePhoneInput = (e) => {
         let {value} = e.target;
-        // Ensure + is always present if digits are entered
         if (value && !value.startsWith('+')) {
             value = '+' + value.replace(/\D/g, '');
         }
         setFormData({...formData, phone: value});
         setErrors((prev) => ({...prev, phone: ""}));
+    };
+
+    const handleCheckboxChange = (e) => {
+        setIsAgreed(e.target.checked);
+        setErrors((prev) => ({...prev, agreement: ""}));
     };
 
     const handleSubmit = async (e) => {
@@ -75,6 +81,7 @@ const PhoneForm = () => {
         } else if (!validatePhone(phone)) {
             newErrors.phone = "Некорректный формат данных";
         }
+        if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
@@ -93,7 +100,7 @@ const PhoneForm = () => {
             params.append("u_status", "Новый");
             params.append("source", "заявка с сайта visavampro.by");
 
-            console.log("Formatted phone before send:", formattedPhone); // Debug log
+            console.log("Formatted phone before send:", formattedPhone);
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
                 mode: "no-cors",
@@ -104,6 +111,7 @@ const PhoneForm = () => {
             console.log("Request sent. Response status:", response.status);
 
             setIsSuccess(true);
+            triggerYandexGoal(); // Trigger Yandex Metrika on success
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);
@@ -115,6 +123,7 @@ const PhoneForm = () => {
     const handleNewRequest = () => {
         setIsSuccess(false);
         setFormData({phone: ""});
+        setIsAgreed(true); // Reset agreement to true
     };
 
     return (
@@ -136,12 +145,12 @@ const PhoneForm = () => {
                     </RippleButton>
                 </div>
             ) : (
-                <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+                <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
                     <div className="flex flex-col items-end md:flex-row md:space-x-4 md:space-y-0 space-y-4">
-                        <div className="w-full md:w-2/3">
+                        <div className="w-full">
                             <IMaskInput
                                 mask="+000 00 000-00-00"
-                                definitions={{"0": {mask: /[0-9]/, placeholderChar: "_"}}}
+                                definitions={{'0': {mask: /[0-9]/, placeholderChar: '_'}}}
                                 name="phone"
                                 placeholder="Телефон*"
                                 value={formData.phone || ""}
@@ -156,7 +165,7 @@ const PhoneForm = () => {
                             />
                             {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                         </div>
-                        <div className="w-full md:w-1/3">
+                        <div className="w-full">
                             <RippleButton
                                 type="submit"
                                 disabled={isSubmitting}
@@ -165,6 +174,12 @@ const PhoneForm = () => {
                             </RippleButton>
                         </div>
                     </div>
+                    <p className="text-sm text-center mt-2 text-gray-600">
+                        Нажимая кнопку, Вы соглашаетесь с{" "}
+                        <Link href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf" className="text-[#F86F00] underline">
+                            публичной офертой
+                        </Link>
+                    </p>
                 </form>
             )}
         </div>

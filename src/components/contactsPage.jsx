@@ -55,9 +55,6 @@ const ContactPhone = () => (
             <a href="tel:+375296800620" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
                 +375296800620
             </a>
-            <a href="tel:+375293734870" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
-                +375293734870
-            </a>
             <p className="font-normal text-[14px] mdd:text-[12px] text-[#808080]">
                 Мобильный, Вайбер, Телеграм, Ватсап
             </p>

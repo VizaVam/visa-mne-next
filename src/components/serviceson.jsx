@@ -52,13 +52,13 @@ export const otherCountries = [
             {
                 service: "Консульский/сервисный/логистический сбор",
                 cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">195</span> $</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">185</span> $</span>,
                 note: "Оплачивается лично в Консульстве США при подаче"
                 ,
                 serviceMob: "Консульский сбор\n" +
                     "\n",
                 costMob: <span>$<span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">195</span> (оплачивается лично в Консульстве США при подаче)</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">185</span> (оплачивается лично в Консульстве США при подаче)</span>
                 ,
             },
             {

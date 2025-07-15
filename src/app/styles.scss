@@ -213,7 +213,7 @@
     flex-direction: column;
   }
 
-  .header__top-right {
+  .header__top-right-num {
     display: none;
   }
 
@@ -307,7 +307,8 @@
 
 @media (max-width: 480px) {
   .header__top {
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
 
     &-left {
       padding-top: 0.5rem;
@@ -327,7 +328,7 @@
     flex-direction: column;
   }
 
-  .header__top-right {
+  .header__top-right-num {
     flex-direction: column;
   }
 

@@ -69,6 +69,12 @@ const Modal = () => {
         }
         if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
+        // Проверка на запрещённый номер
+        // const formattedPhone = `+${phone.replace(/\D/g, "")}`;
+        // if (formattedPhone === "+375447621630") {
+        //     newErrors.phone = "Отправка заявки с этого номера невозможна";
+        // }
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;

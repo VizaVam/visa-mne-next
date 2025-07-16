@@ -1728,7 +1728,12 @@ export const countries = [
                     "\n",
             }
         ],
-        matchTable: []
+        matchTable: [
+            {
+                typeviza: "Граждане, у которых есть Карта Поляка",
+                goaltrip: "Посещение страны"
+            },
+        ]
     },
 
     // subcountriesbulg

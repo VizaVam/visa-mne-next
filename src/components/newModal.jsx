@@ -170,7 +170,7 @@ const PhoneForm = () => {
                                 type="submit"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? "Отправка..." : "Получить консультацию"}
+                                <span className="whitespace-nowrap">{isSubmitting ? "Отправка..." : "Получить консультацию"}</span>
                             </RippleButton>
                         </div>
                     </div>

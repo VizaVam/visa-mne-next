@@ -115,7 +115,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="sm:hidden -mt-24 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                    <p>Оставь заявку и получи <span className="font-bold text-blue-950 underline">скидку 5%</span> на услуги компании!</p>
+                    <p><span className="font-bold text-blue-950 underline">Оформим визу</span> до конца 2025 года или <span className="font-bold text-blue-950 underline">вернем деньги!</span></p>
                 </div>
 
                 {/* Список преимуществ */}

@@ -4,6 +4,7 @@ import {useState} from "react";
 import Image from "next/image";
 import {IMaskInput} from "react-imask";
 import {countries} from "@/data/countries";
+import Link from "next/link";
 
 const FormBlock = () => {
     const [step, setStep] = useState(1);
@@ -12,7 +13,7 @@ const FormBlock = () => {
         purpose: "",
         visaLast3Years: true, // По умолчанию "Да"
         peopleCount: "1", // По умолчанию "1"
-        urgency: "Срочно (от 2х недель)", // По умолчанию "Срочно (от 1 недели)"
+        urgency: "Срочно (от 3х недель)", // По умолчанию "Срочно (от 1 недели)"
         phone: "",
     });
     const [errors, setErrors] = useState({});
@@ -26,6 +27,22 @@ const FormBlock = () => {
         "Сроки",
         "Расчет",
     ];
+
+    const excludedCountries1 = [
+        "Рабочая виза в Польшу",
+        "Деловая виза в Польшу",
+        "Учебная виза в Польшу",
+        "Гостевая виза в Польшу",
+        "Виза по карте Поляка",
+        "Рабочая виза в Болгарию",
+        "Рабочая виза в Германию",
+        "Рабочая виза в Испанию"
+    ];
+
+    // Filter countries to exclude those in excludedCountries1
+    const filteredCountries = countries.filter(
+        (country) => !excludedCountries1.includes(country.name)
+    );
 
     const purposes = countries.find((c) => c.name === formData.country)?.matchTable.map((item) => item.typeviza) || [];
 
@@ -187,7 +204,7 @@ const FormBlock = () => {
                                     className="border border-blue-600 rounded-full py-2 pl-4 pr-10 w-max mdd:w-full text-[14px] text-gray-600 appearance-none bg-white"
                                 >
                                     <option value="">Выберите страну из списка</option>
-                                    {countries.map((country) => (
+                                    {filteredCountries.map((country) => (
                                         <option key={country.name} value={country.name}>
                                             {country.name}
                                         </option>
@@ -195,9 +212,7 @@ const FormBlock = () => {
                                 </select>
                                 <span
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
-    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"sm:hidden"}/>
-                                    <Image src='/12312311.svg' alt={'Arrow'} width={28} height={28}
-                                           className="mdd:hidden w-2"/>
+    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"w-4"}/>
   </span>
                             </div>
                             {errors.country && (
@@ -227,9 +242,7 @@ const FormBlock = () => {
                                 </select>
                                 <span
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
-    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"sm:hidden"}/>
-                                    <Image src='/12312311.svg' alt={'Arrow'} width={28} height={28}
-                                           className="mdd:hidden w-2"/>
+     <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"w-4"}/>
   </span>
                             </div>
                             {errors.purpose && (
@@ -318,9 +331,7 @@ const FormBlock = () => {
                                     </select>
                                     <span
                                         className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
-    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"sm:hidden"}/>
-                                    <Image src='/12312311.svg' alt={'Arrow'} width={28} height={28}
-                                           className="mdd:hidden w-2"/>
+    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"w-4"}/>
   </span>
                                 </div>
                             </div>
@@ -336,7 +347,7 @@ const FormBlock = () => {
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">Срочно необходима виза?</label>
                             <div className="flex mdd:flex-col gap-2">
-                                {["Срочно (от 2х недель)", "Не срочно (от 1 месяца)"].map(
+                                {["Срочно (от 3х недель)", "Не срочно (от 2 месяцев)"].map(
                                     (urgency) => (
                                         <button
                                             key={urgency}
@@ -405,8 +416,11 @@ const FormBlock = () => {
                                             Узнать стоимость
                                         </button>
                                     </div>
-                                    <p className="text-[10px] text-gray-500 mdd:text-center">
-                                        Нажимая кнопку, Вы соглашаетесь с публичной офертой
+                                    <p className="text-sm mdd:text-center mt-2 text-gray-600">
+                                        Нажимая кнопку, Вы соглашаетесь с{" "}
+                                        <Link href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf" className="text-[#F86F00] underline">
+                                            публичной офертой
+                                        </Link>
                                     </p>
                                     {errors.phone && (
                                         <p className="text-red-500 text-xs mdd:text-center">

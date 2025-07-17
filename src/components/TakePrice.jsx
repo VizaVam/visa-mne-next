@@ -1,0 +1,460 @@
+"use client";
+
+import {useState} from "react";
+import Image from "next/image";
+import {IMaskInput} from "react-imask";
+import {countries} from "@/data/countries";
+
+const FormBlock = () => {
+    const [step, setStep] = useState(1);
+    const [formData, setFormData] = useState({
+        country: "",
+        purpose: "",
+        visaLast3Years: true, // По умолчанию "Да"
+        peopleCount: "1", // По умолчанию "1"
+        urgency: "Срочно (от 2х недель)", // По умолчанию "Срочно (от 1 недели)"
+        phone: "",
+    });
+    const [errors, setErrors] = useState({});
+    const [isSuccess, setIsSuccess] = useState(false); // Состояние для успешной отправки
+
+    const steps = [
+        "Выбор страны",
+        "Цель поездки",
+        "Наличие прошлых виз",
+        "Количество человек",
+        "Сроки",
+        "Расчет",
+    ];
+
+    const purposes = countries.find((c) => c.name === formData.country)?.matchTable.map((item) => item.typeviza) || [];
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setFormData((prev) => ({...prev, [name]: value}));
+        setErrors((prev) => ({...prev, [name]: ""}));
+    };
+
+    const handleCheckboxChange = (e) => {
+        setFormData((prev) => ({...prev, visaLast3Years: e.target.checked}));
+        setErrors((prev) => ({...prev, visaLast3Years: ""}));
+    };
+
+    const handlePhoneInput = (e) => {
+        let {value} = e.target;
+        if (value && !value.startsWith("+")) {
+            value = "+" + value.replace(/\D/g, "");
+        }
+        setFormData((prev) => ({...prev, phone: value}));
+        setErrors((prev) => ({...prev, phone: ""}));
+    };
+
+    const validatePhone = (phone) => {
+        const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
+        return phoneRegex.test(phone);
+    };
+
+    const nextStep = () => {
+        const newErrors = {};
+        if (step === 1 && !formData.country) newErrors.country = "Выберите страну";
+        if (step === 2 && !formData.purpose) newErrors.purpose = "Выберите цель поездки";
+        if (step === 3 && formData.visaLast3Years === null)
+            newErrors.visaLast3Years = "Укажите наличие виз";
+        if (step === 4 && !formData.peopleCount)
+            newErrors.peopleCount = "Выберите количество людей";
+        if (step === 5 && !formData.urgency) newErrors.urgency = "Выберите срочность";
+        if (step === 6 && (!formData.phone || !validatePhone(formData.phone)))
+            newErrors.phone = "Введите корректный телефон";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+        if (step < 6) setStep(step + 1);
+    };
+
+    const prevStep = () => {
+        if (step > 1) setStep(step - 1);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const newErrors = {};
+
+        if (!formData.country) newErrors.country = "Выберите страну";
+        if (!formData.purpose) newErrors.purpose = "Выберите цель поездки";
+        if (formData.visaLast3Years === null)
+            newErrors.visaLast3Years = "Укажите наличие виз";
+        if (!formData.peopleCount) newErrors.peopleCount = "Выберите количество людей";
+        if (!formData.urgency) newErrors.urgency = "Выберите срочность";
+        if (!formData.phone || !validatePhone(formData.phone))
+            newErrors.phone = "Некорректный формат телефона";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        try {
+            const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
+            const note = `
+Страна - ${formData.country}
+Цель - ${formData.purpose}
+Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
+Количество человек - ${formData.peopleCount}
+Сроки - ${formData.urgency}
+`.trim(); // Форматированный текст для note
+
+            const params = new URLSearchParams();
+            params.append("country", formData.country);
+            params.append("purpose", formData.purpose);
+            params.append("visaLast3Years", formData.visaLast3Years ? "true" : "false");
+            params.append("peopleCount", formData.peopleCount);
+            params.append("urgency", formData.urgency);
+            params.append("phone", formattedPhone);
+            params.append("source", "заявка с сайта");
+            params.append("note", note); // Добавление параметра note
+
+            const response = await fetch(
+                "https://api.u-on.ru/1ga3bkGsm1km4/request/create.json",
+                {
+                    method: "POST",
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    body: params.toString(),
+                }
+            );
+
+            console.log("Request sent. Response status:", response.status);
+            if (response.ok) {
+                setIsSuccess(true);
+            }
+        } catch (error) {
+            console.error("Ошибка отправки данных:", error);
+        }
+    };
+
+    const resetForm = () => {
+        setStep(1);
+        setFormData({
+            country: "",
+            purpose: "",
+            visaLast3Years: true, // Сброс на "Да"
+            peopleCount: "1", // Сброс на "1"
+            urgency: "Срочно (от 1 недели)", // Сброс на "Срочно (от 1 недели)"
+            phone: "",
+        });
+        setErrors({});
+        setIsSuccess(false);
+    };
+
+    return (
+        <div className="mx-auto px-[7%] pt-32 mdd:pt-20">
+            <div className="bg-white">
+                <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-2">
+                    Рассчитать стоимость
+                </h2>
+                <p className="mb-6 mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px]">
+                    Пройдите все шаги и{" "}
+                    <span className={"text-orange-500 "}>
+            получите расчет стоимости визы по своему запросу
+          </span>
+                </p>
+
+                <div className="bg-[#FAFAFA] rounded-lg shadow-lg border py-6 px-8 mdd:py-4 mdd:px-3">
+                    <div className="flex justify-between mb-8 mdd:mb-0 text-lg font-medium">
+                        {steps.map((stepName, index) => (
+                            <span
+                                key={index}
+                                className={`${
+                                    index + 1 === step ? "text-orange-500" : "text-gray-500 mdd:hidden"
+                                } ${index + 1 === step ? "mdd:block text-xl mdd:text-orange-500" : "mdd:hidden"}`}
+                            >
+                {stepName}
+              </span>
+                        ))}
+                    </div>
+
+                    {step === 1 && (
+                        <div className="flex flex-col gap-5">
+                            <label className="block font-medium">
+                                Какую страну хотите посетить?
+                            </label>
+                            <div className="relative w-max mdd:w-full">
+                                <select
+                                    name="country"
+                                    value={formData.country}
+                                    onChange={handleInputChange}
+                                    className="border border-blue-600 rounded-full py-2 pl-4 pr-10 w-max mdd:w-full text-[14px] text-gray-600 appearance-none bg-white"
+                                >
+                                    <option value="">Выберите страну из списка</option>
+                                    {countries.map((country) => (
+                                        <option key={country.name} value={country.name}>
+                                            {country.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                <span
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
+    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"sm:hidden"}/>
+                                    <Image src='/12312311.svg' alt={'Arrow'} width={28} height={28}
+                                           className="mdd:hidden w-2"/>
+  </span>
+                            </div>
+                            {errors.country && (
+                                <p className="text-red-500 text-xs">{errors.country}</p>
+                            )}
+                        </div>
+                    )}
+
+                    {step === 2 && (
+                        <div className="flex flex-col gap-5">
+                            <label className="block font-medium">
+                                Основная цель Вашей поездки?
+                            </label>
+                            <div className="relative w-max mdd:w-full">
+                                <select
+                                    name="purpose"
+                                    value={formData.purpose}
+                                    onChange={handleInputChange}
+                                    className="border border-blue-600 rounded-full py-2 pl-4 pr-10 w-max mdd:w-full appearance-none text-[14px] text-gray-600"
+                                >
+                                    <option value="">Выберите цель из списка</option>
+                                    {purposes.map((purpose) => (
+                                        <option key={purpose} value={purpose}>
+                                            {purpose}
+                                        </option>
+                                    ))}
+                                </select>
+                                <span
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
+    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"sm:hidden"}/>
+                                    <Image src='/12312311.svg' alt={'Arrow'} width={28} height={28}
+                                           className="mdd:hidden w-2"/>
+  </span>
+                            </div>
+                            {errors.purpose && (
+                                <p className="text-red-500 text-xs">{errors.purpose}</p>
+                            )}
+                        </div>
+                    )}
+
+                    {step === 3 && (
+                        <div className="flex flex-col gap-5">
+                            <label className="block font-medium">Визы за последние 3 года?</label>
+                            <div className="flex mdd:justify-between gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setFormData({...formData, visaLast3Years: true})
+                                    }
+                                    className={`w-28 mdd:w-full py-2 rounded-full ${
+                                        formData.visaLast3Years === true
+                                            ? "bg-orange-500 text-white"
+                                            : "bg-white text-black border border-blue-500"
+                                    }`}
+                                >
+                                    Да
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setFormData({...formData, visaLast3Years: false})
+                                    }
+                                    className={`w-28 mdd:w-full py-2 rounded-full ${
+                                        formData.visaLast3Years === false
+                                            ? "bg-orange-500 text-white"
+                                            : "bg-white text-black border border-blue-500"
+                                    }`}
+                                >
+                                    Нет
+                                </button>
+                            </div>
+                            {errors.visaLast3Years && (
+                                <p className="text-red-500 text-xs text-center">
+                                    {errors.visaLast3Years}
+                                </p>
+                            )}
+                        </div>
+                    )}
+
+                    {step === 4 && (
+                        <div className="flex flex-col gap-5">
+                            <label className="block font-medium">
+                                Какое количество человек будет подавать документы?
+                            </label>
+                            <div className="mdd:hidden">
+                                <div className="flex gap-2">
+                                    {["1", "2", "3", "4", "4+"].map((count) => (
+                                        <button
+                                            key={count}
+                                            type="button"
+                                            onClick={() =>
+                                                setFormData({...formData, peopleCount: count})
+                                            }
+                                            className={`w-28 py-2 rounded-full ${
+                                                formData.peopleCount === count
+                                                    ? "bg-orange-500 text-white"
+                                                    : "bg-white text-black border border-blue-500"
+                                            }`}
+                                        >
+                                            {count}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="sm:hidden">
+                                <div className="relative w-max mdd:w-full">
+                                    <select
+                                        name="peopleCount"
+                                        value={formData.peopleCount}
+                                        onChange={handleInputChange}
+                                        className="border border-blue-600 rounded-full py-2 pl-4 pr-10 w-full text-[14px] text-gray-600 appearance-none focus:border-blue-700 focus:ring-2 focus:ring-blue-200 transition-colors duration-200"
+                                    >
+                                        {["1", "2", "3", "4", "4+"].map((count) => (
+                                            <option key={count} value={count}>
+                                                {count}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <span
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
+    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"sm:hidden"}/>
+                                    <Image src='/12312311.svg' alt={'Arrow'} width={28} height={28}
+                                           className="mdd:hidden w-2"/>
+  </span>
+                                </div>
+                            </div>
+                            {errors.peopleCount && (
+                                <p className="text-red-500 text-xs text-center">
+                                    {errors.peopleCount}
+                                </p>
+                            )}
+                        </div>
+                    )}
+
+                    {step === 5 && (
+                        <div className="flex flex-col gap-5">
+                            <label className="block font-medium">Срочно необходима виза?</label>
+                            <div className="flex mdd:flex-col gap-2">
+                                {["Срочно (от 2х недель)", "Не срочно (от 1 месяца)"].map(
+                                    (urgency) => (
+                                        <button
+                                            key={urgency}
+                                            type="button"
+                                            onClick={() =>
+                                                setFormData({...formData, urgency: urgency})
+                                            }
+                                            className={`px-8 py-2 rounded-full ${
+                                                formData.urgency === urgency
+                                                    ? "bg-orange-500 text-white"
+                                                    : "bg-white text-black border border-blue-500"
+                                            }`}
+                                        >
+                                            {urgency}
+                                        </button>
+                                    )
+                                )}
+                            </div>
+                            {errors.urgency && (
+                                <p className="text-red-500 text-xs text-center">
+                                    {errors.urgency}
+                                </p>
+                            )}
+                        </div>
+                    )}
+
+                    {step === 6 && (
+                        <div>
+                            {isSuccess ? (
+                                <div className="flex flex-col gap-5">
+                                    <p className="text-[#15419E] font-medium">
+                                        Ваша заявка принята! Менеджер свяжется с Вами в ближайшее
+                                        время!
+                                    </p>
+                                    <button
+                                        type="button"
+                                        onClick={resetForm}
+                                        className="px-8 py-2 bg-[#15419E] text-white rounded-full w-max"
+                                    >
+                                        Рассчитать стоимость заново
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="flex flex-col">
+                                    <label className="block font-medium mb-5">
+                                        Ваш результат уже готов! Узнайте его, оставив свой номер
+                                        телефона!
+                                    </label>
+                                    <div className="flex mdd:flex-col items-center gap-4 mb-1">
+                                        <IMaskInput
+                                            mask="+000 00 000-00-00"
+                                            definitions={{
+                                                "0": {mask: /[0-9]/, placeholderChar: "_"},
+                                            }}
+                                            name="phone"
+                                            value={formData.phone || ""}
+                                            onChange={handlePhoneInput}
+                                            placeholder="Телефон"
+                                            className="border border-blue-600 rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600"
+                                        />
+                                        <button
+                                            type="submit"
+                                            onClick={handleSubmit}
+                                            className="px-8 py-2 bg-[#15419E] text-white rounded-full mdd:w-full"
+                                        >
+                                            Узнать стоимость
+                                        </button>
+                                    </div>
+                                    <p className="text-[10px] text-gray-500 mdd:text-center">
+                                        Нажимая кнопку, Вы соглашаетесь с публичной офертой
+                                    </p>
+                                    {errors.phone && (
+                                        <p className="text-red-500 text-xs mdd:text-center">
+                                            {errors.phone}
+                                        </p>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    <div className="flex mdd:flex-col sm:gap-6 mdd:gap-2 mt-20 mdd:mt-5">
+                        <div className="mdd:hidden">
+                            {step < 6 && step > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={prevStep}
+                                    className="w-28 mdd:w-full py-2 border border-[#15419E] bg-white rounded-full"
+                                >
+                                    Назад
+                                </button>
+                            )}
+                        </div>
+                        {step < 6 && (
+                            <button
+                                type="button"
+                                onClick={nextStep}
+                                className="w-28 mdd:w-full py-2 bg-[#15419E] text-white rounded-full"
+                            >
+                                Далее
+                            </button>
+                        )}
+                        <div className="sm:hidden">
+                            {step < 6 && step > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={prevStep}
+                                    className="w-28 mdd:w-full py-2 border border-[#15419E] bg-white rounded-full"
+                                >
+                                    Назад
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default FormBlock;

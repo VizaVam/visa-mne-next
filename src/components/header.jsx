@@ -111,7 +111,7 @@ export default function Header() {
                             +375296800620
                         </a>
                         <div className={"header__top-right-num"}>
-                            <a href="tel:+375296800620" className={"hover:underline"}>
+                            <a href="tel:+375296800620" className={"hover:underline text-xl"}>
                                 +375296800620
                             </a>
                             <a

@@ -14,6 +14,7 @@ import Steps from "@/components/steps";
 import Announcement from "@/components/announcement";
 import PhoneForm from "@/components/newModal"
 import NewSteps from "@/components/newSteps";
+import TakePrice from "@/components/TakePrice";
 
 const AdvantageItem = ({value, description}) => (
     <li className="flex items-center text-lg">
@@ -140,6 +141,8 @@ export default function HomePage() {
                 </h2>
                 <Services/>
             </div>
+
+            <TakePrice/>
 
             <div className={"pb-32 mdd:pb-20"}>
                 <NewSteps/>

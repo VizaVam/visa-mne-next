@@ -307,9 +307,9 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                {/*<div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">*/}
-                {/*    <p><span className="font-bold text-blue-950 underline">Оформим визу</span> до конца 2025 года или <span className="font-bold text-blue-950 underline">вернем деньги!</span></p>*/}
-                {/*</div>*/}
+                <div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
+                    <p><span className="font-bold text-blue-950 underline">АКЦИЯ до 25.07.2025!</span> Испанская безличная виза - <span className="font-bold text-blue-950 underline">1600 BYN</span> (<span className="line-through">1850 BYN</span>)</p>
+                </div>
                 <AnimatePresence>
                     {isMenuOpen && (
                         <>

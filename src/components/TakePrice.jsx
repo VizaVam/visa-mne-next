@@ -91,8 +91,6 @@ const FormBlock = () => {
         if (step < 6) setStep(step + 1);
     };
 
-    console.log("asd11")
-
     const prevStep = () => {
         if (step > 1) setStep(step - 1);
     };
@@ -141,7 +139,7 @@ const FormBlock = () => {
                 "https://api.u-on.ru/1ga3bkGsm1km4/request/create.json",
                 {
                     method: "POST",
-                    cors: "no-cors",
+                    mode: "no-cors",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: params.toString(),
                 }
@@ -159,6 +157,8 @@ const FormBlock = () => {
             console.error("Ошибка отправки данных:", error);
         }
     };
+
+    console.log("asd12")
 
     const resetForm = () => {
         setStep(1);

@@ -129,8 +129,8 @@ const FormBlock = () => {
             params.append("peopleCount", formData.peopleCount);
             params.append("urgency", formData.urgency);
             params.append("phone", formattedPhone);
-            params.append("source", "заявка с сайта");
-            params.append("note", note); // Добавление параметра note
+            params.append("services", JSON.stringify(services)); // Переименовали в services и сделали массив
+            params.append("note", "заявка с сайта visavampro.by"); // Переименовали source в note
 
             console.log("New Data:", note);
             const response = await fetch(
@@ -162,7 +162,7 @@ const FormBlock = () => {
             purpose: "",
             visaLast3Years: true, // Сброс на "Да"
             peopleCount: "1", // Сброс на "1"
-            urgency: "Срочно (от 1 недели)", // Сброс на "Срочно (от 1 недели)"
+            urgency: "Срочно (от 3х недель)", // Сброс на "Срочно (от 1 недели)"
             phone: "",
         });
         setErrors({});

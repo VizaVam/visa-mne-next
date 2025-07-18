@@ -143,6 +143,9 @@ const FormBlock = () => {
                 }
             );
 
+            console.log("Data:", response.data);
+            console.log("Data1:", response);
+
             console.log("Request sent. Response status:", response.status);
             if (response.ok) {
                 setIsSuccess(true);

@@ -91,6 +91,8 @@ const FormBlock = () => {
         if (step < 6) setStep(step + 1);
     };
 
+    console.log("asd11")
+
     const prevStep = () => {
         if (step > 1) setStep(step - 1);
     };

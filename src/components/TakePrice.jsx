@@ -44,7 +44,8 @@ const FormBlock = () => {
         (country) => !excludedCountries1.includes(country.name)
     );
 
-    const purposes = countries.find((c) => c.name === formData.country)?.matchTable.map((item) => item.typeviza) || [];
+    // Статический список целей для всех стран
+    const purposes = ["Туризм", "Бизнес", "Обучение", "Работа", "Навестить родных/друзей"];
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;

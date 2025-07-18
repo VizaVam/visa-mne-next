@@ -7,11 +7,6 @@ import Image from "next/image";
 
 const slides = [
     {
-        id: 1,
-        image: "/slider1.png",
-        text: 'Виза с <span class="underline">гарантией возврата средств при отказе</span>',
-    },
-    {
         id: 2,
         image: "/1.jpg",
         text: 'Хочешь в Испанию? Испанская виза с <span class="underline">безличной подачей в Минске</span>'

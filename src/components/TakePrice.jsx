@@ -132,6 +132,7 @@ const FormBlock = () => {
             params.append("source", "заявка с сайта");
             params.append("note", note); // Добавление параметра note
 
+            console.log("New Data:", note);
             const response = await fetch(
                 "https://api.u-on.ru/1ga3bkGsm1km4/request/create.json",
                 {

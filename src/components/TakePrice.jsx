@@ -123,7 +123,7 @@ const FormBlock = () => {
 Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
 Количество человек - ${formData.peopleCount}
 Сроки - ${formData.urgency}
-`.trim(); // Форматированный текст для note
+`.trim();
 
             const params = new URLSearchParams();
             params.append("country", formData.country);
@@ -132,26 +132,28 @@ const FormBlock = () => {
             params.append("peopleCount", formData.peopleCount);
             params.append("urgency", formData.urgency);
             params.append("phone", formattedPhone);
-            params.append("services", JSON.stringify(services)); // Переименовали в services и сделали массив
-            params.append("note", "заявка с сайта visavampro.by"); // Переименовали source в note
+            params.append("services", services); // Directly append the string, no JSON.stringify
+            params.append("note", "заявка с сайта visavampro.by");
 
-            console.log("New Data:", note);
+            console.log("Form Data:", Object.fromEntries(params)); // Log for debugging
+
             const response = await fetch(
                 "https://api.u-on.ru/1ga3bkGsm1km4/request/create.json",
                 {
                     method: "POST",
-                    mode: "no-cors",
-                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    cors: "no-cors",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: params.toString(),
                 }
             );
 
-            console.log("Data:", response.data);
-            console.log("Data1:", response);
-
-            console.log("Request sent. Response status:", response.status);
+            console.log("Response Status:", response.status);
             if (response.ok) {
+                const responseData = await response.json(); // Parse JSON response if available
+                console.log("Response Data:", responseData);
                 setIsSuccess(true);
+            } else {
+                console.error("Request failed with status:", response.status);
             }
         } catch (error) {
             console.error("Ошибка отправки данных:", error);

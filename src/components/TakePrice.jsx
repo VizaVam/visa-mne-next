@@ -117,7 +117,7 @@ const FormBlock = () => {
 
         try {
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
-            const note = `
+            const services = `
 Страна - ${formData.country}
 Цель - ${formData.purpose}
 Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}

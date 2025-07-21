@@ -99,6 +99,7 @@ const FormBlock = () => {
         e.preventDefault();
         const newErrors = {};
 
+        // Валидация полей
         if (!formData.country) newErrors.country = "Выберите страну";
         if (!formData.purpose) newErrors.purpose = "Выберите цель поездки";
         if (formData.visaLast3Years === null)
@@ -114,37 +115,45 @@ const FormBlock = () => {
         }
 
         try {
+            // Форматируем телефон
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
-            const services = `
-Страна - ${formData.country}
-Цель - ${formData.purpose}
-Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
-Количество человек - ${formData.peopleCount}
-Сроки - ${formData.urgency}
-`.trim();
 
-            const params = new URLSearchParams();
-            params.append("country", formData.country);
-            params.append("purpose", formData.purpose);
-            params.append("visaLast3Years", formData.visaLast3Years ? "true" : "false");
-            params.append("peopleCount", formData.peopleCount);
-            params.append("urgency", formData.urgency);
-            params.append("phone", formattedPhone);
-            params.append("services", services); // Directly append the string, no JSON.stringify
-            params.append("note", "заявка с сайта visavampro.by");
+            // Формируем массив services (один объект, так как у вас одна заявка)
+            const services = [
+                {
+                    type_id: formData.purpose === "Туризм" ? 1 : 2, // Пример логики для type_id
+                    country: formData.country,
+                    purpose: formData.purpose,
+                    visaLast3Years: formData.visaLast3Years ? "true" : "false",
+                    peopleCount: formData.peopleCount,
+                    urgency: formData.urgency,
+                    phone: formattedPhone,
+                },
+            ];
 
-            console.log("Form Data:", Object.fromEntries(params)); // Log for debugging
+            // Формируем объект для отправки
+            const requestData = {
+                note: "заявка с сайта visavampro.by",
+                services: services,
+            };
 
+            // Логируем данные для отладки
+            console.log("Отправляемые данные:", JSON.stringify(requestData, null, 2));
+
+            // Отправляем запрос
             const response = await fetch(
                 "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/request/create.json",
                 {
                     method: "POST",
                     mode: "no-cors",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: params.toString(),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestData),
                 }
             );
 
+            // Проверяем статус ответа
             console.log("Response Status:", response.status);
             if (response.ok) {
                 const responseData = await response.json();
@@ -152,13 +161,16 @@ const FormBlock = () => {
                 setIsSuccess(true);
             } else {
                 console.error("Request failed with status:", response.status);
+                setErrors({ submit: "Ошибка при отправке заявки. Попробуйте снова." });
             }
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
+            setErrors({ submit: "Произошла ошибка. Проверьте соединение и попробуйте снова." });
         }
     };
 
-    console.log("asd12")
+    console.log("123123123123")
+    console.log("12123")
 
     const resetForm = () => {
         setStep(1);

@@ -136,7 +136,7 @@ const FormBlock = () => {
             console.log("Form Data:", Object.fromEntries(params)); // Log for debugging
 
             const response = await fetch(
-                "https://api.u-on.ru/1ga3bkGsm1km4/request/create.json",
+                "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/request/create.json",
                 {
                     method: "POST",
                     mode: "no-cors",
@@ -147,7 +147,7 @@ const FormBlock = () => {
 
             console.log("Response Status:", response.status);
             if (response.ok) {
-                const responseData = await response.json(); // Parse JSON response if available
+                const responseData = await response.json();
                 console.log("Response Data:", responseData);
                 setIsSuccess(true);
             } else {

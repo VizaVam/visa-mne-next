@@ -46,6 +46,62 @@ export default function OnasPage({breadcrumbs}) {
         }))
     };
 
+    // Article Schema
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты",
+        "alternativeHeadline": "Основные ошибки белорусов при оформлении рабочей визы в 2025 году",
+        "datePublished": "2025-07-01T08:00:00+05:00",
+        "dateModified": "2025-07-23T22:22:00+05:00",
+        "articleBody": `
+Получение рабочей визы – важный шаг к новой карьере за границей, но ошибки в процессе могут привести к отказу. В 2025 году требования к документам и мотивации остаются строгими. Эта статья выделяет топ-5 ошибок, которые допускают белорусы, и способы их избежать.
+
+### Ошибка №1: Несоответствие документов
+Документы, не соответствующие требованиям работодателя или консульства (например, неподходящий диплом или неполный пакет), часто становятся причиной отказа.
+
+### Ошибка №2: Недооценка финансов
+Недостаток средств на счету или отсутствие движения по нему может вызвать подозрения. Покажите стабильное финансовое положение.
+
+### Ошибка №3: Ошибки в анкете
+Опечатки, сокрытие информации или расхождения в данных приводят к автоматическому отказу. Тщательно проверяйте каждый пункт.
+
+### Ошибка №4: Слабая подготовка к собеседованию
+Нечеткие ответы или отсутствие мотивации могут подорвать доверие консула. Подготовьте четкие аргументы и связи с родиной.
+
+### Ошибка №5: Игнорирование сроков
+Поздняя подача или неполный пакет документов из-за спешки часто приводит к провалу. Начните процесс заранее.
+
+### Как избежать отказа
+Проверьте документы, подготовьте финансы, заполните анкету точно, подготовьтесь к собеседованию и подавайте заявку с запасом времени. Обратитесь к профессионалам VISA VAM для поддержки.
+
+Готовы к успеху? Свяжитесь с нами по +375296800620!
+        `,
+        "about": [
+            { "@type": "Thing", "name": "рабочая виза" },
+            { "@type": "Thing", "name": "ошибки при подаче визы" },
+            { "@type": "Thing", "name": "отказ в визе" },
+            { "@type": "Thing", "name": "2025 год" },
+            { "@type": "Thing", "name": "белорусы" }
+        ],
+        "url": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu",
+        "publisher": {
+            "@type": "Organization",
+            "name": "VISA VAM",
+            "url": "https://visavampro.by/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "/logo.png",
+                "width": 600,
+                "height": 60
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu"
+        }
+    };
+
     return (
         <div>
             {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
@@ -257,6 +313,12 @@ export default function OnasPage({breadcrumbs}) {
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+                />
+
+                {/* Inject Article Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(articleSchema)}}
                 />
 
                 <Fag4/>

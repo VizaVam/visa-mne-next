@@ -10,29 +10,51 @@ import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag4, {faqData} from "@/components/fag4";
 
-// FAQ Schema
-const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqData.map((faq) => ({
-        "@type": "Question",
-        "name": `ВОПРОС: ${faq.question}`,
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
-        }
-    }))
-};
+const BreadcrumbNav = ({pathname}) => (
+    <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+        <Link href="/"
+              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+            Главная
+        </Link>
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
+        <Link
+            href="/poleznaya-informasia"
+            className={`text-orange-500 hover:underline ${pathname === "/poleznaya-informasia" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
+        >
+            Полезная информация
+        </Link>
+        <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
+        <span className="font-semibold text-gray-900 cursor-default">Топ-5 ошибок при подаче на рабочую визу</span>
+    </nav>
+);
+
+export default function OnasPage({breadcrumbs}) {
+    const pathname = usePathname();
+    const {openModal} = useModal();
+
+    // FAQ Schema
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map((faq) => ({
+            "@type": "Question",
+            "name": `ВОПРОС: ${faq.question}`,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
 
 // Article Schema
-const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "headline": "Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты",
-    "alternativeHeadline": "Избежание типичных ошибок при подаче на рабочую визу для белорусов",
-    "datePublished": "2025-07-01T08:00:00+05:00",
-    "dateModified": "2025-07-23T21:40:00+05:00",
-    "articleBody": `
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты",
+        "alternativeHeadline": "Избежание типичных ошибок при подаче на рабочую визу для белорусов",
+        "datePublished": "2025-07-01T08:00:00+05:00",
+        "dateModified": "2025-07-23T21:40:00+05:00",
+        "articleBody": `
 Получение предложения о работе за границей – это огромный шаг и повод для гордости. Однако эйфория от заветного предложения может быстро смениться разочарованием, если на пути к мечте встает отказ в рабочей визе. Процесс ее получения сложнее и строже, чем у краткосрочной визы, и любая, даже незначительная на первый взгляд, ошибка может стоить вам контракта.
 
 ### Ошибка №1: Несоответствие документов требованиям работодателя и консульства
@@ -62,51 +84,29 @@ const articleSchema = {
 
 Не рискуйте своим будущим за границей — доверьтесь профессионалам!
     `,
-    "about": [
-        { "@type": "Thing", "name": "рабочая виза" },
-        { "@type": "Thing", "name": "ошибки при подаче" },
-        { "@type": "Thing", "name": "отказ в визе" },
-        { "@type": "Thing", "name": "белорусы" }
-    ],
-    "url": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochuyu-vizu",
-    "publisher": {
-        "@type": "Organization",
-        "name": "VISA VAM",
-        "url": "https://visavampro.by/",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "/logo.png",
-            "width": 600,
-            "height": 60
+        "about": [
+            { "@type": "Thing", "name": "рабочая виза" },
+            { "@type": "Thing", "name": "ошибки при подаче" },
+            { "@type": "Thing", "name": "отказ в визе" },
+            { "@type": "Thing", "name": "белорусы" }
+        ],
+        "url": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochuyu-vizu",
+        "publisher": {
+            "@type": "Organization",
+            "name": "VISA VAM",
+            "url": "https://visavampro.by/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "/logo.png",
+                "width": 600,
+                "height": 60
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochuyu-vizu"
         }
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochuyu-vizu"
-    }
-};
-
-const BreadcrumbNav = ({pathname}) => (
-    <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
-        <Link href="/"
-              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
-            Главная
-        </Link>
-        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
-        <Link
-            href="/poleznaya-informasia"
-            className={`text-orange-500 hover:underline ${pathname === "/poleznaya-informasia" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
-        >
-            Полезная информация
-        </Link>
-        <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default">Топ-5 ошибок при подаче на рабочую визу</span>
-    </nav>
-);
-
-export default function OnasPage({breadcrumbs}) {
-    const pathname = usePathname();
-    const {openModal} = useModal();
+    };
 
     return (
         <div>

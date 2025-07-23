@@ -10,29 +10,51 @@ import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag2, {faqData} from "@/components/fag2";
 
+const BreadcrumbNav = ({pathname}) => (
+    <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+        <Link href="/"
+              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+            Главная
+        </Link>
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
+        <Link
+            href="/poleznaya-informasia"
+            className={`text-orange-500 hover:underline ${pathname === "/poleznaya-informasia" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
+        >
+            Полезная информация
+        </Link>
+        <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
+        <span className="font-semibold text-gray-900 cursor-default">Как оформить визу в Польшу для белорусов</span>
+    </nav>
+);
+
+export default function OnasPage({breadcrumbs}) {
+    const pathname = usePathname();
+
+
 // FAQ Schema
-const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqData.map((faq) => ({
-        "@type": "Question",
-        "name": `ВОПРОС: ${faq.question}`,
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
-        }
-    }))
-};
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map((faq) => ({
+            "@type": "Question",
+            "name": `ВОПРОС: ${faq.question}`,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
 
 // Article Schema
-const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "headline": "Как оформить визу в Польшу для белорусов: документы, стоимость и сроки",
-    "alternativeHeadline": "Пошаговая инструкция по получению визы в Польшу для граждан Беларуси",
-    "datePublished": "2025-05-13T08:00:00+05:00",
-    "dateModified": "2025-07-23T21:40:00+05:00",
-    "articleBody": `
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Как оформить визу в Польшу для белорусов: документы, стоимость и сроки",
+        "alternativeHeadline": "Пошаговая инструкция по получению визы в Польшу для граждан Беларуси",
+        "datePublished": "2025-05-13T08:00:00+05:00",
+        "dateModified": "2025-07-23T21:40:00+05:00",
+        "articleBody": `
 Если вы планируете поездку в Польшу, то вам обязательно понадобится шенгенская виза, т.к. Польша — одна из стран Шенгенского соглашения. Но не волнуйтесь: процесс получения визы достаточно понятный, если знать все нюансы.
 
 ### Кто может получить визу в Польшу?
@@ -99,50 +121,29 @@ const articleSchema = {
 
 Свяжитесь с нами по номеру +375296800620 уже сегодня и начните готовиться к поездке в Польшу без лишних хлопот!
     `,
-    "about": [
-        { "@type": "Thing", "name": "виза в Польшу" },
-        { "@type": "Thing", "name": "шенгенская виза" },
-        { "@type": "Thing", "name": "документы для визы" },
-        { "@type": "Thing", "name": "белорусы" }
-    ],
-    "url": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu",
-    "publisher": {
-        "@type": "Organization",
-        "name": "VISA VAM",
-        "url": "https://visavampro.by/",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "/logo.png",
-            "width": 600,
-            "height": 60
+        "about": [
+            { "@type": "Thing", "name": "виза в Польшу" },
+            { "@type": "Thing", "name": "шенгенская виза" },
+            { "@type": "Thing", "name": "документы для визы" },
+            { "@type": "Thing", "name": "белорусы" }
+        ],
+        "url": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu",
+        "publisher": {
+            "@type": "Organization",
+            "name": "VISA VAM",
+            "url": "https://visavampro.by/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "/logo.png",
+                "width": 600,
+                "height": 60
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu"
         }
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu"
-    }
-};
-
-const BreadcrumbNav = ({pathname}) => (
-    <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
-        <Link href="/"
-              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
-            Главная
-        </Link>
-        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
-        <Link
-            href="/poleznaya-informasia"
-            className={`text-orange-500 hover:underline ${pathname === "/poleznaya-informasia" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
-        >
-            Полезная информация
-        </Link>
-        <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default">Как оформить визу в Польшу для белорусов</span>
-    </nav>
-);
-
-export default function OnasPage({breadcrumbs}) {
-    const pathname = usePathname();
+    };
 
     return (
         <div>

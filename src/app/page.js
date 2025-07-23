@@ -10,7 +10,6 @@ import Docs from "@/components/docs";
 import Reviews from "@/components/reviews";
 import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
-import Steps from "@/components/steps";
 import Announcement from "@/components/announcement";
 import PhoneForm from "@/components/newModal"
 import NewSteps from "@/components/newSteps";

@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 
-const faqData = [
+export const faqData = [
     {
         question: "Нужна ли виза в Польшу для белорусов?",
         answer:

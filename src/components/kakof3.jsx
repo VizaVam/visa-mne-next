@@ -8,7 +8,7 @@ import {useModal} from "@/components/modalcontext";
 import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Fag4 from "@/components/fag4";
+import Fag4, {faqData} from "@/components/fag4";
 
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
@@ -31,6 +31,20 @@ const BreadcrumbNav = ({pathname}) => (
 export default function OnasPage({breadcrumbs}) {
     const pathname = usePathname();
     const {openModal} = useModal();
+
+    // FAQ Schema
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map((faq) => ({
+            "@type": "Question",
+            "name": `ВОПРОС: ${faq.question}`,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
 
     return (
         <div>
@@ -238,7 +252,15 @@ export default function OnasPage({breadcrumbs}) {
                     </div>
 
                 </div>
+
+                {/* Inject FAQ Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+                />
+
                 <Fag4/>
+
                 <div
                     className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">

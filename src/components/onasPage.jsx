@@ -11,6 +11,7 @@ import Fag from "@/components/fag";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Discount from "@/components/discount";
+import {faqData} from "@/components/fag";
 
 const RippleButton = ({onClick, children}) => (
     <button
@@ -101,6 +102,20 @@ export default function OnasPage({breadcrumbs}) {
     const recommendedCountries = Object.keys(countryOrder)
         .map(countryKey => countries.find(c => c.url.toLowerCase() === countryKey))
         .filter(Boolean);
+
+    // FAQ Schema
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map((faq) => ({
+            "@type": "Question",
+            "name": `ВОПРОС: ${faq.question}`,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer.replace(/<\/?[^>]+(>|$)/g, "") // Remove HTML tags for plain text
+            }
+        }))
+    };
 
     return (
         <div>
@@ -204,6 +219,12 @@ export default function OnasPage({breadcrumbs}) {
                     </Link>
                 </div>
             </div>
+
+            {/* Inject FAQ Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+            />
 
             <Reviews/>
             <Fag/>

@@ -9,7 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag2 from "@/components/fag2";
-import Fag3 from "@/components/fag3";
+import Fag3, {faqData} from "@/components/fag3";
 
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
@@ -32,6 +32,20 @@ const BreadcrumbNav = ({pathname}) => (
 export default function OnasPage({breadcrumbs}) {
     const pathname = usePathname();
     const {openModal} = useModal();
+
+    // FAQ Schema
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map((faq) => ({
+            "@type": "Question",
+            "name": `ВОПРОС: ${faq.question}`,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
 
     return (
         <div>
@@ -296,7 +310,7 @@ export default function OnasPage({breadcrumbs}) {
                             </li>
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
-                                Обратиться в визовое агентство.
+                                Обратитесь в визовое агентство.
                             </li>
                         </ul>
                     </div>
@@ -353,6 +367,13 @@ export default function OnasPage({breadcrumbs}) {
                                 заявку</a>.</p>
                     </div>
                 </div>
+
+                {/* Inject FAQ Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+                />
+
                 <Fag3/>
                 <div
                     className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">

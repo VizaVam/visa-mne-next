@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 
-const faqData = [
+export const faqData = [
     {
         question: "За какой срок до поездки лучше подавать документы на визу?",
         answer:

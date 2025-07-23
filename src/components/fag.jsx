@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 
-const faqData = [
+export const faqData = [
     {
         question: "Какая система скидок на ваши услуги?",
         answer: `

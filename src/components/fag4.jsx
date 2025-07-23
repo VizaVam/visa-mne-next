@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 
-const faqData = [
+export const faqData = [
     {
         question: "Могу ли я подать апелляцию в случае отказа в рабочей визе?",
         answer:

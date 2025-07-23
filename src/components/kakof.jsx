@@ -8,7 +8,7 @@ import {useModal} from "@/components/modalcontext";
 import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Fag2 from "@/components/fag2";
+import Fag2, {faqData} from "@/components/fag2";
 
 
 const BreadcrumbNav = ({pathname}) => (
@@ -31,6 +31,20 @@ const BreadcrumbNav = ({pathname}) => (
 
 export default function OnasPage({breadcrumbs}) {
     const pathname = usePathname();
+
+    // FAQ Schema
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map((faq) => ({
+            "@type": "Question",
+            "name": `ВОПРОС: ${faq.question}`,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    };
 
     return (
         <div>
@@ -361,7 +375,15 @@ export default function OnasPage({breadcrumbs}) {
                         <p>Если вы не уверены в правильности оформления, лучше обратиться к специалисту.</p>
                     </div>
                 </div>
+
+                {/* Inject FAQ Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+                />
+
                 <Fag2/>
+
                 <div className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Получите помощь в

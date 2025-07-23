@@ -474,16 +474,16 @@ export default function OnasPage({breadcrumbs}) {
                     </div>
                 </div>
 
-                {/* Inject Article Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{__html: JSON.stringify(articleSchema)}}
-                />
-
                 {/* Inject FAQ Schema */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+                />
+
+                {/* Inject Article Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(articleSchema)}}
                 />
 
                 <Fag2/>

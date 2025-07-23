@@ -10,6 +10,7 @@ import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag2, {faqData} from "@/components/fag2";
 
+
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
         <Link href="/"
@@ -31,8 +32,7 @@ const BreadcrumbNav = ({pathname}) => (
 export default function OnasPage({breadcrumbs}) {
     const pathname = usePathname();
 
-
-// FAQ Schema
+    // FAQ Schema
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -44,105 +44,6 @@ export default function OnasPage({breadcrumbs}) {
                 "text": faq.answer
             }
         }))
-    };
-
-// Article Schema
-    const articleSchema = {
-        "@context": "https://schema.org",
-        "@type": "NewsArticle",
-        "headline": "Как оформить визу в Польшу для белорусов: документы, стоимость и сроки",
-        "alternativeHeadline": "Пошаговая инструкция по получению визы в Польшу для граждан Беларуси",
-        "datePublished": "2025-05-13T08:00:00+05:00",
-        "dateModified": "2025-07-23T21:40:00+05:00",
-        "articleBody": `
-Если вы планируете поездку в Польшу, то вам обязательно понадобится шенгенская виза, т.к. Польша — одна из стран Шенгенского соглашения. Но не волнуйтесь: процесс получения визы достаточно понятный, если знать все нюансы.
-
-### Кто может получить визу в Польшу?
-Белорусы могут получить шенгенскую визу в Польшу, если цель их поездки соответствует одному из следующих типов:
-- Туристическая: Отдых, экскурсии, путешествие
-- Гостевая: Посещение родственников или друзей
-- Деловая: Конференции, переговоры, командировки
-- Студенческая/Учебная/Полицеальная: Обучение в польских учебных заведениях
-- Рабочая: Для официального трудоустройства в Польше
-- Карта Поляка: При ее наличии
-
-Выбор типа визы влияет на список необходимых документов и условия подачи.
-
-### Полный список документов на визу в Польшу
-Чтобы ваше заявление приняли без задержек, соберите полный пакет документов заранее. Вот что потребуется от большинства заявителей:
-- Паспорт, действительный минимум 3 месяца после окончания срока действия визы
-- Анкета на визу в Польшу – заполненная в электронном виде или уже распечатанная
-- Фотография на визу (35×45 мм) — соответствующее требованиям ICAO
-- Копии паспорта — страницы с личными данными и регистрацией
-- Медицинская страховка, покрывающая расходы на сумму не менее 30 000 евро, действующая в странах Шенгена
-- Подтверждение цели поездки: туристический ваучер или оплаченная бронь отеля, официальное приглашение от польской стороны, справка с места работы / учебы
-- Финансовое обеспечение: банковская выписка за последние 3 месяца, спонсорское письмо (если поездку оплачивает другое лицо)
-- Оплаченная бронь места в автобусе или маршрут поездки
-- Квитанция об оплате консульского сбора
-
-Для детей дополнительно: свидетельство о рождении, согласие на выезд от родителей (при необходимости), копия студенческого билета, спонсорство и копии паспортных данных спонсора.
-
-### Где и как подать документы на визу в Польшу?
-Подача документов на шенгенскую визу в Польшу возможна в следующих местах:
-- В Консульстве в определенных случаях
-- Визовые центры VFS Global - в Минске, Бресте, Гродно и других крупных городах
-- Через визовые агентства
-
-Необходимо обязательно заранее записаться на подачу визы в Польшу через официальный сайт визового центра, либо воспользоваться нашими услугами.
-
-### Сколько стоит виза в Польшу для белорусов?
-Стоимость визы для граждан Республики Беларусь зависит от возраста заявителя и типа поездки:
-- Взрослые: от 35 € до 90 € в зависимости от выбранной категории визы
-- Дети (до 12 лет): бесплатно
-- Участники культурных/спортивных мероприятий: бесплатно
-- Члены официальных делегаций: бесплатно
-
-Дополнительно могут взиматься сервисные сборы визовых центров.
-
-### Сколько времени делается виза в Польшу?
-Рассмотрение заявления на визу в Консульстве Польши обычно занимает до 21 календарного дня. Однако в сезон высокой нагрузки (лето, новогодние праздники) срок может увеличиться.
-
-### Самые частые ошибки при подаче документов
-Чтобы избежать отказа, проверьте, нет ли среди ваших документов следующих проблем:
-- Неполный пакет документов
-- Истекший срок действия паспорта по требованиям
-- Неправильно оформленная анкета
-- Отсутствие финансового подтверждения
-- Ошибки в страховке (недостаточное покрытие или даты)
-
-Если вы не уверены в правильности оформления, лучше обратиться к специалисту.
-
-### Получите помощь в оформлении визы
-Не хотите рисковать? Мы предлагаем профессиональную помощь в оформлении визы в Польшу для белорусов:
-- Заполним анкету правильно и запишем на визит в Визовый центр Польши
-- Поможем подготовить полный пакет документов
-- Проконсультируем по каждому пункту
-- Поможем оформить страховку и бронь отеля
-
-Свяжитесь с нами по номеру +375296800620 уже сегодня и начните готовиться к поездке в Польшу без лишних хлопот!
-    `,
-        "about": [
-            {"@type": "Thing", "name": "виза в Польшу"},
-            {"@type": "Thing", "name": "шенгенская виза"},
-            {"@type": "Thing", "name": "документы для визы"},
-            {"@type": "Thing", "name": "белорусы"}
-        ],
-        "url": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov",
-        "publisher": {
-            "@type": "Organization",
-            "name": "VISA VAM",
-            "url": "https://visavampro.by/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "/logo.png",
-                "width": 600,
-                "height": 60
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov"
-        }
     };
 
     return (
@@ -183,6 +84,7 @@ export default function OnasPage({breadcrumbs}) {
                     />
                 </div>
 
+
                 {/* About Text Section */}
                 <div
                     className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
@@ -214,6 +116,7 @@ export default function OnasPage({breadcrumbs}) {
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
                                 как оформить визу в Польшу;
                             </li>
+
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
                                 и какие ошибки чаще всего приводят к отказу.
@@ -373,8 +276,7 @@ export default function OnasPage({breadcrumbs}) {
                             </li>
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
-                                Через <a href="/" className={"underline hover:font-normal font-medium text-blue-500"}>визовые
-                                агентства.</a>
+                                Через <a href="/" className={"underline hover:font-normal font-medium text-blue-500"}>визовые агентства.</a>
                             </li>
                         </ul>
                         <p>Необходимо обязательно заранее записаться на подачу визы в Польшу через официальный сайт
@@ -455,7 +357,7 @@ export default function OnasPage({breadcrumbs}) {
                             </li>
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
-                                Истекший срок действия паспорта по требованиям;
+                                Истекший срок действия паспорта по требованиям (см. выше);
                             </li>
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
@@ -480,23 +382,15 @@ export default function OnasPage({breadcrumbs}) {
                     dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
                 />
 
-                {/* Inject Article Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{__html: JSON.stringify(articleSchema)}}
-                />
-
                 <Fag2/>
 
-                <div
-                    className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
+                <div className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Получите помощь в
                             оформлении визы</h2>
                         <p>
                             Не хотите рисковать? Мы предлагаем профессиональную помощь в <a
-                            href="/shengenskie-vizy/viza-v-polshu"
-                            className="underline hover:font-normal font-medium text-blue-500">оформлении
+                            href="/shengenskie-vizy/viza-v-polshu" className="underline hover:font-normal font-medium text-blue-500">оформлении
                             визы в Польшу для белорусов</a>:
                         </p>
                         <ul className="text-black flex flex-col gap-2">

@@ -90,7 +90,7 @@ export default function OnasPage({breadcrumbs}) {
             { "@type": "Thing", "name": "отказ в визе" },
             { "@type": "Thing", "name": "белорусы" }
         ],
-        "url": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochuyu-vizu",
+        "url": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu",
         "publisher": {
             "@type": "Organization",
             "name": "VISA VAM",
@@ -104,7 +104,7 @@ export default function OnasPage({breadcrumbs}) {
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochuyu-vizu"
+            "@id": "https://visavampro.by/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu"
         }
     };
 

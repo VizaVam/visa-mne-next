@@ -127,7 +127,7 @@ export default function OnasPage({breadcrumbs}) {
             { "@type": "Thing", "name": "документы для визы" },
             { "@type": "Thing", "name": "белорусы" }
         ],
-        "url": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu",
+        "url": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov",
         "publisher": {
             "@type": "Organization",
             "name": "VISA VAM",
@@ -141,7 +141,7 @@ export default function OnasPage({breadcrumbs}) {
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu"
+            "@id": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov"
         }
     };
 

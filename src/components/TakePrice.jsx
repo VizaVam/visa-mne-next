@@ -1,9 +1,9 @@
 "use client";
 
-import {useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
-import {IMaskInput} from "react-imask";
-import {countries} from "@/data/countries";
+import { IMaskInput } from "react-imask";
+import { countries } from "@/data/countries";
 import Link from "next/link";
 
 const FormBlock = () => {
@@ -11,13 +11,13 @@ const FormBlock = () => {
     const [formData, setFormData] = useState({
         country: "",
         purpose: "",
-        visaLast3Years: true, // По умолчанию "Да"
-        peopleCount: "1", // По умолчанию "1"
-        urgency: "Срочно (от 3х недель)", // По умолчанию "Срочно (от 1 недели)"
+        visaLast3Years: true, // Default "Yes"
+        peopleCount: "1", // Default "1"
+        urgency: "Срочно (от 3х недель)", // Default "Urgent (from 3 weeks)"
         phone: "",
     });
     const [errors, setErrors] = useState({});
-    const [isSuccess, setIsSuccess] = useState(false); // Состояние для успешной отправки
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const steps = [
         "Выбор страны",
@@ -36,35 +36,33 @@ const FormBlock = () => {
         "Виза по карте Поляка",
         "Рабочая виза в Болгарию",
         "Рабочая виза в Германию",
-        "Рабочая виза в Испанию"
+        "Рабочая виза в Испанию",
     ];
 
-    // Filter countries to exclude those in excludedCountries1
     const filteredCountries = countries.filter(
         (country) => !excludedCountries1.includes(country.name)
     );
 
-    // Статический список целей для всех стран
     const purposes = ["Туризм", "Бизнес", "Обучение", "Работа", "Навестить родных/друзей"];
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((prev) => ({...prev, [name]: value}));
-        setErrors((prev) => ({...prev, [name]: ""}));
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+        setErrors((prev) => ({ ...prev, [name]: "" }));
     };
 
     const handleCheckboxChange = (e) => {
-        setFormData((prev) => ({...prev, visaLast3Years: e.target.checked}));
-        setErrors((prev) => ({...prev, visaLast3Years: ""}));
+        setFormData((prev) => ({ ...prev, visaLast3Years: e.target.checked }));
+        setErrors((prev) => ({ ...prev, visaLast3Years: "" }));
     };
 
     const handlePhoneInput = (e) => {
-        let {value} = e.target;
+        let { value } = e.target;
         if (value && !value.startsWith("+")) {
             value = "+" + value.replace(/\D/g, "");
         }
-        setFormData((prev) => ({...prev, phone: value}));
-        setErrors((prev) => ({...prev, phone: ""}));
+        setFormData((prev) => ({ ...prev, phone: value }));
+        setErrors((prev) => ({ ...prev, phone: "" }));
     };
 
     const validatePhone = (phone) => {
@@ -99,7 +97,6 @@ const FormBlock = () => {
         e.preventDefault();
         const newErrors = {};
 
-        // Валидация полей
         if (!formData.country) newErrors.country = "Выберите страну";
         if (!formData.purpose) newErrors.purpose = "Выберите цель поездки";
         if (formData.visaLast3Years === null)
@@ -115,13 +112,10 @@ const FormBlock = () => {
         }
 
         try {
-            // Форматируем телефон
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
-
-            // Формируем массив services (один объект, так как у вас одна заявка)
             const services = [
                 {
-                    type_id: formData.purpose === "Туризм" ? 1 : 2, // Пример логики для type_id
+                    type_id: formData.purpose === "Туризм" ? 1 : 2,
                     country: formData.country,
                     purpose: formData.purpose,
                     visaLast3Years: formData.visaLast3Years ? "true" : "false",
@@ -131,21 +125,17 @@ const FormBlock = () => {
                 },
             ];
 
-            // Формируем объект для отправки
             const requestData = {
                 note: "заявка с сайта visavampro.by",
                 services: services,
             };
 
-            // Логируем данные для отладки
             console.log("Отправляемые данные:", JSON.stringify(requestData, null, 2));
 
-            // Отправляем запрос
             const response = await fetch(
                 "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/request/create.json",
                 {
                     method: "POST",
-                    mode: "no-cors",
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -153,15 +143,14 @@ const FormBlock = () => {
                 }
             );
 
-            // Проверяем статус ответа
-            console.log("Response Status:", response);
+            console.log("Response Status:", response.status);
             if (response.ok) {
                 const responseData = await response.json();
                 console.log("Response Data:", responseData);
                 setIsSuccess(true);
             } else {
                 console.error("Request failed with status:", response.status);
-                setErrors({ submit: "Ошибка при отправке заявки. Попробуйте снова." });
+                setErrors({ submit: `Ошибка при отправке заявки. Статус: ${response.status}` });
             }
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
@@ -169,17 +158,14 @@ const FormBlock = () => {
         }
     };
 
-    console.log("123123123123")
-    console.log("12123")
-
     const resetForm = () => {
         setStep(1);
         setFormData({
             country: "",
             purpose: "",
-            visaLast3Years: true, // Сброс на "Да"
-            peopleCount: "1", // Сброс на "1"
-            urgency: "Срочно (от 3х недель)", // Сброс на "Срочно (от 1 недели)"
+            visaLast3Years: true,
+            peopleCount: "1",
+            urgency: "Срочно (от 3х недель)",
             phone: "",
         });
         setErrors({});
@@ -215,9 +201,7 @@ const FormBlock = () => {
 
                     {step === 1 && (
                         <div className="flex flex-col gap-5">
-                            <label className="block font-medium">
-                                Какую страну хотите посетить?
-                            </label>
+                            <label className="block font-medium">Какую страну хотите посетить?</label>
                             <div className="relative w-max mdd:w-full">
                                 <select
                                     name="country"
@@ -232,22 +216,17 @@ const FormBlock = () => {
                                         </option>
                                     ))}
                                 </select>
-                                <span
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
-    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"w-4"}/>
-  </span>
+                                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
+                  <Image src="/arrowOp.svg" alt="Arrow" width={28} height={28} className="w-4" />
+                </span>
                             </div>
-                            {errors.country && (
-                                <p className="text-red-500 text-xs">{errors.country}</p>
-                            )}
+                            {errors.country && <p className="text-red-500 text-xs">{errors.country}</p>}
                         </div>
                     )}
 
                     {step === 2 && (
                         <div className="flex flex-col gap-5">
-                            <label className="block font-medium">
-                                Основная цель Вашей поездки?
-                            </label>
+                            <label className="block font-medium">Основная цель Вашей поездки?</label>
                             <div className="relative w-max mdd:w-full">
                                 <select
                                     name="purpose"
@@ -262,14 +241,11 @@ const FormBlock = () => {
                                         </option>
                                     ))}
                                 </select>
-                                <span
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
-     <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"w-4"}/>
-  </span>
+                                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
+                  <Image src="/arrowOp.svg" alt="Arrow" width={28} height={28} className="w-4" />
+                </span>
                             </div>
-                            {errors.purpose && (
-                                <p className="text-red-500 text-xs">{errors.purpose}</p>
-                            )}
+                            {errors.purpose && <p className="text-red-500 text-xs">{errors.purpose}</p>}
                         </div>
                     )}
 
@@ -279,9 +255,7 @@ const FormBlock = () => {
                             <div className="flex mdd:justify-between gap-2">
                                 <button
                                     type="button"
-                                    onClick={() =>
-                                        setFormData({...formData, visaLast3Years: true})
-                                    }
+                                    onClick={() => setFormData({ ...formData, visaLast3Years: true })}
                                     className={`w-28 mdd:w-full py-2 rounded-full ${
                                         formData.visaLast3Years === true
                                             ? "bg-orange-500 text-white"
@@ -292,9 +266,7 @@ const FormBlock = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() =>
-                                        setFormData({...formData, visaLast3Years: false})
-                                    }
+                                    onClick={() => setFormData({ ...formData, visaLast3Years: false })}
                                     className={`w-28 mdd:w-full py-2 rounded-full ${
                                         formData.visaLast3Years === false
                                             ? "bg-orange-500 text-white"
@@ -305,9 +277,7 @@ const FormBlock = () => {
                                 </button>
                             </div>
                             {errors.visaLast3Years && (
-                                <p className="text-red-500 text-xs text-center">
-                                    {errors.visaLast3Years}
-                                </p>
+                                <p className="text-red-500 text-xs text-center">{errors.visaLast3Years}</p>
                             )}
                         </div>
                     )}
@@ -323,9 +293,7 @@ const FormBlock = () => {
                                         <button
                                             key={count}
                                             type="button"
-                                            onClick={() =>
-                                                setFormData({...formData, peopleCount: count})
-                                            }
+                                            onClick={() => setFormData({ ...formData, peopleCount: count })}
                                             className={`w-28 py-2 rounded-full ${
                                                 formData.peopleCount === count
                                                     ? "bg-orange-500 text-white"
@@ -351,16 +319,13 @@ const FormBlock = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    <span
-                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
-    <Image src='/arrowOp.svg' alt={'Arrow'} width={28} height={28} className={"w-4"}/>
-  </span>
+                                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-blue-600">
+                    <Image src="/arrowOp.svg" alt="Arrow" width={28} height={28} className="w-4" />
+                  </span>
                                 </div>
                             </div>
                             {errors.peopleCount && (
-                                <p className="text-red-500 text-xs text-center">
-                                    {errors.peopleCount}
-                                </p>
+                                <p className="text-red-500 text-xs text-center">{errors.peopleCount}</p>
                             )}
                         </div>
                     )}
@@ -369,29 +334,23 @@ const FormBlock = () => {
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">Срочно необходима виза?</label>
                             <div className="flex mdd:flex-col gap-2">
-                                {["Срочно (от 3х недель)", "Не срочно (от 2 месяцев)"].map(
-                                    (urgency) => (
-                                        <button
-                                            key={urgency}
-                                            type="button"
-                                            onClick={() =>
-                                                setFormData({...formData, urgency: urgency})
-                                            }
-                                            className={`px-8 py-2 rounded-full ${
-                                                formData.urgency === urgency
-                                                    ? "bg-orange-500 text-white"
-                                                    : "bg-white text-black border border-blue-500"
-                                            }`}
-                                        >
-                                            {urgency}
-                                        </button>
-                                    )
-                                )}
+                                {["Срочно (от 3х недель)", "Не срочно (от 2 месяцев)"].map((urgency) => (
+                                    <button
+                                        key={urgency}
+                                        type="button"
+                                        onClick={() => setFormData({ ...formData, urgency: urgency })}
+                                        className={`px-8 py-2 rounded-full ${
+                                            formData.urgency === urgency
+                                                ? "bg-orange-500 text-white"
+                                                : "bg-white text-black border border-blue-500"
+                                        }`}
+                                    >
+                                        {urgency}
+                                    </button>
+                                ))}
                             </div>
                             {errors.urgency && (
-                                <p className="text-red-500 text-xs text-center">
-                                    {errors.urgency}
-                                </p>
+                                <p className="text-red-500 text-xs text-center">{errors.urgency}</p>
                             )}
                         </div>
                     )}
@@ -401,8 +360,7 @@ const FormBlock = () => {
                             {isSuccess ? (
                                 <div className="flex flex-col gap-5">
                                     <p className="text-[#15419E] font-medium">
-                                        Ваша заявка принята! Менеджер свяжется с Вами в ближайшее
-                                        время!
+                                        Ваша заявка принята! Менеджер свяжется с Вами в ближайшее время!
                                     </p>
                                     <button
                                         type="button"
@@ -415,20 +373,29 @@ const FormBlock = () => {
                             ) : (
                                 <div className="flex flex-col">
                                     <label className="block font-medium mb-5">
-                                        Ваш результат уже готов! Узнайте его, оставив свой номер
-                                        телефона!
+                                        Ваш результат уже готов! Узнайте его, оставив свой номер телефона!
                                     </label>
                                     <div className="flex mdd:flex-col items-center gap-4 mb-1">
                                         <IMaskInput
                                             mask="+000 00 000-00-00"
-                                            definitions={{
-                                                "0": {mask: /[0-9]/, placeholderChar: "_"},
-                                            }}
+                                            definitions={{ "0": { mask: /[0-9]/, placeholderChar: "_" } }}
                                             name="phone"
+                                            placeholder="Телефон*"
                                             value={formData.phone || ""}
                                             onChange={handlePhoneInput}
-                                            placeholder="Телефон"
-                                            className="border border-blue-600 rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600"
+                                            lazy={true}
+                                            overwrite="shift"
+                                            onFocus={(e) => {
+                                                e.target.placeholder = "+___ __ ___-__-__";
+                                            }}
+                                            onBlur={(e) => {
+                                                if (!e.target.value) {
+                                                    e.target.placeholder = "Телефон*";
+                                                }
+                                            }}
+                                            className={`border ${
+                                                errors.phone ? "border-red-500" : "border-[#15419E]"
+                                            } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
                                         />
                                         <button
                                             type="submit"
@@ -440,14 +407,15 @@ const FormBlock = () => {
                                     </div>
                                     <p className="text-sm mdd:text-center mt-2 text-gray-600">
                                         Нажимая кнопку, Вы соглашаетесь с{" "}
-                                        <Link href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf" className="text-[#F86F00] underline">
+                                        <Link
+                                            href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf"
+                                            className="text-[#F86F00] underline"
+                                        >
                                             публичной офертой
                                         </Link>
                                     </p>
                                     {errors.phone && (
-                                        <p className="text-red-500 text-xs mdd:text-center">
-                                            {errors.phone}
-                                        </p>
+                                        <p className="text-red-500 text-xs mdd:text-center">{errors.phone}</p>
                                     )}
                                 </div>
                             )}

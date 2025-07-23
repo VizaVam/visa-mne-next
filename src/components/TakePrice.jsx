@@ -144,7 +144,8 @@ const FormBlock = () => {
                 }
             );
 
-            console.log("Response Status:", response.status);
+            console.log("Response Status:", response);
+            console.log("Response Status1:", response.data);
             if (response.ok) {
                 const responseData = await response.json();
                 console.log("Response Data:", responseData);

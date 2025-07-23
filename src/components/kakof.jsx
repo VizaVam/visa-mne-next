@@ -122,10 +122,10 @@ export default function OnasPage({breadcrumbs}) {
 Свяжитесь с нами по номеру +375296800620 уже сегодня и начните готовиться к поездке в Польшу без лишних хлопот!
     `,
         "about": [
-            { "@type": "Thing", "name": "виза в Польшу" },
-            { "@type": "Thing", "name": "шенгенская виза" },
-            { "@type": "Thing", "name": "документы для визы" },
-            { "@type": "Thing", "name": "белорусы" }
+            {"@type": "Thing", "name": "виза в Польшу"},
+            {"@type": "Thing", "name": "шенгенская виза"},
+            {"@type": "Thing", "name": "документы для визы"},
+            {"@type": "Thing", "name": "белорусы"}
         ],
         "url": "https://visavampro.by/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov",
         "publisher": {
@@ -373,7 +373,8 @@ export default function OnasPage({breadcrumbs}) {
                             </li>
                             <li className="flex gap-2 items-center">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
-                                Через <a href="/" className={"underline hover:font-normal font-medium text-blue-500"}>визовые агентства.</a>
+                                Через <a href="/" className={"underline hover:font-normal font-medium text-blue-500"}>визовые
+                                агентства.</a>
                             </li>
                         </ul>
                         <p>Необходимо обязательно заранее записаться на подачу визы в Польшу через официальный сайт
@@ -473,27 +474,29 @@ export default function OnasPage({breadcrumbs}) {
                     </div>
                 </div>
 
-                {/* Inject FAQ Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
-                />
-
                 {/* Inject Article Schema */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{__html: JSON.stringify(articleSchema)}}
                 />
 
+                {/* Inject FAQ Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}}
+                />
+
                 <Fag2/>
 
-                <div className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
+                <div
+                    className="w-full relative flex flex-col gap-24 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold">Получите помощь в
                             оформлении визы</h2>
                         <p>
                             Не хотите рисковать? Мы предлагаем профессиональную помощь в <a
-                            href="/shengenskie-vizy/viza-v-polshu" className="underline hover:font-normal font-medium text-blue-500">оформлении
+                            href="/shengenskie-vizy/viza-v-polshu"
+                            className="underline hover:font-normal font-medium text-blue-500">оформлении
                             визы в Польшу для белорусов</a>:
                         </p>
                         <ul className="text-black flex flex-col gap-2">

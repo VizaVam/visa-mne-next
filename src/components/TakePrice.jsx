@@ -136,6 +136,7 @@ const FormBlock = () => {
                 "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/request/create.json",
                 {
                     method: "POST",
+                    mode: "no-cors",
                     headers: {
                         "Content-Type": "application/json",
                     },

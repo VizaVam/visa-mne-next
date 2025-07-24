@@ -95,8 +95,17 @@ const FormBlock = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Проверка валидности данных
         const newErrors = {};
-        // ... (валидация полей как у вас)
+        if (!formData.country) newErrors.country = "Выберите страну";
+        if (!formData.purpose) newErrors.purpose = "Выберите цель поездки";
+        if (formData.visaLast3Years === null)
+            newErrors.visaLast3Years = "Укажите наличие виз";
+        if (!formData.peopleCount) newErrors.peopleCount = "Выберите количество людей";
+        if (!formData.urgency) newErrors.urgency = "Выберите срочность";
+        if (!formData.phone || !validatePhone(formData.phone))
+            newErrors.phone = "Некорректный формат телефона";
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
@@ -105,25 +114,35 @@ const FormBlock = () => {
 
         try {
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
-            // const finalEmail = email?.trim() || ''; // Если email есть, добавьте его
 
             // setIsSubmitting(true); // Если у вас есть это состояние
 
             // Подготовка данных в формате URLSearchParams
             const params = new URLSearchParams();
-            // Добавьте необходимые параметры. Имена ключей нужно уточнить у API U-ON.
-            // Ниже приведены примеры, возможно, вам нужно будет их изменить.
+
+            // Добавляем основной источник
             params.append("source", "заявка с сайта visavampro.by");
-            params.append("u_country", formData.country);
-            params.append("u_purpose", formData.purpose);
-            params.append("u_visa_last_3_years", formData.visaLast3Years ? "true" : "false");
-            params.append("u_people_count", formData.peopleCount);
-            params.append("u_urgency", formData.urgency);
+
+            // Создаем объект с данными формы для поля note
+            const noteData = {
+                country: formData.country,
+                purpose: formData.purpose,
+                visaLast3Years: formData.visaLast3Years ? "true" : "false",
+                peopleCount: formData.peopleCount,
+                urgency: formData.urgency,
+                // Возможно, сюда же нужно добавить phone, если API ожидает его внутри note
+                // phone: formattedPhone
+            };
+
+            // Добавляем сериализованный JSON объект как значение параметра note
+            params.append("note", JSON.stringify(noteData));
+
+            // Добавляем отдельно телефон (если API ожидает его и как отдельный параметр)
             params.append("u_phone", formattedPhone);
-            // params.append("u_email", finalEmail); // Если email используется
-            // params.append("u_name", name); // Если имя пользователя собирается
 
             console.log("Отправляемые данные (URLSearchParams):", params.toString());
+            // Также можно логировать сам объект note для отладки:
+            console.log("Содержимое note:", noteData);
 
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",

@@ -95,8 +95,9 @@ const FormBlock = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newErrors = {};
 
+        // Проверка валидности данных
+        const newErrors = {};
         if (!formData.country) newErrors.country = "Выберите страну";
         if (!formData.purpose) newErrors.purpose = "Выберите цель поездки";
         if (formData.visaLast3Years === null)
@@ -112,19 +113,10 @@ const FormBlock = () => {
         }
 
         try {
+            // Форматирование номера телефона
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
-            const services = [
-                {
-                    type_id: formData.purpose === "Туризм" ? 1 : 2,
-                    country: formData.country,
-                    purpose: formData.purpose,
-                    visaLast3Years: formData.visaLast3Years ? "true" : "false",
-                    peopleCount: formData.peopleCount,
-                    urgency: formData.urgency,
-                    phone: formattedPhone,
-                },
-            ];
 
+            // Подготовка данных согласно требуемому формату
             const requestData = {
                 source: "заявка с сайта visavampro.by",
                 notes: [
@@ -132,22 +124,22 @@ const FormBlock = () => {
                         type_id: 1,
                         country: formData.country,
                         purpose: formData.purpose,
-                        visaLast3Years: "true",
+                        visaLast3Years: formData.visaLast3Years ? "true" : "false",
                         peopleCount: formData.peopleCount,
                         urgency: formData.urgency,
-                        phone: formattedPhone,
-                    }
+                    },
                 ],
-                "_phone": formattedPhone
+                u_phone: formattedPhone,
             };
 
             console.log("Отправляемые данные:", JSON.stringify(requestData, null, 2));
 
+            // Отправка запроса
             const response = await fetch(
                 "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json",
                 {
                     method: "POST",
-                    mode: "no-cors",
+                    mode: "no-cors", // Оставляем no-cors
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -155,19 +147,24 @@ const FormBlock = () => {
                 }
             );
 
-            console.log("Response Status:", response);
-            console.log("Response Status1:", response.data);
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log("Response Data:", responseData);
-                setIsSuccess(true);
-            } else {
-                console.error("Request failed with status:", response.status);
-                setErrors({ submit: `Ошибка при отправке заявки. Статус: ${response.status}` });
-            }
+            // В режиме no-cors мы не можем надежно проверить response.ok или status
+            // Но если запрос не завершился сетевой ошибкой, считаем его "успешным" для клиента
+            console.log("Запрос отправлен. Статус (может быть ограничен no-cors):", response?.status); // response может быть opaque
+
+            // Устанавливаем успех сразу после отправки, как в первом примере
+            setIsSuccess(true);
+            // Сброс или обработка успешного состояния
+            resetForm(); // Вы можете вызвать сброс формы здесь, если нужно
+
         } catch (error) {
+            // Этот блок catch сработает только при сетевых ошибках (например, DNS, CORS preflight fail)
             console.error("Ошибка отправки данных:", error);
-            setErrors({ submit: "Произошла ошибка. Проверьте соединение и попробуйте снова." });
+            // Устанавливаем ошибку в состояние
+            setErrors({ submit: "Произошла ошибка при отправке. Проверьте соединение и попробуйте снова." });
+            setIsSuccess(false); // Явно устанавливаем неуспех
+        } finally {
+            // Если есть состояние загрузки, отключаем его
+            // setIsSubmitting && setIsSubmitting(false);
         }
     };
 

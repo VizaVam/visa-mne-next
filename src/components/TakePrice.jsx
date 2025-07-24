@@ -126,14 +126,25 @@ const FormBlock = () => {
             ];
 
             const requestData = {
-                note: "заявка с сайта visavampro.by",
-                services: services,
+                source: "заявка с сайта visavampro.by",
+                notes: [
+                    {
+                        type_id: 1,
+                        country: formData.country,
+                        purpose: formData.purpose,
+                        visaLast3Years: "true",
+                        peopleCount: formData.peopleCount,
+                        urgency: formData.urgency,
+                        phone: formattedPhone,
+                    }
+                ],
+                "_phone": formattedPhone
             };
 
             console.log("Отправляемые данные:", JSON.stringify(requestData, null, 2));
 
             const response = await fetch(
-                "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/request/create.json",
+                "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json",
                 {
                     method: "POST",
                     mode: "no-cors",

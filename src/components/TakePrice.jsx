@@ -95,8 +95,6 @@ const FormBlock = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Проверка валидности данных
         const newErrors = {};
         if (!formData.country) newErrors.country = "Выберите страну";
         if (!formData.purpose) newErrors.purpose = "Выберите цель поездки";
@@ -106,66 +104,63 @@ const FormBlock = () => {
         if (!formData.urgency) newErrors.urgency = "Выберите срочность";
         if (!formData.phone || !validatePhone(formData.phone))
             newErrors.phone = "Некорректный формат телефона";
-
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
         try {
+            // Форматирование номера телефона
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
 
-            // setIsSubmitting(true); // Если у вас есть это состояние
+            // Создание текстового примечания (note)
+            const noteText = `
+            Страна - ${formData.country}
+            Цель - ${formData.purpose}
+            Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
+            Количество человек - ${formData.peopleCount}
+            Сроки - ${formData.urgency}
+        `.trim();
 
             // Подготовка данных в формате URLSearchParams
             const params = new URLSearchParams();
-
-            // Добавляем основной источник
             params.append("source", "заявка с сайта visavampro.by");
-
-            // Создаем объект с данными формы для поля note
-            const noteData = {
-                country: formData.country,
-                purpose: formData.purpose,
-                visaLast3Years: formData.visaLast3Years ? "true" : "false",
-                peopleCount: formData.peopleCount,
-                urgency: formData.urgency,
-                // Возможно, сюда же нужно добавить phone, если API ожидает его внутри note
-                // phone: formattedPhone
-            };
-
-            // Добавляем сериализованный JSON объект как значение параметра note
-            params.append("note", JSON.stringify(noteData));
-
-            // Добавляем отдельно телефон (если API ожидает его и как отдельный параметр)
+            params.append("note", noteText); // Добавляем текстовое примечание
             params.append("u_phone", formattedPhone);
 
             console.log("Отправляемые данные (URLSearchParams):", params.toString());
-            // Также можно логировать сам объект note для отладки:
-            console.log("Содержимое note:", noteData);
 
-            const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
-                method: "POST",
-                mode: "no-cors", // Оставляем как в рабочем примере
-                headers: { "Content-Type": "application/x-www-form-urlencoded" }, // Важно!
-                body: params.toString(), // Отправляем данные как строку
-            });
+            // Отправка запроса
+            const response = await fetch(
+                "https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json",
+                {
+                    method: "POST",
+                    mode: "no-cors", // Оставляем no-cors
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: params.toString(),
+                }
+            );
 
-            console.log("Запрос отправлен. Response (ограничен no-cors):", response);
-            // В режиме no-cors мы не можем надежно проверить response.status или response.ok
-            // Но если запрос не завершился сетевой ошибкой, считаем его отправленным
+            // В режиме no-cors мы не можем надежно проверить response.ok или status
+            // Но если запрос не завершился сетевой ошибкой, считаем его "успешным" для клиента
+            console.log("Запрос отправлен. Статус (может быть ограничен no-cors):", response?.status); // response может быть opaque
 
-            setIsSuccess(true); // Устанавливаем успех, как в рабочем примере
-            // resetForm(); // Вы можете сбросить форму здесь, если нужно
+            // Устанавливаем успех сразу после отправки, как в первом примере
+            setIsSuccess(true);
+            // Сброс или обработка успешного состояния
+            resetForm(); // Вы можете вызвать сброс формы здесь, если нужно
 
         } catch (error) {
+            // Этот блок catch сработает только при сетевых ошибках (например, DNS, CORS preflight fail)
             console.error("Ошибка отправки данных:", error);
-            // Поскольку мы не можем получить статус ошибки из-за no-cors,
-            // показываем общее сообщение
+            // Устанавливаем ошибку в состояние
             setErrors({ submit: "Произошла ошибка при отправке. Проверьте соединение и попробуйте снова." });
-            setIsSuccess(false);
+            setIsSuccess(false); // Явно устанавливаем неуспех
         } finally {
-            // setIsSubmitting(false); // Если у вас есть это состояние
+            // Если есть состояние загрузки, отключаем его
+            // setIsSubmitting && setIsSubmitting(false);
         }
     };
 

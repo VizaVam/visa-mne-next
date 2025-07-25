@@ -1,6 +1,6 @@
 'use client'
 
-import {memo} from 'react';
+import React, {memo} from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
@@ -17,6 +17,7 @@ import PhoneForm from "@/components/newModal";
 import Slider from "@/components/slider";
 import NewSteps from "@/components/newSteps";
 import Discount from "@/components/discount";
+import TakePrice from "@/components/TakePrice";
 
 const RippleButton = memo(({onClick, children}) => (
     <button
@@ -126,6 +127,11 @@ export default function VisaPage({breadcrumbs}) {
             </div>
 
             <Serviceson/>
+
+            <div className="px-[7%] pt-32 mdd:pt-20">
+                <TakePrice/>
+            </div>
+
             <div className={"pb-32 mdd:pb-20"}>
                 <NewSteps/>
                 <PhoneForm/>

@@ -295,7 +295,7 @@ export const countries = [
             <span>
         Сопровождение под ключ с безличной подачей -{" "}
                 <span className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">
-          {new Date() >= new Date("2025-07-26T00:00:00")
+          {new Date() >= new Date("2025-07-31T23:59:59+05:00")
               ? "1850"
               : "1600"}
         </span>{" "}

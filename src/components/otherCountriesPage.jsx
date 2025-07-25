@@ -1,6 +1,6 @@
 'use client'
 
-import {useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {notFound, useParams, usePathname} from 'next/navigation';
@@ -18,6 +18,7 @@ import StepGer from "@/components/stepGer";
 import NewSteps from "@/components/newSteps";
 import NewStepsCountries from "@/components/newStepsCountries";
 import Discount from "@/components/discount";
+import TakePrice from "@/components/TakePrice";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -397,61 +398,65 @@ export default function OtherCountryPage({breadcrumbs}) {
             </div>
 
             {showExtendedContent ? (
-                <div className="w-full">
-                    <div className="px-[7%] pb-16 mdd:pb-10">
-                        <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
-                            <div className="flex flex-col gap-6 lg:w-[70%]">
-                                <h2 title={selectedCountry.title}
-                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
-                                    {selectedCountry.title}
-                                </h2>
-                                <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                    <div className="w-full">
+                        <div className="px-[7%] pb-16 mdd:pb-10">
+                            <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
+                                <div className="flex flex-col gap-6 lg:w-[70%]">
+                                    <h2 title={selectedCountry.title}
+                                        className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
+                                        {selectedCountry.title}
+                                    </h2>
+                                    <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
+                                    <TextBlock text={selectedCountry.text1} parseText={parseText}/>
 
-                                {selectedCountry.variants?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants}/>
-                                )}
+                                    {selectedCountry.variants?.length > 0 && (
+                                        <VariantsList variants={selectedCountry.variants}/>
+                                    )}
 
-                                {Array.isArray(selectedCountry.text11) && (
-                                    <div>
-                                        {selectedCountry.text11.slice(0, 3).map((text, i) => (
-                                            <TextBlock key={i} text={text} parseText={parseText}/>
-                                        ))}
-                                    </div>
-                                )}
+                                    {Array.isArray(selectedCountry.text11) && (
+                                        <div>
+                                            {selectedCountry.text11.slice(0, 3).map((text, i) => (
+                                                <TextBlock key={i} text={text} parseText={parseText}/>
+                                            ))}
+                                        </div>
+                                    )}
 
-                                <SectionTitle title={selectedCountry.title22}/>
-                                <TextBlock text={selectedCountry.text2} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+                                    <SectionTitle title={selectedCountry.title22}/>
+                                    <TextBlock text={selectedCountry.text2} parseText={parseText}/>
+                                    <TextBlock text={selectedCountry.text3} parseText={parseText}/>
 
-                                {selectedCountry.variants11?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants11}/>
-                                )}
+                                    {selectedCountry.variants11?.length > 0 && (
+                                        <VariantsList variants={selectedCountry.variants11}/>
+                                    )}
 
-                                <TextBlock text={selectedCountry.text4} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text5} parseText={parseText}/>
+                                    <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+                                    <TextBlock text={selectedCountry.text5} parseText={parseText}/>
 
-                                <SectionTitle title={selectedCountry.title2}/>
-                                {selectedCountry.variants2?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants2}/>
-                                )}
+                                    <SectionTitle title={selectedCountry.title2}/>
+                                    {selectedCountry.variants2?.length > 0 && (
+                                        <VariantsList variants={selectedCountry.variants2}/>
+                                    )}
 
-                                {Array.isArray(selectedCountry.text22) && (
-                                    <div>
-                                        {selectedCountry.text22.slice(0, 3).map((text, i) => (
-                                            <TextBlock key={i} text={text} parseText={parseText}/>
-                                        ))}
-                                    </div>
-                                )}
+                                    {Array.isArray(selectedCountry.text22) && (
+                                        <div>
+                                            {selectedCountry.text22.slice(0, 3).map((text, i) => (
+                                                <TextBlock key={i} text={text} parseText={parseText}/>
+                                            ))}
+                                        </div>
+                                    )}
 
-                                <TextBlock text={selectedCountry.text6} parseText={parseText}/>
+                                    <TextBlock text={selectedCountry.text6} parseText={parseText}/>
+                                </div>
 
+                                {selectedCountry.typevc && (<div className="w-full pt-20 mdd:pt-8">
+                                    <TakePrice/>
+                                </div>)}
                                 {selectedCountry.typevc && (
                                     <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                         {parseText(selectedCountry.typevc)}
                                     </p>
                                 )}
-                                <TextBlock text={selectedCountry.textc} parseText={parseText}/>
+                                {selectedCountry.textc && (<TextBlock text={selectedCountry.textc} parseText={parseText}/>)}
                                 {selectedCountry.typevbc?.length > 0 && (
                                     <VisaTypeButtons
                                         types={selectedCountry.typevbc}
@@ -460,13 +465,15 @@ export default function OtherCountryPage({breadcrumbs}) {
                                     />
                                 )}
 
-                                <SectionTitle title={selectedCountry.title33}/>
-                                <TextBlock text={selectedCountry.text7} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text8} parseText={parseText}/>
+                                <div className="flex flex-col gap-6 lg:w-[70%]">
+                                    <SectionTitle title={selectedCountry.title33}/>
+                                    <TextBlock text={selectedCountry.text7} parseText={parseText}/>
+                                    <TextBlock text={selectedCountry.text8} parseText={parseText}/>
 
-                                {selectedCountry.variants3?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants3}/>
-                                )}
+                                    {selectedCountry.variants3?.length > 0 && (
+                                        <VariantsList variants={selectedCountry.variants3}/>
+                                    )}
+                                </div>
                             </div>
 
                             {/* Кому подходит виза заголовок */}
@@ -590,80 +597,82 @@ export default function OtherCountryPage({breadcrumbs}) {
                                 )}
                             </div>
                         </div>
-                    </div>
-                    <div className={"pt-16 mdd:pt-10"}>
-                        <Docs/>
-                    </div>
-                    <div className={"pt-32 mdd:pt-20"}>
-                        <NewStepsCountries/>
-                    </div>
-                    <PhoneForm/>
-                    <FAQ countryUrl={countryUrl}/>
+                <div className={"pt-16 mdd:pt-10"}>
+                    <Docs/>
                 </div>
-            ) : (
-                <div className="px-[7%] flex flex-col gap-10 items-center">
-                    {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"].includes(countryUrl) && (
-                        <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
-                            {selectedCountry.title && (
-                                <h2 className="text-[#F86F00] text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
-                                    {selectedCountry.title}
-                                </h2>
-                            )}
-                            <div className="flex flex-col gap-6">
-                                <TextBlock text={selectedCountry.text1} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text2} parseText={parseText}/>
-
-                                {selectedCountry.variants?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants}/>
-                                )}
-
-                                <TextBlock text={selectedCountry.text3} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text4} parseText={parseText}/>
-
-                                {Array.isArray(selectedCountry.text22) && (
-                                    <div>
-                                        {selectedCountry.text22.slice(0, 2).map((text, i) => (
-                                            <TextBlock key={i} text={text} parseText={parseText}/>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {selectedCountry.priceGood === 0 && (
-                                    <AlternativePricing
-                                        priceTitle={selectedCountry.priceTitle}
-                                        priceVariants={selectedCountry.priceVariants}
-                                    />
-                                )}
-                            </div>
-                        </div>
+                <div className={"pt-32 mdd:pt-20"}>
+            <NewStepsCountries/>
+        </div>
+    <PhoneForm/>
+    <FAQ countryUrl={countryUrl}/>
+</div>
+) :
+    (
+        <div className="px-[7%] flex flex-col gap-10 items-center">
+            {["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"].includes(countryUrl) && (
+                <div className="xl:pt-0 pt-24 flex flex-col gap-6 items-center lg:w-[60%] sm:w-full mdd:w-full">
+                    {selectedCountry.title && (
+                        <h2 className="text-[#F86F00] text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                            {selectedCountry.title}
+                        </h2>
                     )}
+                    <div className="flex flex-col gap-6">
+                        <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                        <TextBlock text={selectedCountry.text2} parseText={parseText}/>
 
-                    <div className="flex flex-col gap-4 mt-16">
-                        <p className="text-black text-[14px]">
-                            Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
-                        </p>
+                        {selectedCountry.variants?.length > 0 && (
+                            <VariantsList variants={selectedCountry.variants}/>
+                        )}
 
-                        <div
-                            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
-                            {recommendedCountries.map((country, index) => (
-                                <CountryCard key={index} country={country}/>
-                            ))}
-                        </div>
+                        <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+                        <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+
+                        {Array.isArray(selectedCountry.text22) && (
+                            <div>
+                                {selectedCountry.text22.slice(0, 2).map((text, i) => (
+                                    <TextBlock key={i} text={text} parseText={parseText}/>
+                                ))}
+                            </div>
+                        )}
+
+                        {selectedCountry.priceGood === 0 && (
+                            <AlternativePricing
+                                priceTitle={selectedCountry.priceTitle}
+                                priceVariants={selectedCountry.priceVariants}
+                            />
+                        )}
                     </div>
-
-                    <div className="sm:mt-6 text-center w-full">
-                        <Link href="/shengenskie-vizy">
-                            <button
-                                className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
-                                Еще больше стран
-                            </button>
-                        </Link>
-                    </div>
-                    <FAQ countryUrl={countryUrl}/>
                 </div>
             )}
 
-            <Contacts/>
+            <div className="flex flex-col gap-4 mt-16">
+                <p className="text-black text-[14px]">
+                    Для получения шенгенской визы Вы можете воспользоваться одним из следующих вариантов:
+                </p>
+
+                <div
+                    className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 mdd:gap-2">
+                    {recommendedCountries.map((country, index) => (
+                        <CountryCard key={index} country={country}/>
+                    ))}
+                </div>
+            </div>
+
+            <div className="sm:mt-6 text-center w-full">
+                <Link href="/shengenskie-vizy">
+                    <button
+                        className="bg-customBlue sm:w-max mdd:w-full hover:bg-blue-600 text-white py-3 px-8 rounded-[4px] shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] text-[16px] active:scale-95 transition-transform duration-150 ease-in-out">
+                        Еще больше стран
+                    </button>
+                </Link>
+            </div>
+            <FAQ countryUrl={countryUrl}/>
         </div>
-    );
+    )
+}
+
+<Contacts/>
+</div>
+)
+;
 }

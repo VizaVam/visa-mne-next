@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import { IMaskInput } from "react-imask";
@@ -18,7 +17,6 @@ const FormBlock = () => {
     });
     const [errors, setErrors] = useState({});
     const [isSuccess, setIsSuccess] = useState(false);
-
     const steps = [
         "Выбор страны",
         "Цель поездки",
@@ -27,7 +25,6 @@ const FormBlock = () => {
         "Сроки",
         "Расчет",
     ];
-
     const excludedCountries1 = [
         "Рабочая виза в Польшу",
         "Деловая виза в Польшу",
@@ -38,17 +35,39 @@ const FormBlock = () => {
         "Рабочая виза в Германию",
         "Рабочая виза в Испанию",
     ];
-
     const filteredCountries = countries.filter(
         (country) => !excludedCountries1.includes(country.name)
     );
-
     const purposes = ["Туризм", "Бизнес", "Обучение", "Работа", "Навестить родных/друзей"];
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-        setErrors((prev) => ({ ...prev, [name]: "" }));
+
+        // Если пользователь меняет страну, сбрасываем зависимые поля и ошибки
+        if (name === "country") {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value,
+                // Сброс зависимых полей
+                purpose: "",
+                visaLast3Years: true, // Или null/false, если предпочтительнее
+                peopleCount: "1",
+                urgency: "Срочно (от 3х недель)",
+            }));
+            // Сброс ошибок для зависимых полей
+            setErrors((prev) => {
+                const newErrors = { ...prev };
+                delete newErrors.country;
+                delete newErrors.purpose;
+                delete newErrors.visaLast3Years;
+                delete newErrors.peopleCount;
+                delete newErrors.urgency;
+                return newErrors;
+            });
+        } else {
+            setFormData((prev) => ({ ...prev, [name]: value }));
+            setErrors((prev) => ({ ...prev, [name]: "" }));
+        }
     };
 
     const handleCheckboxChange = (e) => {
@@ -81,7 +100,6 @@ const FormBlock = () => {
         if (step === 5 && !formData.urgency) newErrors.urgency = "Выберите срочность";
         if (step === 6 && (!formData.phone || !validatePhone(formData.phone)))
             newErrors.phone = "Введите корректный телефон";
-
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
@@ -90,7 +108,35 @@ const FormBlock = () => {
     };
 
     const prevStep = () => {
-        if (step > 1) setStep(step - 1);
+        if (step > 1) {
+            // Если пользователь возвращается с шага "Цель поездки" (шаг 2) на "Выбор страны" (шаг 1),
+            // нужно сбросить зависимые поля и ошибки.
+            if (step === 2) {
+                setFormData((prev) => ({
+                    ...prev,
+                    country: prev.country, // Сохраняем выбранную страну
+                    // Сброс зависимых полей
+                    purpose: "",
+                    visaLast3Years: true, // Или null/false
+                    peopleCount: "1",
+                    urgency: "Срочно (от 3х недель)",
+                    phone: "", // Телефон тоже можно сбросить, если нужно
+                }));
+                // Сброс ошибок для зависимых полей
+                setErrors((prev) => {
+                    const newErrors = { ...prev };
+                    delete newErrors.purpose;
+                    delete newErrors.visaLast3Years;
+                    delete newErrors.peopleCount;
+                    delete newErrors.urgency;
+                    delete newErrors.phone; // И для телефона тоже
+                    // Ошибка страны, если была, может остаться, если она важна на шаге 1
+                    // delete newErrors.country;
+                    return newErrors;
+                });
+            }
+            setStep(step - 1);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -108,19 +154,17 @@ const FormBlock = () => {
             setErrors(newErrors);
             return;
         }
-
         try {
             // Форматирование номера телефона
             const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
-
             // Создание текстового примечания (note)
             const noteText = `
-            Страна - ${formData.country}
-            Цель - ${formData.purpose}
-            Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
-            Количество человек - ${formData.peopleCount}
-            Сроки - ${formData.urgency}
-        `.trim();
+Страна - ${formData.country}
+Цель - ${formData.purpose}
+Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
+Количество человек - ${formData.peopleCount}
+Сроки - ${formData.urgency}
+            `.trim(); // Исправлен .trim() для корректного форматирования
 
             // Подготовка данных в формате URLSearchParams
             const params = new URLSearchParams();
@@ -145,12 +189,13 @@ const FormBlock = () => {
 
             // В режиме no-cors мы не можем надежно проверить response.ok или status
             // Но если запрос не завершился сетевой ошибкой, считаем его "успешным" для клиента
-            console.log("Запрос отправлен. Статус (может быть ограничен no-cors):", response?.status); // response может быть opaque
+            console.log("Запрос отправлен. Response (ограничен no-cors):", response); // response может быть opaque
 
             // Устанавливаем успех сразу после отправки, как в первом примере
             setIsSuccess(true);
             // Сброс или обработка успешного состояния
-            resetForm(); // Вы можете вызвать сброс формы здесь, если нужно
+            // resetForm(); // Не вызываем resetForm здесь, чтобы показать сообщение об успехе
+            // Ошибки тоже можно не сбрасывать, так как форма "успешна"
 
         } catch (error) {
             // Этот блок catch сработает только при сетевых ошибках (например, DNS, CORS preflight fail)
@@ -179,7 +224,7 @@ const FormBlock = () => {
     };
 
     return (
-        <div className="mx-auto px-[7%] pt-32 mdd:pt-20">
+        <div className="mx-auto">
             <div className="bg-white">
                 <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-2">
                     Рассчитать стоимость
@@ -190,7 +235,6 @@ const FormBlock = () => {
             получите расчет стоимости визы по своему запросу
           </span>
                 </p>
-
                 <div className="bg-[#FAFAFA] rounded-lg shadow-lg border py-6 px-8 mdd:py-4 mdd:px-3">
                     <div className="flex justify-between mb-8 mdd:mb-0 text-lg font-medium">
                         {steps.map((stepName, index) => (
@@ -204,7 +248,6 @@ const FormBlock = () => {
               </span>
                         ))}
                     </div>
-
                     {step === 1 && (
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">Какую страну хотите посетить?</label>
@@ -229,7 +272,6 @@ const FormBlock = () => {
                             {errors.country && <p className="text-red-500 text-xs">{errors.country}</p>}
                         </div>
                     )}
-
                     {step === 2 && (
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">Основная цель Вашей поездки?</label>
@@ -254,14 +296,16 @@ const FormBlock = () => {
                             {errors.purpose && <p className="text-red-500 text-xs">{errors.purpose}</p>}
                         </div>
                     )}
-
                     {step === 3 && (
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">Визы за последние 3 года?</label>
                             <div className="flex mdd:justify-between gap-2">
                                 <button
                                     type="button"
-                                    onClick={() => setFormData({ ...formData, visaLast3Years: true })}
+                                    onClick={() => {
+                                        setFormData({ ...formData, visaLast3Years: true });
+                                        setErrors((prev) => ({ ...prev, visaLast3Years: "" }));
+                                    }}
                                     className={`w-28 mdd:w-full py-2 rounded-full ${
                                         formData.visaLast3Years === true
                                             ? "bg-orange-500 text-white"
@@ -272,7 +316,10 @@ const FormBlock = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() => setFormData({ ...formData, visaLast3Years: false })}
+                                    onClick={() => {
+                                        setFormData({ ...formData, visaLast3Years: false });
+                                        setErrors((prev) => ({ ...prev, visaLast3Years: "" }));
+                                    }}
                                     className={`w-28 mdd:w-full py-2 rounded-full ${
                                         formData.visaLast3Years === false
                                             ? "bg-orange-500 text-white"
@@ -287,7 +334,6 @@ const FormBlock = () => {
                             )}
                         </div>
                     )}
-
                     {step === 4 && (
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">
@@ -299,7 +345,10 @@ const FormBlock = () => {
                                         <button
                                             key={count}
                                             type="button"
-                                            onClick={() => setFormData({ ...formData, peopleCount: count })}
+                                            onClick={() => {
+                                                setFormData({ ...formData, peopleCount: count });
+                                                setErrors((prev) => ({ ...prev, peopleCount: "" }));
+                                            }}
                                             className={`w-28 py-2 rounded-full ${
                                                 formData.peopleCount === count
                                                     ? "bg-orange-500 text-white"
@@ -335,7 +384,6 @@ const FormBlock = () => {
                             )}
                         </div>
                     )}
-
                     {step === 5 && (
                         <div className="flex flex-col gap-5">
                             <label className="block font-medium">Срочно необходима виза?</label>
@@ -344,7 +392,10 @@ const FormBlock = () => {
                                     <button
                                         key={urgency}
                                         type="button"
-                                        onClick={() => setFormData({ ...formData, urgency: urgency })}
+                                        onClick={() => {
+                                            setFormData({ ...formData, urgency: urgency });
+                                            setErrors((prev) => ({ ...prev, urgency: "" }));
+                                        }}
                                         className={`px-8 py-2 rounded-full ${
                                             formData.urgency === urgency
                                                 ? "bg-orange-500 text-white"
@@ -360,7 +411,6 @@ const FormBlock = () => {
                             )}
                         </div>
                     )}
-
                     {step === 6 && (
                         <div>
                             {isSuccess ? (
@@ -371,7 +421,7 @@ const FormBlock = () => {
                                     <button
                                         type="button"
                                         onClick={resetForm}
-                                        className="px-8 py-2 bg-[#15419E] text-white rounded-full w-max"
+                                        className="px-4 py-2 bg-[#15419E] text-white rounded-full w-max mdd:w-full"
                                     >
                                         Рассчитать стоимость заново
                                     </button>
@@ -423,13 +473,17 @@ const FormBlock = () => {
                                     {errors.phone && (
                                         <p className="text-red-500 text-xs mdd:text-center">{errors.phone}</p>
                                     )}
+                                    {errors.submit && (
+                                        <p className="text-red-500 text-xs mdd:text-center">{errors.submit}</p>
+                                    )}
                                 </div>
                             )}
                         </div>
                     )}
-
+                    {/* Обновленные кнопки Назад/Далее для корректного отображения на всех устройствах */}
                     <div className="flex mdd:flex-col sm:gap-6 mdd:gap-2 mt-20 mdd:mt-5">
-                        <div className="mdd:hidden">
+                        {/* Блок для кнопки "Назад" - виден на всех экранах, где она должна быть */}
+                        <div className="sm:block"> {/* Всегда блок, внутри условия отображения */}
                             {step < 6 && step > 1 && (
                                 <button
                                     type="button"
@@ -449,17 +503,6 @@ const FormBlock = () => {
                                 Далее
                             </button>
                         )}
-                        <div className="sm:hidden">
-                            {step < 6 && step > 1 && (
-                                <button
-                                    type="button"
-                                    onClick={prevStep}
-                                    className="w-28 mdd:w-full py-2 border border-[#15419E] bg-white rounded-full"
-                                >
-                                    Назад
-                                </button>
-                            )}
-                        </div>
                     </div>
                 </div>
             </div>

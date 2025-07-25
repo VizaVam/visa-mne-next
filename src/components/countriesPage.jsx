@@ -1,6 +1,6 @@
 'use client'
 
-import {useMemo} from "react";
+import React, {useMemo} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {notFound, useParams, usePathname} from 'next/navigation';
@@ -19,6 +19,7 @@ import DocsShengen from "@/components/docsShengen";
 import NewSteps from "@/components/newSteps";
 import NewStepsCountries from "@/components/newStepsCountries";
 import Discount from "@/components/discount";
+import TakePrice from "@/components/TakePrice";
 
 // FAQ data organized by country URL
 const faqDataByCountry = {
@@ -607,6 +608,10 @@ const litva = [
     "viza-v-chehiyu"
 ];
 
+const form = [
+    "viza-v-latviyu",
+    "viza-v-chehiyu"
+];
 
 
 const il = [
@@ -771,14 +776,6 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     <VariantsList variants={selectedCountry.variants}/>
                                 )}
 
-                                {selectedCountry.typevb1?.length > 0 && (
-                                    <VisaTypeButtons
-                                        types={selectedCountry.typevb1}
-                                        links={selectedCountry.typevl1}
-                                        enabled={selectedCountry.enabled1 || []}
-                                    />
-                                )}
-
                                 {Array.isArray(selectedCountry.text11) && (
                                     <div>
                                         {selectedCountry.text11.map((text, i) => (
@@ -798,79 +795,71 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                 <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title221}/>
                                 <TextBlock text={selectedCountry.text4} parseText={parseText}/>
                                 <TextBlock text={selectedCountry.text5} parseText={parseText}/>
-
-                                {selectedCountry.typevc && (
-                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
-                                        {parseText(selectedCountry.typevc)}
-                                    </p>
-                                )}
-                                <TextBlock text={selectedCountry.textc} parseText={parseText}/>
-                                {selectedCountry.typevbc?.length > 0 && (
-                                    <VisaTypeButtons
-                                        types={selectedCountry.typevbc}
-                                        links={selectedCountry.typevlc}
-                                        enabled={selectedCountry.enabled || []}
-                                    />
-                                )}
-
-                                {Array.isArray(selectedCountry.text123) && selectedCountry.text123.length > 0 && Array.isArray(selectedCountry.text1233) && selectedCountry.text1233.length > 0 && (
-                                    <div>
-                                        <ol className="text-black text-[14px] list-decimal pl-5 bold-list-numbers">
-                                            {selectedCountry.text123.slice(0, 3).map((text, i) => (
-                                                <li key={i} className="mb-2">
-                                                    {parseText(text)}
-                                                    {selectedCountry.text1233[i] && selectedCountry.text1233[i].length > 0 && (
-                                                        <VariantsList variants={selectedCountry.text1233[i]}/>
-                                                    )}
-                                                </li>
-                                            ))}
-                                        </ol>
-                                    </div>
-                                )}
-
-                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title2}/>
-                                {selectedCountry.variants2?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants2}/>
-                                )}
-
-                                {Array.isArray(selectedCountry.text22) && (
-                                    <div>
-                                        {selectedCountry.text22.slice(0, 3).map((text, i) => (
-                                            <TextBlock key={i} text={text} parseText={parseText}/>
-                                        ))}
-                                    </div>
-                                )}
-
-                                <TextBlock text={selectedCountry.text6} parseText={parseText}/>
-
-                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title33}/>
-                                <TextBlock text={selectedCountry.text7} parseText={parseText}/>
-                                <TextBlock text={selectedCountry.text8} parseText={parseText}/>
-
-                                {selectedCountry.variants3?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants3} parseText={parseText}/>
-                                )}
-
-                                {selectedCountry.typevp && (
-                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
-                                        {parseText(selectedCountry.typevp)}
-                                    </p>
-                                )}
-                                {selectedCountry.typevbp?.length > 0 && (
-                                    <VisaTypeButtons
-                                        types={selectedCountry.typevbp}
-                                        links={selectedCountry.typevlp}
-                                        enabled={selectedCountry.enabled || []}
-                                    />
-                                )}
-
-                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title5}/>
-                                {selectedCountry.variants5?.length > 0 && (
-                                    <VariantsList variants={selectedCountry.variants5} parseText={parseText}/>
-                                )}
-
-                                <TextBlock text={selectedCountry.text00} parseText={parseText}/>
                             </div>
+
+                            {selectedCountry.typevc && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {selectedCountry.typevc && (
+                                <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                    {parseText(selectedCountry.typevc)}
+                                </p>
+                            )}
+                            {selectedCountry.typevc && (
+                                <TextBlock text={selectedCountry.textc} parseText={parseText}/>)}
+                            {selectedCountry.typevbc?.length > 0 && (
+                                <VisaTypeButtons
+                                    types={selectedCountry.typevbc}
+                                    links={selectedCountry.typevlc}
+                                    enabled={selectedCountry.enabled || []}
+                                />
+                            )}
+
+                            {Array.isArray(selectedCountry.text123) && selectedCountry.text123.length > 0 && Array.isArray(selectedCountry.text1233) && selectedCountry.text1233.length > 0 && (
+                                <div>
+                                    <ol className="text-black text-[14px] list-decimal pl-5 bold-list-numbers">
+                                        {selectedCountry.text123.slice(0, 3).map((text, i) => (
+                                            <li key={i} className="mb-2">
+                                                {parseText(text)}
+                                                {selectedCountry.text1233[i] && selectedCountry.text1233[i].length > 0 && (
+                                                    <VariantsList variants={selectedCountry.text1233[i]}/>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ol>
+                                </div>
+                            )}
+
+                            {selectedCountry.title2 && (
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title2}/>)}
+                            {selectedCountry.variants2?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants2}/>
+                            )}
+
+                            {Array.isArray(selectedCountry.text22) && (
+                                <div>
+                                    {selectedCountry.text22.slice(0, 3).map((text, i) => (
+                                        <TextBlock key={i} text={text} parseText={parseText}/>
+                                    ))}
+                                </div>
+                            )}
+
+                            {selectedCountry.text6 && (<TextBlock text={selectedCountry.text6} parseText={parseText}/>)}
+                            {selectedCountry.text7 && (<TextBlock text={selectedCountry.text7} parseText={parseText}/>)}
+                            {selectedCountry.text8 && (<TextBlock text={selectedCountry.text8} parseText={parseText}/>)}
+
+                            {selectedCountry.variants3?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants3} parseText={parseText}/>)}
+
+                            {selectedCountry.typevp && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {selectedCountry.typevp && (
+                                <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">{parseText(selectedCountry.typevp)}</p>)}
+                            {selectedCountry.typevbp?.length > 0 && (
+                                <VisaTypeButtons
+                                    types={selectedCountry.typevbp}
+                                    links={selectedCountry.typevlp}
+                                    enabled={selectedCountry.enabled || []}
+                                />)}
+
+                            {selectedCountry.typev && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
 
                             <div className="flex flex-col gap-6 lg:w-[60%]">
                                 {selectedCountry.typev && (
@@ -925,7 +914,6 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     </tbody>
                                 </table>
                             </div>
-
 
                             <TextBlock text={selectedCountry.text001} parseText={parseText}/>
 
@@ -1068,23 +1056,32 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                             <VariantsList variants={selectedCountry.variants12}/>
                                         )}
                                     </div>
+                                </div>
 
-                                    <div className="flex flex-col gap-6 lg:w-[60%]">
-                                        {selectedCountry.typev && (
-                                            <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
-                                                {parseText(selectedCountry.typev)}
-                                            </p>
-                                        )}
-
-                                        {selectedCountry.typevb?.length > 0 && (
-                                            <VisaTypeButtons
-                                                types={selectedCountry.typevb}
-                                                links={selectedCountry.typevl}
-                                                enabled={selectedCountry.enabled || []}
-                                            />
-                                        )}
+                                {!form.includes(selectedCountry.url) && (
+                                    <div className="w-full pt-20 mdd:pt-8">
+                                        <TakePrice/>
                                     </div>
+                                )}
 
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
+
+                                    {selectedCountry.typev && (
+                                        <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                            {parseText(selectedCountry.typev)}
+                                        </p>
+                                    )}
+
+                                    {selectedCountry.typevb?.length > 0 && (
+                                        <VisaTypeButtons
+                                            types={selectedCountry.typevb}
+                                            links={selectedCountry.typevl}
+                                            enabled={selectedCountry.enabled || []}
+                                        />
+                                    )}
+                                </div>
+
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
                                     {il.includes(selectedCountry.url) && (<div className={"flex flex-col gap-6"}>
                                         {/* Кому подходит виза заголовок */}
                                         <SectionTitle
@@ -1241,6 +1238,12 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             </div>
                         )}
                     </div>
+
+                    {form.includes(selectedCountry.url) && (
+                        <div className="w-full px-[7%] pt-20 mdd:pt-8">
+                            <TakePrice/>
+                        </div>
+                    )}
 
                     <div className={"pt-32 mdd:pt-20"}>
                         {docs.includes(selectedCountry.url) ? (

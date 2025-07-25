@@ -67,7 +67,7 @@ const RippleButton = memo(({onClick, children}) => (
 export default function HomePage() {
     const {openModal} = useModal();
     const currentDate = new Date();
-    const discountEndDate = new Date('2025-07-26T00:00:00+05:00');
+    const discountEndDate = new Date('2025-07-31T23:59:59+05:00');
 
     return (
         <div>
@@ -119,7 +119,7 @@ export default function HomePage() {
                 {currentDate < discountEndDate && (
                     <div className="sm:hidden -mt-24 px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
                         <p>
-                            <span className="font-bold text-blue-950 underline">АКЦИЯ до 25.07.2025!</span>
+                            <span className="font-bold text-blue-950 underline">АКЦИЯ до 31.07.2025!</span>
                             <br />
                             Испанская безличная виза - <span className="font-bold text-blue-950 underline">1600 BYN</span> (<span className="line-through">1850 BYN</span>)
                         </p>
@@ -149,7 +149,9 @@ export default function HomePage() {
                 <Services/>
             </div>
 
-            <TakePrice/>
+            <div className="px-[7%] pt-32 mdd:pt-20">
+                <TakePrice/>
+            </div>
 
             <div className={"pb-32 mdd:pb-20"}>
                 <NewSteps/>

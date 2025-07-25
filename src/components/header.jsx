@@ -25,7 +25,7 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     const currentDate = new Date();
-    const discountEndDate = new Date('2025-07-26T00:00:00+05:00');
+    const discountEndDate = new Date('2025-07-31T23:59:59+05:00');
 
     const excludedCountries = ["rabochaya-viza-v-ispaniyu", "rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
@@ -312,7 +312,7 @@ export default function Header() {
                 </div>
                 {currentDate < discountEndDate && (
                     <div className="mdd:hidden px-[7%] bg-orange-500 text-lg font-medium text-white py-1.5 text-center">
-                        <p><span className="font-bold text-blue-950 underline">АКЦИЯ до 25.07.2025!</span> Испанская
+                        <p><span className="font-bold text-blue-950 underline">АКЦИЯ до 31.07.2025!</span> Испанская
                             безличная виза - <span className="font-bold text-blue-950 underline">1600 BYN</span> (<span
                                 className="line-through">1850 BYN</span>)</p>
                     </div>

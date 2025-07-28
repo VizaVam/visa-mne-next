@@ -1140,7 +1140,7 @@ export const countries = [
         priceTitle: "Наши услуги",
         priceVariants: [
             <span>Подготовка пакета документов и запись - <span
-                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">2800</span> бел. руб.</span>,
+                className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">2100</span> бел. руб.</span>,
             <span>Подготовка пакета документов без записи - <span
                 className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">350</span> бел. руб.</span>
         ],
@@ -1148,13 +1148,13 @@ export const countries = [
             {
                 service: "Услуга компании (включена запись на подачу)",
                 cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">2800</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">2100</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов (включая перевод), запись на подачу визового заявления; **Важно!** Запись на подачу визового заявления **включена** в стоимость!"
                 ,
                 serviceMob: "Консультация, подготовка документов, **запись на подачу заявления;**\n" +
                     "\n",
                 costMob: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">2800</span> бел. руб.</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">2100</span> бел. руб.</span>
                 ,
             },
             {

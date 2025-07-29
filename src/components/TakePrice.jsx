@@ -44,8 +44,8 @@ const FormBlock = () => {
     const triggerYandexGoal = () => {
         // Проверка typeof window для безопасности SSR, хотя 'use client' уже применен
         if (typeof window !== 'undefined' && typeof window.ym !== 'undefined') {
-            window.ym(100438805, 'reachGoal', 'leadform_submit');
-            console.log('Yandex Metrika goal leadform_submit triggered');
+            window.ym(100438805, 'reachGoal', 'send_form');
+            console.log('Yandex Metrika goal send_form triggered');
         } else {
             console.warn('Yandex Metrika not initialized or window is not available');
         }

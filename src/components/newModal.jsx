@@ -44,11 +44,12 @@ const PhoneForm = () => {
 
     // Function to trigger Yandex Metrika reachGoal
     const triggerYandexGoal = () => {
-        if (typeof window.ym !== 'undefined') {
+        if (typeof window !== 'undefined' && typeof window.ym !== 'undefined') {
             window.ym(100438805, 'reachGoal', 'leadform_submit');
             console.log('Yandex Metrika goal leadform_submit triggered');
         } else {
-            console.warn('Yandex Metrika not initialized');
+            // Добавил проверку typeof window !== 'undefined' для безопасности на стороне сервера (SSR)
+            console.warn('Yandex Metrika not initialized or window is not available');
         }
     };
 
@@ -111,7 +112,8 @@ const PhoneForm = () => {
             console.log("Request sent. Response status:", response.status);
 
             setIsSuccess(true);
-            triggerYandexGoal(); // Trigger Yandex Metrika on success
+
+            triggerYandexGoal();
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);

@@ -40,6 +40,17 @@ const FormBlock = () => {
     );
     const purposes = ["Туризм", "Бизнес", "Обучение", "Работа", "Навестить родных/друзей"];
 
+    // Function to trigger Yandex Metrika reachGoal
+    const triggerYandexGoal = () => {
+        // Проверка typeof window для безопасности SSR, хотя 'use client' уже применен
+        if (typeof window !== 'undefined' && typeof window.ym !== 'undefined') {
+            window.ym(100438805, 'reachGoal', 'leadform_submit');
+            console.log('Yandex Metrika goal leadform_submit triggered');
+        } else {
+            console.warn('Yandex Metrika not initialized or window is not available');
+        }
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
@@ -196,6 +207,8 @@ const FormBlock = () => {
             // Сброс или обработка успешного состояния
             // resetForm(); // Не вызываем resetForm здесь, чтобы показать сообщение об успехе
             // Ошибки тоже можно не сбрасывать, так как форма "успешна"
+
+            triggerYandexGoal();
 
         } catch (error) {
             // Этот блок catch сработает только при сетевых ошибках (например, DNS, CORS preflight fail)

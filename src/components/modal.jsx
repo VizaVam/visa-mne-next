@@ -1,5 +1,4 @@
 'use client'
-
 import {useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import {IMaskInput} from "react-imask";
@@ -59,8 +58,9 @@ const Modal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {name, phone, email} = formData;
-
         const newErrors = {};
+
+        // Validate form fields
         if (!name?.trim()) newErrors.name = "Поле обязательно к заполнению";
         if (!phone || !phone.trim()) {
             newErrors.phone = "Поле обязательно к заполнению";
@@ -69,30 +69,26 @@ const Modal = () => {
         }
         if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
-        // Проверка на запрещённый номер
-        // const formattedPhone = `+${phone.replace(/\D/g, "")}`;
-        // if (formattedPhone === "+375447621630") {
-        //     newErrors.phone = "Отправка заявки с этого номера невозможна";
-        // }
-
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
         try {
+            setIsSubmitting(true);
+
+            // Format phone and email
             const formattedPhone = `+${phone.replace(/\D/g, "")}`;
             const finalEmail = email?.trim() || '';
 
-            setIsSubmitting(true);
-
+            // Prepare form data
             const params = new URLSearchParams();
             params.append("u_name", name);
             params.append("u_phone", formattedPhone);
             params.append("u_email", finalEmail);
             params.append("source", "заявка с сайта visavampro.by");
 
-            console.log("Formatted phone:", formattedPhone);
+            // Send form data to API
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",
                 mode: "no-cors",
@@ -100,9 +96,15 @@ const Modal = () => {
                 body: params.toString(),
             });
 
-            console.log("Request sent. Response status:", response.status);
-
-            setIsSuccess(true);
+            // Check if the request was successful
+            if (response.ok) {
+                console.log("Request sent successfully.");
+                setIsSuccess(true);
+                triggerYandexGoal(); // Trigger Yandex Metrika reachGoal
+            } else {
+                console.error("Request failed with status:", response.status);
+                setIsSuccess(false);
+            }
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);
@@ -145,9 +147,7 @@ const Modal = () => {
                 >
                     <img src="/close.svg" alt="Закрыть" className="w-6 h-6"/>
                 </button>
-
                 <h2 className="text-2xl font-medium mb-6">Оформить заявку</h2>
-
                 {isSuccess ? (
                     <div className="text-center p-4">
                         <div className="p-4 bg-gray-100 rounded text-sm">
@@ -171,7 +171,6 @@ const Modal = () => {
                                 <p className="text-red-500 text-xs mt-1">{errors.name}</p>
                             )}
                         </div>
-
                         <div>
                             <IMaskInput
                                 mask="+000 00 000-00-00"
@@ -198,7 +197,6 @@ const Modal = () => {
                                 <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
                             )}
                         </div>
-
                         <div>
                             <input
                                 type="email"
@@ -209,7 +207,6 @@ const Modal = () => {
                                 className="w-full border border-[#15419E] rounded-full p-3 text-sm"
                             />
                         </div>
-
                         <div className="flex mt-4 items-center">
                             <input
                                 type="checkbox"
@@ -230,11 +227,9 @@ const Modal = () => {
                                 </a>
                             </label>
                         </div>
-
                         {errors.agreement && (
                             <p className="text-red-500 text-xs mt-1">{errors.agreement}</p>
                         )}
-
                         <div className="pt-1">
                             <button
                                 type="submit"

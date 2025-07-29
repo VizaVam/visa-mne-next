@@ -719,8 +719,7 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                             <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске!</p>
                         )}
                         {(italy.includes(selectedCountry.url)) && (
-                            <p className="mdd:text-[14px] sm:text-[20px]">*полное сопровождение «под ключ» с подачей в
-                                Минске!</p>
+                            <p className="mdd:text-[14px] sm:text-[20px]">*оформление «под ключ»!</p>
                         )}
                         </span>
                 </div>

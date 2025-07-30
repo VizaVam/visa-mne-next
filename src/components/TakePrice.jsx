@@ -494,14 +494,14 @@ const FormBlock = () => {
                         </div>
                     )}
                     {/* Обновленные кнопки Назад/Далее для корректного отображения на всех устройствах */}
-                    <div className="flex mdd:flex-col sm:gap-6 mdd:gap-2 mt-20 mdd:mt-5">
+                    <div className="flex mdd:flex-col mdd:gap-2 mt-20 mdd:mt-5">
                         {/* Блок для кнопки "Назад" - виден на всех экранах, где она должна быть */}
                         <div className="sm:block"> {/* Всегда блок, внутри условия отображения */}
                             {step < 6 && step > 1 && (
                                 <button
                                     type="button"
                                     onClick={prevStep}
-                                    className="w-28 mdd:w-full py-2 border border-[#15419E] bg-white rounded-full"
+                                    className="w-28 mdd:w-full py-2 sm:mr-2 border border-[#15419E] bg-white rounded-full"
                                 >
                                     Назад
                                 </button>

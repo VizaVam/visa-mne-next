@@ -783,6 +783,27 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     </div>
                                 )}
 
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title223}/>
+                                <TextBlock text={selectedCountry.text53} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text54} parseText={parseText}/>
+                                {selectedCountry.variants223?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants223}/>
+                                )}
+                                {/*{Array.isArray(selectedCountry.text123) && selectedCountry.text123.length > 0 && Array.isArray(selectedCountry.text1233) && selectedCountry.text1233.length > 0 && (*/}
+                                {/*    <div>*/}
+                                {/*        <ol className="text-black text-[14px] list-decimal pl-5 bold-list-numbers">*/}
+                                {/*            {selectedCountry.text123.slice(0, 3).map((text, i) => (*/}
+                                {/*                <li key={i} className="mb-2">*/}
+                                {/*                    {parseText(text)}*/}
+                                {/*                    {selectedCountry.text1233[i] && selectedCountry.text1233[i].length > 0 && (*/}
+                                {/*                        <VariantsList variants={selectedCountry.text1233[i]}/>*/}
+                                {/*                    )}*/}
+                                {/*                </li>*/}
+                                {/*            ))}*/}
+                                {/*        </ol>*/}
+                                {/*    </div>*/}
+                                {/*)}*/}
+
                                 <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title22}/>
                                 <TextBlock text={selectedCountry.text2} parseText={parseText}/>
                                 <TextBlock text={selectedCountry.text3} parseText={parseText}/>
@@ -810,21 +831,6 @@ export default function CountryPage({breadcrumbs, countryData, countryUrl}) {
                                     links={selectedCountry.typevlc}
                                     enabled={selectedCountry.enabled || []}
                                 />
-                            )}
-
-                            {Array.isArray(selectedCountry.text123) && selectedCountry.text123.length > 0 && Array.isArray(selectedCountry.text1233) && selectedCountry.text1233.length > 0 && (
-                                <div>
-                                    <ol className="text-black text-[14px] list-decimal pl-5 bold-list-numbers">
-                                        {selectedCountry.text123.slice(0, 3).map((text, i) => (
-                                            <li key={i} className="mb-2">
-                                                {parseText(text)}
-                                                {selectedCountry.text1233[i] && selectedCountry.text1233[i].length > 0 && (
-                                                    <VariantsList variants={selectedCountry.text1233[i]}/>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </div>
                             )}
 
                             {selectedCountry.title2 && (

@@ -18,6 +18,7 @@ import Slider from "@/components/slider";
 import NewSteps from "@/components/newSteps";
 import Discount from "@/components/discount";
 import TakePrice from "@/components/TakePrice";
+import VizaCoop from "@/components/VizaCoop";
 
 const RippleButton = memo(({onClick, children}) => (
     <button
@@ -127,6 +128,10 @@ export default function VisaPage({breadcrumbs}) {
             </div>
 
             <Serviceson/>
+
+            <div className="px-[7%] pt-32 mdd:pt-20">
+                <VizaCoop/>
+            </div>
 
             <div className="px-[7%] pt-32 mdd:pt-20">
                 <TakePrice/>

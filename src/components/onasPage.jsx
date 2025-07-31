@@ -12,6 +12,8 @@ import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Discount from "@/components/discount";
 import {faqData} from "@/components/fag";
+import VizaCoop from "@/components/VizaCoop";
+import React from "react";
 
 const RippleButton = ({onClick, children}) => (
     <button
@@ -218,6 +220,10 @@ export default function OnasPage({breadcrumbs}) {
                         </button>
                     </Link>
                 </div>
+            </div>
+
+            <div className="px-[7%] pt-32 mdd:pt-20">
+                <VizaCoop/>
             </div>
 
             {/* Inject FAQ Schema */}

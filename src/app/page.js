@@ -14,6 +14,7 @@ import Announcement from "@/components/announcement";
 import PhoneForm from "@/components/newModal"
 import NewSteps from "@/components/newSteps";
 import TakePrice from "@/components/TakePrice";
+import VizaCoop from "@/components/VizaCoop";
 
 const AdvantageItem = ({value, description}) => (
     <li className="flex items-center text-lg">
@@ -147,6 +148,10 @@ export default function HomePage() {
                     Оформление документов для подачи на визы
                 </h2>
                 <Services/>
+            </div>
+
+            <div className="px-[7%] pt-32 mdd:pt-20">
+                <VizaCoop/>
             </div>
 
             <div className="px-[7%] pt-32 mdd:pt-20">

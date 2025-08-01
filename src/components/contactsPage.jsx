@@ -1,14 +1,18 @@
 'use client'
 
+import React, { Suspense, lazy } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {motion} from "framer-motion";
-import {useModal} from "@/components/modalcontext";
+import { motion } from "framer-motion";
+import { useModal } from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Contacts from "@/components/contacts";
-import Discount from "@/components/discount";
 
-const RippleButton = ({onClick, children}) => (
+// Lazy-loaded components
+const Contacts = lazy(() => import("@/components/contacts"));
+const Discount = lazy(() => import("@/components/discount"));
+
+// Reusable RippleButton component (from previous optimizations)
+const RippleButton = ({ onClick, children }) => (
     <button
         onClick={onClick}
         className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
@@ -17,8 +21,8 @@ const RippleButton = ({onClick, children}) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{scale: 0, opacity: 1.5}}
-                animate={{scale: 4, opacity: 0}}
+                initial={{ scale: 0, opacity: 1.5 }}
+                animate={{ scale: 4, opacity: 0 }}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -34,7 +38,8 @@ const RippleButton = ({onClick, children}) => (
     </button>
 );
 
-const ContactInfoItem = ({icon, alt, children}) => (
+// Reusable ContactInfoItem component
+const ContactInfoItem = ({ icon, alt, children }) => (
     <div className="flex gap-4 items-start">
         <Image
             src={icon}
@@ -49,6 +54,7 @@ const ContactInfoItem = ({icon, alt, children}) => (
     </div>
 );
 
+// Reusable ContactPhone component
 const ContactPhone = () => (
     <ContactInfoItem icon="/contacts-call-icon.png" alt="Phone">
         <div className="flex flex-col">
@@ -62,6 +68,7 @@ const ContactPhone = () => (
     </ContactInfoItem>
 );
 
+// Reusable ContactEmail component
 const ContactEmail = () => (
     <ContactInfoItem icon="/contacts-email-icon.png" alt="Email">
         <a href="mailto:info@visavam.by" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
@@ -70,6 +77,7 @@ const ContactEmail = () => (
     </ContactInfoItem>
 );
 
+// Reusable ContactAddress component
 const ContactAddress = () => (
     <ContactInfoItem icon="/contacts-location-icon.png" alt="Location">
         <div className="flex flex-col gap-4">
@@ -93,7 +101,8 @@ const ContactAddress = () => (
     </ContactInfoItem>
 );
 
-const LegalInfoSection = ({title, children}) => (
+// Reusable LegalInfoSection component
+const LegalInfoSection = ({ title, children }) => (
     <div className="mb-6">
         {title && <h3 className="font-semibold mb-2">{title}</h3>}
         <p className="text-[18px] mdd:text-[14px]">
@@ -102,8 +111,30 @@ const LegalInfoSection = ({title, children}) => (
     </div>
 );
 
-export default function ContactsPage({breadcrumbs}) {
-    const {openModal} = useModal();
+// Reusable LegalInfo component
+const LegalInfo = () => (
+    <div className="w-full relative flex flex-col gap-6 px-[7%] pt-16 text-[18px] mdd:text-[14px]">
+        <LegalInfoSection title="">
+            Общество с ограниченной ответственностью "Визовый Сервис"<br/>
+            УНП 193637145<br/>
+            Гос. регистрация N 193637145 от 22.07.2022 Минский горисполком
+        </LegalInfoSection>
+        <LegalInfoSection title="Юридический адрес:">
+            РЕСПУБЛИКА БЕЛАРУСЬ; , г. Минск, 220004, пр. Победителей, д. 17, оф. 1204<br/>
+            Директор Андронова Ядвига Казимировна
+        </LegalInfoSection>
+        <LegalInfoSection title="Банковские реквизиты:">
+            БИК банка<br/>
+            UNBSBY2X<br/>
+            IBAN<br/>
+            BY53 UNBS 3012 1603 7000 0000 1933<br/>
+            Банк ЗАО "БСБ Банк"
+        </LegalInfoSection>
+    </div>
+);
+
+export default function ContactsPage({ breadcrumbs }) {
+    const { openModal } = useModal();
 
     return (
         <div>
@@ -153,7 +184,9 @@ export default function ContactsPage({breadcrumbs}) {
                     </div>
                 </div>
 
-                <Discount/>
+                <Suspense fallback={<div>Loading Discount...</div>}>
+                    <Discount/>
+                </Suspense>
 
                 {/* Contact Info Section */}
                 <div
@@ -176,30 +209,12 @@ export default function ContactsPage({breadcrumbs}) {
                     </div>
                 </div>
 
-                {/* Legal Info Section */}
-                <div className="w-full relative flex flex-col gap-6 px-[7%] pt-16 text-[18px] mdd:text-[14px]">
-                    <LegalInfoSection title="">
-                        Общество с ограниченной ответственностью "Визовый Сервис"<br/>
-                        УНП 193637145<br/>
-                        Гос. регистрация N 193637145 от 22.07.2022 Минский горисполком
-                    </LegalInfoSection>
+                <LegalInfo/>
 
-                    <LegalInfoSection title="Юридический адрес:">
-                        РЕСПУБЛИКА БЕЛАРУСЬ; , г. Минск, 220004, пр. Победителей, д. 17, оф. 1204<br/>
-                        Директор Андронова Ядвига Казимировна
-                    </LegalInfoSection>
-
-                    <LegalInfoSection title="Банковские реквизиты:">
-                        БИК банка<br/>
-                        UNBSBY2X<br/>
-                        IBAN<br/>
-                        BY53 UNBS 3012 1603 7000 0000 1933<br/>
-                        Банк ЗАО "БСБ Банк"
-                    </LegalInfoSection>
-                </div>
+                <Suspense fallback={<div>Loading Contacts...</div>}>
+                    <Contacts/>
+                </Suspense>
             </div>
-
-            <Contacts/>
         </div>
     );
-}
+};

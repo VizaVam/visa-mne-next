@@ -34,8 +34,8 @@ const CriticalContactContent = ({ breadcrumbs, Breadcrumbs }) => {
                             alt="Оформление виз с VisaVam.by – Легко и Доступно"
                             width={1000}
                             height={1000}
-                            className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] mdd:hidden"
-                            priority // Оставляем этот как критический
+                            className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] mdd:-z-50 mdd:hidden"
+                            unoptimized
                         />
                         <Image
                             src="/contactsbanner-f.svg"
@@ -43,8 +43,7 @@ const CriticalContactContent = ({ breadcrumbs, Breadcrumbs }) => {
                             width={1000}
                             height={1000}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
-                            // Удаляем priority и добавляем lazy loading
-                            unoptimized // Для SVG, чтобы избежать автоматической оптимизации
+                            priority
                         />
                     </div>
 

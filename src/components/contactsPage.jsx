@@ -51,13 +51,13 @@ export default function ContactsPage({ breadcrumbs }) {
                             width={1000}
                             height={1000}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] mdd:hidden"
-                            priority
+                            unoptimized
                         />
                         <Image
                             src="/contactsbanner-f.svg"
                             alt="Контакты VisaVam"
-                            width={1000}
-                            height={1000}
+                            width={800}
+                            height={600}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
                             priority
                         />

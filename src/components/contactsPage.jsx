@@ -3,135 +3,21 @@
 import React, { Suspense, lazy } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useModal } from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
-// Lazy-loaded components
+// Lazy-loaded UI components
+const RippleButton = lazy(() => import("@/components/ui/RippleButton"));
+
+// Lazy-loaded contact components
+const ContactPhone = lazy(() => import("@/components/contacts/ContactPhone"));
+const ContactEmail = lazy(() => import("@/components/contacts/ContactEmail"));
+const ContactAddress = lazy(() => import("@/components/contacts/ContactAddress"));
+
+// Lazy-loaded sections
+const LegalInfo = lazy(() => import("@/components/legal/LegalInfo"));
 const Contacts = lazy(() => import("@/components/contacts"));
 const Discount = lazy(() => import("@/components/discount"));
-
-// Reusable RippleButton component (from previous optimizations)
-const RippleButton = ({ onClick, children }) => (
-    <button
-        onClick={onClick}
-        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
-    >
-        {[0, 1, 2].map((i) => (
-            <motion.span
-                key={i}
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
-                transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                    repeatDelay: 0.5,
-                    delay: i * 0.4,
-                }}
-            >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
-            </motion.span>
-        ))}
-        {children}
-    </button>
-);
-
-// Reusable ContactInfoItem component
-const ContactInfoItem = ({ icon, alt, children }) => (
-    <div className="flex gap-4 items-start">
-        <Image
-            src={icon}
-            alt={alt}
-            width={24}
-            height={24}
-            className="w-6 h-6"
-        />
-        <div className="flex-1">
-            {children}
-        </div>
-    </div>
-);
-
-// Reusable ContactPhone component
-const ContactPhone = () => (
-    <ContactInfoItem icon="/contacts-call-icon.png" alt="Phone">
-        <div className="flex flex-col">
-            <a href="tel:+375296800620" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
-                +375296800620
-            </a>
-            <p className="font-normal text-[14px] mdd:text-[12px] text-[#808080]">
-                Мобильный, Вайбер, Телеграм, Ватсап
-            </p>
-        </div>
-    </ContactInfoItem>
-);
-
-// Reusable ContactEmail component
-const ContactEmail = () => (
-    <ContactInfoItem icon="/contacts-email-icon.png" alt="Email">
-        <a href="mailto:info@visavam.by" className="text-[18px] mdd:text-[14px] underline hover:font-normal font-medium text-blue-500">
-            info@visavam.by
-        </a>
-    </ContactInfoItem>
-);
-
-// Reusable ContactAddress component
-const ContactAddress = () => (
-    <ContactInfoItem icon="/contacts-location-icon.png" alt="Location">
-        <div className="flex flex-col gap-4">
-            <p className="text-[18px] mdd:text-[14px] font-medium">
-                Минск, пр. Победителей 17 офис 1204 (метро Немига)
-            </p>
-            <a
-                href="https://www.google.com/maps/place/Visa+Vam/@53.910344,27.5447334,17z/data=!3m1!4b1!4m6!3m5!1s0x46dbcfe91ef014a9:0xa6163600e41617e9!8m2!3d53.910344!4d27.5473083!16s%2Fg%2F11x1ym4kj8?entry=ttu&g_ep=EgoyMDI1MDIwNS4xIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:font-normal font-medium text-blue-500"
-            >
-                Google maps
-            </a>
-            <div className="text-[18px] mdd:text-[14px] font-medium">
-                <p>Пн-пт: с 09:00 до 19:00</p>
-                <p>Суббота c 10:00 до 14:00</p>
-                <p>Воскресенье: выходной</p>
-            </div>
-        </div>
-    </ContactInfoItem>
-);
-
-// Reusable LegalInfoSection component
-const LegalInfoSection = ({ title, children }) => (
-    <div className="mb-6">
-        {title && <h3 className="font-semibold mb-2">{title}</h3>}
-        <p className="text-[18px] mdd:text-[14px]">
-            {children}
-        </p>
-    </div>
-);
-
-// Reusable LegalInfo component
-const LegalInfo = () => (
-    <div className="w-full relative flex flex-col gap-6 px-[7%] pt-16 text-[18px] mdd:text-[14px]">
-        <LegalInfoSection title="">
-            Общество с ограниченной ответственностью "Визовый Сервис"<br/>
-            УНП 193637145<br/>
-            Гос. регистрация N 193637145 от 22.07.2022 Минский горисполком
-        </LegalInfoSection>
-        <LegalInfoSection title="Юридический адрес:">
-            РЕСПУБЛИКА БЕЛАРУСЬ; , г. Минск, 220004, пр. Победителей, д. 17, оф. 1204<br/>
-            Директор Андронова Ядвига Казимировна
-        </LegalInfoSection>
-        <LegalInfoSection title="Банковские реквизиты:">
-            БИК банка<br/>
-            UNBSBY2X<br/>
-            IBAN<br/>
-            BY53 UNBS 3012 1603 7000 0000 1933<br/>
-            Банк ЗАО "БСБ Банк"
-        </LegalInfoSection>
-    </div>
-);
 
 export default function ContactsPage({ breadcrumbs }) {
     const { openModal } = useModal();
@@ -178,9 +64,11 @@ export default function ContactsPage({ breadcrumbs }) {
                     </div>
 
                     <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[27%]">
-                        <RippleButton onClick={openModal}>
-                            Получить консультацию
-                        </RippleButton>
+                        <Suspense fallback={<div>Загрузка кнопки...</div>}>
+                            <RippleButton onClick={openModal}>
+                                Получить консультацию
+                            </RippleButton>
+                        </Suspense>
                     </div>
                 </div>
 
@@ -203,13 +91,21 @@ export default function ContactsPage({ breadcrumbs }) {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <ContactPhone/>
-                        <ContactEmail/>
-                        <ContactAddress/>
+                        <Suspense fallback={<div>Загрузка телефона...</div>}>
+                            <ContactPhone/>
+                        </Suspense>
+                        <Suspense fallback={<div>Загрузка email...</div>}>
+                            <ContactEmail/>
+                        </Suspense>
+                        <Suspense fallback={<div>Загрузка адреса...</div>}>
+                            <ContactAddress/>
+                        </Suspense>
                     </div>
                 </div>
 
-                <LegalInfo/>
+                <Suspense fallback={<div>Загрузка реквизитов...</div>}>
+                    <LegalInfo/>
+                </Suspense>
 
                 <Suspense fallback={<div>Loading Contacts...</div>}>
                     <Contacts/>
@@ -217,4 +113,4 @@ export default function ContactsPage({ breadcrumbs }) {
             </div>
         </div>
     );
-};
+}

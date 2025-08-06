@@ -684,7 +684,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         alt=""
                         width={1000}
                         height={1000}
-                        priority={true}
+                        unoptimized={true}
                         className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
                     />
                     <Image

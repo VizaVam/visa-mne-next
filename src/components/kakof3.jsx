@@ -125,7 +125,7 @@ export default function OnasPage({breadcrumbs}) {
                         alt="О компании VisaVam"
                         width={1600}
                         height={1000}
-                        priority={true}
+                        unoptimized={true}
                         className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                     />
                     <Image

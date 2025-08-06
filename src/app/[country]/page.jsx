@@ -69,14 +69,14 @@ export async function generateMetadata({ params }) {
         },
         {
             url: "/visa-c.png",
-            width: 1000,
-            height: 1000,
+            width: 820,
+            height: 891,
             alt: `Визовые услуги для ${detailedCountryData.name}`,
         },
         {
             url: "/visa-cc.png",
-            width: 1000,
-            height: 1000,
+            width: 820,
+            height: 802,
             alt: `Визовые услуги для ${detailedCountryData.name}`,
         },
         {

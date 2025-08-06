@@ -137,10 +137,10 @@ export default function OnasPage({breadcrumbs}) {
                     <Image
                         src="/visa-banner-new.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        width={1000}
-                        height={1000}
+                        width={850}
+                        height={827}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
-                        priority={true}
+                        unoptimized
                     />
                     <Image
                         src="/onas114.jpg"
@@ -148,7 +148,7 @@ export default function OnasPage({breadcrumbs}) {
                         width={600}
                         height={600}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
-                        priority={true}
+                        priority
                     />
                 </div>
 
@@ -172,7 +172,7 @@ export default function OnasPage({breadcrumbs}) {
                     className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                 />
                 <Image
-                    src="/onasmobile.JPG"
+                    src="/onasmobile.jpg"
                     alt="О компании VisaVam"
                     width={600}
                     height={400}

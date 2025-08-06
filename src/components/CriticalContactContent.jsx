@@ -40,7 +40,7 @@ const CriticalContactContent = ({ breadcrumbs, Breadcrumbs }) => {
                         <Image
                             src="/contactsbanner-f.png"
                             alt="Контакты VisaVam"
-                            width={375}
+                            width={450}
                             height={554}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
                             priority

@@ -32,16 +32,10 @@ export const metadata = {
                 alt: "О компании VisaVam",
             },
             {
-                url: "/onasmobile.JPG", // Мобильный баннер
+                url: "/onasmobile.jpg", // Мобильный баннер
                 width: 600,
                 height: 400,
                 alt: "О компании VisaVam",
-            },
-            {
-                url: "/og-services.jpg", // Основное OG изображение
-                width: 1200,
-                height: 630,
-                alt: "Visa Vam - визовая поддержка",
             },
         ],
     },

@@ -108,7 +108,7 @@ export default function HomePage() {
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
                         // priority // Используйте только для критически важных изображений выше "сгиба"
-                        priority={true} // Если это главное изображение выше "сгиба"
+                        unoptimized // Если это главное изображение выше "сгиба"
                     />
                     <Image
                         width={840}

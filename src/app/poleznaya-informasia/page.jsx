@@ -31,12 +31,6 @@ export const metadata = {
                 height: 1000,
                 alt: "Полезная информация VisaVam",
             },
-            {
-                url: "/og-services.jpg",
-                width: 1200,
-                height: 630,
-                alt: "Visa Vam - визовая поддержка",
-            },
         ],
     },
 };

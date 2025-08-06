@@ -20,7 +20,7 @@ export const metadata = {
                 alt: "Оформление виз с VisaVam.by – Легко и Доступно",
             },
             {
-                url: "/visabanner-f.svg",
+                url: "/visabanner-f.png",
                 width: 1000,
                 height: 1000,
                 alt: "Оформление виз с VisaVam.by – Легко и Доступно",

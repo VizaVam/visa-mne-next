@@ -20,7 +20,7 @@ export const metadata = {
                 alt: "Оформление виз с VisaVam.by – Легко и Доступно",
             },
             {
-                url: "/contactsbanner-f.svg", // Главный баннер (мобильный)
+                url: "/contactsbanner-f.png", // Главный баннер (мобильный)
                 width: 1000,
                 height: 1000,
                 alt: "Контакты VisaVam",
@@ -48,12 +48,6 @@ export const metadata = {
                 width: 24,
                 height: 24,
                 alt: "Location icon",
-            },
-            {
-                url: "/og-contacts.jpg", // Основное OG изображение (рекомендуется добавить)
-                width: 1200,
-                height: 630,
-                alt: "Visa Vam - контакты",
             },
         ],
     },

@@ -32,16 +32,16 @@ const CriticalContactContent = ({ breadcrumbs, Breadcrumbs }) => {
                         <Image
                             src="/conc.png"
                             alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                            width={1000}
-                            height={1000}
+                            width={842}
+                            height={802}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] mdd:-z-50 mdd:hidden"
                             unoptimized
                         />
                         <Image
-                            src="/contactsbanner-f.svg"
+                            src="/contactsbanner-f.png"
                             alt="Контакты VisaVam"
-                            width={1000}
-                            height={1000}
+                            width={375}
+                            height={554}
                             className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
                             priority
                         />

@@ -1,6 +1,6 @@
-import CountryPage from '@/components/countriesPage';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import {notFound} from 'next/navigation';
+import CountryPage from "@/components/countriesPage";
 
 export const dynamicParams = false;
 
@@ -264,16 +264,23 @@ export async function generateMetadata({params}) {
 export default function Page({params}) {
     const {country} = params;
     const countryData = countries.find(c => c.url === country);
+
     if (!countryData || !countryData.title) {
         notFound();
     }
 
+    const breadcrumbs = [
+        {name: "Главная", url: "https://visavampro.by/"},
+        {name: "Шенгенские визы", url: "https://visavampro.by/shengenskie-vizy"},
+        {name: countryData.title, url: `https://visavampro.by/shengenskie-vizy/${country}`}
+    ];
+
     return (
         <>
+            <Breadcrumbs breadcrumbs={breadcrumbs}/>
             <CountryPage
-                // breadcrumbs={breadcrumbs} // Убираем, если они внутри компонента
                 countryData={countryData}
-                countryUrl={country} // Передаем только URL страны
+                countryUrl={country}
             />
         </>
     );

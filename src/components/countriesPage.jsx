@@ -1,12 +1,26 @@
-// components/countriesPage.jsx
 'use client'
 
-import React, { Suspense } from "react";
-import dynamic from 'next/dynamic';
-import { notFound } from 'next/navigation';
-import Breadcrumbs from '@/components/Breadcrumbs';
+import React, { useMemo, Suspense, lazy } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { notFound, useParams, usePathname } from 'next/navigation';
+import { motion } from "framer-motion";
 import { countries } from "@/data/countries";
+import { useModal } from "@/components/modalcontext";
+import Discount from "@/components/discount";
+import TakePrice from "@/components/TakePrice";
 
+// Lazy-loaded components
+const Contacts = lazy(() => import("@/components/contacts"));
+const Docs = lazy(() => import("@/components/docs"));
+const DocsShengen = lazy(() => import("@/components/docsShengen"));
+const DownloadFiles = lazy(() => import("@/components/downloadFiles"));
+const PhoneForm = lazy(() => import("@/components/newModal"));
+const Slider = lazy(() => import("@/components/slider"));
+const NewStepsCountries = lazy(() => import("@/components/newStepsCountries"));
+const FAQ = lazy(() => import("@/components/Faq")); // Assuming FAQ is extracted into a separate file
+
+// FAQ data (unchanged, assuming it's in a separate file or remains here)
 export const faqDataByCountry = {
     "viza-v-polshu": [
         {
@@ -298,38 +312,763 @@ export const faqDataByCountry = {
     ]
 };
 
-// Динамически импортируем компоненты заголовка и контента
-const CountryPageHeader = dynamic(() => import('@/components/countriesPage/CountryPageHeader'), {
-    ssr: false,
-    loading: () => <div className="py-8 text-center">Загрузка заголовка...</div>
-});
+// Reusable PriceTable component
+const PriceTable = ({ country, parseText }) => (
+    <>
+        {/* Desktop Table (md: and above) */}
+        <div className="overflow-x-auto w-full mdd:hidden">
+            <table className="w-full border-collapse">
+                <colgroup>
+                    <col className="w-1/3"/>
+                    <col className="w-1/3"/>
+                    <col className="w-1/3"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                        Услуга / Сбор
+                    </th>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                        Стоимость
+                    </th>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left font-semibold text-gray-700 w-1/3">
+                        Примечание
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {country.priceTable &&
+                    country.priceTable.map((row, index) => (
+                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.service}</td>
+                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{row.cost}</td>
+                            <td className="border border-[#CEE2FA] px-4 py-3 text-gray-700">{parseText(row.note)}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+        {/* Mobile Table (below md:) */}
+        <div className="overflow-x-auto w-full md:hidden">
+            <table className="w-full border-collapse">
+                <colgroup>
+                    <col className="w-1/2"/>
+                    <col className="w-1/2"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                        Услуга / Сбор
+                    </th>
+                    <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                        Стоимость
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {country.priceTable &&
+                    country.priceTable.map((row, index) => (
+                        <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                            <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.serviceMob)}</td>
+                            <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.costMob)}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </>
+);
 
-const CountryPageContent = dynamic(() => import('@/components/countriesPage/CountryPageContent'), {
-    ssr: false,
-    loading: () => <div className="py-8 text-center">Загрузка контента...</div>
-});
+// Reusable WhoItSuitsTable component
+const WhoItSuitsTable = ({ country, parseText, excludedCountries1 }) => (
+    <div className="overflow-x-auto w-full">
+        <table className="w-full border-collapse">
+            <colgroup>
+                <col className="w-1/2"/>
+                <col className="w-1/2"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                    {excludedCountries1.includes(country.url) ? "Категории граждан" : "Типы визы"}
+                </th>
+                <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                    Цель поездки
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {country.matchTable &&
+                country.matchTable.map((row, index) => (
+                    <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                        <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.typeviza)}</td>
+                        <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.goaltrip)}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+);
 
-export default function CountryPage({ countryData, countryUrl }) {
-    // Проверка наличия страны (если нужно)
-    // const selectedCountry = countries.find(c => c.url === countryUrl);
-    // if (!selectedCountry) {
-    //     return notFound();
-    // }
+// Reusable components from original code (unchanged)
+const RippleButton = ({ onClick, children }) => (
+    <button
+        onClick={onClick}
+        className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
+    >
+        {[0, 1, 2].map((i) => (
+            <motion.span
+                key={i}
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ scale: 0, opacity: 1.5 }}
+                animate={{ scale: 4, opacity: 0 }}
+                transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                    repeatDelay: 0.5,
+                    delay: i * 0.4,
+                }}
+            >
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
+            </motion.span>
+        ))}
+        {children}
+    </button>
+);
+
+const VariantsList = ({ variants }) => (
+    <ul className="text-black text-[14px] flex flex-col gap-2">
+        {variants.map((variant, index) => (
+            <li key={index} className="flex gap-2 items-center">
+                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4"/>
+                <span>{parseText(variant)}</span>
+            </li>
+        ))}
+    </ul>
+);
+
+// Компонент для кнопок типов виз
+const VisaTypeButtons = ({types, links, enabled}) => (
+    <>
+        {types.map((text, index) => (
+            <div key={index} className="flex flex-col items-start">
+                {enabled[index] ? (
+                    <Link
+                        href={`/shengenskie-vizy/${links[index]}`}
+                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                    >
+                        {text}
+                    </Link>
+                ) : (
+                    <div
+                        className="sm:w-full mdd:w-full text-[14px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-full cursor-not-allowed pointer-events-none select-none">
+                        {text}
+                    </div>
+                )}
+            </div>
+        ))}
+    </>
+);
+
+const TextBlock = ({ text, parseText, className = "" }) => (
+    text && <p className={`text-black text-[14px] ${className}`}>
+        {parseText(text)}
+    </p>
+);
+
+const SectionTitle = ({ title, className = "" }) => (
+    title && <h2 className={`pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold ${className}`}>
+        {title}
+    </h2>
+);
+
+const parseText = (text) => {
+    if (typeof text !== "string") return text || "";
+    const parts = text.split(/\*\*(.*?)\*\*/g);
+    return parts.map((part, index) =>
+        index % 2 === 1 ? <b key={index}>{part}</b> : part
+    );
+};
+
+// CountryCard component (unchanged)
+const CountryCard = ({ country }) => (
+    <Link href={`/shengenskie-vizy/${country.url}`}>
+        <div
+            className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+            <Image
+                src={country.img}
+                alt={country.name}
+                width={300}
+                height={200}
+                className="w-full object-cover"
+            />
+            <div className="lg:p-8 md:p-6 sm:p-4 mdd:py-4 mdd:pl-1 mdd:pr-1">
+                <div className="flex flex-row justify-between items-center">
+                    <div className="flex sm:gap-2 mdd:gap-0.5 items-center">
+                        <Image src={country.svg} alt={country.name} width={24} height={24}/>
+                        <p className="font-medium mdd:text-[14px] sm:text-lg md:text-xl lg:text-xl">
+                            {country.name}
+                        </p>
+                    </div>
+                    <Image
+                        src="/Line 5.png"
+                        alt=""
+                        width={24}
+                        height={24}
+                        className="lg:w-6 md:w-6 sm:w-6 mdd:hidden"
+                    />
+                </div>
+            </div>
+        </div>
+    </Link>
+);
+
+// Constants (unchanged)
+const excludedCountries1 = [
+    "rabochaya-viza-v-polshu",
+    "delovaya-viza-v-polshu",
+    "uchebnaya-viza-v-polshu",
+    "gostevaya-polskaya-viza",
+    "viza-v-polsy-po-karte-polyaka",
+    "rabochaya-viza-v-bolgariyu",
+    "rabochaya-viza-v-germaniyu",
+    "rabochaya-viza-v-ispaniyu"
+];
+
+const litva = [
+    "viza-v-litvu",
+    "viza-v-chehiyu"
+];
+
+const form = [
+    "viza-v-latviyu",
+    "viza-v-chehiyu"
+];
+
+const il = [
+    "viza-v-litvu",
+    "viza-v-italiyu"
+];
+
+const subWorkGermany = [
+    "rabochaya-viza-v-germaniyu"
+];
+
+const subWorkPoland = [
+    "rabochaya-viza-v-polshu"
+];
+
+const italy = [
+    "viza-v-italiyu"
+];
+
+const docs = [
+    "rabochaya-viza-v-germaniyu",
+    "rabochaya-viza-v-polshu",
+    "viza-v-polshu",
+    "delovaya-viza-v-polshu",
+    "uchebnaya-viza-v-polshu",
+    "gostevaya-polskaya-viza",
+    "viza-v-polsy-po-karte-polyaka",
+    "viza-v-germaniyu",
+    "viza-vo-francziyu",
+    "viza-v-horvatiu",
+    "viza-v-grecziyu",
+    "viza-v-italiyu",
+    "viza-v-avstriyu",
+    "viza-v-sloveniu",
+    "viza-v-ispaniyu",
+    "rabochaya-viza-v-ispaniyu",
+    "viza-v-bolgariyu",
+    "rabochaya-viza-v-bolgariyu",
+    "viza-v-niderlandy",
+    "viza-v-vengriyu",
+    "viza-v-rumyniyu",
+    "viza-v-ssha",
+    "viza-v-velikobritaniyu",
+    "viza-v-kitaj"
+];
+
+const excludedPoland = [
+    "viza-v-polshu",
+    "rabochaya-viza-v-polshu",
+    "delovaya-viza-v-polshu",
+    "uchebnaya-viza-v-polshu",
+    "gostevaya-polskaya-viza",
+    "viza-v-polsy-po-karte-polyaka"
+];
+
+// Компонент для хлебных крошек
+const CountryBreadcrumbs = ({country, pathname}) => (
+    <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
+        <Link href="/"
+              className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
+            Главная
+        </Link>
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
+        <Link
+            href="/shengenskie-vizy"
+            className={`text-orange-500 hover:underline ${pathname === "/shengenskie-vizy" ? "font-semibold text-gray-900 pointer-events-none w-full active:scale-95 transition-transform duration-150 ease-in-out" : ""}`}
+        >
+            Шенгенские визы
+        </Link>
+        <Image src="/nav-icon.png" alt=">" width={8} height={8} className="w-2"/>
+        <span className="font-semibold text-gray-900 cursor-default inline-flex flex-wrap m-0">
+                {!excludedCountries1.includes(country.url) && (
+                    <>
+                        Виза{" "}
+                        {country.n === "Францию" ? "во" : "в"}{" "}
+                    </>
+                )}
+            {country.n}
+            </span>
+    </nav>
+);
+
+
+export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
+    const { country: urlParam } = useParams();
+    const { openModal } = useModal();
+    const pathname = usePathname();
+
+    const selectedCountry = useMemo(() =>
+            countries.find(c => c.url === (countryUrl || urlParam)),
+        [countryUrl, urlParam]
+    );
+
+    if (!selectedCountry) {
+        return notFound();
+    }
+
+    const showExtendedContent = selectedCountry.good !== 0;
+
+    const recommendedCountries = useMemo(() =>
+            ["viza-v-grecziyu", "viza-v-sloveniu", "viza-v-germaniyu", "viza-v-ispaniyu"]
+                .map(url => countries.find(c => c.url === url))
+                .filter(Boolean),
+        []
+    );
+
+    const limitedContentCountries = ["viza-v-litvu", "viza-v-latviyu", "viza-v-italiyu", "viza-v-chehiyu"];
+
+    const isExcludedPoland = excludedPoland.includes(selectedCountry.url);
 
     return (
         <div className="flex flex-col items-center">
-            {/* Хлебные крошки из props, если переданы */}
-            {/* {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>} */}
+            {breadcrumbs && <CountryBreadcrumbs breadcrumbs={breadcrumbs}/>}
 
-            {/* Заголовок страницы */}
-            <Suspense fallback={<div className="py-8 text-center">Загрузка заголовка...</div>}>
-                <CountryPageHeader countryUrl={countryUrl} />
-            </Suspense>
+            <div
+                className={`w-full relative flex flex-col lg:flex-row sm:flex-col justify-between ${isExcludedPoland ? 'mdd:-mt-10' : 'mdd:-mt-10'}`}>
+                <div
+                    className={`mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[300px] ${isExcludedPoland ? 'mdd:top-[150px]' : 'mdd:top-[150px]'} w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col xl:gap-32 lg:gap-20 sm:gap-12 mdd:gap-12`}>
+                    <CountryBreadcrumbs country={selectedCountry} pathname={pathname}/>
+                    <span>
+                        <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black uppercase leading-none">
+                            {excludedCountries1.includes(selectedCountry.url)
+                                ? selectedCountry.n
+                                : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                        </h1>
+                        {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) && (
+                            <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске!</p>
+                        )}
+                        {(italy.includes(selectedCountry.url)) && (
+                            <p className="mdd:text-[14px] sm:text-[20px]">*оформление «под ключ»!</p>
+                        )}
+                    </span>
+                </div>
 
-            {/* Основной контент страницы */}
-            <Suspense fallback={<div className="py-8 text-center">Загрузка контента...</div>}>
-                <CountryPageContent countryUrl={countryUrl} />
-            </Suspense>
+                <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
+                    <Image
+                        src={selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
+                        alt=""
+                        width={1000}
+                        height={1000}
+                        unoptimized={true}
+                        className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
+                    />
+                    <Image
+                        src={selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
+                        alt=""
+                        width={600}
+                        height={600}
+                        quality={80}
+                        priority={true}
+                        loading="eager"
+                        className="relative top-[20%] -z-50 sm:hidden"
+                    />
+                </div>
+
+                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
+                    <RippleButton onClick={openModal}>
+                        Получить консультацию
+                    </RippleButton>
+                </div>
+            </div>
+
+            <Discount/>
+
+            <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
+                <Suspense fallback={<div>Loading Slider...</div>}>
+                    <Slider/>
+                </Suspense>
+            </div>
+
+            {showExtendedContent ? (
+                <div className="w-full">
+                    <div className={`px-[7%] pb-16 mdd:pb-10`}>
+                        <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
+                            <div className="flex flex-col gap-6 lg:w-[60%]">
+                                <h2 title={selectedCountry.title}
+                                    className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
+                                    {selectedCountry.title}
+                                </h2>
+                                <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+
+                                {selectedCountry.variants?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants}/>
+                                )}
+
+                                {Array.isArray(selectedCountry.text11) && (
+                                    <div>
+                                        {selectedCountry.text11.map((text, i) => (
+                                            <TextBlock key={i} text={text} parseText={parseText}/>
+                                        ))}
+                                    </div>
+                                )}
+
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title223}/>
+                                <TextBlock text={selectedCountry.text53} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text54} parseText={parseText}/>
+                                {selectedCountry.variants223?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants223}/>
+                                )}
+
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title22}/>
+                                <TextBlock text={selectedCountry.text2} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+
+                                {selectedCountry.variants11?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variants11}/>
+                                )}
+
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title221}/>
+                                <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+                                <TextBlock text={selectedCountry.text5} parseText={parseText}/>
+                            </div>
+
+                            {selectedCountry.typevc && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {selectedCountry.typevc && (
+                                <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                    {parseText(selectedCountry.typevc)}
+                                </p>
+                            )}
+                            {selectedCountry.typevc && (
+                                <TextBlock text={selectedCountry.textc} parseText={parseText}/>)}
+                            {selectedCountry.typevbc?.length > 0 && (
+                                <VisaTypeButtons
+                                    types={selectedCountry.typevbc}
+                                    links={selectedCountry.typevlc}
+                                    enabled={selectedCountry.enabled || []}
+                                />
+                            )}
+
+                            {selectedCountry.title2 && (
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title2}/>)}
+                            {selectedCountry.variants2?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants2}/>
+                            )}
+
+                            {Array.isArray(selectedCountry.text22) && (
+                                <div>
+                                    {selectedCountry.text22.slice(0, 3).map((text, i) => (
+                                        <TextBlock key={i} text={text} parseText={parseText}/>
+                                    ))}
+                                </div>
+                            )}
+
+                            {selectedCountry.text6 && (<TextBlock text={selectedCountry.text6} parseText={parseText}/>)}
+                            {selectedCountry.text7 && (<TextBlock text={selectedCountry.text7} parseText={parseText}/>)}
+                            {selectedCountry.text8 && (<TextBlock text={selectedCountry.text8} parseText={parseText}/>)}
+
+                            {selectedCountry.variants3?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants3} parseText={parseText}/>)}
+
+                            {selectedCountry.typevp && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {selectedCountry.typevp && (
+                                <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">{parseText(selectedCountry.typevp)}</p>)}
+                            {selectedCountry.typevbp?.length > 0 && (
+                                <VisaTypeButtons
+                                    types={selectedCountry.typevbp}
+                                    links={selectedCountry.typevlp}
+                                    enabled={selectedCountry.enabled || []}
+                                />)}
+
+                            {selectedCountry.typev && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+
+                            <div className="flex flex-col gap-6 lg:w-[60%]">
+                                {selectedCountry.typev && (
+                                    <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                        {parseText(selectedCountry.typev)}
+                                    </p>
+                                )}
+
+                                {selectedCountry.typevb?.length > 0 && (
+                                    <VisaTypeButtons
+                                        types={selectedCountry.typevb}
+                                        links={selectedCountry.typevl}
+                                        enabled={selectedCountry.enabled || []}
+                                    />
+                                )}
+                            </div>
+
+                            <SectionTitle
+                                className="pt-10 mdd:pt-4"
+                                title={`Кому подходит ${selectedCountry.match}`}
+                            />
+                            <TextBlock
+                                text={`Подходит для граждан РБ и иностранных граждан, имеющих ВНЖ Республики Беларусь!`}
+                                parseText={parseText}/>
+
+                            <WhoItSuitsTable
+                                country={selectedCountry}
+                                parseText={parseText}
+                                excludedCountries1={excludedCountries1}
+                            />
+
+                            <TextBlock text={selectedCountry.text001} parseText={parseText}/>
+
+                            <SectionTitle
+                                className="pt-10 mdd:pt-4"
+                                title={
+                                    selectedCountry.url === "viza-v-polsy-po-karte-polyaka"
+                                        ? "Кому подходит виза по Карте Поляка"
+                                        : excludedCountries1.includes(selectedCountry.url)
+                                            ? selectedCountry.pr
+                                            : `Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`
+                                }
+                            />
+
+                            <PriceTable country={selectedCountry} parseText={parseText}/>
+                        </div>
+                    </div>
+
+                    <div className={"pt-16 mdd:pt-10"}>
+                        <Suspense fallback={<div>Loading Documents...</div>}>
+                            {docs.includes(selectedCountry.url) ? (
+                                <DocsShengen countryUrl={selectedCountry.url}/>
+                            ) : (
+                                <Docs/>
+                            )}
+                        </Suspense>
+                    </div>
+
+                    <Suspense fallback={<div>Loading Files...</div>}>
+                        <DownloadFiles/>
+                    </Suspense>
+
+                    <Suspense fallback={<div>Loading Steps...</div>}>
+                        <NewStepsCountries/>
+                    </Suspense>
+                    <Suspense fallback={<div>Loading Form...</div>}>
+                        <PhoneForm/>
+                    </Suspense>
+
+                    <Suspense fallback={<div>Loading FAQ...</div>}>
+                        <FAQ countryUrl={selectedCountry.url}/>
+                    </Suspense>
+                    <Suspense fallback={<div>Loading Contacts...</div>}>
+                        <Contacts/>
+                    </Suspense>
+                </div>
+            ) : (
+                <div className="w-full">
+                    <div className="px-[7%] flex flex-col gap-10">
+                        {limitedContentCountries.includes(selectedCountry.url) && (
+                            <div className="xl:pt-0 pt-24 flex flex-col gap-6">
+                                {selectedCountry.title12 && (
+                                    <h3 className="text-[#F86F00] text-center lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
+                                        {selectedCountry.title12}
+                                    </h3>
+                                )}
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
+                                    {selectedCountry.title && (
+                                        <h3 className="text-[#F86F00] lg:text-5xl md:text-5xl sm:text-4xl mdd:text-2xl font-medium">
+                                            {selectedCountry.title}
+                                        </h3>
+                                    )}
+                                    <div className="flex flex-col gap-6">
+                                        <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                                        <TextBlock text={selectedCountry.text2} parseText={parseText}/>
+
+                                        <SectionTitle title={selectedCountry.title1} parseText={parseText}/>
+                                        <TextBlock text={selectedCountry.text22} parseText={parseText}/>
+
+                                        {selectedCountry.variants?.length > 0 && (
+                                            <VariantsList variants={selectedCountry.variants}/>
+                                        )}
+
+                                        <TextBlock text={selectedCountry.text3} parseText={parseText}/>
+                                        <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+
+                                        <TextBlock text={selectedCountry.text44} parseText={parseText}/>
+
+                                        <SectionTitle title={selectedCountry.title13} parseText={parseText}/>
+
+                                        <TextBlock text={selectedCountry.text5} parseText={parseText}/>
+
+                                        {Array.isArray(selectedCountry.text22) && (
+                                            <div>
+                                                {selectedCountry.text22.slice(0, 2).map((text, i) => (
+                                                    <TextBlock key={i} text={text} parseText={parseText}/>
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {selectedCountry.variants12?.length > 0 && (
+                                            <VariantsList variants={selectedCountry.variants12}/>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {!form.includes(selectedCountry.url) && (
+                                    <div className="w-full pt-20 mdd:pt-8">
+                                        <TakePrice/>
+                                    </div>
+                                )}
+
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
+                                    {selectedCountry.typev && (
+                                        <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                            {parseText(selectedCountry.typev)}
+                                        </p>
+                                    )}
+
+                                    {selectedCountry.typevb?.length > 0 && (
+                                        <VisaTypeButtons
+                                            types={selectedCountry.typevb}
+                                            links={selectedCountry.typevl}
+                                            enabled={selectedCountry.enabled || []}
+                                        />
+                                    )}
+                                </div>
+
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
+                                    {il.includes(selectedCountry.url) && (<div className={"flex flex-col gap-6"}>
+                                        <SectionTitle
+                                            className="pt-10 mdd:pt-4"
+                                            title={`Кому подходит ${selectedCountry.match}`}
+                                        />
+
+                                        <TextBlock
+                                            text={selectedCountry.textmatch1}
+                                            parseText={parseText}/>
+
+                                        {selectedCountry.textmatch1 && (
+                                            <div className="overflow-x-auto w-full">
+                                                <table className="w-full border-collapse">
+                                                    <colgroup>
+                                                        <col className="w-1/2"/>
+                                                        <col className="w-1/2"/>
+                                                    </colgroup>
+                                                    <thead>
+                                                    <tr>
+                                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                            {excludedCountries1.includes(selectedCountry.url) ? "Категории граждан" : "Типы визы"}
+                                                        </th>
+                                                        <th className="border border-[#CEE2FA] bg-[#F0F6FF] px-4 py-3 text-left text-[14px] font-semibold text-gray-700 w-1/2">
+                                                            Цель поездки
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {selectedCountry.matchTable1 &&
+                                                        selectedCountry.matchTable1.map((row, index) => (
+                                                            <tr key={index} className={index % 2 === 0 ? '' : 'bg-gray-50'}>
+                                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.typeviza1)}</td>
+                                                                <td className="border border-[#CEE2FA] px-4 py-3 text-[14px] text-gray-700">{parseText(row.goaltrip1)}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        )}
+
+                                        <TextBlock
+                                            text={selectedCountry.textmatch}
+                                            parseText={parseText}/>
+
+                                        <WhoItSuitsTable
+                                            country={selectedCountry}
+                                            parseText={parseText}
+                                            excludedCountries1={excludedCountries1}
+                                        />
+                                    </div>)}
+
+                                    <SectionTitle title={selectedCountry.title14} parseText={parseText}/>
+
+                                    <TextBlock text={selectedCountry.text66} parseText={parseText}/>
+                                </div>
+
+                                {selectedCountry.url === "viza-v-italiyu" && (
+                                    <>
+                                        <SectionTitle
+                                            className="pt-10 mdd:pt-4"
+                                            title={`Стоимость оформления визы ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                                        />
+                                        <PriceTable country={selectedCountry} parseText={parseText}/>
+                                    </>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    {form.includes(selectedCountry.url) && (
+                        <div className="w-full px-[7%] pt-20 mdd:pt-8">
+                            <TakePrice/>
+                        </div>
+                    )}
+
+                    <div className={"pt-32 mdd:pt-20"}>
+                        <Suspense fallback={<div>Loading Documents...</div>}>
+                            {docs.includes(selectedCountry.url) ? (
+                                <DocsShengen countryUrl={selectedCountry.url}/>
+                            ) : (
+                                <Docs/>
+                            )}
+                        </Suspense>
+                    </div>
+
+                    <Suspense fallback={<div>Loading Files...</div>}>
+                        <DownloadFiles/>
+                    </Suspense>
+
+                    <Suspense fallback={<div>Loading Steps...</div>}>
+                        <NewStepsCountries/>
+                    </Suspense>
+
+                    {litva.includes(selectedCountry.url) ? (
+                        <div></div>
+                    ) : (
+                        <Suspense fallback={<div>Loading Form...</div>}>
+                            <PhoneForm/>
+                        </Suspense>
+                    )}
+
+                    <Suspense fallback={<div>Loading FAQ...</div>}>
+                        <FAQ countryUrl={selectedCountry.url}/>
+                    </Suspense>
+                    <Suspense fallback={<div>Loading Contacts...</div>}>
+                        <Contacts/>
+                    </Suspense>
+                </div>
+            )}
+            <style jsx>{`
+                .bold-list-numbers ::marker {
+                    font-weight: bold;
+                }
+            `}</style>
         </div>
     );
-}
+};

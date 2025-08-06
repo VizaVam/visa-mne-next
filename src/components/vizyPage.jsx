@@ -107,18 +107,17 @@ export default function VisaPage({ breadcrumbs }) {
                     <Image
                         src="/visa-banner-new.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        width={1000}
-                        height={1000}
+                        width={850}
+                        height={827}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
-                        unoptimized // Используйте только для критически важных изображений выше "сгиба"
+                        unoptimized
                     />
                     <Image
                         src="/visabanner-f.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        width={1000}
-                        height={1000}
+                        width={450}
+                        height={553}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
-                        priority // Используйте только для критически важных изображений выше "сгиба"
                     />
                 </div>
 

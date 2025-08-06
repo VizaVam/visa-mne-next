@@ -104,19 +104,17 @@ export default function HomePage() {
                     <Image
                         width={840}
                         height={802}
-                        src="/banner-hero.svg"
+                        src="/banner-hero.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
-                        // priority // Используйте только для критически важных изображений выше "сгиба"
                         unoptimized // Если это главное изображение выше "сгиба"
                     />
                     <Image
                         width={840}
                         height={802}
-                        src="/main-m.svg"
+                        src="/main-m.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden"
-                        priority={true} // Если это главное изображение на мобильных
                     />
 
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">

@@ -110,7 +110,8 @@ export default function VisaPage({ breadcrumbs }) {
                         width={850}
                         height={827}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
-                        unoptimized
+                        priority={false} // Установите true только для критических изображений
+                        unoptimized={false} // Отключите, если изображение уже оптимизировано
                     />
                     <Image
                         src="/visabanner-f.png"
@@ -118,6 +119,8 @@ export default function VisaPage({ breadcrumbs }) {
                         width={450}
                         height={553}
                         className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
+                        priority={true} // Установите true только для критических изображений
+                        unoptimized={false} // Отключите, если изображение уже оптимизировано
                     />
                 </div>
 

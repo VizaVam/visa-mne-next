@@ -684,7 +684,8 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         alt=""
                         width={1000}
                         height={1000}
-                        unoptimized={true}
+                        priority={false} // Установите true только для критических изображений
+                        unoptimized={false} // Отключите, если изображение уже оптимизировано
                         className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
                     />
                     <Image
@@ -693,7 +694,8 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         width={600}
                         height={600}
                         quality={80}
-                        priority={true}
+                        priority={true} // Установите true только для критических изображений
+                        unoptimized={false} // Отключите, если изображение уже оптимизировано
                         loading="eager"
                         className="relative top-[20%] -z-50 sm:hidden"
                     />

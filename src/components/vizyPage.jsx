@@ -93,9 +93,8 @@ export default function VisaPage({breadcrumbs}) {
             {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
 
             {/* Hero Section - критично важная часть */}
-            <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
-                <div
-                    className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
+            <div className="w-full relative flex flex-row mdd:flex-col justify-between">
+                <div className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black leading-none">
                         ШЕНГЕНСКИЕ ВИЗЫ
@@ -105,14 +104,14 @@ export default function VisaPage({breadcrumbs}) {
                 <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[10%] lg:mt-0 relative z-5">
                     {/* Убедитесь, что эти изображения оптимизированы */}
                     <Image
-                        src="/visa-banner-new.png"
+                        src="/visa-banner-new.jpg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={850}
                         height={827}
                         className="relative lg:top-[20%] lg:w-[50%] lg:left-[45%] mdd:hidden"
                     />
                     <Image
-                        src="/visabanner-f.png"
+                        src="/visabanner-f.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={450}
                         height={553}

@@ -1,12 +1,12 @@
 'use client'
 
-import React, { memo, Suspense } from 'react';
-import dynamic from 'next/dynamic'; // Импортируем dynamic
+import React, {memo, Suspense} from 'react';
+import dynamic from 'next/dynamic';
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { useModal } from "@/components/modalcontext";
+import {usePathname} from "next/navigation";
+import {motion} from "framer-motion";
+import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 // --- Ленивая загрузка компонентов ---
@@ -25,7 +25,7 @@ const PhoneForm = dynamic(() => import('@/components/newModal')); // Предп�
 
 // --- Компоненты, используемые в верхней части страницы ---
 // BreadcrumbNav и RippleButton - относительно простые, оставляем их как есть
-const RippleButton = memo(({ onClick, children }) => (
+const RippleButton = memo(({onClick, children}) => (
     <button
         onClick={onClick}
         className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
@@ -34,8 +34,8 @@ const RippleButton = memo(({ onClick, children }) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
+                initial={{scale: 0, opacity: 1.5}}
+                animate={{scale: 4, opacity: 0}}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -44,14 +44,14 @@ const RippleButton = memo(({ onClick, children }) => (
                     delay: i * 0.4,
                 }}
             >
-                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full" />
+                <span className="absolute w-4 h-4 bg-gray-300 bg-opacity-40 rounded-full"/>
             </motion.span>
         ))}
         {children}
     </button>
 ));
 
-const BreadcrumbNav = ({ pathname }) => (
+const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-center space-x-2 text-gray-600 gap-2">
         <Link
             href="/"
@@ -84,19 +84,19 @@ const BreadcrumbNav = ({ pathname }) => (
 );
 // --- Конец компонентов верхней части ---
 
-export default function VisaPage({ breadcrumbs }) {
-    const { openModal } = useModal();
+export default function VisaPage({breadcrumbs}) {
+    const {openModal} = useModal();
     const pathname = usePathname();
 
     return (
         <div>
-            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
+            {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
 
             {/* Hero Section - критично важная часть */}
             <div className="w-full relative flex flex-col lg:flex-row sm:flex-col justify-between">
                 <div
                     className="mdd:relative lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
-                    <BreadcrumbNav pathname={pathname} />
+                    <BreadcrumbNav pathname={pathname}/>
                     <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black leading-none">
                         ШЕНГЕНСКИЕ ВИЗЫ
                     </h1>
@@ -109,18 +109,15 @@ export default function VisaPage({ breadcrumbs }) {
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={850}
                         height={827}
-                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
-                        priority={false} // Установите true только для критических изображений
-                        unoptimized={false} // Отключите, если изображение уже оптимизировано
+                        className="relative lg:top-[20%] lg:w-[50%] lg:left-[45%] mdd:hidden"
                     />
                     <Image
                         src="/visabanner-f.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={450}
                         height={553}
-                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
+                        className="relative sm:hidden"
                         priority={true} // Установите true только для критических изображений
-                        unoptimized={false} // Отключите, если изображение уже оптимизировано
                     />
                 </div>
 
@@ -134,54 +131,26 @@ export default function VisaPage({ breadcrumbs }) {
 
             {/* Ниже идут секции, которые можно загружать лениво */}
             {/* Используем Suspense с fallback для отображения загрузки */}
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка скидки...</div>}>
-                <Discount />
-            </Suspense>
-
-            <div className="mb-[100px]">
-                <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>}>
-                    <Slider />
-                </Suspense>
-            </div>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка услуг...</div>}>
-                <Serviceson />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка сотрудничества...</div>}>
-                <div className="px-[7%] pt-32 mdd:pt-20">
-                    <VizaCoop />
+            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка...</div>}>
+                <Discount/>
+                <Slider/>
+                <div className="pt-32 mdd:pt-20">
+                    <Serviceson/>
                 </div>
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка цен...</div>}>
                 <div className="px-[7%] pt-32 mdd:pt-20">
-                    <TakePrice />
+                    <VizaCoop/>
                 </div>
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка шагов...</div>}>
+                <div className="px-[7%] pt-32 mdd:pt-20">
+                    <TakePrice/>
+                </div>
                 <div className={"pb-32 mdd:pb-20"}>
-                    <NewSteps />
-                    {/* PhoneForm также загружается лениво */}
-                    <PhoneForm />
+                    <NewSteps/>
+                    <PhoneForm/>
                 </div>
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка документов...</div>}>
-                <Docs />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка отзывов...</div>}>
-                <Reviews />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка вопросов...</div>}>
-                <Fag />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка контактов...</div>}>
-                <Contacts />
+                <Docs/>
+                <Reviews/>
+                <Fag/>
+                <Contacts/>
             </Suspense>
         </div>
     );

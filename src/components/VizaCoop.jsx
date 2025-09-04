@@ -59,7 +59,7 @@ const VisaSupportSection = () => {
                                     alt="Мужчина с паспортом"
                                     width={500}
                                     height={500}
-                                    className="mdd:hidden rounded-lg w-full h-auto object-cover"
+                                    className="mdd:hidden rounded-lg w-full h-auto object-cover bg-[#FAFAFA]"
                                     // layout="responsive" // Если используете Next.js Image legacy
                                 />
                             </div>

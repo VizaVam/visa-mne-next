@@ -143,7 +143,7 @@ export default function PolInfo({breadcrumbs}) {
                         <span className="text-[#FA9D3E] text-sm self-start dm:hidden">21.06.2025</span>
                     </div>
                 </Link>
-                <Link href="/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px]">
+                <Link href="/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
                     <div style={{
                         boxShadow: '3px 2px 8px 1px #FFEEDB',
                         backdropFilter: 'blur(200px)'
@@ -177,11 +177,11 @@ export default function PolInfo({breadcrumbs}) {
                         boxShadow: '3px 2px 8px 1px #FFEEDB',
                         backdropFilter: 'blur(200px)'
                     }}
-                         className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
                         <Image src={"/art4.jpg"} alt={"Полезная информация"} width={1000} height={1000}
-                               className={"w-[191px] h-[124px] dm:hidden"}/>
+                               className={"w-[191px] h-[124px] dm:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
                         <Image src={"/art4.jpg"} alt={"Полезная информация"} width={1000} height={1000}
-                               className={"md:hidden"}/>
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
                         <div className={"dm:p-4"}>
                             <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
                                 Куда поехать белорусам в 2025 году

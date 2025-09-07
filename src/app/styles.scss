@@ -200,13 +200,13 @@
 
 @media (max-width: 1280px) {
   .header__top-left {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 
 @media (max-width: 1024px) {
   .header__top {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .header__top-left {
@@ -278,7 +278,7 @@
 
   .header__top {
 
-    flex-direction: column;
+    flex-direction: row;
 
     &-left {
       padding-top: 0.8rem;

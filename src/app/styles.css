@@ -224,7 +224,7 @@
     padding: 1rem;
   }
   .header__top {
-    flex-direction: column;
+    flex-direction: row;
   }
   .header__top-left {
     padding-top: 0.8rem;

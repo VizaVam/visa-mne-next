@@ -14,13 +14,13 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "/art6.jpg",
+                url: "/art62.jpg",
                 width: 1600,
                 height: 1000,
                 alt: "Фото на визу 2025",
             },
             {
-                url: "/art6.jpg",
+                url: "/art62.jpg",
                 width: 600,
                 height: 400,
                 alt: "Фото на визу 2025",

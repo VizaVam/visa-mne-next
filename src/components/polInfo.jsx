@@ -201,7 +201,7 @@ export default function PolInfo({breadcrumbs}) {
                         <span className="text-[#FA9D3E] text-sm self-start dm:hidden">01.09.2025</span>
                     </div>
                 </Link>
-                <Link href="/poleznaya-informasia/verifikaciya-na-polskyu-visy-dlya-belorusov" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px]">
+                <Link href="/poleznaya-informasia/verifikaciya-na-polskyu-visy-dlya-belorusov" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
                     <div style={{
                         boxShadow: '3px 2px 8px 1px #FFEEDB',
                         backdropFilter: 'blur(200px)'
@@ -227,6 +227,36 @@ export default function PolInfo({breadcrumbs}) {
                             </div>
                         </div>
                         <span className="text-[#FA9D3E] text-sm self-start dm:hidden">02.09.2025</span>
+                    </div>
+                </Link>
+                <Link href="/poleznaya-informasia/foto-na-visy" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
+                    <div style={{
+                        boxShadow: '3px 2px 8px 1px #FFEEDB',
+                        backdropFilter: 'blur(200px)'
+                    }}
+                        className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        <Image src={"/art6.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"w-[191px] h-[124px] dm:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <Image src={"/art6.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <div className={"dm:p-4"}>
+                            <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                Фото на визу 2025
+                            </h3>
+                            <p className="dm:text-base text-[#595959] mb-4">
+                                В этой статье мы подробно разберем актуальные требования к фотографии на визу в 2025 году, 
+                                чтобы вы могли с первого раза подготовить идеальный снимок.
+                            </p>
+                            <div className="flex justify-between items-center">
+                                <span
+                                    className="dm:text-base text-[#F86F00] font-medium"
+                                >
+                                    Читать полностью
+                                </span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">04.09.2025</span>
+                            </div>
+                        </div>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">04.09.2025</span>
                     </div>
                 </Link>
             </div>

@@ -128,7 +128,7 @@ const Slider = () => {
                             />
                             <div
                                 className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
-                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold p-3"
+                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl lg:leading-[55px] md:leading-[55px] font-semibold p-3"
                                     dangerouslySetInnerHTML={{__html: slide.text}}/>
                             </div>
                         </div>

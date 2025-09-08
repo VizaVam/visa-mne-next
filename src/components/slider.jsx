@@ -1,6 +1,6 @@
 "use client"
 
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import {useSwipeable} from "react-swipeable";
 import {CarouselButton} from "./icons";
 import Image from "next/image";
@@ -8,21 +8,26 @@ import Image from "next/image";
 const slides = [
     {
         id: 2,
+        image: "/italy1.jpg",
+        text: "Туристическая/деловая виза в Италию за 2 месяца!",
+    },
+    {
+        id: 3,
         image: "/1.jpg",
         text: 'Хочешь в Испанию? Испанская виза с <span class="underline">безличной подачей в Минске</span>'
     },
     {
-        id: 3,
+        id: 4,
         image: "/444.png",
         text: "5% скидка при повторном обращении",
     },
     {
-        id: 4,
+        id: 5,
         image: "/2.png",
         text: "11% семье из 3-х человек",
     },
     {
-        id: 5,
+        id: 6,
         image: "/33.png",
         text: "13% скидка для семьи от 4-х человек",
     },
@@ -31,6 +36,8 @@ const slides = [
 const Slider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isLgScreen, setIsLgScreen] = useState(false);
+    const [isAutoPlay, setIsAutoPlay] = useState(true);
+    const intervalRef = useRef(null);
 
     // Обновление состояния для экранов
     useEffect(() => {
@@ -40,21 +47,49 @@ const Slider = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const prevSlide = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex((prevIndex) => prevIndex - 1);
+    useEffect(() => {
+        if (isAutoPlay) {
+          intervalRef.current = setInterval(() => {
+            setCurrentIndex((prevIndex) =>
+              prevIndex < slides.length - 1 ? prevIndex + 1 : 0
+            );
+          }, 3000);
+        }
+        return () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+    }, [isAutoPlay]); 
+
+    const stopAutoPlay = () => {
+        if (isAutoPlay) {
+          setIsAutoPlay(false);
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
         }
     };
-
-    const nextSlide = () => {
-        if (currentIndex < slides.length - 1) {
-            setCurrentIndex((prevIndex) => prevIndex + 1);
-        }
+    
+    const handlePrev = () => {
+        stopAutoPlay();
+        setCurrentIndex((prevIndex) =>
+          prevIndex > 0 ? prevIndex - 1 : slides.length - 1
+        );
     };
-
+    
+    const handleNext = () => {
+        stopAutoPlay();
+        setCurrentIndex((prevIndex) =>
+          prevIndex < slides.length - 1 ? prevIndex + 1 : 0
+        );
+    };
+    
     const swipeHandlers = useSwipeable({
-        onSwipedLeft: nextSlide,
-        onSwipedRight: prevSlide,
+        onSwipedLeft: handleNext,
+        onSwipedRight: handlePrev,
         trackMouse: true,
     });
 
@@ -85,10 +120,10 @@ const Slider = () => {
                                 loading="lazy"
                                 className={`w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 object-cover rounded-lg`}
                                 style={{
-                                    objectPosition: slide.id === 1 ? "50% 15%" :
-                                        slide.id === 2 ? "50% 71%" :
-                                            slide.id === 4 ? "50% 73%" :
-                                                slide.id === 5 ? "50% 43%" : "center",
+                                    objectPosition: slide.id === 2 ? "50% 15%" :
+                                        slide.id === 3 ? "50% 71%" :
+                                            slide.id === 5 ? "50% 73%" :
+                                                slide.id === 6 ? "50% 43%" : "center",
                                 }}
                             />
                             <div
@@ -104,16 +139,16 @@ const Slider = () => {
             {/* Кнопки переключения */}
             <div className="flex justify-center items-center mt-4 space-x-4">
                 <button
-                    onClick={prevSlide}
+                    onClick={handlePrev}
                     className={`text-4xl transition-all duration-300 ${
                         currentIndex > 0 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
                     }`}
                     aria-label="Назад"
                 >
-                    <CarouselButton color={currentIndex > 0 ? "#F86F00" : "#595959"}/>
+                    <CarouselButton color={"#F86F00"}/>
                 </button>
                 <button
-                    onClick={nextSlide}
+                    onClick={handleNext}
                     className={`text-4xl transition-all duration-300 ${
                         currentIndex < slides.length - 1 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
                     }`}
@@ -121,7 +156,7 @@ const Slider = () => {
                 >
                     <CarouselButton
                         isRight={true}
-                        color={currentIndex < slides.length - 1 ? "#F86F00" : "#595959"}
+                        color={"#F86F00"}
                     />
                 </button>
             </div>

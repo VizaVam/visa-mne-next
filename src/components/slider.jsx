@@ -9,7 +9,7 @@ const slides = [
     {
         id: 2,
         image: "/italy1.jpg",
-        text: "Туристическая/деловая виза в Италию за 2 месяца!",
+        text: "Туристическая/деловая виза </br>в Италию за 2 месяца!",
     },
     {
         id: 3,
@@ -128,7 +128,7 @@ const Slider = () => {
                             />
                             <div
                                 className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
-                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold"
+                                <h4 className="text-white text-center mdd:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold p-3"
                                     dangerouslySetInnerHTML={{__html: slide.text}}/>
                             </div>
                         </div>

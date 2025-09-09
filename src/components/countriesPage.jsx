@@ -701,7 +701,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             ${selectedCountry.url === "viza-v-italiyu" ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
                     />
                     <Image
-                        src={selectedCountry.url === "viza-v-italiyu" ? "/visa-000.jpg" :
+                        src={selectedCountry.url === "viza-v-italiyu" ? "/visa-001.jpg" :
                             selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
                         alt=""
                         width={600}
@@ -710,12 +710,12 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         priority={true} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
                         loading="eager"
-                        className={`relative top-[20%] -z-50 sm:hidden ${selectedCountry.url === "viza-v-italiyu" ? "mt-[40px] md:mt-0" : " "}`}
+                        className={`relative top-[20%] -z-50 sm:hidden ${selectedCountry.url === "viza-v-italiyu" ? "mt-[10px] md:mt-0" : " "}`}
                     />
                 </div>
 
 
-                <div className={` ${selectedCountry.url === "viza-v-italiyu" ? "mdd:pb-[72%]" : "mdd:pb-[25%]" } lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
+                <div className={` ${selectedCountry.url === "viza-v-italiyu" ? "mdd:pb-[78%]" : "mdd:pb-[25%]" } lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
                     <RippleButton onClick={openModal}>
                         Получить консультацию
                     </RippleButton>
@@ -723,7 +723,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                 {selectedCountry.url === "viza-v-italiyu" && ( 
                     <>
-                        <ul className={`lg:absolute 1400m:top-[20%] mxl:top-[40%] xl:top-[30%] 2xl:top-[45%]  lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] ml-[7%] mb-[20px] mr-auto lg:m-0`}>
+                        <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute 1400m:top-[20%] mxl:top-[40%] xl:top-[30%] 2xl:top-[45%]  lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
                             <AdvantageItemTop value="от 10 дней" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="до 2-х лет" description="срок действия визы" iconPath={"/icondoc.svg"}/>
                             <AdvantageItemTop value="99%" description="одобрения виз" iconPath={"/approvalicon.svg"}/>

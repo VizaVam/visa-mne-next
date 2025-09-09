@@ -715,23 +715,23 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                 </div>
 
 
-                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
+                <div className={` ${selectedCountry.url === "viza-v-italiyu" ? "mdd:pb-[50%]" : "mdd:pb-[25%]" } lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
                     <RippleButton onClick={openModal}>
                         Получить консультацию
                     </RippleButton>
                 </div>
-                
-            </div>
 
-            {selectedCountry.url === "viza-v-italiyu" && ( 
+                {selectedCountry.url === "viza-v-italiyu" && ( 
                     <>
-                        <ul className={`lg:absolute 1400m:top-[20%] xl:top-[30%] 2xl:bottom-[45%]  lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-5 rounded-md pl-[7%] ml-[7%] mb-[20px] mr-auto lg:m-0`}>
+                        <ul className={`lg:absolute 1400m:top-[20%] mxl:top-[40%] xl:top-[30%] 2xl:top-[45%]  lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-5 rounded-md pl-[7%] ml-[7%] mb-[20px] mr-auto lg:m-0`}>
                             <AdvantageItemTop value="от 10 дней" description="срок рассмотрения заявления" iconPath={"/timeicon.svg"} />
                             <AdvantageItemTop value="до 2-х лет" description="срок действия визы" iconPath={"/docicon.svg"}/>
                             <AdvantageItemTop value="99%" description="одобрения виз" iconPath={"/approvalicon.svg"}/>
                         </ul>
                     </>
             )}
+                
+            </div>
 
             <Discount/>
 

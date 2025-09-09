@@ -20,6 +20,7 @@ export default {
         "br": { max: "1280px" },
         "1024m": { max: "1024px" },
         "1400m": {max: "1400px"},
+        "mxl": {mix: "1024"},
         "xl": {min: "1280px"},
         "2xl": {min: "1840px"},
       },

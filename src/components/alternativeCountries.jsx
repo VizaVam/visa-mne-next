@@ -243,7 +243,7 @@ export default function CountryCards() {
     const [isLgScreen, setIsLgScreen] = useState(false);
     const intervalRef = useRef(null);
 
-    // Отслеживаем размер экрана
+    // Определяем размер экрана
     useEffect(() => {
         const handleResize = () => setIsLgScreen(window.innerWidth >= 1024);
         handleResize();
@@ -287,7 +287,10 @@ export default function CountryCards() {
     });
 
     const renderCard = (country) => (
-        <div className="relative rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105 cursor-pointer w-full">
+        <a
+            href={country.link}
+            className="relative block rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105 cursor-pointer w-full"
+        >
             <div
                 className="h-[300px] w-full bg-cover bg-center"
                 style={{ backgroundImage: `url(${country.image})` }}
@@ -315,7 +318,7 @@ export default function CountryCards() {
                     Получить консультацию
                 </button>
             </div>
-        </div>
+        </a>
     );
 
     if (isLgScreen) {
@@ -333,8 +336,8 @@ export default function CountryCards() {
                     className="flex transition-transform duration-700"
                     style={{ transform: `translateX(-${currentIndex * 95}%)` }}
                 >
-                    {countries.map((country, index) => (
-                        <div key={index} className="flex-shrink-0 w-[95%] mr-4">
+                    {countries.map((country) => (
+                        <div key={country.name} className="flex-shrink-0 w-[95%] mr-4">
                             {renderCard(country)}
                         </div>
                     ))}
@@ -349,3 +352,4 @@ export default function CountryCards() {
         );
     }
 }
+

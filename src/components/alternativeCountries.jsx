@@ -230,6 +230,8 @@ import { useModal } from '@/components/modalcontext';
 import Image from 'next/image';
 import { useSwipeable } from "react-swipeable";
 
+import {CarouselButton} from "./icons";
+
 const parseText = (text) => {
     if (typeof text !== "string") return text || "";
 
@@ -367,10 +369,10 @@ export default function CountryCards() {
             <div className="relative w-full overflow-hidden" {...swipeHandlers}>
                 <div
                     className="flex transition-transform duration-700"
-                    style={{ transform: `translateX(-${currentIndex * 95}%)` }}
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                     {countries.map((country) => (
-                        <div key={country.name} className="flex-shrink-0 w-[95%] mr-4">
+                        <div key={country.name} className="flex-shrink-0 w-[100%] mr-4">
                             {renderCard(country)}
                         </div>
                     ))}
@@ -378,8 +380,27 @@ export default function CountryCards() {
 
                 {/* Кнопки */}
                 <div className="flex justify-center items-center mt-4 space-x-4">
-                    <button onClick={handlePrev} className="text-4xl text-[#F86F00]">‹</button>
-                    <button onClick={handleNext} className="text-4xl text-[#F86F00]">›</button>
+                <button
+                    onClick={handlePrev}
+                    className={`text-4xl transition-all duration-300 ${
+                        currentIndex > 0 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
+                    }`}
+                    aria-label="Назад"
+                >
+                    <CarouselButton color={"#F86F00"}/>
+                </button>
+                <button
+                    onClick={handleNext}
+                    className={`text-4xl transition-all duration-300 ${
+                        currentIndex < countries.length - 1 ? "text-[#F86F00] text-5xl" : "text-[#595959]"
+                    }`}
+                    aria-label="Вперед"
+                >
+                    <CarouselButton
+                        isRight={true}
+                        color={"#F86F00"}
+                    />
+                </button>
                 </div>
             </div>
         );

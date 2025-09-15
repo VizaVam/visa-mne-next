@@ -745,7 +745,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     <>
                         <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
                             <AdvantageItemTop value="21 день" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
-                            <AdvantageItemTop value="Сопровождение" description="в процессе верефикации" iconPath={"/icondoc.svg"}/>
+                            <AdvantageItemTop value="Сопровождение" description="в процессе верификации" iconPath={"/icondoc.svg"}/>
                         </ul>
                     </>
                 )}

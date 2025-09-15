@@ -230,11 +230,43 @@ import { useModal } from '@/components/modalcontext';
 import Image from 'next/image';
 import { useSwipeable } from "react-swipeable";
 
+const parseText = (text) => {
+    if (typeof text !== "string") return text || "";
+
+  const lines = text.split("\n");
+
+  return lines.map((line, lineIndex) => {
+    const parts = line.split(/(\*\*.*?\*\*|__.*?__|%%.*?%%)/g);
+
+    const parsedParts = parts.map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return <b key={index}>{part.slice(2, -2)}</b>; // жирный
+      } else if (part.startsWith("__") && part.endsWith("__")) {
+        return <span key={index} className="underline">{part.slice(2, -2)}</span>; // подчёркнутый
+      } else if (part.startsWith("%%") && part.endsWith("%%")) {
+        return (
+          <span key={index} className="font-bold text-orange-500 text-lg">
+            {part.slice(2, -2)}
+          </span>
+        );
+        }
+      return part; // обычный текст
+    });
+
+    return (
+      <React.Fragment key={lineIndex}>
+        {parsedParts}
+        <br />
+      </React.Fragment>
+    );
+  });
+};
+
 const countries = [
-  { name: "Греция", price: "450 бел. руб.", days: "45 дней", link: "/shengenskie-vizy/viza-v-grecziyu", image: "/greece.png" },
-  { name: "Испания", price: "от 790 бел. руб.", days: "до 60 дней", link: "/shengenskie-vizy/viza-v-ispaniyu", image: "/spain.png" },
-  { name: "Италия", price: "от 350 бел. руб.", days: "до 14 дней", link: "/shengenskie-vizy/viza-v-italiyu", image: "/italy.png" },
-  { name: "Франция", price: "от 650 бел. руб.", days: "до 14 дней", link: "/shengenskie-vizy/viza-vo-francziyu", image: "/france.png" },
+  { name: "Греция", price: "**450** бел. руб.", days: "**45** дней", link: "/shengenskie-vizy/viza-v-grecziyu", image: "/greece.png" },
+  { name: "Испания", price: "от **790** бел. руб.", days: "до **60** дней", link: "/shengenskie-vizy/viza-v-ispaniyu", image: "/spain.png" },
+  { name: "Италия", price: "от **350** бел. руб.", days: "до **14** дней", link: "/shengenskie-vizy/viza-v-italiyu", image: "/italy.png" },
+  { name: "Франция", price: "от **650** бел. руб.", days: "до **14** дней", link: "/shengenskie-vizy/viza-vo-francziyu", image: "/france.png" },
 ];
 
 export default function CountryCards() {
@@ -288,6 +320,7 @@ export default function CountryCards() {
 
     const renderCard = (country) => (
         <a
+            key={country.name}
             href={country.link}
             className="relative block rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105 cursor-pointer w-full"
         >
@@ -300,11 +333,11 @@ export default function CountryCards() {
                 <div className="flex mb-[10px] h-[80px]">
                     <div className="w-[50%]">
                         <Image width={24} height={24} src="/walletwhite.svg" alt="" className="h-[40px] w-[40px] mr-2" loading="lazy" />
-                        <p className="text-sm">{country.price}</p>
+                        <p className="text-sm">{parseText(country.price)}</p>
                     </div>
                     <div className="w-[50%] ml-[10px]">
                         <Image width={24} height={24} src="/timewhite.svg" alt="" className="h-[40px] w-[40px] mr-2" loading="lazy" />
-                        <p className="text-sm mb-3">{country.days}</p>
+                        <p className="text-sm mb-3">{parseText(country.days)}</p>
                     </div>
                 </div>
                 <button

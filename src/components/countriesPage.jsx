@@ -706,7 +706,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         priority={false} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
                         className={`relative lg:top-[120px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden 
-                            ${selectedCountry.url === "viza-v-italiyu" || "viza-v-polshu" ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
+                            ${(selectedCountry.url === "viza-v-italiyu" || selectedCountry.url === "viza-v-polshu") ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
                     />
                     <Image
                         src={selectedCountry.url === "viza-v-italiyu" ? "/visa-001.jpg" : 
@@ -719,7 +719,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         priority={true} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
                         loading="eager"
-                        className={`relative top-[20%] -z-50 sm:hidden ${selectedCountry.url === "viza-v-italiyu" || "viza-v-polshu" ? "mt-[10px] md:mt-0" : " "}`}
+                        className={`relative top-[20%] -z-50 sm:hidden ${(selectedCountry.url === "viza-v-italiyu" || selectedCountry.url === "viza-v-polshu") ? "mt-[10px] md:mt-0" : " "}`}
                     />
                 </div>
 

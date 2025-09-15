@@ -9,6 +9,7 @@ import { countries } from "@/data/countries";
 import { useModal } from "@/components/modalcontext";
 import Discount from "@/components/discount";
 import TakePrice from "@/components/TakePrice";
+import CountryCards from "@/components/alternativeCountries";
 
 // Lazy-loaded components
 const Contacts = lazy(() => import("@/components/contacts"));
@@ -514,14 +515,20 @@ const parseText = (text) => {
   const lines = text.split("\n");
 
   return lines.map((line, lineIndex) => {
-    const parts = line.split(/(\*\*.*?\*\*|__.*?__)/g);
+    const parts = line.split(/(\*\*.*?\*\*|__.*?__|%%.*?%%)/g);
 
     const parsedParts = parts.map((part, index) => {
       if (part.startsWith("**") && part.endsWith("**")) {
         return <b key={index}>{part.slice(2, -2)}</b>; // жирный
       } else if (part.startsWith("__") && part.endsWith("__")) {
         return <span key={index} className="underline">{part.slice(2, -2)}</span>; // подчёркнутый
-      }
+      } else if (part.startsWith("%%") && part.endsWith("%%")) {
+        return (
+          <span key={index} className="font-bold text-orange-500">
+            {part.slice(2, -2)}
+          </span>
+        );
+        }
       return part; // обычный текст
     });
 
@@ -690,18 +697,20 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     <Image
-                        src={ selectedCountry.url === "viza-v-italiyu" ? "/visa-000.jpg" :
-                             selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
+                        src={ selectedCountry.url === "viza-v-italiyu" ? "/visa-000.jpg" : 
+                                selectedCountry.url === "viza-v-polshu" ? "/visac-banner.svg" :
+                                selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
                         alt=""
                         width={1000}
                         height={1000}
                         priority={false} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
                         className={`relative lg:top-[120px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden 
-                            ${selectedCountry.url === "viza-v-italiyu" ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
+                            ${selectedCountry.url === "viza-v-italiyu" || "viza-v-polshu" ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
                     />
                     <Image
-                        src={selectedCountry.url === "viza-v-italiyu" ? "/visa-001.jpg" :
+                        src={selectedCountry.url === "viza-v-italiyu" ? "/visa-001.jpg" : 
+                            selectedCountry.url === "viza-v-polshu" ? "/visa-111.jpg" :
                             selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
                         alt=""
                         width={600}
@@ -710,12 +719,13 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         priority={true} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
                         loading="eager"
-                        className={`relative top-[20%] -z-50 sm:hidden ${selectedCountry.url === "viza-v-italiyu" ? "mt-[10px] md:mt-0" : " "}`}
+                        className={`relative top-[20%] -z-50 sm:hidden ${selectedCountry.url === "viza-v-italiyu" || "viza-v-polshu" ? "mt-[10px] md:mt-0" : " "}`}
                     />
                 </div>
 
 
-                <div className={` ${selectedCountry.url === "viza-v-italiyu" ? "dr:pb-[83%] mdd:pb-[78%]" : "mdd:pb-[25%]" } lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
+                <div className={` ${selectedCountry.url === "viza-v-italiyu" ? "dr:pb-[83%] mdd:pb-[78%]" : 
+                    selectedCountry.url === "viza-v-polshu" ? "dr:pb-[65%] mdd:pb-[65%]" : "mdd:pb-[25%]" } lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
                     <RippleButton onClick={openModal}>
                         Получить консультацию
                     </RippleButton>
@@ -723,14 +733,22 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                 {selectedCountry.url === "viza-v-italiyu" && ( 
                     <>
-                        <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute 1400m:top-[20%] mxl:top-[40%] xl:top-[30%] 2xl:top-[45%]  lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
+                        <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
                             <AdvantageItemTop value="от 10 дней" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="до 2-х лет" description="срок действия визы" iconPath={"/icondoc.svg"}/>
                             <AdvantageItemTop value="99%" description="одобрения виз" iconPath={"/approvalicon.svg"}/>
                         </ul>
                     </>
-            )}
-                
+                )}
+
+                {selectedCountry.url === "viza-v-polshu" && ( 
+                    <>
+                        <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
+                            <AdvantageItemTop value="21 день" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="в процессе верефикации" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
             </div>
 
             <Discount/>
@@ -815,7 +833,27 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                 </div>
                             )}
 
-                            {selectedCountry.text6 && (<TextBlock text={selectedCountry.text6} parseText={parseText}/>)}
+                            {selectedCountry.text6 && (<TextBlock text={selectedCountry.text6} parseText={parseText}/>)} 
+
+                            {selectedCountry.alternativeCountries && (<CountryCards/>)}
+                            {selectedCountry.title222 && (
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title222}/>)}
+                            {selectedCountry.text222 && (<TextBlock text={selectedCountry.text222} parseText={parseText}/>)}
+                            {selectedCountry.variants222?.length > 0 && (
+                                <VariantsList variants={selectedCountry.variants222}/>
+                            )}
+                            {selectedCountry.url === "viza-v-polshu" && ( 
+                                <>
+                                    <div className="flex flex-col gap-6"> 
+                                    <ul className="grid grid-cols-2 gap-4 text-center md:grid-cols-4 lg:gap-6 lg:p-4 sm:pt-10 rounded-md">
+                                        <AdvantageItem value="Более 10 лет" description="на рынке" />
+                                        <AdvantageItem value="98%" description="одобрения виз" />
+                                        <AdvantageItem value="20 000+" description="успешных кейсов" />
+                                        <AdvantageItem value="10 000+" description="довольных клиентов" />
+                                    </ul> 
+                                    </div>
+                                </>
+                            )}
                             {selectedCountry.text7 && (<TextBlock text={selectedCountry.text7} parseText={parseText}/>)}
                             {selectedCountry.text8 && (<TextBlock text={selectedCountry.text8} parseText={parseText}/>)}
 
@@ -961,7 +999,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                     </div>
                                 </div>
 
-                                {selectedCountry.url === "viza-v-italiyu" && ( /////////////////////////////////////////// ТУТ СМОТРЕТЬ 
+                                {selectedCountry.url === "viza-v-italiyu" && ( 
                                     <>
                                         <div className="flex flex-col gap-6"> 
                                         <ul className="grid grid-cols-2 gap-4 text-center md:grid-cols-4 lg:gap-6 lg:p-4 sm:pt-10 rounded-md">

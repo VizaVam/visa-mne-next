@@ -524,7 +524,7 @@ const parseText = (text) => {
         return <span key={index} className="underline">{part.slice(2, -2)}</span>; // подчёркнутый
       } else if (part.startsWith("%%") && part.endsWith("%%")) {
         return (
-          <span key={index} className="font-bold text-orange-500">
+          <span key={index} className="font-bold text-orange-500 text-lg">
             {part.slice(2, -2)}
           </span>
         );

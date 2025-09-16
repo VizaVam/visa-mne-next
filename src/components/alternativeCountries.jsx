@@ -340,18 +340,19 @@ export default function CountryCards() {
                 <h2 className="text-2xl font-bold 1024m:mb-[50px] mb-[65px]">{country.name}</h2>
                 <div className="flex mb-[10px] h-[80px] mb-auto">
                     <div className="w-[50%]">
-                        <Image width={24} height={24} src="/walletwhite.svg" alt="" className="1024m:h-[60px] 1024m:w-[60px] h-[40px] w-[40px] mr-2 mb-[10px]" loading="lazy" />
-                        <p className="text-sm">{parseText(country.price)}</p>
+                        <Image width={24} height={24} src="/walletwhite.svg" alt="" className="1024m:h-[50px] 1024m:w-[50px] h-[40px] w-[40px] mr-2 mb-[10px]" loading="lazy" />
+                        <p className="1024m:text-base text-sm">{parseText(country.price)}</p>
                     </div>
                     <div className="w-[50%] ml-[10px]">
-                        <Image width={24} height={24} src="/timewhite.svg" alt="" className="1024m:h-[60px] 1024m:w-[60px] h-[40px] w-[40px] mr-2 mb-[10px]" loading="lazy" />
-                        <p className="text-sm mb-3">{parseText(country.days)}</p>
+                        <Image width={24} height={24} src="/timewhite.svg" alt="" className="1024m:h-[50px] 1024m:w-[50px] h-[40px] w-[40px] mr-2 mb-[10px]" loading="lazy" />
+                        <p className="1024m:text-base text-sm mb-3">{parseText(country.days)}</p>
                     </div>
                 </div>
                 <button
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
+                        stopAutoPlay();
                         openModal();
                     }}
                     className="w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"

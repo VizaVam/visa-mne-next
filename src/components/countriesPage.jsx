@@ -770,7 +770,16 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                 </h2>
                                 <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
                                 <TextBlock text={selectedCountry.text1} parseText={parseText}/>
+                                {selectedCountry.text112 && (
+                                    <TextBlock text={selectedCountry.text112} parseText={parseText}/>
+                                )}
 
+                            </div>
+                            {(selectedCountry.url === "rabochaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (
+                                <CountryCards/>
+                            )}
+                            <div className="flex flex-col gap-6 lg:w-[60%]">
+                                
                                 {selectedCountry.variants?.length > 0 && (
                                     <VariantsList variants={selectedCountry.variants}/>
                                 )}
@@ -800,8 +809,22 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                                 <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title221}/>
                                 <TextBlock text={selectedCountry.text4} parseText={parseText}/>
+                                {selectedCountry.variantsDelovaya?.length > 0 && (
+                                    <VariantsList variants={selectedCountry.variantsDelovaya}/>
+                                )}
                                 <TextBlock text={selectedCountry.text5} parseText={parseText}/>
+                                {selectedCountry.text611 && (<TextBlock text={selectedCountry.text611} parseText={parseText}/>)} 
+                                {selectedCountry.text711 && (<TextBlock text={selectedCountry.text711} parseText={parseText}/>)} 
                             </div>
+                            {(selectedCountry.url === "delovaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (
+                                <CountryCards/>
+                            )}
+                            {selectedCountry.title811 && (
+                                <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title811}/>)
+                            }
+                            {selectedCountry.text911 && (<div className="flex flex-col gap-6 lg:w-[60%]"><TextBlock text={selectedCountry.text911} parseText={parseText}/> </div>)} 
+                            {selectedCountry.variants911 && (<div className="flex flex-col gap-6 lg:w-[60%]"><VariantsList variants={selectedCountry.variants911}/></div>)} 
+                            
 
                             {selectedCountry.typevc && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
                             {selectedCountry.typevc && (
@@ -834,15 +857,23 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             )}
 
                             {selectedCountry.text6 && (<TextBlock text={selectedCountry.text6} parseText={parseText}/>)} 
-
-                            {selectedCountry.alternativeCountries && (<CountryCards/>)}
+                            {selectedCountry.text622 && (<div className="flex flex-col gap-6 lg:w-[60%]"><TextBlock text={selectedCountry.text622} parseText={parseText}/> </div>)} 
+                            {(selectedCountry.url === "gostevaya-polskaya-viza" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
+                            {(selectedCountry.url === "viza-v-polshu" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
+                            {(selectedCountry.url === "viza-v-polsy-po-karte-polyaka" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
+                            {(selectedCountry.url === "uchebnaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
+                            
                             {selectedCountry.title222 && (
                                 <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title222}/>)}
                             {selectedCountry.text222 && (<TextBlock text={selectedCountry.text222} parseText={parseText}/>)}
                             {selectedCountry.variants222?.length > 0 && (
                                 <VariantsList variants={selectedCountry.variants222}/>
                             )}
-                            {selectedCountry.url === "viza-v-polshu" && ( 
+                            {(selectedCountry.url === "viza-v-polshu" 
+                                || selectedCountry.url === "rabochaya-viza-v-polshu"
+                                || selectedCountry.url === "delovaya-viza-v-polshu"
+                                || selectedCountry.url === "uchebnaya-viza-v-polshu") 
+                            && ( 
                                 <>
                                     <div className="flex flex-col gap-6"> 
                                     <ul className="grid grid-cols-2 gap-4 text-center md:grid-cols-4 lg:gap-6 lg:p-4 sm:pt-10 rounded-md">
@@ -936,9 +967,14 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     <Suspense fallback={<div>Loading Steps...</div>}>
                         <NewStepsCountries/>
                     </Suspense>
-                    <Suspense fallback={<div>Loading Form...</div>}>
-                        <PhoneForm/>
-                    </Suspense>
+                    {(selectedCountry.url !== "delovaya-viza-v-polshu" 
+                        && selectedCountry.url !== "uchebnaya-viza-v-polshu"
+                        && selectedCountry.url !== "gostevaya-polskaya-viza")  
+                    && (
+                        <Suspense fallback={<div>Loading Form...</div>}>
+                            <PhoneForm/>
+                        </Suspense>
+                    )}
 
                     <Suspense fallback={<div>Loading FAQ...</div>}>
                         <FAQ countryUrl={selectedCountry.url}/>

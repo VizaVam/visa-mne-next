@@ -871,8 +871,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             )}
                             {(selectedCountry.url === "viza-v-polshu" 
                                 || selectedCountry.url === "rabochaya-viza-v-polshu"
-                                || selectedCountry.url === "delovaya-viza-v-polshu"
-                                || selectedCountry.url === "uchebnaya-viza-v-polshu") 
+                                || selectedCountry.url === "delovaya-viza-v-polshu") 
                             && ( 
                                 <>
                                     <div className="flex flex-col gap-6"> 
@@ -969,7 +968,8 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     </Suspense>
                     {(selectedCountry.url !== "delovaya-viza-v-polshu" 
                         && selectedCountry.url !== "uchebnaya-viza-v-polshu"
-                        && selectedCountry.url !== "gostevaya-polskaya-viza")  
+                        && selectedCountry.url !== "gostevaya-polskaya-viza"
+                        && selectedCountry.url !== "viza-v-polsy-po-karte-polyaka")  
                     && (
                         <Suspense fallback={<div>Loading Form...</div>}>
                             <PhoneForm/>

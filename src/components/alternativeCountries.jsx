@@ -238,7 +238,7 @@ const parseText = (text) => {
   const lines = text.split("\n");
 
   return lines.map((line, lineIndex) => {
-    const parts = line.split(/(\*\*.*?\*\*|__.*?__|%%.*?%%)/g);
+    const parts = line.split(/(\*\*.*?\*\*|__.*?__|%%.*?%%|--.*?--)/g);
 
     const parsedParts = parts.map((part, index) => {
       if (part.startsWith("**") && part.endsWith("**")) {
@@ -251,7 +251,13 @@ const parseText = (text) => {
             {part.slice(2, -2)}
           </span>
         );
-        }
+        }else if (part.startsWith("--") && part.endsWith("--")) {
+            return (
+              <span key={index} className="text-[12px]">
+                {part.slice(2, -2)}
+              </span>
+            ); 
+          }
       return part; // обычный текст
     });
 
@@ -265,10 +271,10 @@ const parseText = (text) => {
 };
 
 const countries = [
-  { name: "Греция", price: "**450** бел. руб.", days: "**45** дней", link: "/shengenskie-vizy/viza-v-grecziyu", image: "/greece.png" },
-  { name: "Испания", price: "от **790** бел. руб.", days: "до **60** дней", link: "/shengenskie-vizy/viza-v-ispaniyu", image: "/spain.png" },
-  { name: "Италия", price: "от **350** бел. руб.", days: "до **14** дней", link: "/shengenskie-vizy/viza-v-italiyu", image: "/italy.png" },
-  { name: "Франция", price: "от **650** бел. руб.", days: "до **14** дней", link: "/shengenskie-vizy/viza-vo-francziyu", image: "/france.png" },
+  { name: "Греция", price: "**450** бел. руб.", days: "**45** дней \n--срок рассмотрения--", link: "/shengenskie-vizy/viza-v-grecziyu", image: "/greece.png" },
+  { name: "Испания", price: "от **790** бел. руб.", days: "до **60** дней \n--срок рассмотрения--", link: "/shengenskie-vizy/viza-v-ispaniyu", image: "/spain.png" },
+  { name: "Италия", price: "от **350** бел. руб.", days: "до **14** дней \n--срок рассмотрения--", link: "/shengenskie-vizy/viza-v-italiyu", image: "/italy.png" },
+  { name: "Франция", price: "от **650** бел. руб.", days: "до **14** дней \n--срок рассмотрения--", link: "/shengenskie-vizy/viza-vo-francziyu", image: "/france.png" },
 ];
 
 export default function CountryCards() {
@@ -330,15 +336,15 @@ export default function CountryCards() {
                 className="h-[300px] w-full bg-cover bg-center"
                 style={{ backgroundImage: `url(${country.image})` }}
             ></div>
-            <div className="absolute inset-0 bg-black/40 flex flex-col justify-start p-4 text-white">
-                <h2 className="text-xl font-bold mb-[80px]">{country.name}</h2>
-                <div className="flex mb-[10px] h-[80px]">
+            <div className="absolute inset-0 bg-black/40 flex flex-col justify-start text-white p-[20px]">
+                <h2 className="text-2xl font-bold 1024m:mb-[50px] mb-[65px]">{country.name}</h2>
+                <div className="flex mb-[10px] h-[80px] mb-auto">
                     <div className="w-[50%]">
-                        <Image width={24} height={24} src="/walletwhite.svg" alt="" className="h-[40px] w-[40px] mr-2" loading="lazy" />
+                        <Image width={24} height={24} src="/walletwhite.svg" alt="" className="1024m:h-[60px] 1024m:w-[60px] h-[40px] w-[40px] mr-2 mb-[10px]" loading="lazy" />
                         <p className="text-sm">{parseText(country.price)}</p>
                     </div>
                     <div className="w-[50%] ml-[10px]">
-                        <Image width={24} height={24} src="/timewhite.svg" alt="" className="h-[40px] w-[40px] mr-2" loading="lazy" />
+                        <Image width={24} height={24} src="/timewhite.svg" alt="" className="1024m:h-[60px] 1024m:w-[60px] h-[40px] w-[40px] mr-2 mb-[10px]" loading="lazy" />
                         <p className="text-sm mb-3">{parseText(country.days)}</p>
                     </div>
                 </div>
@@ -369,10 +375,10 @@ export default function CountryCards() {
             <div className="relative w-full overflow-hidden" {...swipeHandlers}>
                 <div
                     className="flex transition-transform duration-700"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    style={{ transform: `translateX(calc(-${currentIndex * 100}% - ${currentIndex * 16}px))` }}
                 >
                     {countries.map((country) => (
-                        <div key={country.name} className="flex-shrink-0 w-[100%] mr-4">
+                        <div key={country.name} className="flex-shrink-0 w-full mr-4">
                             {renderCard(country)}
                         </div>
                     ))}

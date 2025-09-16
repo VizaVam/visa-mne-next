@@ -27,8 +27,8 @@ export const countries = [
         priceTable: [
             {
                 service: "Услуга компании",
-                cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">500</span> бел. руб.</span>,
+                cost: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">790</span> бел. руб.</span>,
                 note: "Полный пакет услуг компании в зависимости от типа визы"
                 ,
                 serviceMob: "Полный пакет услуг компании в зависимости от типа визы",
@@ -1486,29 +1486,16 @@ export const countries = [
         text001: "**Важно!** У кандидата должны отсутствовать миграционные нарушения и быть подготовлен полный пакет документов.",
         priceTable: [
             {
-                service: "Услуга компании (без сопровождения при верификации)",
-                cost: <span><span
+                service: "Услуга компании",
+                cost: <span>от <span
                     className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>,
-                note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления; **Важно!** Сопровождение в процессе верификации **не включено в стоимость!**"
+                note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления, сопровождение в процессе верификации"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
                     "**Важно!** Сопровождение при верификации **не включено** в стоимость!\n" +
                     "\n",
                 costMob: <span><span
                     className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>
-                ,
-            },
-            {
-                service: "Услуга компании (с сопровождением при верификации)",
-                cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">990</span> бел. руб.</span>,
-                note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления; **Важно!** Сопровождение в процессе верификации **включено** в стоимость"
-                ,
-                serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
-                    "**Важно!** Сопровождение при верификации **включено** в стоимость;\n" +
-                    "\n",
-                costMob: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">990</span> бел. руб.</span>
                 ,
             },
             {
@@ -1592,8 +1579,8 @@ export const countries = [
         priceTable: [
             {
                 service: "Услуга компании",
-                cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">700 – 800</span> бел. руб.</span>,
+                cost: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">890</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
@@ -1699,8 +1686,8 @@ export const countries = [
         priceTable: [
             {
                 service: "Услуга компании",
-                cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">500 – 790</span> бел. руб.</span>,
+                cost: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
@@ -1788,14 +1775,14 @@ export const countries = [
         priceTable: [
             {
                 service: "Гостевая виза тип C (услуга компании)",
-                cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">700 – 800</span> бел. руб.</span>,
+                cost: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">890</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Тип C (консультация, подготовка документов, запись на подачу заявления)\n" +
                     "\n",
-                costMob: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">700 - 800</span> бел. руб. (в зависимости от округа)</span>
+                costMob: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб. (в зависимости от округа)</span>
                 ,
             },
             {

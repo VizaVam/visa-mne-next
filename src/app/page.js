@@ -4,40 +4,57 @@ import React, { memo, Suspense } from 'react';
 import dynamic from 'next/dynamic'; // Импортируем dynamic
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 import { useModal } from "@/components/modalcontext";
 
 // --- Ленивая загрузка компонентов ---
-// Эти компоненты будут загружены только тогда, когда они понадобятся (или приблизятся к viewport'у, если добавить SSR=false и useInView)
-const Services = dynamic(() => import('@/components/services'));
-const Slider = dynamic(() => import('@/components/slider'));
-const Docs = dynamic(() => import('@/components/docs'));
-const Reviews = dynamic(() => import('@/components/reviews'));
-const Fag = dynamic(() => import('@/components/fag'));
-const Contacts = dynamic(() => import('@/components/contacts'));
-const Announcement = dynamic(() => import('@/components/announcement'));
-const PhoneForm = dynamic(() => import('@/components/newModal')); // Предполагая, что это PhoneForm
-const NewSteps = dynamic(() => import('@/components/newSteps'));
-const TakePrice = dynamic(() => import('@/components/TakePrice'));
-const VizaCoop = dynamic(() => import('@/components/VizaCoop'));
+const Slider = dynamic(() => import('@/components/slider'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>,
+});
+
+const Announcement = dynamic(() => import('@/components/announcement'), {
+    loading: () => <div className="px-[7%] py-4 text-center">Загрузка объявления...</div>,
+});
+
+const Services = dynamic(() => import('@/components/services'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка услуг...</div>,
+});
+
+const BottomSections = dynamic(() => import('@/components/BottomSections'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка секции...</div>,
+});
+
+const VizaCoop = dynamic(() => import('@/components/VizaCoop'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка сотрудничества...</div>,
+});
+
+const TakePrice = dynamic(() => import('@/components/TakePrice'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка цен...</div>,
+});
+
+const NewSteps = dynamic(() => import('@/components/newSteps'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
+});
+
+const PhoneForm = dynamic(() => import('@/components/newModal'), {
+    ssr: false,
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+});
 // --- Конец ленивой загрузки ---
 
-// --- Компоненты, используемые в верхней части страницы ---
-// AdvantageItem и RippleButton - относительно простые, оставляем их как есть
-const AdvantageItem = ({ value, description }) => (
+// --- Компоненты верхней части ---
+const AdvantageItem = memo(({ value, description }) => (
     <li className="flex items-center text-lg">
-        {/* Убедитесь, что /check.svg оптимизирован */}
         <Image
             width={24}
             height={24}
             src="/check.svg"
             alt="Преимущество работы с VisaVam.by"
             className="h-5 w-5 mr-2"
-            loading="lazy" // Хорошо для некритических изображений
+            loading="lazy"
         />
         <div>
-            <p className="font-[500] text-[20px] mdd:leading-none">
-                {value}
-            </p>
+            <p className="font-[500] text-[20px] mdd:leading-none">{value}</p>
             {description && (
                 <p className="text-[16px] text-[#808080] mdd:leading-none">
                     {description}
@@ -45,7 +62,7 @@ const AdvantageItem = ({ value, description }) => (
             )}
         </div>
     </li>
-);
+));
 
 const RippleButton = memo(({ onClick, children }) => (
     <button
@@ -74,6 +91,20 @@ const RippleButton = memo(({ onClick, children }) => (
     </button>
 ));
 // --- Конец компонентов верхней части ---
+
+// Компонент для ленивой загрузки по inView
+const LazySection = ({ children, fallback = "Загрузка...", rootMargin = "100px" }) => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        rootMargin,
+    });
+
+    return (
+        <div ref={ref}>
+            {inView ? children : <div className="py-10 text-center">{fallback}</div>}
+        </div>
+    );
+};
 
 export default function HomePage() {
     const { openModal } = useModal();
@@ -107,7 +138,7 @@ export default function HomePage() {
                         src="/banner-hero.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
-                        unoptimized // Если это главное изображение выше "сгиба"
+                        loading="lazy"
                     />
                     <Image
                         width={840}
@@ -115,6 +146,7 @@ export default function HomePage() {
                         src="/main-m.png"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden"
+                        priority
                     />
 
                     <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
@@ -124,11 +156,11 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                {/* Announcement - может быть критичным, но часто находится ниже. Рассмотрите lazy для него тоже. */}
+                {/* Announcement (только на мобильных) */}
                 <div className="md:hidden">
-                    <Suspense fallback={<div>Загрузка объявления...</div>}>
+                    <LazySection fallback="Загрузка объявления...">
                         <Announcement />
-                    </Suspense>
+                    </LazySection>
                 </div>
 
                 {currentDate < discountEndDate && (
@@ -152,62 +184,49 @@ export default function HomePage() {
             </section>
             {/* Конец Hero Section */}
 
-            {/* Ниже идут секции, которые можно загружать лениво */}
-            {/* Используем Suspense с fallback для отображения загрузки */}
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>}>
+            {/* Lazy Sections */}
+            <LazySection rootMargin="200px">
                 <Slider />
-            </Suspense>
+            </LazySection>
 
             <div className="mdd:hidden">
-                <Suspense fallback={<div>Загрузка объявления...</div>}>
+                <LazySection fallback="Загрузка объявления...">
                     <Announcement />
-                </Suspense>
+                </LazySection>
             </div>
 
             <div>
                 <h2 className="px-[7%] text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-16 mdd:mb-4 pt-32 mdd:pt-20">
                     Оформление документов для подачи на визы
                 </h2>
-                <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка услуг...</div>}>
+                <LazySection>
                     <Services />
-                </Suspense>
+                </LazySection>
             </div>
 
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка сотрудничества...</div>}>
+            <LazySection>
                 <div className="px-[7%] pt-32 mdd:pt-20">
                     <VizaCoop />
                 </div>
-            </Suspense>
+            </LazySection>
 
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка цен...</div>}>
+            <LazySection>
                 <div className="px-[7%] pt-32 mdd:pt-20">
                     <TakePrice />
                 </div>
-            </Suspense>
+            </LazySection>
 
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка шагов...</div>}>
-                <div className={"pb-32 mdd:pb-20"}>
+            <LazySection>
+                <div className="pb-32 mdd:pb-20">
                     <NewSteps />
-                    {/* PhoneForm также загружается лениво */}
                     <PhoneForm />
                 </div>
-            </Suspense>
+            </LazySection>
 
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка документов...</div>}>
-                <Docs />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка отзывов...</div>}>
-                <Reviews />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка вопросов...</div>}>
-                <Fag />
-            </Suspense>
-
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка контактов...</div>}>
-                <Contacts />
-            </Suspense>
+            {/* Объединенные нижние секции */}
+            <LazySection>
+                <BottomSections />
+            </LazySection>
         </div>
     );
 }

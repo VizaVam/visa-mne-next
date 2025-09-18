@@ -105,6 +105,7 @@ const Modal = () => {
             setIsSuccess(true);
             triggerYandexGoal();
 
+            sessionStorage.setItem("previousPage", window.location.href);
             window.location.href = "/spasibo";
         } catch (error) {
             console.error("Ошибка отправки данных:", error);

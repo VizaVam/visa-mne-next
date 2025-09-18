@@ -210,6 +210,8 @@ const FormBlock = () => {
 
             triggerYandexGoal();
             
+            sessionStorage.setItem("previousPage", window.location.href);
+            
             window.location.href = "/spasibo";
 
         } catch (error) {

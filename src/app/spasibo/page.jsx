@@ -2,13 +2,9 @@
 
 export default function SpasiboPage() {
     const goBack = () => {
-        if (window.history.length > 1) {
-            window.history.back();
-            window.onpageshow = function(event) {
-            if (event.persisted) {
-                window.location.reload();
-            }
-            };
+        const previousPage = sessionStorage.getItem("previousPage");
+        if (previousPage) {
+            window.location.href = previousPage; 
         } else {
             window.location.href = "/";
         }

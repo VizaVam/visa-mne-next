@@ -6,20 +6,58 @@ import Image from "next/image";
 import { notFound, useParams, usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
 import { countries } from "@/data/countries";
+import { useInView } from 'react-intersection-observer';
 import { useModal } from "@/components/modalcontext";
 import Discount from "@/components/discount";
 import TakePrice from "@/components/TakePrice";
 import CountryCards from "@/components/alternativeCountries";
 
-// Lazy-loaded components
-const Contacts = lazy(() => import("@/components/contacts"));
-const Docs = lazy(() => import("@/components/docs"));
-const DocsShengen = lazy(() => import("@/components/docsShengen"));
-const DownloadFiles = lazy(() => import("@/components/downloadFiles"));
-const PhoneForm = lazy(() => import("@/components/newModal"));
-const Slider = lazy(() => import("@/components/slider"));
-const NewStepsCountries = lazy(() => import("@/components/newStepsCountries"));
-const FAQ = lazy(() => import("@/components/Faq")); // Assuming FAQ is extracted into a separate file
+// --- Ленивая загрузка компонентов с fallback ---
+const Discount = dynamic(() => import('@/components/discount'), {
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка акции...</div>,
+});
+
+const Slider = dynamic(() => import('@/components/slider'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>,
+});
+
+const Docs = dynamic(() => import('@/components/docs'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка документов...</div>,
+});
+
+const DocsShengen = dynamic(() => import('@/components/docsShengen'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка документов...</div>,
+});
+
+const DownloadFiles = dynamic(() => import('@/components/downloadFiles'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка файлов...</div>,
+});
+
+const PhoneForm = dynamic(() => import('@/components/newModal'), {
+    ssr: false,
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+});
+
+const NewStepsCountries = dynamic(() => import('@/components/newStepsCountries'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
+});
+
+const FAQ = dynamic(() => import('@/components/Faq'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка вопросов...</div>,
+});
+
+const Contacts = dynamic(() => import('@/components/contacts'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка контактов...</div>,
+});
+
+const CountryCards = dynamic(() => import('@/components/alternativeCountries'), {
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка альтернатив...</div>,
+});
+
+const TakePrice = dynamic(() => import('@/components/TakePrice'), {
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка цен...</div>,
+});
+// --- Конец ленивой загрузки ---
 
 const AdvantageItem = ({ value, description }) => (
     <li className="flex items-center flex-col text-lg m-5">
@@ -68,6 +106,20 @@ const AdvantageItemTop = ({ value, description, iconPath }) => (
         </div>
     </li>
 );
+
+// ✅ LazySection — для умной загрузки по скроллу
+const LazySection = ({ children, fallback = "Загрузка...", rootMargin = "100px" }) => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        rootMargin,
+    });
+
+    return (
+        <div ref={ref}>
+            {inView ? children : <div className="py-10 text-center">{fallback}</div>}
+        </div>
+    );
+};
 
 // FAQ data (unchanged, assuming it's in a separate file or remains here)
 export const faqDataByCountry = {
@@ -751,13 +803,14 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                 )}
             </div>
 
-            <Discount/>
+            {/* Lazy Sections */}
+            <LazySection>
+                <Discount />
+            </LazySection>
 
-            <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
-                <Suspense fallback={<div>Loading Slider...</div>}>
-                    <Slider/>
-                </Suspense>
-            </div>
+            <LazySection>
+                <Slider />
+            </LazySection>
 
             {showExtendedContent ? (
                 <div className="w-full">
@@ -950,38 +1003,40 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     </div>
 
                     <div className={"pt-16 mdd:pt-10"}>
-                        <Suspense fallback={<div>Loading Documents...</div>}>
+                        <LazySection>
                             {docs.includes(selectedCountry.url) ? (
-                                <DocsShengen countryUrl={selectedCountry.url}/>
+                                <DocsShengen countryUrl={selectedCountry.url} />
                             ) : (
-                                <Docs/>
+                                <Docs />
                             )}
-                        </Suspense>
+                        </LazySection>
                     </div>
 
-                    <Suspense fallback={<div>Loading Files...</div>}>
-                        <DownloadFiles/>
-                    </Suspense>
+                    <LazySection>
+                        <DownloadFiles />
+                    </LazySection>
 
-                    <Suspense fallback={<div>Loading Steps...</div>}>
-                        <NewStepsCountries/>
-                    </Suspense>
+                    <LazySection>
+                        <NewStepsCountries />
+                    </LazySection>
+
                     {(selectedCountry.url !== "delovaya-viza-v-polshu" 
                         && selectedCountry.url !== "uchebnaya-viza-v-polshu"
                         && selectedCountry.url !== "gostevaya-polskaya-viza"
                         && selectedCountry.url !== "viza-v-polsy-po-karte-polyaka")  
                     && (
-                        <Suspense fallback={<div>Loading Form...</div>}>
-                            <PhoneForm/>
-                        </Suspense>
+                            <LazySection>
+                                <PhoneForm />
+                            </LazySection>
                     )}
 
-                    <Suspense fallback={<div>Loading FAQ...</div>}>
-                        <FAQ countryUrl={selectedCountry.url}/>
-                    </Suspense>
-                    <Suspense fallback={<div>Loading Contacts...</div>}>
-                        <Contacts/>
-                    </Suspense>
+                    <LazySection>
+                        <FAQ countryUrl={selectedCountry.url} />
+                    </LazySection>
+
+                    <LazySection>
+                        <Contacts />
+                    </LazySection>
                 </div>
             ) : (
                 <div className="w-full">
@@ -1155,10 +1210,10 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             </div>
                         )}
                     </div>
-                    {selectedCountry.url === "viza-v-italiyu" && ( 
-                        <Suspense fallback={<div>Loading Form...</div>}>
-                            <PhoneForm/>
-                        </Suspense>
+                    {selectedCountry.url === "viza-v-italiyu" && (
+                        <LazySection>
+                            <PhoneForm />
+                        </LazySection>
                     )}
 
 
@@ -1169,37 +1224,38 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     )}
 
                     <div className={"pt-32 mdd:pt-20"}>
-                        <Suspense fallback={<div>Loading Documents...</div>}>
+                        <LazySection>
                             {docs.includes(selectedCountry.url) ? (
-                                <DocsShengen countryUrl={selectedCountry.url}/>
+                                <DocsShengen countryUrl={selectedCountry.url} />
                             ) : (
-                                <Docs/>
+                                <Docs />
                             )}
-                        </Suspense>
+                        </LazySection>
                     </div>
 
-                    <Suspense fallback={<div>Loading Files...</div>}>
-                        <DownloadFiles/>
-                    </Suspense>
+                    <LazySection>
+                        <DownloadFiles />
+                    </LazySection>
 
-                    <Suspense fallback={<div>Loading Steps...</div>}>
-                        <NewStepsCountries/>
-                    </Suspense>
+                    <LazySection>
+                        <NewStepsCountries />
+                    </LazySection>
 
                     {litva.includes(selectedCountry.url) ? (
                         <div></div>
                     ) : (
-                        <Suspense fallback={<div>Loading Form...</div>}>
-                            <PhoneForm/>
-                        </Suspense>
+                        <LazySection>
+                            <PhoneForm />
+                        </LazySection>
                     )}
 
-                    <Suspense fallback={<div>Loading FAQ...</div>}>
-                        <FAQ countryUrl={selectedCountry.url}/>
-                    </Suspense>
-                    <Suspense fallback={<div>Loading Contacts...</div>}>
-                        <Contacts/>
-                    </Suspense>
+                    <LazySection>
+                        <FAQ countryUrl={selectedCountry.url} />
+                    </LazySection>
+
+                    <LazySection>
+                        <Contacts />
+                    </LazySection>
                 </div>
             )}
             <style jsx>{`

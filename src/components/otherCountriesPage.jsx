@@ -1,26 +1,49 @@
 'use client'
 
-import React, { useMemo, useState, Suspense, lazy } from "react";
+import React, {useMemo, useState, Suspense, lazy} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound, useParams, usePathname } from 'next/navigation';
-import { motion } from "framer-motion";
-import { countries } from '@/data/countries';
-import { otherCountries } from "@/components/serviceson";
-import { useModal } from "@/components/modalcontext";
+import {notFound, useParams, usePathname} from 'next/navigation';
+import {motion} from "framer-motion";
+import {countries} from '@/data/countries';
+import {otherCountries} from "@/components/serviceson";
+import {useInView} from 'react-intersection-observer';
+import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Discount from "@/components/discount";
 import TakePrice from "@/components/TakePrice";
+import dynamic from "next/dynamic";
 
-// Lazy-loaded components
-const Contacts = lazy(() => import("@/components/contacts"));
-const Docs = lazy(() => import("@/components/docs"));
-const PhoneForm = lazy(() => import("@/components/newModal"));
-const Slider = lazy(() => import("@/components/slider"));
-const NewStepsCountries = lazy(() => import("@/components/newStepsCountries"));
+// --- Ленивая загрузка компонентов с fallback ---
+const Slider = dynamic(() => import('@/components/slider'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>,
+});
+
+const Docs = dynamic(() => import('@/components/docs'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка документов...</div>,
+});
+
+const PhoneForm = dynamic(() => import('@/components/newModal'), {
+    ssr: false,
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+});
+
+const NewStepsCountries = dynamic(() => import('@/components/newStepsCountries'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
+});
+
+const Contacts = dynamic(() => import('@/components/contacts'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка контактов...</div>,
+});
+
+// Объединяем нижние секции — если они такие же, как в HomePage
+const BottomSections = dynamic(() => import('@/components/BottomSections'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка разделов...</div>,
+});
+// --- Конец ленивой загрузки ---
 
 // FAQ Component
-const FAQ = ({ countryUrl }) => {
+const FAQ = ({countryUrl}) => {
     const [openIndex, setOpenIndex] = useState(null);
     const faqData = faqDataByCountry[countryUrl] || [];
 
@@ -32,7 +55,8 @@ const FAQ = ({ countryUrl }) => {
 
     return (
         <div className="pt-32 mdd:pt-20 px-[7%]">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-12">Часто задаваемые вопросы</h2>
+            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-12">Часто задаваемые
+                вопросы</h2>
             <script type="application/ld+json">
                 {JSON.stringify({
                     "@context": "https://schema.org",
@@ -75,7 +99,7 @@ const FAQ = ({ countryUrl }) => {
                         {openIndex === index && (
                             <div
                                 className="mdd:text-[16px] text-[16px] bg-white rounded-full py-4 px-6 text-gray-700"
-                                dangerouslySetInnerHTML={{ __html: faq.answer }}
+                                dangerouslySetInnerHTML={{__html: faq.answer}}
                             />
                         )}
                     </div>
@@ -144,7 +168,7 @@ const faqDataByCountry = {
 };
 
 // Reusable PriceTable component
-const PriceTable = ({ country, parseText }) => (
+const PriceTable = ({country, parseText}) => (
     <>
         {/* Desktop Table (md: and above) */}
         <div className="overflow-x-auto w-full mdd:hidden">
@@ -211,7 +235,7 @@ const PriceTable = ({ country, parseText }) => (
 );
 
 // Reusable WhoItSuitsTable component
-const WhoItSuitsTable = ({ country, parseText, excludedCountries1, china }) => (
+const WhoItSuitsTable = ({country, parseText, excludedCountries1, china}) => (
     <div className="overflow-x-auto w-full">
         <table className="w-full border-collapse">
             <colgroup>
@@ -242,7 +266,7 @@ const WhoItSuitsTable = ({ country, parseText, excludedCountries1, china }) => (
 );
 
 // Reusable components (same as previous optimization)
-const RippleButton = ({ onClick, children }) => (
+const RippleButton = ({onClick, children}) => (
     <button
         onClick={onClick}
         className="bbbt relative overflow-hidden w-full bg-customBlue hover:bg-blue-600 text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] active:scale-95 transition-transform duration-150 ease-in-out"
@@ -251,8 +275,8 @@ const RippleButton = ({ onClick, children }) => (
             <motion.span
                 key={i}
                 className="absolute inset-0 flex items-center justify-center"
-                initial={{ scale: 0, opacity: 1.5 }}
-                animate={{ scale: 4, opacity: 0 }}
+                initial={{scale: 0, opacity: 1.5}}
+                animate={{scale: 4, opacity: 0}}
                 transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -268,7 +292,7 @@ const RippleButton = ({ onClick, children }) => (
     </button>
 );
 
-const CountryBreadcrumbs = ({ country, pathname, excludedCountries1 }) => (
+const CountryBreadcrumbs = ({country, pathname, excludedCountries1}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
         <Link href="/"
               className="text-orange-500 hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
@@ -285,7 +309,7 @@ const CountryBreadcrumbs = ({ country, pathname, excludedCountries1 }) => (
     </nav>
 );
 
-const VariantsList = ({ variants }) => (
+const VariantsList = ({variants}) => (
     <ul className="text-black text-[14px] flex flex-col gap-2">
         {variants.map((variant, index) => (
             <li key={index} className="flex gap-2 items-center">
@@ -296,7 +320,7 @@ const VariantsList = ({ variants }) => (
     </ul>
 );
 
-const VisaTypeButtons = ({ types, links, enabled = [] }) => (
+const VisaTypeButtons = ({types, links, enabled = []}) => (
     <>
         {types.map((text, index) => (
             <div key={index} className="flex flex-col items-start">
@@ -326,19 +350,20 @@ const parseText = (text) => {
     );
 };
 
-const TextBlock = ({ text, parseText, className = "" }) => (
+const TextBlock = ({text, parseText, className = ""}) => (
     text && <p className={`text-black text-[14px] ${className}`}>
         {parseText(text)}
     </p>
 );
 
-const SectionTitle = ({ title, className = "" }) => (
-    title && <h2 className={`pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold ${className}`}>
+const SectionTitle = ({title, className = ""}) => (
+    title &&
+    <h2 className={`pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold ${className}`}>
         {title}
     </h2>
 );
 
-const AlternativePricing = ({ priceTitle, priceVariants }) => (
+const AlternativePricing = ({priceTitle, priceVariants}) => (
     <div className="pt-20 mdd:pt-8 flex flex-col gap-6 lg:w-[80%]">
         {priceTitle && (
             <p className="text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
@@ -351,7 +376,7 @@ const AlternativePricing = ({ priceTitle, priceVariants }) => (
     </div>
 );
 
-const CountryCard = ({ country }) => (
+const CountryCard = ({country}) => (
     <Link href={`/shengenskie-vizy/${country.url}`}>
         <div
             className="bg-white border border-[#ECECEC] rounded-lg lg:rounded-[4px] overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
@@ -383,9 +408,23 @@ const CountryCard = ({ country }) => (
     </Link>
 );
 
-export default function OtherCountryPage({ breadcrumbs }) {
-    const { country: countryUrl } = useParams();
-    const { openModal } = useModal();
+// ✅ LazySection — для умной загрузки по скроллу
+const LazySection = ({children, fallback = "Загрузка...", rootMargin = "100px"}) => {
+    const {ref, inView} = useInView({
+        triggerOnce: true,
+        rootMargin,
+    });
+
+    return (
+        <div ref={ref}>
+            {inView ? children : <div className="py-10 text-center">{fallback}</div>}
+        </div>
+    );
+};
+
+export default function OtherCountryPage({breadcrumbs}) {
+    const {country: countryUrl} = useParams();
+    const {openModal} = useModal();
     const pathname = usePathname();
 
     const excludedCountries1 = useMemo(() => [
@@ -464,13 +503,14 @@ export default function OtherCountryPage({ breadcrumbs }) {
                 </div>
             </div>
 
-            <Discount/>
+            {/* Lazy Sections */}
+            <LazySection>
+                <Discount/>
+            </LazySection>
 
-            <div className="w-full relative ht:bottom-[60px] xl:bottom-[60px] lg:bottom-[30px]">
-                <Suspense fallback={<div>Loading Slider...</div>}>
-                    <Slider/>
-                </Suspense>
-            </div>
+            <LazySection>
+                <Slider/>
+            </LazySection>
 
             {showExtendedContent ? (
                 <div className="w-full">
@@ -577,24 +617,24 @@ export default function OtherCountryPage({ breadcrumbs }) {
                         </div>
 
                         <div className="pt-16 mdd:pt-10">
-                            <Suspense fallback={<div>Loading Documents...</div>}>
+                            <LazySection>
                                 <Docs/>
-                            </Suspense>
+                            </LazySection>
                         </div>
 
                         <div className="pt-32 mdd:pt-20">
-                            <Suspense fallback={<div>Loading Steps...</div>}>
+                            <LazySection>
                                 <NewStepsCountries/>
-                            </Suspense>
+                            </LazySection>
                         </div>
 
-                        <Suspense fallback={<div>Loading Form...</div>}>
+                        <LazySection>
                             <PhoneForm/>
-                        </Suspense>
+                        </LazySection>
 
-                        <Suspense fallback={<div>Loading FAQ...</div>}>
+                        <LazySection>
                             <FAQ countryUrl={countryUrl}/>
-                        </Suspense>
+                        </LazySection>
                     </div>
                 </div>
             ) : (
@@ -652,15 +692,13 @@ export default function OtherCountryPage({ breadcrumbs }) {
                         </Link>
                     </div>
 
-                    <Suspense fallback={<div>Loading FAQ...</div>}>
+                    <LazySection>
                         <FAQ countryUrl={countryUrl}/>
-                    </Suspense>
+                    </LazySection>
                 </div>
             )}
 
-            <Suspense fallback={<div>Loading Contacts...</div>}>
-                <Contacts/>
-            </Suspense>
+            <Contacts/>
 
             <style jsx>{`
                 .bold-list-numbers ::marker {

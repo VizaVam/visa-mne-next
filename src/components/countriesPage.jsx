@@ -8,9 +8,7 @@ import { motion } from "framer-motion";
 import { countries } from "@/data/countries";
 import { useInView } from 'react-intersection-observer';
 import { useModal } from "@/components/modalcontext";
-import Discount from "@/components/discount";
-import TakePrice from "@/components/TakePrice";
-import CountryCards from "@/components/alternativeCountries";
+import dynamic from "next/dynamic";
 
 // --- Ленивая загрузка компонентов с fallback ---
 const Discount = dynamic(() => import('@/components/discount'), {

@@ -6,21 +6,44 @@ import Link from "next/link";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import {motion} from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 // --- Ленивая загрузка компонентов ---
-const Docs = dynamic(() => import('@/components/docs'));
-const Reviews = dynamic(() => import('@/components/reviews'));
-const Fag = dynamic(() => import('@/components/fag'));
-const Contacts = dynamic(() => import('@/components/contacts'));
-const Slider = dynamic(() => import('@/components/slider'));
-const NewSteps = dynamic(() => import('@/components/newSteps'));
-const Discount = dynamic(() => import('@/components/discount'));
-const TakePrice = dynamic(() => import('@/components/TakePrice'));
-const VizaCoop = dynamic(() => import('@/components/VizaCoop'));
-const Serviceson = dynamic(() => import('@/components/serviceson'));
-const PhoneForm = dynamic(() => import('@/components/newModal')); // Предполагая, что это PhoneForm
+const Discount = dynamic(() => import('@/components/discount'), {
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка акции...</div>,
+});
+
+const Slider = dynamic(() => import('@/components/slider'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>,
+});
+
+const Serviceson = dynamic(() => import('@/components/serviceson'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка услуг...</div>,
+});
+
+const VizaCoop = dynamic(() => import('@/components/VizaCoop'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка сотрудничества...</div>,
+});
+
+const TakePrice = dynamic(() => import('@/components/TakePrice'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка цен...</div>,
+});
+
+const NewSteps = dynamic(() => import('@/components/newSteps'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
+});
+
+const PhoneForm = dynamic(() => import('@/components/newModal'), {
+    ssr: false,
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+});
+
+// Объединяем нижние секции — если они такие же, как в HomePage
+const BottomSections = dynamic(() => import('@/components/BottomSections'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка разделов...</div>,
+});
 // --- Конец ленивой загрузки ---
 
 // --- Компоненты, используемые в верхней части страницы ---
@@ -84,6 +107,20 @@ const BreadcrumbNav = ({pathname}) => (
 );
 // --- Конец компонентов верхней части ---
 
+// Компонент для ленивой загрузки по inView
+const LazySection = ({ children, fallback = "Загрузка...", rootMargin = "100px" }) => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        rootMargin,
+    });
+
+    return (
+        <div ref={ref}>
+            {inView ? children : <div className="py-10 text-center">{fallback}</div>}
+        </div>
+    );
+};
+
 export default function VisaPage({breadcrumbs}) {
     const {openModal} = useModal();
     const pathname = usePathname();
@@ -128,29 +165,44 @@ export default function VisaPage({breadcrumbs}) {
             </div>
             {/* Конец Hero Section */}
 
-            {/* Ниже идут секции, которые можно загружать лениво */}
-            {/* Используем Suspense с fallback для отображения загрузки */}
-            <Suspense fallback={<div className="px-[7%] py-10 text-center">Загрузка...</div>}>
-                <Discount/>
-                <Slider/>
+            {/* Lazy Sections */}
+            <LazySection>
+                <Discount />
+            </LazySection>
+
+            <LazySection>
+                <Slider />
+            </LazySection>
+
+            <LazySection>
                 <div className="pt-32 mdd:pt-20">
-                    <Serviceson/>
+                    <Serviceson />
                 </div>
+            </LazySection>
+
+            <LazySection>
                 <div className="px-[7%] pt-32 mdd:pt-20">
-                    <VizaCoop/>
+                    <VizaCoop />
                 </div>
+            </LazySection>
+
+            <LazySection>
                 <div className="px-[7%] pt-32 mdd:pt-20">
-                    <TakePrice/>
+                    <TakePrice />
                 </div>
-                <div className={"pb-32 mdd:pb-20"}>
-                    <NewSteps/>
-                    <PhoneForm/>
+            </LazySection>
+
+            <LazySection>
+                <div className="pb-32 mdd:pb-20">
+                    <NewSteps />
+                    <PhoneForm />
                 </div>
-                <Docs/>
-                <Reviews/>
-                <Fag/>
-                <Contacts/>
-            </Suspense>
+            </LazySection>
+
+            {/* Объединённые нижние секции */}
+            <LazySection>
+                <BottomSections />
+            </LazySection>
         </div>
     );
 }

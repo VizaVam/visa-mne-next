@@ -209,6 +209,8 @@ const FormBlock = () => {
             // Ошибки тоже можно не сбрасывать, так как форма "успешна"
 
             triggerYandexGoal();
+            
+            window.location.href = "/spasibo";
 
         } catch (error) {
             // Этот блок catch сработает только при сетевых ошибках (например, DNS, CORS preflight fail)

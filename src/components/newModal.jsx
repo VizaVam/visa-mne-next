@@ -114,6 +114,8 @@ const PhoneForm = () => {
             setIsSuccess(true);
 
             triggerYandexGoal();
+            
+            window.location.href = "/spasibo";
         } catch (error) {
             console.error("Ошибка отправки данных:", error);
             setIsSuccess(false);

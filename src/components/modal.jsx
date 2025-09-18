@@ -151,13 +151,7 @@ const Modal = () => {
 
                 <h2 className="text-2xl font-medium mb-6">Оформить заявку</h2>
 
-                {isSuccess ? (
-                    <div className="text-center p-4">
-                        <div className="p-4 bg-gray-100 rounded text-sm">
-                            Заявка успешно отправлена. С Вами свяжутся в ближайшее время.
-                        </div>
-                    </div>
-                ) : (
+                {!isSuccess && (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <input

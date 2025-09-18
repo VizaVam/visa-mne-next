@@ -428,20 +428,7 @@ const FormBlock = () => {
                     )}
                     {step === 6 && (
                         <div>
-                            {isSuccess ? (
-                                <div className="flex flex-col gap-5">
-                                    <p className="text-[#15419E] font-medium">
-                                        Ваша заявка принята! Менеджер свяжется с Вами в ближайшее время!
-                                    </p>
-                                    <button
-                                        type="button"
-                                        onClick={resetForm}
-                                        className="px-4 py-2 bg-[#15419E] text-white rounded-full w-max mdd:w-full"
-                                    >
-                                        Рассчитать стоимость заново
-                                    </button>
-                                </div>
-                            ) : (
+                            {!isSuccess && (
                                 <div className="flex flex-col">
                                     <label className="block font-medium mb-5">
                                         Ваш результат уже готов! Узнайте его, оставив свой номер телефона!

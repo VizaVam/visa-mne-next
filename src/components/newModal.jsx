@@ -138,17 +138,7 @@ const PhoneForm = () => {
             <p className="mdd:text-[16px] sm:text-[20px] md:text-[20px] lg:text-[20px] font-medium mb-8 text-center">
                 Напишите нам — проконсультируем <span className="text-[#F86F00]">бесплатно в течение 5 минут!</span>
             </p>
-            {isSuccess ? (
-                <div className="flex flex-col text-center gap-2 p-4 bg-gray-100 rounded text-sm max-w-md mx-auto">
-                    Заявка успешно отправлена. С Вами свяжутся в ближайшее время.
-                    <RippleButton
-                        onClick={handleNewRequest}
-                        className="mt-4 py-2 px-4 text-sm"
-                    >
-                        Новая заявка
-                    </RippleButton>
-                </div>
-            ) : (
+            {!isSuccess && (
                 <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
                     <div className="flex flex-col items-end md:flex-row md:space-x-4 md:space-y-0 space-y-4">
                         <div className="w-full">

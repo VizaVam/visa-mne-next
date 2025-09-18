@@ -1,13 +1,18 @@
 "use client"; 
 
 export default function SpasiboPage() {
-  const goBack = () => {
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = "/";
-    }
-  };
+    const goBack = () => {
+        if (window.history.length > 1) {
+            window.history.back();
+            window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+            };
+        } else {
+            window.location.href = "/";
+        }
+    };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white px-4">

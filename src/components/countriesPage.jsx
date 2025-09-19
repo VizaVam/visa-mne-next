@@ -819,7 +819,9 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                     className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
                                     {selectedCountry.title}
                                 </h2>
-                                <TextBlock text={selectedCountry.textTop} parseText={parseText}/>
+                                {selectedCountry.textTop1 && (<TextBlock text={selectedCountry.textTop1} parseText={parseText}/>)}
+                                {selectedCountry.textTop2 && (<TextBlock text={selectedCountry.textTop2} parseText={parseText}/>)}
+                                {selectedCountry.textTop3 && (<TextBlock text={selectedCountry.textTop3} parseText={parseText}/>)}
                                 <TextBlock text={selectedCountry.text1} parseText={parseText}/>
                                 {selectedCountry.text112 && (
                                     <TextBlock text={selectedCountry.text112} parseText={parseText}/>
@@ -997,6 +999,8 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             />
 
                             <PriceTable country={selectedCountry} parseText={parseText}/>
+                            {selectedCountry.textAfterPrice && 
+                                (<div className="flex flex-col gap-6 lg:w-[60%]"><TextBlock text={selectedCountry.textAfterPrice} parseText={parseText}/> </div>)}
                         </div>
                     </div>
 
@@ -1031,6 +1035,105 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     <LazySection>
                         <FAQ countryUrl={selectedCountry.url} />
                     </LazySection>
+
+                    {(selectedCountry.url === "viza-v-ispaniyu" || 
+                        selectedCountry.url === "viza-v-grecziyu" || 
+                        selectedCountry.url === "viza-v-germaniyu") && (
+                        <div className={`px-[7%]`}>
+                            <div className="pt-16 mdd:pt-10 flex flex-col gap-6">
+                                <div className="flex flex-col gap-6 lg:w-[60%]">
+                                    <h2 title={selectedCountry.titleAfterFAQ}
+                                        className={`text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold`}>
+                                        {selectedCountry.titleAfterFAQ}
+                                    </h2>
+                                    {selectedCountry.textAfterFAQ1 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ1} parseText={parseText}/>
+                                    )}
+
+                                    {selectedCountry.titleAfterFAQ2 && (
+                                        <h3 className="text-black text-[16px] md:text-[26px] sm:text-[20px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ2}
+                                        </h3>
+                                    )}
+                                    {selectedCountry.textAfterFAQ2 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ2} parseText={parseText}/>
+                                    )}
+
+
+                                    {selectedCountry.titleAfterFAQ3 && (
+                                        <h3 className="text-black text-[16px] md:text-[26px] sm:text-[20px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ3}
+                                        </h3>
+                                    )}
+                                    {selectedCountry.textAfterFAQ3 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ3} parseText={parseText}/>
+                                    )}
+
+
+                                    {selectedCountry.titleAfterFAQ4 && (
+                                        <h3 className="text-black text-[16px] md:text-[26px] sm:text-[20px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ4}
+                                        </h3>
+                                    )}
+                                    {selectedCountry.textAfterFAQ4 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ4} parseText={parseText}/>
+                                    )}
+
+                                    {selectedCountry.titleAfterFAQ5 && (
+                                        <h3 className="text-black text-[16px] md:text-[26px] sm:text-[20px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ5}
+                                        </h3>
+                                    )}
+                                    {selectedCountry.textAfterFAQ5 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ5} parseText={parseText}/>
+                                    )}
+
+                                    {selectedCountry.titleAfterFAQ52 && (
+                                        <h2 className="text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ52}
+                                        </h2>
+                                    )}
+                                    {selectedCountry.textAfterFAQ52 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ52} parseText={parseText}/>
+                                    )}
+
+
+                                    {selectedCountry.titleAfterFAQ6 && (
+                                        <h3 className="text-black text-[16px] md:text-[26px] sm:text-[20px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ6}
+                                        </h3>
+                                    )}
+                                    {selectedCountry.textAfterFAQ6 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ6} parseText={parseText}/>
+                                    )}
+
+      
+                                    {selectedCountry.titleAfterFAQ7 && (
+                                        <h3 className="text-black text-[16px] md:text-[26px] sm:text-[20px] font-semibold">
+                                            {selectedCountry.titleAfterFAQ7}
+                                        </h3>
+                                    )}
+                                    {selectedCountry.textAfterFAQ7 && (
+                                        <TextBlock text={selectedCountry.textAfterFAQ7} parseText={parseText}/>
+                                    )}
+                                    {(
+                                        selectedCountry.url === "viza-v-ispaniyu" && 
+                                        (<p className={"italic text-[14px]"}>
+                                            <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                                target="_blank" rel="noopener noreferrer" onClick={openModal}>Свяжитесь с нами</a>, чтобы оформить визу в Испанию быстро и без лишних хлопот!
+                                        </p>)
+                                    )}
+                                    {(
+                                        selectedCountry.url === "viza-v-germaniyu" && 
+                                        (<p className={"italic text-[14px]"}>
+                                            <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                                target="_blank" rel="noopener noreferrer" onClick={openModal}>Свяжитесь с нами</a>, чтобы быстро и без стресса <b>открыть визу в Германию!</b>
+                                        </p>)
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     <LazySection>
                         <Contacts />

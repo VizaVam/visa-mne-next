@@ -50,6 +50,11 @@ export default function OnasPage({breadcrumbs}) {
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
+        "author": [{
+          "@type": "Person",
+          "name": "Елизавета Бокая",
+          "jobTitle": "руководитель отдела продаж"
+        }],
         "headline": "Как оформить визу в Польшу для белорусов: документы, стоимость и сроки",
         "alternativeHeadline": "Пошаговая инструкция по получению визы в Польшу для белорусов в 2025 году",
         "datePublished": "2025-05-13T08:00:00+05:00",
@@ -131,6 +136,10 @@ export default function OnasPage({breadcrumbs}) {
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
                         Как оформить визу в Польшу для белорусов: документы, стоимость и сроки
                     </h1>
+                </div>
+                <div className="w-full px-[7%] pt-[20px]">
+                    <p className="text-orange-500">13.05.2025</p>
+                    <p><b>Автор: </b>Елизавета Бокая</p>
                 </div>
             </div>
 

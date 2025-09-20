@@ -51,6 +51,11 @@ export default function OnasPage({breadcrumbs}) {
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
+        "author": [{
+          "@type": "Person",
+          "name": "Елизавета Бокая",
+          "jobTitle": "руководитель отдела продаж"
+        }],
         "headline": "Куда поехать белорусам в 2025: Полный гид по безвизовым странам, Шенгену и советам для отдыха",
         "alternativeHeadline": "Актуальный гид для белорусов на 2025 год. Список стран, куда можно поехать без визы. Инструкция по получению шенгенской визы. Полезные советы, ответы на вопросы и помощь в оформлении виз — все в одной статье!",
         "datePublished": "2025-09-01T08:00:00+05:00",
@@ -154,6 +159,10 @@ export default function OnasPage({breadcrumbs}) {
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
                         Куда поехать белорусам в 2025 году: от безвизового релакса до визовых открытий
                     </h1>
+                </div>
+                <div className="w-full px-[7%] pt-[20px]">
+                    <p className="text-orange-500">01.09.2025</p>
+                    <p><b>Автор: </b>Елизавета Бокая</p>
                 </div>
             </div>
 

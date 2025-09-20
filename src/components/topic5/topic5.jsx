@@ -50,6 +50,11 @@ export default function OnasPage({breadcrumbs}) {
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
+        "author": [{
+          "@type": "Person",
+          "name": "Елизавета Бокая",
+          "jobTitle": "руководитель отдела продаж"
+        }],
         "headline": "Верификация на польскую визу в Беларуси 2025: как пройти, пошаговая инструкция | VISA VAM",
         "alternativeHeadline": "Подробное руководство, как проходит верификация на визу в Польшу для белорусов. Узнайте все шаги, как успешно пройти онлайн-идентификацию VFS и записаться на подачу документов.",
         "datePublished": "2025-09-02T08:00:00+05:00",
@@ -155,6 +160,10 @@ export default function OnasPage({breadcrumbs}) {
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
                         Верификация на польскую визу для белорусов: Пошаговая инструкция 2025
                     </h1>
+                </div>
+                <div className="w-full px-[7%] pt-[20px]">
+                    <p className="text-orange-500">02.09.2025</p>
+                    <p><b>Автор: </b>Елизавета Бокая</p>
                 </div>
             </div>
 

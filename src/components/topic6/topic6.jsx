@@ -52,6 +52,11 @@ export default function OnasPage({breadcrumbs}) {
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
+        "author": [{
+          "@type": "Person",
+          "name": "Елизавета Бокая",
+          "jobTitle": "руководитель отдела продаж"
+        }],
         "headline": "Фото на визу 2025: Все требования к фото на Шенген, США | Visa Vam",
         "alternativeHeadline": "Актуальные требования к фото на визу в 2025 году. Узнайте, какая фотография нужна для Шенгена, США и других стран. Все правила по размеру, фону и качеству снимка, чтобы избежать отказа.",
         "datePublished": "2025-09-04T08:00:00+05:00",
@@ -166,6 +171,10 @@ export default function OnasPage({breadcrumbs}) {
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
                         Фото на визу {year}: Полное руководство по требованиям к фотографиям
                     </h1>
+                </div>
+                <div className="w-full px-[7%] pt-[20px]">
+                    <p className="text-orange-500">04.09.2025</p>
+                    <p><b>Автор: </b>Елизавета Бокая</p>
                 </div>
             </div>
 

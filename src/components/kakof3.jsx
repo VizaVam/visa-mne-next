@@ -50,6 +50,11 @@ export default function OnasPage({breadcrumbs}) {
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
+        "author": [{
+          "@type": "Person",
+          "name": "Елизавета Бокая",
+          "jobTitle": "руководитель отдела продаж"
+        }],
         "headline": "Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты",
         "alternativeHeadline": "Основные ошибки белорусов при оформлении рабочей визы в 2025 году",
         "datePublished": "2025-07-01T08:00:00+05:00",
@@ -114,6 +119,10 @@ export default function OnasPage({breadcrumbs}) {
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
                         Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты
                     </h1>
+                </div>
+                <div className="w-full px-[7%] pt-[20px]">
+                    <p className="text-orange-500">01.07.2025</p>
+                    <p><b>Автор: </b>Елизавета Бокая</p>
                 </div>
             </div>
 

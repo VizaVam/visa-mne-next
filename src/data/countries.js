@@ -412,7 +412,7 @@ export const countries = [
             {
                 service: "Консульский/сервисный/логистический сбор",
                 cost: "Оплачивается отдельно",
-                note: "Опentas, no extra charge for children under 12.",
+                note: "Оплачивается отдельно в консульстве или ВЦ при подаче",
                 serviceMob:
                     "Консульский/сервисный/логистический сбор\n" +
                     "\n",

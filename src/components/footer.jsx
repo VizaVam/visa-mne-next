@@ -196,8 +196,12 @@ export default function Footer() {
 
             <div className="footer__bottom">
                 <a className={"text-[#E6E6E6] hover:text-white"} href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf"
-                   target="_blank" rel="noopener noreferrer">
+                target="_blank" rel="noopener noreferrer">
                     Публичная оферта
+                </a>
+                <a className={"text-[#E6E6E6] hover:text-white ml-[25px]"} href="/confidential-politics.pdf"
+                target="_blank" rel="noopener noreferrer">
+                    Политика конфиденциальности
                 </a>
             </div>
         </footer>

@@ -4,6 +4,7 @@ import {useState} from "react";
 import {useModal} from "@/components/modalcontext";
 import {IMaskInput} from "react-imask";
 import {motion} from "framer-motion";
+import { blacklistedPhones } from "@/config/blacklist";
 
 // Function to trigger Yandex Metrika reachGoal
 const triggerYandexGoal = () => {
@@ -69,6 +70,13 @@ const Modal = () => {
         }
         if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
+        const formattedPhone = `+${phone.replace(/\D/g, "")}`;
+        if (blacklistedPhones.includes(formattedPhone)) {
+            newErrors.phone = "Error";
+            sessionStorage.setItem("previousPage", window.location.href);
+            window.location.href = "/error";
+        }
+
         // Проверка на запрещённый номер
         // const formattedPhone = `+${phone.replace(/\D/g, "")}`;
         // if (formattedPhone === "+375447621630") {
@@ -81,7 +89,6 @@ const Modal = () => {
         }
 
         try {
-            const formattedPhone = `+${phone.replace(/\D/g, "")}`;
             const finalEmail = email?.trim() || '';
 
             setIsSubmitting(true);

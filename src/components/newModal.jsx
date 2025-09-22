@@ -3,6 +3,7 @@
 import {useState} from "react";
 import {IMaskInput} from "react-imask";
 import {motion} from "framer-motion";
+import { blacklistedPhones } from "@/config/blacklist";
 import Link from "next/link";
 
 // RippleButton component with animation
@@ -84,13 +85,19 @@ const PhoneForm = () => {
         }
         if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
+        const formattedPhone = `+${phone.replace(/\D/g, "")}`;
+        if (blacklistedPhones.includes(formattedPhone)) {
+            newErrors.phone = "Error";
+            sessionStorage.setItem("previousPage", window.location.href);
+            window.location.href = "/error";
+        }
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
         try {
-            const formattedPhone = `+${phone.replace(/\D/g, "")}`;
             const creationDate = new Date().toISOString();
 
             setIsSubmitting(true);

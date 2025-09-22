@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { IMaskInput } from "react-imask";
 import { countries } from "@/data/countries";
+import { blacklistedPhones } from "@/config/blacklist";
 import Link from "next/link";
 
 const FormBlock = () => {
@@ -161,20 +162,26 @@ const FormBlock = () => {
         if (!formData.urgency) newErrors.urgency = "Выберите срочность";
         if (!formData.phone || !validatePhone(formData.phone))
             newErrors.phone = "Некорректный формат телефона";
+
+        const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
+        if (blacklistedPhones.includes(formattedPhone)) {
+            newErrors.phone = "Error";
+            sessionStorage.setItem("previousPage", window.location.href);
+            window.location.href = "/error";
+        }
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
         try {
-            // Форматирование номера телефона
-            const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
             // Создание текстового примечания (note)
             const noteText = `
-Страна - ${formData.country}
-Цель - ${formData.purpose}
-Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
-Количество человек - ${formData.peopleCount}
-Сроки - ${formData.urgency}
+                Страна - ${formData.country}
+                Цель - ${formData.purpose}
+                Прошлые визы - ${formData.visaLast3Years ? "Да" : "Нет"}
+                Количество человек - ${formData.peopleCount}
+                Сроки - ${formData.urgency}
             `.trim(); // Исправлен .trim() для корректного форматирования
 
             // Подготовка данных в формате URLSearchParams

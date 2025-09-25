@@ -12,7 +12,7 @@ import {motion, AnimatePresence} from "framer-motion";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import TimeRestrictedBlock from "@/components/TimeRestrictedBlock/TimeRestrictedBlock"
 
-export default function Header() {
+export default function Header({ onTimerestrictedChange }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
@@ -458,7 +458,7 @@ export default function Header() {
                         </>
                     )}
                 </AnimatePresence>
-                <TimeRestrictedBlock />
+                <TimeRestrictedBlock onVisibilityChange={onTimerestrictedChange}/>
             </header>
             {!isFloatingMenuOpen && !isMenuOpen && (
                 <ScrollToTop showFloatingButton={showFloatingButton}/>

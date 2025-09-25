@@ -174,7 +174,7 @@ export default function HomePage() {
                 )}
 
                 {/* Список преимуществ - часть hero, оставляем */}
-                <ul className={`lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:mt-8 mdd:pb-5 rounded-md pl-[7%] ${currentDate >= discountEndDate ? 'mdd:-mt-[19%]' : ''}`}>
+                <ul className={`lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-20 mdd:mt-0 mdd:translate-y-[-25px] mdd:pb-5 rounded-md pl-[7%] ${currentDate >= discountEndDate ? 'mdd:-mt-[19%]' : ''}`}>
                     <AdvantageItem value="Более 10 лет" description="на рынке" />
                     <AdvantageItem value="98%" description="одобрения виз" />
                     <AdvantageItem value="20 000+" description="успешных кейсов" />

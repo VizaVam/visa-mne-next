@@ -4,7 +4,7 @@ import { useModal } from "@/components/modalcontext";
 import { schedule } from "./schedule";
 import Link from "next/link";
 
-export default function TimeRestrictedBlock() {
+export default function TimeRestrictedBlock({ onVisibilityChange }) {
   const { openModal } = useModal();
   const [currentType, setCurrentType] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
@@ -27,12 +27,16 @@ export default function TimeRestrictedBlock() {
     setCurrentType(match);
   }, []);
 
+  useEffect(() => {
+    onVisibilityChange?.(!!currentType && isVisible);
+  }, [currentType, isVisible, onVisibilityChange]);
+
   if (!currentType || !isVisible) return null;
 
   return (
-    <div className="relative p-4 bg-orange-500 text-white text-center font-semibold flex">
+    <div className="timerestricted relative drm:p-4 dr:p-[8px] bg-orange-500 text-white text-center font-semibold flex">
       {currentType === "promo" && (
-        <p className="font-medium ml-auto">
+        <p className="font-medium ml-auto drm:text-base dr:text-xs">
           <Link
             href="/shengenskie-vizy/viza-v-ispaniyu"
             className="underline cursor-pointer hover:font-normal font-bold text-[#06195B]"
@@ -41,12 +45,12 @@ export default function TimeRestrictedBlock() {
           >
             Испанская виза с безличной подачей
           </Link>{" "}
-          — быстрая запись, все сборы включены, 99% одобрения!
+          — быстрая запись, все сборы включены!
         </p>
       )}
 
       {currentType === "insurance" && (
-        <p className="font-medium ml-auto">
+        <p className="font-medium ml-auto drm:text-base dr:text-xs">
           <a
             className="underline cursor-pointer hover:font-normal font-bold text-[#06195B]"
             onClick={(e) => {
@@ -57,12 +61,12 @@ export default function TimeRestrictedBlock() {
           >
             Страхование от отказа в визе
           </a>{" "}
-          позволит вернуть стоимость услуги компании при отказе в визе!
+          позволит вернуть стоимость нашей услуги при отказе!
         </p>
       )}
       <button
             onClick={() => setIsVisible(false)}
-            className="text-[#F86F00] font-bold text-lg ml-auto"
+            className="text-[#F86F00] font-bold text-lg ml-auto mdd:translate-y-[-15px] dr:translate-y-[-10px]"
         >
             <img src="/closewhite.svg" alt="Закрыть" className="w-6 h-6"/>
         </button>

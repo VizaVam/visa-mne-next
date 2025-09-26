@@ -828,9 +828,9 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                 )}
 
                             </div>
-                            {(selectedCountry.url === "rabochaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (
+                            {/* {(selectedCountry.url === "rabochaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (
                                 <CountryCards/>
-                            )}
+                            )} */}
                             <div className="flex flex-col gap-6 lg:w-[60%]">
                                 
                                 {selectedCountry.variants?.length > 0 && (
@@ -869,9 +869,9 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                 {selectedCountry.text611 && (<TextBlock text={selectedCountry.text611} parseText={parseText}/>)} 
                                 {selectedCountry.text711 && (<TextBlock text={selectedCountry.text711} parseText={parseText}/>)} 
                             </div>
-                            {(selectedCountry.url === "delovaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (
+                            {/* {(selectedCountry.url === "delovaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (
                                 <CountryCards/>
-                            )}
+                            )} */}
                             {selectedCountry.title811 && (
                                 <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title811}/>)
                             }
@@ -911,10 +911,10 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                             {selectedCountry.text6 && (<TextBlock text={selectedCountry.text6} parseText={parseText}/>)} 
                             {selectedCountry.text622 && (<div className="flex flex-col gap-6 lg:w-[60%]"><TextBlock text={selectedCountry.text622} parseText={parseText}/> </div>)} 
-                            {(selectedCountry.url === "gostevaya-polskaya-viza" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
-                            {(selectedCountry.url === "viza-v-polshu" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
-                            {(selectedCountry.url === "viza-v-polsy-po-karte-polyaka" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
-                            {(selectedCountry.url === "uchebnaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (<CountryCards/>)}
+                            {/* {(selectedCountry.url === "gostevaya-polskaya-viza" && selectedCountry.alternativeCountries) && (<CountryCards/>)} */}
+                            {/* {(selectedCountry.url === "viza-v-polshu" && selectedCountry.alternativeCountries) && (<CountryCards/>)} */}
+                            {/* {(selectedCountry.url === "viza-v-polsy-po-karte-polyaka" && selectedCountry.alternativeCountries) && (<CountryCards/>)} */}
+                            {/* {(selectedCountry.url === "uchebnaya-viza-v-polshu" && selectedCountry.alternativeCountries) && (<CountryCards/>)} */}
                             
                             {selectedCountry.title222 && (
                                 <SectionTitle className="pt-10 mdd:pt-4" title={selectedCountry.title222}/>)}

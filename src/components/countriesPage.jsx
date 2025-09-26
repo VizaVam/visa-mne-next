@@ -755,7 +755,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         height={1000}
                         priority={false} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
-                        className={`relative lg:top-[120px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden 
+                        className={`relative lg:top-[120px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px]
                             ${(selectedCountry.url === "viza-v-italiyu" || selectedCountry.url === "viza-v-polshu") ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
                     />
                     <Image

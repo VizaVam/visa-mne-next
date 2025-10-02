@@ -109,8 +109,8 @@ const Slider = () => {
                         <div
                             key={slide.id}
                             className={`${
-                                isLgScreen ? "w-[100%]" : "w-[85%]"
-                            } lg:h-96 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-lg shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
+                                isLgScreen ? "basis-full" : "basis-[85%]"
+                            } sm:min-w-full lg:h-96 md:h-60 sm:h-52 mdd:h-52 flex-shrink-0 relative mr-2 rounded-lg shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)]`}
                         >
                             <Image
                                 src={slide.image}

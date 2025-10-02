@@ -55,6 +55,8 @@ const BreadcrumbNav = ({pathname}) => (
     </nav>
 );
 
+const year = new Date().getFullYear();
+
 export default function PolInfo({breadcrumbs}) {
     const {openModal} = useModal();
     const pathname = usePathname();
@@ -84,6 +86,36 @@ export default function PolInfo({breadcrumbs}) {
                     </h1>
                 </div>
 
+                <Link href="/poleznaya-informasia/viza-dlya-detey" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
+                    <div style={{
+                        boxShadow: '3px 2px 8px 1px #FFEEDB',
+                        backdropFilter: 'blur(200px)'
+                    }}
+                        className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        <Image src={"/topic7.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"w-[191px] h-[124px] dm:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <Image src={"/topic7.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <div className={"dm:p-4"}>
+                            <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                Виза для ребенка: полное руководство по документам и правилам в {year} году 
+                            </h3>
+                            <p className="dm:text-base text-[#595959] mb-4">
+                                Оформление визы для ребенка — это процесс, который требует особого внимания к деталям. 
+                                В отличие от “взрослой” визы, здесь есть свои нюансы и расширенный список документов.
+                            </p>
+                            <div className="flex justify-between items-center">
+                                <span
+                                    className="dm:text-base text-[#F86F00] font-medium"
+                                >
+                                    Читать полностью
+                                </span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">01.10.2025</span>
+                            </div>
+                        </div>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">01.10.2025</span>
+                    </div>
+                </Link>
                 <Link href="/poleznaya-informasia/foto-na-visy" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
                     <div style={{
                         boxShadow: '3px 2px 8px 1px #FFEEDB',
@@ -99,7 +131,7 @@ export default function PolInfo({breadcrumbs}) {
                                 Фото на визу 2025
                             </h3>
                             <p className="dm:text-base text-[#595959] mb-4">
-                                В этой статье мы подробно разберем актуальные требования к фотографии на визу в 2025 году, 
+                                В этой статье мы подробно разберем актуальные требования к фотографии на визу в {year} году, 
                                 чтобы вы могли с первого раза подготовить идеальный снимок.
                             </p>
                             <div className="flex justify-between items-center">
@@ -154,7 +186,7 @@ export default function PolInfo({breadcrumbs}) {
                                className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
                         <div className={"dm:p-4"}>
                             <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
-                                Куда поехать белорусам в 2025 году
+                                Куда поехать белорусам в {year} году
                             </h3>
                             <p className="dm:text-base text-[#595959] mb-4">
                                 В этой статье мы рассмотрим, куда поехать белорусам, предложим варианты на любой вкус и бюджет, а также дадим практические советы по организации отдыха.
@@ -212,10 +244,10 @@ export default function PolInfo({breadcrumbs}) {
                                className={"md:hidden"}/>
                         <div className={"dm:p-4"}>
                             <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
-                                Как белорусу получить шенгенскую визу в 2025 году: полное руководство
+                                Как белорусу получить шенгенскую визу в {year} году: полное руководство
                             </h3>
                             <p className="dm:text-base text-[#595959] mb-4">
-                                Планируете путешествие в Европу в 2025 году? Для белорусов первым и ключевым шагом на пути к этим целям остается получение шенгенской визы.
+                                Планируете путешествие в Европу в {year} году? Для белорусов первым и ключевым шагом на пути к этим целям остается получение шенгенской визы.
                             </p>
                             <div className="flex justify-between items-center">
                                 <span

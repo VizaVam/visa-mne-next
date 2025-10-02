@@ -8,7 +8,7 @@ import {useModal} from "@/components/modalcontext";
 import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Faq5, {faqData} from "@/components/topic5/faq5";
+import Faq6, {faqData} from "@/components/topic6/faq6";
 
 const year = new Date().getFullYear();
 
@@ -488,7 +488,7 @@ export default function OnasPage({breadcrumbs}) {
                     dangerouslySetInnerHTML={{__html: JSON.stringify(articleSchema)}}
                 />
 
-                <Faq5/>
+                <Faq6/>
                 <div
                     className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">

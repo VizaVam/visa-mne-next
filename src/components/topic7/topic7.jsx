@@ -26,7 +26,7 @@ const BreadcrumbNav = ({pathname}) => (
             Полезная информация
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default"> Виза для ребенка в {year}: документы, правила оформления и согласие на выезд | VISA VAM</span>
+        <span className="font-semibold text-gray-900 cursor-default"> Виза для детей</span>
     </nav>
 );
 

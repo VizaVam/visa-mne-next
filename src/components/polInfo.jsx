@@ -92,9 +92,9 @@ export default function PolInfo({breadcrumbs}) {
                         backdropFilter: 'blur(200px)'
                     }}
                         className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
-                        <Image src={"/topic7.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                        <Image src={"/topic8.jpg"} alt={"Полезная информация"} width={1000} height={1000}
                                className={"w-[191px] h-[124px] dm:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
-                        <Image src={"/topic7.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                        <Image src={"/topic8.jpg"} alt={"Полезная информация"} width={1000} height={1000}
                                className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
                         <div className={"dm:p-4"}>
                             <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">

@@ -149,7 +149,7 @@ export default function HomePage() {
                         priority
                     />
 
-                    <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
+                    <div className="hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <RippleButton onClick={openModal}>
                             Получить консультацию
                         </RippleButton>

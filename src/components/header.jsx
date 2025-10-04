@@ -22,7 +22,7 @@ export default function Header({ onTimerestrictedChange }) {
     const pathname = usePathname();
 
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false);
-    const [showFloatingButton, setShowFloatingButton] = useState(false);
+    const [showFloatingButton, setShowFloatingButton] = useState(true);
     const [isScrolled, setIsScrolled] = useState(false);
 
     const currentDate = new Date();
@@ -60,7 +60,7 @@ export default function Header({ onTimerestrictedChange }) {
             }
 
             const buttonRect = mainButton.getBoundingClientRect();
-            setShowFloatingButton(buttonRect.top < 0);
+            setShowFloatingButton(true);
         };
 
         window.addEventListener("scroll", handleScroll);

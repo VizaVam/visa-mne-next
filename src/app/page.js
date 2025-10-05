@@ -135,17 +135,17 @@ export default function HomePage() {
                     <Image
                         width={840}
                         height={802}
-                        src="/banner-hero.png"
+                        src="/mainwoman12.svg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
+                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden translate-y-[17%]"
                         loading="lazy"
                     />
                     <Image
                         width={840}
                         height={802}
-                        src="/main-m.png"
+                        src="/mainwoman12.svg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden"
+                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden translate-y-[18%] mb-[75px]"
                         priority
                     />
                     <div className="hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">

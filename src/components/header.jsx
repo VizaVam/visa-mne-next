@@ -53,13 +53,13 @@ export default function Header({ onTimerestrictedChange }) {
                 return;
             }
 
-            const mainButton = document.querySelector('.bbbt');
-            if (!mainButton) {
-                setShowFloatingButton(false);
-                return;
-            }
+            // const mainButton = document.querySelector('.bbbt');
+            // // if (!mainButton) {
+            // //     setShowFloatingButton(false);
+            // //     return;
+            // // }
 
-            const buttonRect = mainButton.getBoundingClientRect();
+            // const buttonRect = mainButton.getBoundingClientRect();
             setShowFloatingButton(true);
         };
 

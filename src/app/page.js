@@ -143,9 +143,9 @@ export default function HomePage() {
                     <Image
                         width={840}
                         height={802}
-                        src="/mainwoman12.svg"
+                        src="/mainmobile12.svg"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden translate-y-[18%] mb-[75px]"
+                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden translate-y-[20%] mb-[75px]"
                         priority
                     />
                     <div className="hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">

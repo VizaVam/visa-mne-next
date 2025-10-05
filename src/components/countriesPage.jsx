@@ -970,6 +970,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                     />
                                 )}
                             </div>
+                            
 
                             <SectionTitle
                                 className="pt-10 mdd:pt-4"

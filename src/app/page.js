@@ -148,8 +148,7 @@ export default function HomePage() {
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden"
                         priority
                     />
-
-                    <div className="lg:hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
+                    <div className="hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">
                         <RippleButton onClick={openModal}>
                             Получить консультацию
                         </RippleButton>

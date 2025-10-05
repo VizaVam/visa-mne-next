@@ -773,9 +773,8 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     />
                 </div>
 
-
                 <div className={` ${selectedCountry.url === "viza-v-italiyu" ? "dr:pb-[83%] mdd:pb-[78%]" : 
-                    selectedCountry.url === "viza-v-polshu" ? "dr:pb-[65%] mdd:pb-[65%]" : "mdd:pb-[25%]" } lg:hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
+                    selectedCountry.url === "viza-v-polshu" ? "dr:pb-[65%] mdd:pb-[65%]" : "mdd:pb-[25%]" } hidden absolute bottom-0 w-full px-[7%] pb-[19%] `}>
                     <RippleButton onClick={openModal}>
                         Получить консультацию
                     </RippleButton>

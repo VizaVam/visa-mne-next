@@ -156,8 +156,7 @@ export default function VisaPage({breadcrumbs}) {
                         priority={true} // Установите true только для критических изображений
                     />
                 </div>
-
-                <div className="lg:hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
+                <div className="hidden absolute bottom-0 w-full px-[7%] pb-[15%] mdd:pb-[25%]">
                     <RippleButton onClick={openModal}>
                         Получить консультацию
                     </RippleButton>

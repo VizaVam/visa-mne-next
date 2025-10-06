@@ -328,7 +328,7 @@ export default function PolInfo({breadcrumbs}) {
                         backdropFilter: 'blur(200px)'
                     }}
                          className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
-                        <Image src={"/polinfo1.png"} alt={"Полезная информация"} width={1000} height={1000}
+                        <Image src={"/poland-banner.png"} alt={"Полезная информация"} width={1000} height={1000}
                                className={"w-[191px] h-[124px] dm:hidden"}/>
                         <Image src={"/polinfo2.png"} alt={"Полезная информация"} width={1000} height={1000}
                                className={"md:hidden"}/>

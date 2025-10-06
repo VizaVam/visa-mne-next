@@ -120,10 +120,9 @@ export default function HomePage() {
                 <div className="px-[7%] lg:absolute left-0 top-1/2 w-[100%] lg:w-[50%] text-left lg:text-left z-10">
                     <div className="flex flex-col ht:w-[100%] lg:w-[125%] md:w-[100%] sm:w-[100%] mdd:w-[100%]">
                         <h1 className="text-[40px] mdd:text-[24px] font-semibold text-black leading-tight">
-                            Оформи свою визу вместе <br className="br:hidden" /> <br className="lg:hidden dr:hidden" />
-                            с <span className="lg:text-[48px] text-[40px] mdd:text-[32px] font-semibold leading-none">VISA VAM</span>
+                            Компания <span className="lg:text-[48px] text-[40px] mdd:text-[32px] font-semibold leading-none">Виза Вам</span>
                         </h1>
-                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[80%] md:top-[7%] sm:top-[10%] mdd:top-[5%] mddd:top-[6%] dr:top-[7%] lg:left-[35%] mdd:left-[30%] left-[25%] text-[36px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[80%] md:top-[7%] sm:top-[10%] mdd:top-[5%] mddd:top-[5%] dr:top-[5%] lg:left-[35%] mdd:left-[30%] left-[25%] text-[36px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
                             Все хлопоты - нам, виза - Вам
                         </p>
                     </div>

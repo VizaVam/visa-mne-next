@@ -130,7 +130,7 @@ export default function OnasPage({breadcrumbs}) {
                 {/* Banner Section */}
                 <div className="w-full relative">
                     <Image
-                        src="/poland-banner.png"
+                        src="/topic3.jpg"
                         alt="О компании VisaVam"
                         width={1600}
                         height={1000}
@@ -138,7 +138,7 @@ export default function OnasPage({breadcrumbs}) {
                         className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                     />
                     <Image
-                        src="/poland-banner.png"
+                        src="/topic3.jpg"
                         alt="О компании VisaVam"
                         width={600}
                         height={400}

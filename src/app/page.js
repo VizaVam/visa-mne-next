@@ -122,7 +122,7 @@ export default function HomePage() {
                         <h1 className="text-[40px] mdd:text-[24px] font-semibold text-black leading-tight">
                             Компания <span className="lg:text-[48px] text-[40px] mdd:text-[32px] font-semibold leading-none">Виза Вам</span>
                         </h1>
-                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[80%] md:top-[7%] sm:top-[10%] mdd:top-[5%] mddd:top-[5%] dr:top-[5%] lg:left-[35%] mdd:left-[30%] left-[25%] text-[36px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
+                        <p className="lg:absolute md:absolute sm:absolute mdd:absolute lg:top-[80%] md:top-[7%] sm:top-[10%] mdd:top-[5%] mddd:top-[5%] dr:top-[5%] lg:left-[30%] mdd:left-[30%] left-[25%] text-[36px] mdd:text-[22px] text-[#F86F00] font-caveat transform rotate-[-5deg] opacity-65">
                             Все хлопоты - нам, виза - Вам
                         </p>
                     </div>
@@ -144,7 +144,7 @@ export default function HomePage() {
                         height={802}
                         src="/mainmobile123.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden translate-y-[20%] scale-110  mb-[75px]"
+                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] sm:hidden translate-y-[20%] scale-110  mb-[90px]"
                         priority
                     />
                     <div className="hidden absolute bottom-0 mdd:pb-[30%] w-full px-[7%]">

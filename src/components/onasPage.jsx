@@ -13,7 +13,28 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Discount from "@/components/discount";
 import {faqData} from "@/components/fag";
 import VizaCoop from "@/components/VizaCoop";
-import React from "react";
+import React, { memo, Suspense }  from "react";
+
+const AdvantageItem = memo(({ value, description }) => (
+    <li className="flex items-center text-lg mb-[15px]">
+        <Image
+            width={24}
+            height={24}
+            src="/check.svg"
+            alt="Преимущество работы с VisaVam.by"
+            className="h-5 w-5 mr-2"
+            loading="lazy"
+        />
+        <div>
+            <p className="font-[500] text-[20px] mdd:leading-none">{value}</p>
+            {description && (
+                <p className="text-[16px] text-[#808080] mdd:leading-none">
+                    {description}
+                </p>
+            )}
+        </div>
+    </li>
+));
 
 const RippleButton = ({onClick, children}) => (
     <button
@@ -135,19 +156,19 @@ export default function OnasPage({breadcrumbs}) {
 
                 <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[10%] lg:mt-0 relative z-5">
                     <Image
-                        src="/visa-banner-new.png"
+                        src="/onas.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={850}
                         height={827}
-                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 mdd:hidden"
+                        className={`relative lg:top-[120px] mb-[105px] mt-[80px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px] ml-[auto] mr-[auto]`}
                         unoptimized
                     />
                     <Image
-                        src="/onas114.jpg"
+                        src="/onas.webp"
                         alt="VisaVam услуги"
                         width={600}
                         height={600}
-                        className="relative lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden"
+                        className="relative mt-[120px] lg:top-[20%] sm:top-0 lg:w-[50%] lg:left-[45%] -z-50 sm:hidden scale-110"
                         priority
                     />
                 </div>
@@ -159,6 +180,19 @@ export default function OnasPage({breadcrumbs}) {
             </div>
 
             <Discount/>
+
+            <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+            }>
+                    <AdvantageItem value="Более 10 лет" description="на рынке" />
+                    <AdvantageItem value="98%" description="одобрения виз" />
+                    <AdvantageItem value="20 000+" description="успешных кейсов" />
+                    <AdvantageItem value="10 000+" description="довольных клиентов" />
+                    <AdvantageItem value="Персональный подход" />
+            </ul>
 
             {/* Banner Section */}
             <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">

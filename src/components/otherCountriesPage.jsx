@@ -42,6 +42,30 @@ const BottomSections = dynamic(() => import('@/components/BottomSections'), {
 });
 // --- Конец ленивой загрузки ---
 
+const AdvantageItemTop = ({ value, description, iconPath }) => (
+    <li className="flex items-center text-lg mb-[10px]">
+        {/* Убедитесь, что /check.svg оптимизирован */}
+        <Image
+            width={24}
+            height={24}
+            src={iconPath}
+            alt="Преимущество работы с VisaVam.by"
+            className="h-[40px] w-[40px] mr-2"
+            loading="lazy" // Хорошо для некритических изображений
+        />
+        <div> 
+            <p className="font-[500] text-[20px] mdd:leading-none">
+                {value}
+            </p>
+            {description && (
+                <p className="text-[16px] text-[#808080] mdd:leading-none whitespace-nowrap">
+                    {description}
+                </p>
+            )}
+        </div>
+    </li>
+);
+
 // FAQ Component
 const FAQ = ({countryUrl}) => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -427,6 +451,8 @@ export default function OtherCountryPage({breadcrumbs}) {
     const {openModal} = useModal();
     const pathname = usePathname();
 
+    
+
     const excludedCountries1 = useMemo(() => [
         "rabochaya-viza-v-polshu",
         "delovaya-viza-v-polshu",
@@ -455,6 +481,8 @@ export default function OtherCountryPage({breadcrumbs}) {
 
     const showExtendedContent = selectedCountry.good !== 0;
 
+    
+
     return (
         <div className="flex flex-col items-center">
             {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs}/>}
@@ -476,23 +504,23 @@ export default function OtherCountryPage({breadcrumbs}) {
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     <Image
-                        src={selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
+                        src={selectedCountry.rb === 1 ? "/visyplane.webp" : "/visyman.webp"}
                         alt=""
                         width={1000}
                         height={1000}
                         priority={false} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
-                        className="relative lg:top-[120px] sm:top-0 lg:w-[50%] lg:left-[50%] -z-50 mdd:hidden"
+                        className={`relative lg:top-[120px] mb-[105px] mt-[80px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px] ml-[auto] mr-[auto]`}
                     />
                     <Image
-                        src={selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
+                        src={selectedCountry.rb === 1 ? "/visyplane.webp" : "/visyman.webp"}
                         alt=""
                         width={600}
                         height={600}
                         quality={80}
                         priority={true} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
-                        className="relative top-[20%] -z-50 sm:hidden"
+                        className={`scale-110 mt-[125px] relative top-[20%] -z-50 sm:hidden`}
                     />
                 </div>
                 <div className="hidden absolute bottom-0 w-full px-[7%] pb-[19%] mdd:pb-[25%]">
@@ -500,6 +528,38 @@ export default function OtherCountryPage({breadcrumbs}) {
                         Получить консультацию
                     </RippleButton>
                 </div>
+
+                {(selectedCountry.url === "viza-v-ssha") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="Запись на собеседование" description="в Консульстве США" iconPath={"/icontime.svg"} />
+                            <AdvantageItemTop value="Подготовка документов" iconPath={"/documentsicon.svg"}/>
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-velikobritaniyu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="До 5 лет" description="длительность визы" iconPath={"/wpf_approval.svg"} />
+                            <AdvantageItemTop value="Запись на подачу" description="визового  заявления" iconPath={"/icontime.svg"}/>
+                            <AdvantageItemTop value="Подготовка документов" iconPath={"/documentsicon.svg"}/>
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                            <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
+                        </ul>
+                    </>
+                )}
             </div>
 
             {/* Lazy Sections */}

@@ -145,14 +145,14 @@ export default function VisaPage({breadcrumbs}) {
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={850}
                         height={827}
-                        className="relative lg:top-[20%] lg:w-[50%] lg:left-[45%] mdd:hidden"
+                        className={`relative lg:top-[120px] mb-[105px] mt-[80px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px] ml-[auto] mr-[auto]`}
                     />
                     <Image
                         src="/visyman.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={450}
                         height={553}
-                        className="relative sm:hidden"
+                        className={`scale-110 mt-[125px] translate-y-[15px] relative top-[20%] -z-50 sm:hidden`}
                         priority={true} // Установите true только для критических изображений
                     />
                 </div>

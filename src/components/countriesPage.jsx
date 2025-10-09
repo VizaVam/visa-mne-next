@@ -926,15 +926,18 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     </>
                 )}
             </div>
+            <div
+                className={`w-full`}>
+                
+                {/* Lazy Sections */}
+                <LazySection>
+                    <Discount />
+                </LazySection>
 
-            {/* Lazy Sections */}
-            <LazySection>
-                <Discount />
-            </LazySection>
-
-            <LazySection>
-                <Slider />
-            </LazySection>
+                <LazySection>
+                    <Slider />
+                </LazySection>
+            </div>
 
             {showExtendedContent ? (
                 <div className="w-full">

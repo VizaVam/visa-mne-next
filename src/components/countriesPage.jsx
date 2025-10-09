@@ -82,7 +82,7 @@ const AdvantageItem = ({ value, description }) => (
 );
 
 const AdvantageItemTop = ({ value, description, iconPath }) => (
-    <li className="flex items-center text-lg">
+    <li className="flex items-center text-lg mb-[10px]">
         {/* Убедитесь, что /check.svg оптимизирован */}
         <Image
             width={24}
@@ -747,21 +747,16 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                 <div className="w-full lg:flex items-center lg:mt-0 mdd:mt-[10%] mt-[20%] relative z-5">
                     <Image
-                        src={ selectedCountry.url === "viza-v-italiyu" ? "/visa-000.jpg" : 
-                                selectedCountry.url === "viza-v-polshu" ? "/visac-banner.svg" :
-                                selectedCountry.rb === 1 ? "/visa-c.png" : "/visa-cc.png"}
+                        src={ (selectedCountry.rb === 1 || selectedCountry.url === "rabochaya-viza-v-germaniyu" ) ? "/visyplane.webp": "/visyman.webp" }
                         alt=""
                         width={1000}
                         height={1000}
                         priority={false} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
-                        className={`relative lg:top-[120px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px]
-                            ${(selectedCountry.url === "viza-v-italiyu" || selectedCountry.url === "viza-v-polshu") ? "lg:left-[25%] mt-[40px] md:mt-0" : "lg:left-[50%]"}`}
+                        className={`relative lg:top-[120px] mb-[105px] mt-[80px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px] ml-[auto] mr-[auto]`}
                     />
                     <Image
-                        src={selectedCountry.url === "viza-v-italiyu" ? "/visa-001.jpg" : 
-                            selectedCountry.url === "viza-v-polshu" ? "/visa-111.jpg" :
-                            selectedCountry.rb === 1 ? "/visa-112.webp" : "/visa-001.webp"}
+                        src={ (selectedCountry.rb === 1 || selectedCountry.url === "rabochaya-viza-v-germaniyu" ) ? "/visyplane.webp": "/visyman.webp" }
                         alt=""
                         width={600}
                         height={600}
@@ -769,7 +764,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         priority={true} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
                         loading="eager"
-                        className={`relative top-[20%] -z-50 sm:hidden ${(selectedCountry.url === "viza-v-italiyu" || selectedCountry.url === "viza-v-polshu") ? "mt-[10px] md:mt-0" : " "}`}
+                        className={`scale-110 mt-[125px] relative top-[20%] -z-50 sm:hidden`}
                     />
                 </div>
 
@@ -782,7 +777,12 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
 
                 {selectedCountry.url === "viza-v-italiyu" && ( 
                     <>
-                        <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
                             <AdvantageItemTop value="от 10 дней" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="до 3-х лет" description="срок действия визы" iconPath={"/icondoc.svg"}/>
                             <AdvantageItemTop value="99%" description="одобрения виз" iconPath={"/approvalicon.svg"}/>
@@ -790,11 +790,138 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     </>
                 )}
 
-                {selectedCountry.url === "viza-v-polshu" && ( 
+                {(selectedCountry.url === "viza-v-polshu" ||  selectedCountry.url === "rabochaya-viza-v-polshu") && ( 
                     <>
-                        <ul className={`dr:translate-y-[-20px] mddd:translate-y-[-25px] lg:absolute top-1/2 lg:right-[7%] lg:transform lg:-translate-y-3 space-y-4 text-left lg:p-4 sm:pt-10 mdd:mt-8 mdd:pb-10 rounded-md pl-[7%] 1024m:ml-0 ml-[7%] mb-[20px] mr-auto lg:m-0`}>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
                             <AdvantageItemTop value="21 день" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="в процессе верификации" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "delovaya-viza-v-polshu" 
+                ||  selectedCountry.url === "uchebnaya-viza-v-polshu"
+                ||  selectedCountry.url === "gostevaya-polskaya-viza"
+                ||  selectedCountry.url === "viza-v-polsy-po-karte-polyaka") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="21 день" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-germaniyu" 
+                || selectedCountry.url === "viza-vo-francziyu"
+                || selectedCountry.url === "viza-v-avstriyu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-horvatiu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="около 50 дней" description="срок рассмотрения" iconPath={"/icontime.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-grecziyu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="до 45 дней" description="срок рассмотрения" iconPath={"/icontime.svg"} />
+                            <AdvantageItemTop value="Страхование от отказа" iconPath={"/wpf_approval.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-ispaniyu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="до 60 дней" description="срок рассмотрения" iconPath={"/icontime.svg"} />
+                            <AdvantageItemTop value="Страхование от отказа" iconPath={"/wpf_approval.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-bolgariyu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="Страхование от отказа" iconPath={"/wpf_approval.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                            <AdvantageItemTop value="От 520 бел. руб." description="стоимость услуги" iconPath={"/wallet.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-niderlandy") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                            <AdvantageItemTop value="400 бел. руб." description="стоимость услуги" iconPath={"/wallet.svg"}/>
+                        </ul>
+                    </>
+                )}
+
+                {(selectedCountry.url === "viza-v-vengriyu") && ( 
+                    <>
+                        <ul className={`
+                            mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
+                            lg:absolute top-1/2 lg:right-[7%] 
+                            lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                        }>
+                            <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
+                            <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
+                            <AdvantageItemTop value="820 бел. руб." description="стоимость услуги" iconPath={"/wallet.svg"}/>
                         </ul>
                     </>
                 )}

@@ -44,7 +44,7 @@ const PhoneForm = dynamic(() => import('@/components/newModal'), {
 
 // --- Компоненты верхней части ---
 const AdvantageItem = memo(({ value, description }) => (
-    <li className="flex items-center text-lg">
+    <li className="flex items-center text-lg ">
         <Image
             width={24}
             height={24}
@@ -134,7 +134,7 @@ export default function HomePage() {
                     <Image
                         width={840}
                         height={802}
-                        src="/mainwoman12.svg"
+                        src="/mainpicdesctop.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden translate-y-[17%]"
                         loading="lazy"

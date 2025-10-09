@@ -141,14 +141,14 @@ export default function VisaPage({breadcrumbs}) {
                 <div className="w-full lg:flex items-center mt-[20%] mdd:mt-[10%] lg:mt-0 relative z-5">
                     {/* Убедитесь, что эти изображения оптимизированы */}
                     <Image
-                        src="/visa-banner-new.jpg"
+                        src="/visyman.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={850}
                         height={827}
                         className="relative lg:top-[20%] lg:w-[50%] lg:left-[45%] mdd:hidden"
                     />
                     <Image
-                        src="/visabanner-f.webp"
+                        src="/visyman.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
                         width={450}
                         height={553}

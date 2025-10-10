@@ -12,6 +12,7 @@ export default {
         foreground: "var(--foreground)",
       },
       screens: {
+        "small": {max: "385px"},
         "dm": { max: "768px" },
         "mdd": { max: "640px" },
         "mddd": { max: "600px" },

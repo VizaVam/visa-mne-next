@@ -27,7 +27,6 @@
 .header__top-right {
   display: flex;
   gap: 2rem;
-  width: 46%;
   background-color: rgb(249, 115, 22, var(--tw-bg-opacity, 1));
   padding: 0.8rem 7%;
   justify-content: end;

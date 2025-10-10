@@ -101,11 +101,10 @@ export default function Header({ onTimerestrictedChange }) {
                             <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>пр. Победителей 17, офис
                                 1204</p>
                             <div className={"header__top-left-num"}>
-                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] mdd:hidden"}>Пн-пт:
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Пн-пт:
                                     09:00-19:00</p>
-                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] mdd:hidden"}>Сб:
+                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Сб:
                                     10:00-14:00</p>
-                                <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] sm:hidden"}>09:00-19:00</p>
                             </div>
                         </div>
                     </div>

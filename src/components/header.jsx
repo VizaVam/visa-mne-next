@@ -96,7 +96,7 @@ export default function Header({ onTimerestrictedChange }) {
         <>
             <header className={"header"}>
                 <div className={"header__top"}>
-                    <div className={"header__top-left"}>
+                    <div className={"header__top-left small:!w-[57%] !w-[54%]"}>
                         <div className={"flex gap-2 lg:gap-4 lg:flex-row md:flex-col sm:flex-col mdd:flex-col"}>
                             <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>пр. Победителей 17, офис
                                 1204</p>
@@ -108,9 +108,9 @@ export default function Header({ onTimerestrictedChange }) {
                             </div>
                         </div>
                     </div>
-                    <div className={"header__top-right"}>
+                    <div className={"header__top-right small:!w-[43%] !w-[46%]"}>
                         <a href="tel:+375296800620"
-                           className={"text-[18px] font-semibold hover:underline lg:hidden"}>
+                           className={"small:!text-[16px] text-[18px] font-semibold hover:underline lg:hidden"}>
                             +375296800620
                         </a>
                         <div className={"header__top-right-num"}>

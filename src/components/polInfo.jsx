@@ -273,7 +273,7 @@ export default function PolInfo({breadcrumbs}) {
                         <Image src={"/polinfo5.jpg"} alt={"Полезная информация"} width={1000} height={1000}
                                className={"w-[191px] h-[124px] dm:hidden"}/>
                         <Image src={"/polinfo6.jpg"} alt={"Полезная информация"} width={1000} height={1000}
-                               className={"md:hidden"}/>
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
                         <div className={"dm:p-4"}>
                             <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
                                 Топ-5 ошибок при подаче на рабочую визу
@@ -302,7 +302,7 @@ export default function PolInfo({breadcrumbs}) {
                         <Image src={"/polinfo3.jpg"} alt={"Полезная информация"} width={1000} height={1000}
                                className={"w-[191px] h-[124px] dm:hidden"}/>
                         <Image src={"/polinfo4.jpg"} alt={"Полезная информация"} width={1000} height={1000}
-                               className={"md:hidden"}/>
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
                         <div className={"dm:p-4"}>
                             <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
                                 Как белорусу получить шенгенскую визу в {year} году: полное руководство

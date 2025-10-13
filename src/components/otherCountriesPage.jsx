@@ -510,7 +510,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                         height={1000}
                         priority={false} // Установите true только для критических изображений
                         unoptimized={false} // Отключите, если изображение уже оптимизировано
-                        className={`relative lg:top-[120px] mb-[105px] mt-[80px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px] ml-[auto] mr-[auto]`}
+                        className={`relative lg:top-[170px] mb-[105px] mt-[80px] sm:top-0 lg:w-[50%] -z-50 mdd:hidden lg:translate-y-[45px] ml-[auto] mr-[auto] scale-90`}
                     />
                     <Image
                         src={selectedCountry.rb === 1 ? "/visyplane.webp" : "/visyman.webp"}

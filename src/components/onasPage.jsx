@@ -185,7 +185,7 @@ export default function OnasPage({breadcrumbs}) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md pl-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:ml-[7%] 1024m:mr-[7%] dr:!mr-[0px]`
             }>
                     <AdvantageItem value="Более 10 лет" description="на рынке" />
                     <AdvantageItem value="98%" description="одобрения виз" />

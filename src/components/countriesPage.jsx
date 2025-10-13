@@ -93,11 +93,11 @@ const AdvantageItemTop = ({ value, description, iconPath }) => (
             loading="lazy" // Хорошо для некритических изображений
         />
         <div> 
-            <p className="font-[500] text-[20px] mdd:leading-none">
+            <p className="1024m:mb-[5px] font-[500] text-[20px] mdd:leading-none">
                 {value}
             </p>
             {description && (
-                <p className="text-[16px] text-[#808080] mdd:leading-none whitespace-nowrap">
+                <p className="text-[16px] font-[400] text-[#808080] mdd:leading-none whitespace-nowrap">
                     {description}
                 </p>
             )}
@@ -732,9 +732,14 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     <CountryBreadcrumbs country={selectedCountry} pathname={pathname}/>
                     <span>
                         <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black uppercase leading-none">
-                            {excludedCountries1.includes(selectedCountry.url)
-                                ? selectedCountry.n
-                                : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`}
+                            {selectedCountry.url === "viza-v-polsy-po-karte-polyaka" 
+                            ? <>Виза по карте<br />поляка</> :
+                                    excludedCountries1.includes(selectedCountry.url)
+                                        ? selectedCountry.n
+                                        : `Виза ${selectedCountry.n === "Францию" ? "во" : "в"} ${selectedCountry.n}`
+                            
+                            }
+                            
                         </h1>
                         {(subWorkGermany.includes(selectedCountry.url) || subWorkPoland.includes(selectedCountry.url)) && (
                             <p className="mdd:text-[14px] sm:text-[20px]">* оформление «под ключ» в Минске!</p>
@@ -781,7 +786,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="от 10 дней" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="до 3-х лет" description="срок действия визы" iconPath={"/icondoc.svg"}/>
@@ -796,7 +801,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="21 день" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="в процессе верификации" iconPath={"/icondoc.svg"}/>
@@ -813,7 +818,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="21 день" description="срок рассмотрения заявления" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
@@ -829,7 +834,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
@@ -843,7 +848,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="около 50 дней" description="срок рассмотрения" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
@@ -857,7 +862,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="до 45 дней" description="срок рассмотрения" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Страхование от отказа" iconPath={"/wpf_approval.svg"} />
@@ -872,7 +877,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="до 60 дней" description="срок рассмотрения" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Страхование от отказа" iconPath={"/wpf_approval.svg"} />
@@ -887,11 +892,11 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="Страхование от отказа" iconPath={"/wpf_approval.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
-                            <AdvantageItemTop value="От 520 бел. руб." description="стоимость услуги" iconPath={"/wallet.svg"}/>
+                            <AdvantageItemTop value="От 520 бел. руб." description="стоимость услуги" iconPath={"/newwallet.svg"}/>
                         </ul>
                     </>
                 )}
@@ -902,11 +907,11 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
-                            <AdvantageItemTop value="400 бел. руб." description="стоимость услуги" iconPath={"/wallet.svg"}/>
+                            <AdvantageItemTop value="400 бел. руб." description="стоимость услуги" iconPath={"/newwallet.svg"}/>
                         </ul>
                     </>
                 )}
@@ -917,11 +922,11 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="Перевод документов" description="включен в стоимость" iconPath={"/documentsicon.svg"} />
                             <AdvantageItemTop value="Сопровождение" description="на всех этапах" iconPath={"/icondoc.svg"}/>
-                            <AdvantageItemTop value="820 бел. руб." description="стоимость услуги" iconPath={"/wallet.svg"}/>
+                            <AdvantageItemTop value="820 бел. руб." description="стоимость услуги" iconPath={"/newwallet.svg"}/>
                         </ul>
                     </>
                 )}

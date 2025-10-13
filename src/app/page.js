@@ -136,7 +136,7 @@ export default function HomePage() {
                         height={802}
                         src="/mainpicdesctop.webp"
                         alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden translate-y-[17%]"
+                        className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden translate-y-[17%] mb-[25px]"
                         loading="lazy"
                     />
                     <Image

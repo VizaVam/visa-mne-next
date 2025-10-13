@@ -54,7 +54,7 @@ const AdvantageItemTop = ({ value, description, iconPath }) => (
             loading="lazy" // Хорошо для некритических изображений
         />
         <div> 
-            <p className="font-[500] text-[20px] mdd:leading-none">
+            <p className="1024m:mb-[5px] font-[500] text-[20px] mdd:leading-none">
                 {value}
             </p>
             {description && (
@@ -535,7 +535,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="Запись на собеседование" description="в Консульстве США" iconPath={"/icontime.svg"} />
                             <AdvantageItemTop value="Подготовка документов" iconPath={"/documentsicon.svg"}/>
@@ -550,7 +550,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                             mt-[5px] ml-[25px] mr-[25px] p-[25px] border border-[#ECECEC] 
                             lg:absolute top-1/2 lg:right-[7%] 
                             lg:transform lg:-translate-y-3 lg:space-y-4 text-left lg:p-4
-                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none`
+                            rounded-md px-[7%] lg:ml-[7%] mb-[20px] mr-auto lg:m-0 translate-y-[-5vw] lg:border-none 1024m:!ml-[7%] 1024m:!mr-[7%]`
                         }>
                             <AdvantageItemTop value="До 5 лет" description="длительность визы" iconPath={"/wpf_approval.svg"} />
                             <AdvantageItemTop value="Запись на подачу" description="визового  заявления" iconPath={"/icontime.svg"}/>

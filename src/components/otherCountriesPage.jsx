@@ -562,14 +562,18 @@ export default function OtherCountryPage({breadcrumbs}) {
                 )}
             </div>
 
-            {/* Lazy Sections */}
-            <LazySection>
-                <Discount/>
-            </LazySection>
+            <div
+                className={`w-full`}>
+                
+                {/* Lazy Sections */}
+                <LazySection>
+                    <Discount />
+                </LazySection>
 
-            <LazySection>
-                <Slider/>
-            </LazySection>
+                <LazySection>
+                    <Slider />
+                </LazySection>
+            </div>
 
             <div className="w-full">
                 <div className="pb-16 mdd:pb-10">

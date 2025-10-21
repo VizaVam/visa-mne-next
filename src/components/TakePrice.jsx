@@ -41,6 +41,9 @@ const FormBlock = () => {
     );
     const purposes = ["Туризм", "Бизнес", "Обучение", "Работа", "Навестить родных/друзей"];
 
+    
+    const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+
     // Function to trigger Yandex Metrika reachGoal
     const triggerYandexGoal = () => {
         // Проверка typeof window для безопасности SSR, хотя 'use client' уже применен
@@ -97,8 +100,9 @@ const FormBlock = () => {
     };
 
     const validatePhone = (phone) => {
-        const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
-        return phoneRegex.test(phone);
+        const cleaned = phone.replace(/[^\d+]/g, "");
+        const pattern = /^\+(375\d{9}|7\d{10}|48\d{9})$/;
+        return pattern.test(cleaned);
     };
 
     const nextStep = () => {
@@ -161,7 +165,7 @@ const FormBlock = () => {
         if (!formData.peopleCount) newErrors.peopleCount = "Выберите количество людей";
         if (!formData.urgency) newErrors.urgency = "Выберите срочность";
         if (!formData.phone || !validatePhone(formData.phone))
-            newErrors.phone = "Некорректный формат телефона";
+            newErrors.phone = "Пожалуйста, введите корректный номер телефона";
 
         const formattedPhone = `+${formData.phone.replace(/\D/g, "")}`;
         if (blacklistedPhones.includes(formattedPhone)) {
@@ -443,31 +447,58 @@ const FormBlock = () => {
                                         Ваш результат уже готов! Узнайте его, оставив свой номер телефона!
                                     </label>
                                     <div className="flex mdd:flex-col items-center gap-4 mb-1">
-                                        <IMaskInput
-                                            mask="+000 00 000-00-00"
-                                            definitions={{ "0": { mask: /[0-9]/, placeholderChar: "_" } }}
-                                            name="phone"
-                                            placeholder="Телефон*"
-                                            value={formData.phone || ""}
-                                            onChange={handlePhoneInput}
-                                            lazy={true}
-                                            overwrite="shift"
-                                            onFocus={(e) => {
-                                                e.target.placeholder = "+___ __ ___-__-__";
-                                            }}
-                                            onBlur={(e) => {
-                                                if (!e.target.value) {
-                                                    e.target.placeholder = "Телефон*";
+                                        <div className="flex flex-col">
+                                            <IMaskInput
+                                                mask={[
+                                                {
+                                                    mask: "+{375} 00 000-00-00", // Беларусь
+                                                    startsWith: "375",
+                                                    country: "BY",
+                                                },
+                                                {
+                                                    mask: "+{7} 000 000-00-00", // Россия
+                                                    startsWith: "7",
+                                                    country: "RU",
+                                                },
+                                                {
+                                                    mask: "+{48} 000-000-000", // Польша
+                                                    startsWith: "48",
+                                                    country: "PL",
+                                                },
+                                                {
+                                                    mask: "+0000000000000", // fallback
+                                                },
+                                                ]}
+                                                dispatch={(appended, dynamicMasked) => {
+                                                const number = (dynamicMasked.value + appended).replace(/\D/g, "");
+                                                return dynamicMasked.compiledMasks.find(m => number.startsWith(m.startsWith)) || dynamicMasked.compiledMasks[3];
+                                                }}
+                                                definitions={{ '0': { mask: /[0-9]/ } }}
+                                                lazy={false}
+                                                overwrite={true}
+                                                placeholder={isPhoneFocused ? "+" : "Телефон* (начиная с +)"}
+                                                value={formData.phone || ""}
+                                                onAccept={(value) => {
+                                                const cleanValue = value.replace(/[^\d+]/g, "");
+                                                setFormData({ ...formData, phone: cleanValue });
+                                                }}
+                                                onFocus={() => setIsPhoneFocused(true)}
+                                                onBlur={(e) => {
+                                                if (!e.target.value || e.target.value === "+") {
+                                                    setFormData({ ...formData, phone: "" });
+                                                    setIsPhoneFocused(false);
                                                 }
-                                            }}
-                                            className={`border ${
+                                                }}
+                                                className={`w-full border ${
                                                 errors.phone ? "border-red-500" : "border-[#15419E]"
-                                            } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
-                                        />
+                                                } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
+                                            />
+                                            <p className="text-xs text-gray-500 pl-3">Номер в международном формате: +375, +7, +48</p>
+                                        </div>
                                         <button
                                             type="submit"
                                             onClick={handleSubmit}
-                                            className="px-8 py-2 bg-[#15419E] text-white rounded-full mdd:w-full"
+                                            className="px-8 py-2 bg-[#15419E] text-white rounded-full mdd:w-full mb-[15px]"
                                         >
                                             Узнать стоимость
                                         </button>

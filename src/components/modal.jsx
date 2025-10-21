@@ -23,6 +23,7 @@ const Modal = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAgreed, setIsAgreed] = useState(true);
     const {isModalOpen, closeModal} = useModal();
+    const [isPhoneFocused, setIsPhoneFocused] = useState(false);
 
     if (!isModalOpen) return null;
 
@@ -33,9 +34,11 @@ const Modal = () => {
     };
 
     const validatePhone = (phone) => {
-        const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
-        return phoneRegex.test(phone);
+        const cleaned = phone.replace(/[^\d+]/g, "");
+        const pattern = /^\+(375\d{9}|7\d{10}|48\d{9})$/;
+        return pattern.test(cleaned);
     };
+
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -66,7 +69,7 @@ const Modal = () => {
         if (!phone || !phone.trim()) {
             newErrors.phone = "Поле обязательно к заполнению";
         } else if (!validatePhone(phone)) {
-            newErrors.phone = "Некорректный формат данных";
+            newErrors.phone = "Пожалуйста, введите корректный номер телефона";
         }
         if (!isAgreed) newErrors.agreement = "Вы должны согласиться с офертой";
 
@@ -129,6 +132,7 @@ const Modal = () => {
 
     const handleCloseModal = () => {
         setIsSuccess(false);
+        setIsPhoneFocused(false);
         setFormData({name: "", phone: "", email: ""});
         setErrors({});
         closeModal();
@@ -173,34 +177,59 @@ const Modal = () => {
                                 } rounded-full p-3 text-sm`}
                             />
                             {errors.name && (
-                                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+                                <p className="text-red-500 text-xs mt-1 pl-3">{errors.name}</p>
                             )}
                         </div>
 
                         <div>
                             <IMaskInput
-                                mask="+000 00 000-00-00"
-                                definitions={{'0': {mask: /[0-9]/, placeholderChar: '_'}}}
-                                name="phone"
-                                placeholder="Телефон*"
-                                value={formData.phone || ""}
-                                onChange={handlePhoneInput}
-                                lazy={true}
-                                overwrite="shift"
-                                onFocus={(e) => {
-                                    e.target.placeholder = "+___ __ ___-__-__";
+                                mask={[
+                                {
+                                    mask: "+{375} 00 000-00-00", // Беларусь
+                                    startsWith: "375",
+                                    country: "BY",
+                                },
+                                {
+                                    mask: "+{7} 000 000-00-00", // Россия
+                                    startsWith: "7",
+                                    country: "RU",
+                                },
+                                {
+                                    mask: "+{48} 000-000-000", // Польша
+                                    startsWith: "48",
+                                    country: "PL",
+                                },
+                                {
+                                    mask: "+0000000000000", // fallback
+                                },
+                                ]}
+                                dispatch={(appended, dynamicMasked) => {
+                                const number = (dynamicMasked.value + appended).replace(/\D/g, "");
+                                return dynamicMasked.compiledMasks.find(m => number.startsWith(m.startsWith)) || dynamicMasked.compiledMasks[3];
                                 }}
+                                definitions={{ '0': { mask: /[0-9]/ } }}
+                                lazy={false}
+                                overwrite={true}
+                                placeholder={isPhoneFocused ? "+" : "Телефон* (начиная с +)"}
+                                value={formData.phone || ""}
+                                onAccept={(value) => {
+                                const cleanValue = value.replace(/[^\d+]/g, "");
+                                setFormData({ ...formData, phone: cleanValue });
+                                }}
+                                onFocus={() => setIsPhoneFocused(true)}
                                 onBlur={(e) => {
-                                    if (!e.target.value) {
-                                        e.target.placeholder = "Телефон*";
-                                    }
+                                if (!e.target.value || e.target.value === "+") {
+                                    setFormData({ ...formData, phone: "" });
+                                    setIsPhoneFocused(false);
+                                }
                                 }}
                                 className={`w-full border ${
-                                    errors.phone ? "border-red-500" : "border-[#15419E]"
+                                errors.phone ? "border-red-500" : "border-[#15419E]"
                                 } rounded-full p-3 text-sm`}
                             />
+                            <p className="text-xs text-gray-500 pl-3">Номер в международном формате: +375, +7, +48</p>
                             {errors.phone && (
-                                <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                                <p className="text-red-500 text-xs mt-1 pl-3">{errors.phone}</p>
                             )}
                         </div>
 

@@ -493,8 +493,12 @@ const FormBlock = () => {
                                                 errors.phone ? "border-red-500" : "border-[#15419E]"
                                                 } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
                                             />
-                                            <p className="text-xs text-gray-500 pl-3">Номер в международном формате: +375, +7, +48</p>
+                                            <p className="text-xs text-gray-500">Номер в международном формате: +375, +7, +48</p>
+                                            
                                         </div>
+                                        {errors.phone && (
+                                                <p className="text-red-500 text-xs mdd:text-center hidden mdd:!block">{errors.phone}</p>
+                                            )}
                                         <button
                                             type="submit"
                                             onClick={handleSubmit}
@@ -503,6 +507,9 @@ const FormBlock = () => {
                                             Узнать стоимость
                                         </button>
                                     </div>
+                                    {errors.phone && (
+                                                <p className="text-red-500 text-xs mdd:text-center mdd:hidden block">{errors.phone}</p>
+                                            )}
                                     <p className="text-sm mdd:text-center mt-2 text-gray-600">
                                         Нажимая кнопку, Вы соглашаетесь с{" "}
                                         <Link
@@ -512,9 +519,6 @@ const FormBlock = () => {
                                             публичной офертой
                                         </Link>
                                     </p>
-                                    {errors.phone && (
-                                        <p className="text-red-500 text-xs mdd:text-center">{errors.phone}</p>
-                                    )}
                                     {errors.submit && (
                                         <p className="text-red-500 text-xs mdd:text-center">{errors.submit}</p>
                                     )}

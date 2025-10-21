@@ -197,8 +197,8 @@ const PhoneForm = () => {
                                 errors.phone ? "border-red-500" : "border-[#15419E]"
                                 } rounded-full p-3 text-sm`}
                             />
-                            <p className="text-xs text-gray-500 pl-3">Номер в международном формате: +375, +7, +48</p>
-                            {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                            <p className="text-xs text-gray-500">Номер в международном формате: +375, +7, +48</p>
+                        {errors.phone && <p className="text-red-500 text-xs !mt-0 hidden dm:!block">{errors.phone}</p>}
                         </div>
                         <div className="w-full !mt-0 !mb-[30px] dm:!mt-[15px]">
                             <RippleButton
@@ -209,6 +209,7 @@ const PhoneForm = () => {
                             </RippleButton>
                         </div>
                     </div>
+                    {errors.phone && <p className="text-red-500 text-xs !mt-0 block dm:hidden">{errors.phone}</p>}
                     <p className="text-sm text-center mt-2 text-gray-600">
                         Нажимая кнопку, Вы соглашаетесь с{" "}
                         <Link href="/Публичная%20оферта.%20Компания%20VISA%20VAM.pdf" className="text-[#F86F00] underline">

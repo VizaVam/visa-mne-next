@@ -8,15 +8,17 @@ export default function TimeRestrictedBlock({ onVisibilityChange }) {
   const { openModal } = useModal();
   const [currentType, setCurrentType] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const targetDate = new Date(2025, 10, 1);
+  const isAfterOrEqual = now >= targetDate;
 
   useEffect(() => {
-    const now = new Date();
-    const day = now.getDay(); // 0 = вс, 1 = пн, ...
-    const hour = now.getHours();
+    const nowFull = new Date();
+    const hour = nowFull.getHours();
+    const day = nowFull.getDay(); // 0 = вс, 1 = пн, ...
 
-    const targetDate = new Date("2025-11-01");
-    
-    const isAfterOrEqual = now >= targetDate;
+    if(!isAfterOrEqual) setIsVisible(false);
 
     // const ranges = day >= 1 && day <= 5 ? schedule.weekdays : schedule.weekends;
     const ranges = schedule.always;
@@ -70,11 +72,11 @@ export default function TimeRestrictedBlock({ onVisibilityChange }) {
         </p>
       )} */}
 
-      {/* {(isAfterOrEqual && currentType === "always") && (
+      {(isAfterOrEqual && currentType === "always") && (
         <p className="font-medium ml-auto drm:text-base dr:text-xs">
           Приводи друзей и получай <span className="font-bold text-[#06195B] underline">СТРАХОВКУ</span> для себя и своего друга в <span className="font-bold text-[#06195B] underline">подарок</span>!
         </p>
-      )} */}
+      )}
 
       <button
             onClick={() => setIsVisible(false)}

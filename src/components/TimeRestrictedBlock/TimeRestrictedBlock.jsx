@@ -14,8 +14,13 @@ export default function TimeRestrictedBlock({ onVisibilityChange }) {
     const day = now.getDay(); // 0 = вс, 1 = пн, ...
     const hour = now.getHours();
 
-    const ranges = day >= 1 && day <= 5 ? schedule.weekdays : schedule.weekends;
+    const targetDate = new Date("2025-11-01");
+    
+    const isAfterOrEqual = now >= targetDate;
 
+    // const ranges = day >= 1 && day <= 5 ? schedule.weekdays : schedule.weekends;
+    const ranges = schedule.always;
+    
     let match = null;
     for (const r of ranges) {
       if (hour >= r.start && hour <= r.end) {
@@ -35,7 +40,7 @@ export default function TimeRestrictedBlock({ onVisibilityChange }) {
 
   return (
     <div className="timerestricted relative drm:p-4 dr:p-[8px] bg-orange-500 text-white text-center font-semibold flex">
-      {currentType === "promo" && (
+      {/* {currentType === "promo" && (
         <p className="font-medium ml-auto drm:text-base dr:text-xs">
           <Link
             href="/shengenskie-vizy/viza-v-ispaniyu"
@@ -63,7 +68,14 @@ export default function TimeRestrictedBlock({ onVisibilityChange }) {
           </a>{" "}
           позволит вернуть стоимость нашей услуги при отказе!
         </p>
+      )} */}
+
+      {(isAfterOrEqual && currentType === "always") && (
+        <p className="font-medium ml-auto drm:text-base dr:text-xs">
+          Приводи друзей и получай <span className="font-bold text-[#06195B] underline">СТРАХОВКУ</span> для себя и своего друга в <span className="font-bold text-[#06195B] underline">подарок</span>!
+        </p>
       )}
+
       <button
             onClick={() => setIsVisible(false)}
             className="text-[#F86F00] font-bold text-lg ml-auto mdd:translate-y-[-15px] dr:translate-y-[-10px]"

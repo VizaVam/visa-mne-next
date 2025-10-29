@@ -10,4 +10,6 @@ export const schedule = {
       { start: 14, end: 15, type: "insurance" },
       { start: 18, end: 23, type: "promo" },
     ],
-  };
+    always: [
+      { start: 0, end: 23, type: "always" }
+    ]  };

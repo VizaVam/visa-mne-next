@@ -318,11 +318,11 @@ export default function OnasPage({breadcrumbs}) {
                             </li>
                         </ul>
                         <p>
-                            Особенно часто наших клиентов интересует, <b>как получить</b> <Link href="/shengenskie-vizy/viza-v-latviyu"
+                            Особенно часто наших клиентов интересует, <b>как получить</b> <Link href="/shengenskie-vizy/rabochaya-viza-v-polshu"
                                     className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                    target="_blank" rel="noopener noreferrer">рабочую визу в Польшу</Link> или <Link href="/shengenskie-vizy/viza-v-latviyu"
+                                    target="_blank" rel="noopener noreferrer">рабочую визу в Польшу</Link> <b>или</b> <Link href="/shengenskie-vizy/rabochaya-viza-v-germaniyu"
                                     className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                    target="_blank" rel="noopener noreferrer"><b>Германию</b></Link>. 
+                                    target="_blank" rel="noopener noreferrer">Германию</Link>. 
                             Эти страны предлагают множество вакансий, достойные условия труда и упрощённые требования для граждан Беларуси. 
                             Польша привлекает возможностью быстрого трудоустройства, а Германия - отсутствием верификации, высокими 
                             зарплатами и стабильностью. Наши специалисты знают все актуальные требования для каждого направления и 

@@ -177,7 +177,7 @@ export default function OnasPage({breadcrumbs}) {
                         width={1600}
                         height={1000}
                         priority={true}
-                        className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
+                        className="w-full h-96 object-cover object-[50%_20%] px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
                     />
                     <Image
                         src="/topic10.webp"
@@ -408,7 +408,7 @@ export default function OnasPage({breadcrumbs}) {
                         <p className={"italic text-[14px]"}>
                             💡  <span className={"font-bold"}> Совет:</span> Если вы не знаете, как подать документы на рабочую визу или опасаетесь ошибок - 
                             лучше доверить процесс<a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                            target="_blank" rel="noopener noreferrer" onClick={openModal}>специалистам.</a>
+                            target="_blank" rel="noopener noreferrer" onClick={openModal}> специалистам.</a>
                         </p>
                     </div> 
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">

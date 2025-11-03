@@ -421,7 +421,7 @@ export default function OnasPage({breadcrumbs}) {
                             Почему могут отказать в визе?
                         </h2>
                         <p>
-                            <Link href="/shengenskie-vizy/viza-v-latviyu"
+                            <Link href="/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu"
                                     className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
                                     target="_blank" rel="noopener noreferrer">Отказ в рабочей визе</Link> - это неприятно, но не приговор. Важно понимать причины, чтобы избежать их в будущем.
                         </p>

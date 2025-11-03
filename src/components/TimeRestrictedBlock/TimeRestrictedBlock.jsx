@@ -74,7 +74,7 @@ export default function TimeRestrictedBlock({ onVisibilityChange }) {
 
       {(isAfterOrEqual && currentType === "always") && (
         <p className="font-medium ml-auto drm:text-base dr:text-xs">
-          Приводи друзей и получай <span className="font-bold text-[#06195B] underline">СТРАХОВКУ</span> для себя и своего друга в <span className="font-bold text-[#06195B] underline">подарок</span>!
+          Приводи друзей и получай <span className="font-bold text-[#06195B] underline">СТРАХОВКУ</span> для себя и своего друга в <span className="font-bold text-[#06195B] underline">подарок!</span>
         </p>
       )}
 

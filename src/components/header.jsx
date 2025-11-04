@@ -249,13 +249,12 @@ export default function Header({ onTimerestrictedChange }) {
                                 )}
                             </div>
 
-                            {pathname === "/o-nas" ? (
+                            {pathname === "/o-kompanii" ? (
                                 <span
-                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">О нас</span>
+                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">О компании</span>
                             ) : (
-                                <Link href="/o-nas"
-                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">О
-                                    нас</Link>
+                                <Link href="/o-kompanii"
+                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">О компании</Link>
                             )}
 
                             {pathname === "/poleznaya-informasia" ? (
@@ -444,7 +443,7 @@ export default function Header({ onTimerestrictedChange }) {
 
                                     {/* О нас и Контакты */}
                                     <motion.div variants={listItemVariants}>
-                                        <Link href="/o-nas">О нас</Link>
+                                        <Link href="/o-kompanii">О компании</Link>
                                     </motion.div>
                                     <motion.div variants={listItemVariants}>
                                         <Link href="/poleznaya-informasia">Полезная информация</Link>

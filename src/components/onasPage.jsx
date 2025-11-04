@@ -14,6 +14,20 @@ import Discount from "@/components/discount";
 import {faqData} from "@/components/fag";
 import VizaCoop from "@/components/VizaCoop";
 import React, { memo, Suspense }  from "react";
+import dynamic from "next/dynamic";
+import {useInView} from 'react-intersection-observer';
+import Photos from "@/components/photos";
+import PhotosMob from "@/components/photosmob";
+import PolInfoTr from "./pol-info3";
+
+const Slider = dynamic(() => import('@/components/slider'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>,
+});
+
+const PhoneForm = dynamic(() => import('@/components/newModal'), {
+    ssr: false,
+    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+});
 
 const AdvantageItem = memo(({ value, description }) => (
     <li className="flex items-center text-lg mb-[15px]">
@@ -35,6 +49,8 @@ const AdvantageItem = memo(({ value, description }) => (
         </div>
     </li>
 ));
+
+
 
 const RippleButton = ({onClick, children}) => (
     <button
@@ -69,12 +85,12 @@ const BreadcrumbNav = ({pathname}) => (
             Главная
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        {pathname === "/o-nas" ? (
-            <span className="font-semibold text-gray-900 cursor-default">О нас</span>
+        {pathname === "/o-kompanii" ? (
+            <span className="font-semibold text-gray-900 cursor-default">О компании</span>
         ) : (
-            <Link href="/o-nas"
+            <Link href="/o-kompanii"
                   className="font-semibold hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
-                О нас
+                О компании
             </Link>
         )}
     </nav>
@@ -111,6 +127,19 @@ const CountryCard = ({country}) => (
         </div>
     </Link>
 );
+
+const LazySection = ({children, fallback = "Загрузка...", rootMargin = "100px"}) => {
+    const {ref, inView} = useInView({
+        triggerOnce: true,
+        rootMargin,
+    });
+
+    return (
+        <div ref={ref}>
+            {inView ? children : <div className="py-10 text-center">{fallback}</div>}
+        </div>
+    );
+};
 
 export default function OnasPage({breadcrumbs}) {
     const {openModal} = useModal();
@@ -150,7 +179,7 @@ export default function OnasPage({breadcrumbs}) {
                     className="mdd:relative mdd:text-xs lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black">
-                        О НАС
+                        О Компании
                     </h1>
                 </div>
 
@@ -195,43 +224,95 @@ export default function OnasPage({breadcrumbs}) {
             </ul>
 
             {/* Banner Section */}
-            <div className="w-full relative ht:bottom-[30px] xl:bottom-[40px] lg:bottom-[60px]">
-                <Image
-                    src="/onaspc.jpg"
-                    alt="О компании VisaVam"
-                    width={1600}
-                    height={1000}
-                    priority={true}
-                    className="w-full h-96 object-cover px-0 lg:px-[7%] md:px-[7%] mdd:hidden"
-                />
-                <Image
-                    src="/onasmobile.jpg"
-                    alt="О компании VisaVam"
-                    width={600}
-                    height={400}
-                    quality={80}
-                    priority={true}
-                    loading="eager"
-                    className="w-full object-cover px-0 lg:px-[7%] md:px-[7%] sm:hidden"
-                />
+
+            <div
+                className={`w-full`}>
+                
+                {/* Lazy Sections */}
+                <LazySection>
+                    <Discount />
+                </LazySection>
+
+                <LazySection>
+                    <Slider />
+                </LazySection>
             </div>
 
             {/* About Text Section */}
-            <div className="w-full relative flex flex-col gap-6 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
-                <div className="w-[80%] mdd:w-full">
+            <div className="w-full relative flex lg:flex-row gap-6 px-[7%] pt-16 mdd:pt-10 text-[16px] mdd:text-[14px]">
+                <div className="w-[50%] mdd:w-full">
                     <p>
-                        <strong>Visa Vam более 10 лет</strong> помогает клиентам в оформлении виз по всему миру.<br/>
-                        Опыт наших специалистов позволяет находить индивидуальные решения для
-                        каждого.<br/>
-                        Мы оформляем туристические, бизнес- и национальные визы в Европу, США,
-                        Великобританию и другие страны.<br/>
-                        Среди наших клиентов – как частные путешественники, так и компании,
-                        отправляющие сотрудников в командировки.<br/>
-                        Также мы помогаем с визами для переезда в Европу на учебу, работу, брак или
-                        воссоединение семьи.<br/>
+                        <b><u>Компания Visa Vam — Ваш надёжный партнёр в визовых вопросах уже более 10 лет.</u></b>
                     </p>
+                    <br/>
+                    <p>
+                        Мы помогаем клиентам оформить визы в разные страны мира, подбирая индивидуальные 
+                        решения для каждой ситуации. Работаем со всеми категориями граждан. <br/><br/><b>Наша цель</b> — 
+                        сделать процесс получения визы максимально простым и комфортным. Мы бесплатно 
+                        консультируем по возможностям срочного оформления, а также по получению шенгенской 
+                        визы в «чистый» паспорт.
+                    </p>
+                    <PhotosMob/>
+                    
+                    <p className="pt-16 mdd:pt-10"><b>Наши услуги:</b></p>
+
+                    <ul className="ml-3 flex flex-col gap-2 list-disc pl-3 pt-6 mdd:pt-3">
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Оформление туристических, бизнес- и национальных виз в Европу, США, Великобританию и другие страны
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Визы для переезда в Европу на учёбу, работу или заключения брака
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Страхование от отказа в визе
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Переводы документов на английский (и иные) языки
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Оформление медицинских страховок
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Заполнение визовых анкет
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Оформление туристических ваучеров
+                            </span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                            <span>
+                                Консультации по визовым вопросам
+                            </span>
+                        </li>
+                    </ul>
                 </div>
+                <Photos/>
             </div>
+
+            <LazySection>
+                <PhoneForm />
+            </LazySection>
 
             {/* Countries Section */}
             <div className="flex flex-col gap-4 pt-32 mdd:pt-20 px-[7%]">
@@ -266,6 +347,7 @@ export default function OnasPage({breadcrumbs}) {
             />
 
             <Reviews/>
+            <PolInfoTr/>
             <Fag/>
             <Contacts/>
         </div>

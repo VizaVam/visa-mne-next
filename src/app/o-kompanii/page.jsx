@@ -2,15 +2,15 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import AboutUsPage from "@/components/onasPage";
 
 export const metadata = {
-    title: "О нас - VISA VAM | Эксперты в оформлении виз для белорусов",
+    title: "О компании - VISA VAM | Эксперты в оформлении виз для белорусов",
     description: "Наша история и принципы работы. Мы стремимся сделать процесс получения визы простым и понятным, предлагая персональное сопровождение и гарантию результата.",
     alternates: {
-        canonical: "https://visavampro.by/o-nas",
+        canonical: "https://visavampro.by/o-kompanii",
     },
     openGraph: {
-        title: "О нас - VISA VAM | Эксперты в оформлении виз для белорусов",
+        title: "О компании - VISA VAM | Эксперты в оформлении виз для белорусов",
         description: "Наша история и принципы работы. Мы стремимся сделать процесс получения визы простым и понятным, предлагая персональное сопровождение и гарантию результата.",
-        url: "https://visavampro.by/o-nas",
+        url: "https://visavampro.by/o-kompanii",
         type: "website",
         images: [
             {
@@ -44,7 +44,7 @@ export const metadata = {
 export default function Page() {
    const breadcrumbs = [
       { name: "Главная", url: "https://visavampro.by/" },
-      { name: "О нас", url: "https://visavampro.by/o-nas" }
+      { name: "О компании", url: "https://visavampro.by/o-kompanii" }
    ];
 
    return (

@@ -5,12 +5,12 @@ export const metadata = {
     title: "Блог VISA VAM | Полезная информация и советы по визам",
     description: "Все, что нужно знать о визах: статьи, советы, ответы на вопросы. Узнайте, как получить любую визу быстро и без ошибок.  Мы делимся экспертными знаниями!",
     alternates: {
-        canonical: "https://visavampro.by/o-nas",
+        canonical: "https://visavampro.by/o-kompanii",
     },
     openGraph: {
         title: "Блог VISA VAM | Полезная информация и советы по визам",
         description: "Все, что нужно знать о визах: статьи, советы, ответы на вопросы. Узнайте, как получить любую визу быстро и без ошибок.  Мы делимся экспертными знаниями!",
-        url: "https://visavampro.by/o-nas",
+        url: "https://visavampro.by/o-kompanii",
         type: "website",
         images: [
             {

@@ -107,7 +107,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className={"footer__top-right-main-left"}>
-                            <a href={"/o-nas"} className={"block font-medium text-xl mdd:py-2"}>О нас</a>
+                            <a href={"/o-kompanii"} className={"block font-medium text-xl mdd:py-2"}>О компании</a>
                             <a href={"/poleznaya-informasia"} className={"block font-medium text-xl mdd:py-2 mt-0 md:mt-8"}>Полезная
                                 информация</a>
                         </div>

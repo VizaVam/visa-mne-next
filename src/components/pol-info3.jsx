@@ -8,8 +8,8 @@ const year = new Date().getFullYear();
 
 const PolInfoTr = () => {
     return (
-        <div className="flex flex-col gap-4 pt-32 mdd:pt-20 px-[7%]">
-            <h2 className="text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-16 mdd:mb-4">
+        <div className="flex flex-col gap-4 pt-32 mdd:pt-20">
+            <h2 className=" px-[7%] text-[18px] md:text-[28px] sm:text-[22px] font-semibold mb-8 lg:mb-16 mdd:mb-4">
                 Полезная информация
             </h2>
             

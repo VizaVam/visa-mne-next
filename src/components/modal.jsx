@@ -227,7 +227,7 @@ const Modal = () => {
                                 errors.phone ? "border-red-500" : "border-[#15419E]"
                                 } rounded-full p-3 text-sm`}
                             />
-                            <p className="text-xs text-gray-500 pl-3">Номер в международном формате: +375, +7, +48</p>
+                            <p className="text-xs text-gray-500 pl-3">Международный формат: +375, +7, +48</p>
                             {errors.phone && (
                                 <p className="text-red-500 text-xs mt-1 pl-3">{errors.phone}</p>
                             )}

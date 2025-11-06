@@ -7,6 +7,9 @@ export const metadata = {
     alternates: {
         canonical: "https://visavampro.by/poleznaya-informasia/kak-belarusu-poluchit-vizu",
     },
+    other: {
+        lastModified: "2025-10-29T14:32:00+03:00",
+    },
     openGraph: {
         title: "Как белорусу получить шенген в 2025 году — пошаговая инструкция",
         description: "Полное руководство от экспертов VISA VAM: документы, подача, сроки и советы. Получите шенген без ошибок! Гарантия возврата средств при отказе.",

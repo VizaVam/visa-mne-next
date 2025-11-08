@@ -11,6 +11,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag4, {faqData} from "@/components/fag4";
 import NextArticleLink from "@/components/nextArtLink";
 
+const year = new Date().getFullYear();
+
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
         <Link href="/"
@@ -340,10 +342,38 @@ export default function OnasPage({breadcrumbs}) {
                         <p><span className={"font-bold"}>Получение рабочей визы</span> – это финишная прямая на пути к вашей новой карьере. Не позволяйте досадным ошибкам перечеркнуть ваши планы, которые приведут к <span className={"font-bold"}>отказу в выдаче визы. <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer" onClick={openModal}>Свяжитесь с нами</a>, и мы поможем вам пройти этот путь максимально быстро и эффективно!</span></p>
                     </div>
                 </div>
-                <NextArticleLink
-                    href="/poleznaya-informasia/kak-belarusu-poluchit-vizu"
-                    title="Как белорусу получить шенгенскую визу в 2025 году: полное руководство"
-                />
+                <div className="w-full relative flex flex-col px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
+                    <p className="pb-[20px]">Читать следующую статью:</p>
+                    <Link href="/poleznaya-informasia/kak-belarusu-poluchit-vizu" className="w-full relative">
+                    <div style={{
+                        boxShadow: '3px 2px 8px 1px #FFEEDB',
+                        backdropFilter: 'blur(200px)'
+                    }}
+                         className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        <Image src={"/polinfo3.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"w-[191px] h-[124px] dm:hidden"}/>
+                        <Image src={"/polinfo4.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <div className={"dm:p-4"}>
+                            <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                Как белорусу получить шенгенскую визу в {year} году: полное руководство
+                            </h3>
+                            <p className="dm:text-base text-[#595959] mb-4">
+                                Планируете путешествие в Европу в {year} году? Для белорусов первым и ключевым шагом на пути к этим целям остается получение шенгенской визы.
+                            </p>
+                            <div className="flex justify-between items-center">
+                                <span
+                                    className="dm:text-base text-[#F86F00] font-medium"
+                                >
+                                    Читать полностью
+                                </span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">21.06.2025</span>
+                            </div>
+                        </div>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">21.06.2025</span>
+                    </div>
+                </Link>
+                </div>
                 <Contacts/>
             </div>
         </div>

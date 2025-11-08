@@ -490,10 +490,39 @@ VISA VAM предлагает профессиональную консульт�
                                                            className="underline hover:font-medium cursor-pointer text-blue-500" target="_blank" rel="noopener noreferrer">+375296800620</a> и доверьте оформление вашей шенгенской визы профессионалам!</p>
                     </div>
                 </div>
-                <NextArticleLink
-                    href="/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov"
-                    title="Как оформить визу в Польшу для белорусов: документы, стоимость и сроки"
-                />
+                <div className="w-full relative flex flex-col px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
+                    <p className="pb-[20px]">Читать следующую статью:</p>
+                    <Link href="/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov" className="w-full relative">
+                        <div style={{
+                            boxShadow: '3px 2px 8px 1px #FFEEDB',
+                            backdropFilter: 'blur(200px)'
+                        }}
+                            className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                            <Image src={"/poland-banner.png"} alt={"Полезная информация"} width={1000} height={1000}
+                                className={"w-[191px] h-[124px] dm:hidden"}/>
+                            <Image src={"/polinfo2.png"} alt={"Полезная информация"} width={1000} height={1000}
+                                className={"md:hidden"}/>
+                            <div className={"dm:p-4"}>
+                                <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                    Как оформить визу в Польшу для белорусов: документы, стоимость и сроки
+                                </h3>
+                                <p className="dm:text-base text-[#595959] mb-4">
+                                    Если вы планируете поездку в Польшу, то вам обязательно понадобится шенгенская виза,
+                                    т.к. Польша — одна из стран Шенгенского соглашения.
+                                </p>
+                                <div className="flex justify-between items-center">
+                                    <span
+                                        className="dm:text-base text-[#F86F00] font-medium"
+                                    >
+                                        Читать полностью
+                                    </span>
+                                    <span className="text-[#FA9D3E] text-sm md:hidden">13.05.2025</span>
+                                </div>
+                            </div>
+                            <span className="text-[#FA9D3E] text-sm self-start dm:hidden">13.05.2025</span>
+                        </div>
+                    </Link> 
+                </div>
                 <Contacts/>
             </div>
         </div>

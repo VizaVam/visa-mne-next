@@ -28,12 +28,12 @@ export const countries = [
             {
                 service: "Услуга компании",
                 cost: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">790</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap">1000</span> бел. руб.</span>,
                 note: "Полный пакет услуг компании в зависимости от типа визы"
                 ,
                 serviceMob: "Полный пакет услуг компании в зависимости от типа визы",
                 costMob: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>
                 ,
             },
             {
@@ -1508,14 +1508,14 @@ export const countries = [
             {
                 service: "Услуга компании",
                 cost: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления, сопровождение в процессе верификации"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
                     "**Важно!** Сопровождение при верификации **не включено** в стоимость!\n" +
                     "\n",
-                costMob: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>
+                costMob: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>
                 ,
             },
             {
@@ -1600,13 +1600,13 @@ export const countries = [
             {
                 service: "Услуга компании",
                 cost: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">890</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
                     "\n",
                 costMob: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">890</span> бел. руб.</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>
                 ,
             },
             {
@@ -1707,13 +1707,13 @@ export const countries = [
             {
                 service: "Услуга компании",
                 cost: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
                     "\n",
                 costMob: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб. (в зависимости от округа)</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб. (в зависимости от округа)</span>
                 ,
             },
             {
@@ -1796,25 +1796,25 @@ export const countries = [
             {
                 service: "Гостевая виза тип C (услуга компании)",
                 cost: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">890</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Тип C (консультация, подготовка документов, запись на подачу заявления)\n" +
                     "\n",
                 costMob: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">890</span> бел. руб. (в зависимости от округа)</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб. (в зависимости от округа)</span>
                 ,
             },
             {
                 service: "Гостевая виза тип D (услуга компании)",
                 cost: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>,
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Тип D (консультация, подготовка документов, запись на подачу заявления)\n" +
                     "\n",
                 costMob: <span>от <span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>
                 ,
             },
             {
@@ -1899,14 +1899,14 @@ export const countries = [
         priceTable: [
             {
                 service: "Услуга компании",
-                cost: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>,
+                cost: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>,
                 note: "Консультативная работа, помощь в подготовке необходимого пакета документов, запись на подачу визового заявления"
                 ,
                 serviceMob: "Консультация, подготовка документов, запись на подачу заявления;\n" +
                     "\n",
-                costMob: <span><span
-                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">790</span> бел. руб.</span>
+                costMob: <span>от <span
+                    className="text-orange-500 md:text-[20px] sm:text-[18px] mdd:text-[18px] whitespace-nowrap font-medium">1000</span> бел. руб.</span>
                 ,
             },
             {

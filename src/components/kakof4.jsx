@@ -532,10 +532,38 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
-                <NextArticleLink
-                    href="/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu"
-                    title="Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты"
-                />
+                <div className="w-full relative flex flex-col px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
+                    <p className="pb-[20px]">Читать следующую статью:</p>
+                    <Link href="/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu" className="w-full relative">
+                    <div style={{
+                        boxShadow: '3px 2px 8px 1px #FFEEDB',
+                        backdropFilter: 'blur(200px)'
+                    }}
+                         className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        <Image src={"/polinfo5.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"w-[191px] h-[124px] dm:hidden"}/>
+                        <Image src={"/polinfo6.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <div className={"dm:p-4"}>
+                            <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                Топ-5 ошибок при подаче на рабочую визу
+                            </h3>
+                            <p className="dm:text-base text-[#595959] mb-4">
+                                Получение предложения о работе за границей – это огромный шаг и повод для гордости. Однако эйфория от заветного предложения может быстро смениться разочарованием, если на пути к мечте встает отказ в рабочей визе.
+                            </p>
+                            <div className="flex justify-between items-center">
+                                <span
+                                    className="dm:text-base text-[#F86F00] font-medium"
+                                >
+                                    Читать полностью
+                                </span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">01.07.2025</span>
+                            </div>
+                        </div>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">01.07.2025</span>
+                    </div>
+                </Link>
+                </div>
                 <Contacts/>
             </div>
         </div>

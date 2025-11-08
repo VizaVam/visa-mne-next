@@ -465,10 +465,38 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
-                <NextArticleLink
-                    href="/poleznaya-informasia/documenty-dlya-vizy-po-priglasheniu"
-                    title={`Документы для визы по приглашению: полный гид для граждан Беларуси в ${year} году`}
-                />
+                <div className="w-full relative flex flex-col px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
+                    <p className="pb-[20px]">Читать следующую статью:</p>
+                    <Link href="/poleznaya-informasia/documenty-dlya-vizy-po-priglasheniu" className="w-full relative">
+                    <div style={{
+                        boxShadow: '3px 2px 8px 1px #FFEEDB',
+                        backdropFilter: 'blur(200px)'
+                    }}
+                        className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        <Image src={"/topic8.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"w-[191px] h-[124px] dm:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <Image src={"/topic8.jpg"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <div className={"dm:p-4"}>
+                            <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                Документы для визы по приглашению: полный гид для граждан Беларуси в {year} году 
+                            </h3>
+                            <p className="dm:text-base text-[#595959] mb-4">
+                                Виза по приглашению — это удобный способ посетить родственников, друзей или партнеров за рубежом. В этой статье мы разберем, какие документы нужны для визы гостевой, документы для оформления визы по приглашению и особенности процесса.
+                            </p>
+                            <div className="flex justify-between items-center">
+                                <span
+                                    className="dm:text-base text-[#F86F00] font-medium"
+                                >
+                                    Читать полностью
+                                </span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">01.10.2025</span>
+                            </div>
+                        </div>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">01.10.2025</span>
+                    </div>
+                </Link>
+                </div>
                 <Contacts/>
             </div>
         </div>

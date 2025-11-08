@@ -179,7 +179,7 @@ export default function OnasPage({breadcrumbs}) {
                     className="mdd:relative mdd:text-xs lg:absolute sm:relative left-0 top-[200px] lg:top-[250px] mdd:top-[135px] w-full lg:w-1/2 text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-semibold text-black">
-                        О Компании
+                        О КОМПАНИИ
                     </h1>
                 </div>
 

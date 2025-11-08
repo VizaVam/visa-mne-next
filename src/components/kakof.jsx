@@ -139,7 +139,7 @@ export default function OnasPage({breadcrumbs}) {
                 </div>
                 <div className="w-full px-[7%] pt-[20px]">
                     <p>13.05.2025</p>
-                    <p>Обновлено: 29 октября 2025</p>
+                    <p>Обновлено: 29.10.2025</p>
                     <p><b>Автор: </b>Елизавета Бокая</p>
                 </div>
             </div>

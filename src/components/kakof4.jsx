@@ -10,6 +10,7 @@ import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag2 from "@/components/fag2";
 import Fag5, {faqData} from "@/components/fag5";
+import NextArticleLink from "@/components/nextArtLink";
 
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
@@ -531,6 +532,10 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/top-5-oshibok-pri-podache-na-rabochiu-vizu"
+                    title="Топ-5 ошибок при подаче на рабочую визу: как избежать отказа и не потерять оффер мечты"
+                />
                 <Contacts/>
             </div>
         </div>

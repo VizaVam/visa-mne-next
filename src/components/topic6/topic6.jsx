@@ -9,6 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Faq6, {faqData} from "@/components/topic6/faq6";
+import NextArticleLink from "@/components/nextArtLink";
 
 const year = new Date().getFullYear();
 
@@ -505,6 +506,10 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/verifikaciya-na-polskyu-visy-dlya-belorusov"
+                    title="Верификация на польскую визу для белорусов: Пошаговая инструкция 2025"
+                />
                 <Contacts/>
             </div>
         </div>

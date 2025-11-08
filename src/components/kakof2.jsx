@@ -10,6 +10,7 @@ import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag2 from "@/components/fag2";
 import Fag3, {faqData} from "@/components/fag3";
+import NextArticleLink from "@/components/nextArtLink";
 
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
@@ -489,6 +490,10 @@ VISA VAM предлагает профессиональную консульт�
                                                            className="underline hover:font-medium cursor-pointer text-blue-500" target="_blank" rel="noopener noreferrer">+375296800620</a> и доверьте оформление вашей шенгенской визы профессионалам!</p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/kak-oformit-vizu-v-polshu-dlya-belarusov"
+                    title="Как оформить визу в Польшу для белорусов: документы, стоимость и сроки"
+                />
                 <Contacts/>
             </div>
         </div>

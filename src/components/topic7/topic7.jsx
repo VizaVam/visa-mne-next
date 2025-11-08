@@ -9,6 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Faq7, {faqData} from "@/components/topic7/faq7";
+import NextArticleLink from "@/components/nextArtLink";
 
 const year = new Date().getFullYear();
 
@@ -438,6 +439,10 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/foto-na-visy"
+                    title={`Фото на визу ${year}: Полное руководство по требованиям к фотографиям`}
+                />
                 <Contacts/>
             </div>
         </div>

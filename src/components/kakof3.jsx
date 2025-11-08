@@ -9,6 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Fag4, {faqData} from "@/components/fag4";
+import NextArticleLink from "@/components/nextArtLink";
 
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
@@ -339,6 +340,10 @@ export default function OnasPage({breadcrumbs}) {
                         <p><span className={"font-bold"}>Получение рабочей визы</span> – это финишная прямая на пути к вашей новой карьере. Не позволяйте досадным ошибкам перечеркнуть ваши планы, которые приведут к <span className={"font-bold"}>отказу в выдаче визы. <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer" onClick={openModal}>Свяжитесь с нами</a>, и мы поможем вам пройти этот путь максимально быстро и эффективно!</span></p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/kak-belarusu-poluchit-vizu"
+                    title="Как белорусу получить шенгенскую визу в 2025 году: полное руководство"
+                />
                 <Contacts/>
             </div>
         </div>

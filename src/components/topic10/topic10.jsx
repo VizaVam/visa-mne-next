@@ -9,6 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Faq10, {faqData} from "@/components/topic10/faq10";
+import NextArticleLink from "@/components/nextArtLink";
 
 const year = new Date().getFullYear();
 
@@ -512,6 +513,10 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/viza-v-kitay-dlya-belorusov"
+                    title={`Виза в Китай для белорусов в ${year} году: когда можно ехать без визы, а когда она необходима`}
+                />
                 <Contacts/>
             </div>
         </div>

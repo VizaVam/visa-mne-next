@@ -9,6 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Faq5, {faqData} from "@/components/topic5/faq5";
+import NextArticleLink from "@/components/nextArtLink";
 
 const BreadcrumbNav = ({pathname}) => (
     <nav className="mb-4 mdd:text-xs flex items-baseline sm:space-x-2 mdd:space-x-0 text-gray-600 gap-2">
@@ -389,6 +390,10 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/kuda-poehat-belorusam"
+                    title="Куда поехать белорусам в 2025 году: от безвизового релакса до визовых открытий"
+                />
                 <Contacts/>
             </div>
         </div>

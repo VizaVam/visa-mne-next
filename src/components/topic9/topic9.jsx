@@ -9,6 +9,7 @@ import {countries} from "@/data/countries";
 import Contacts from "@/components/contacts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Faq9, {faqData} from "@/components/topic9/faq9";
+import NextArticleLink from "@/components/nextArtLink";
 
 const year = new Date().getFullYear();
 
@@ -156,7 +157,7 @@ export default function OnasPage({breadcrumbs}) {
                     className="w-full text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
-                            Виза в Китай для белорусов в {year} году: когда можно ехать без визы, а когда она необходима
+                        Виза в Китай для белорусов в {year} году: когда можно ехать без визы, а когда она необходима
                     </h1>
                 </div>
                 <div className="w-full px-[7%] pt-[20px]">
@@ -464,6 +465,10 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                     </div>
                 </div>
+                <NextArticleLink
+                    href="/poleznaya-informasia/documenty-dlya-vizy-po-priglasheniu"
+                    title={`Документы для визы по приглашению: полный гид для граждан Беларуси в ${year} году`}
+                />
                 <Contacts/>
             </div>
         </div>

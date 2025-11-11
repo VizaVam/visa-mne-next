@@ -110,6 +110,7 @@ export default function Footer() {
                             <a href={"/o-kompanii"} className={"block font-medium text-xl mdd:py-2"}>О компании</a>
                             <a href={"/poleznaya-informasia"} className={"block font-medium text-xl mdd:py-2 mt-0 md:mt-8"}>Полезная
                                 информация</a>
+                            <a href={"/poleznaya-informasia/faq"} className={"hidden lg:block  mt-4"}>Ответы на частые вопросы</a>
                         </div>
                         <div className={"footer__top-right-main-right mdd:py-2"}>
                             <a href={"/kontakty"} className={"font-medium text-xl"}>Контакты</a>

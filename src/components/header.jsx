@@ -17,6 +17,8 @@ export default function Header({ onTimerestrictedChange }) {
     const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenn, setIsOpenn] = useState(false);
+    const [isFaqMenuOpen, setIsFaqMenuOpen] = useState(false);
+    const [isFaqMenuOpenMobile, setIsFaqMenuOpenMobile] = useState(false);
     const [isSchengenOpen, setIsSchengenOpen] = useState(false);
     const [isOtherVisasOpen, setIsOtherVisasOpen] = useState(false);
     const pathname = usePathname();
@@ -34,6 +36,7 @@ export default function Header({ onTimerestrictedChange }) {
         setIsOpen(false);
         setIsOpenn(false);
         setIsMenuOpen(false);
+        setIsFaqMenuOpen(false);
     }, [pathname]);
 
     useEffect(() => {
@@ -89,6 +92,7 @@ export default function Header({ onTimerestrictedChange }) {
         if (!isMenuOpen) {
             setIsSchengenOpen(false);
             setIsOtherVisasOpen(false);
+            setIsFaqMenuOpenMobile(false);
         }
     }, [isMenuOpen]);
 
@@ -256,16 +260,44 @@ export default function Header({ onTimerestrictedChange }) {
                                 <Link href="/o-kompanii"
                                       className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">О компании</Link>
                             )}
-
-                            {pathname === "/poleznaya-informasia" ? (
-                                <span
-                                    className="font-semibold text-gray-900 active:scale-95 transition-transform duration-150 ease-in-out cursor-default">Полезная информация</span>
-                            ) : (
-                                <Link href="/poleznaya-informasia"
-                                      className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">
-                                    Полезная информация
-                                </Link>
-                            )}
+                            {/* ////////////// */}
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsFaqMenuOpen(true)}
+                                onMouseLeave={() => setIsFaqMenuOpen(false)}
+                            >
+                                <div className={"flex items-center gap-1 cursor-pointer"}>
+                                    {pathname === "/poleznaya-informasia" ? (
+                                        <span
+                                            className="font-semibold text-gray-900 cursor-default">Полезная информация</span>
+                                    ) : (
+                                        <Link href="/poleznaya-informasia"
+                                              className="hover:underline active:scale-95 transition-transform duration-150 ease-in-out">Полезная информация</Link>
+                                    )}
+                                    {isFaqMenuOpen ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
+                                </div>
+                                {isFaqMenuOpen && (
+                                    <div
+                                        className="absolute left-0 mt-0 pt-4 w-[280px] bg-white border-gray-200 z-20 rounded-b-lg">
+                                        <ul className="px-2 py-2">
+                                            <li key="faq">
+                                                { pathname === `/poleznaya-informasia/faq` ? (
+                                                <span className="font-semibold text-gray-900 block px-2 py-1 cursor-default">
+                                                    Ответы на частые вопросы
+                                                </span>
+                                                ) : (
+                                                <Link
+                                                    href={`/poleznaya-informasia/faq`}
+                                                    className="block px-2 py-1 transition-colors hover:underline"
+                                                >
+                                                    Ответы на частые вопросы
+                                                </Link>
+                                                )}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
 
                             {pathname === "/kontakty" ? (
                                 <span
@@ -441,12 +473,53 @@ export default function Header({ onTimerestrictedChange }) {
                                         </AnimatePresence>
                                     </motion.div>
 
+                                    
+
                                     {/* О нас и Контакты */}
                                     <motion.div variants={listItemVariants}>
                                         <Link href="/o-kompanii">О компании</Link>
                                     </motion.div>
-                                    <motion.div variants={listItemVariants}>
+
+                                    {/* <motion.div variants={listItemVariants}>
                                         <Link href="/poleznaya-informasia">Полезная информация</Link>
+                                    </motion.div> */}
+
+                                    {/* {полезная инф} */}
+                                    <motion.div variants={listItemVariants}>
+                                        <div className="w-full flex justify-between items-center">
+                                            <Link href="/poleznaya-informasia" className="w-full"
+                                                  onClick={() => setIsMenuOpen(false)}>
+                                                Полезная информация
+                                            </Link>
+                                            <button onClick={() => setIsFaqMenuOpenMobile(!isFaqMenuOpenMobile)}>
+                                                {isFaqMenuOpenMobile ? "−" : "+"}
+                                            </button>
+                                        </div>
+
+                                        <AnimatePresence>
+                                            {isFaqMenuOpenMobile && (
+                                                <motion.ul
+                                                    initial="hidden"
+                                                    animate="visible"
+                                                    exit="exit"
+                                                    variants={{
+                                                        hidden: {opacity: 0, height: 0},
+                                                        visible: {
+                                                            opacity: 1,
+                                                            height: "auto",
+                                                            transition: {staggerChildren: 0.05}
+                                                        },
+                                                        exit: {opacity: 0, height: 0}
+                                                    }}
+                                                    className="pl-4 mt-2 space-y-2 text-lg font-normal"
+                                                >
+                                                    
+                                                    <Link href={`/poleznaya-informasia/faq`}>
+                                                        Ответы на частые вопросы
+                                                    </Link>
+                                                </motion.ul>
+                                            )}
+                                        </AnimatePresence>
                                     </motion.div>
                                     <motion.div variants={listItemVariants}>
                                         <Link href="/kontakty">Контакты</Link>

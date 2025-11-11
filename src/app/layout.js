@@ -4,7 +4,9 @@ import './globals.css';
 import './output.css';
 import './styles.scss';
 import Modal from "@/components/modal";
+import CommentForm from "@/components/modalwithcomm";
 import { ModalProvider } from "@/components/modalcontext";
+import { CommentModalProvider } from "@/components/modalcontextcomment";
 import { Suspense } from "react";
 import ClientRootLayout from "./clientRootLayout"; 
 
@@ -114,8 +116,11 @@ export default function RootLayout({ children }) {
       <body className={`${interSans.variable} ${caveatSans.variable} antialiased`}>
         <GoogleTagManager />
         <ModalProvider>
+          <CommentModalProvider>
           <ClientRootLayout>{children}</ClientRootLayout>
           <Modal />
+          <CommentForm />
+          </CommentModalProvider>
         </ModalProvider>
       </body>
     </html>

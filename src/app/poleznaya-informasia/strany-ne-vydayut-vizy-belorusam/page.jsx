@@ -1,16 +1,16 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Povv from "./ppvs";
+import Snvvb from "./snvvb";
 
 export const metadata = {
-    title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-    description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
+    title: "Какие страны не выдают визы белорусам в 2025 | Ограничения на визы",
+    description: "Актуальный (август 2025) список стран, которые ввели ограничения или прекратили выдачу шенгенских виз для граждан Беларуси. Информация о текущей визовой политике.",
     alternates: {
-        canonical: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        canonical: "https://visavampro.by/poleznaya-informasia/strany-ne-vydayut-vizy-belorusam",
     },  
     openGraph: {
-        title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-        description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
-        url: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        title: "Какие страны не выдают визы белорусам в 2025 | Ограничения на визы",
+        description: "Актуальный (август 2025) список стран, которые ввели ограничения или прекратили выдачу шенгенских виз для граждан Беларуси. Информация о текущей визовой политике.",
+        url: "https://visavampro.by/poleznaya-informasia/strany-ne-vydayut-vizy-belorusam",
         type: "website",
         images: [
             {
@@ -45,13 +45,13 @@ export default function Page() {
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
         { name: "Полезная статья", url: "https://visavampro.by/poleznaya-informasia" },
-        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/kuda-poehat-belorusam" }
+        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/strany-ne-vydayut-vizy-belorusam" }
     ];
 
     return (
         <>
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <Povv/>
+            <Snvvb/>
         </>
     )
 };

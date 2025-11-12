@@ -26,11 +26,11 @@ const BreadcrumbNav = ({pathname}) => (
             Полезная информация
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default">Сроки изготовления визы</span>
+        <span className="font-semibold text-gray-900 cursor-default">Основной пакет документов для шенгенской визы</span>
     </nav>
 );
 
-export default function Sdv({breadcrumbs}) {
+export default function Cndv({breadcrumbs}) {
     const pathname = usePathname();
     const {openModal} = useModal();
 
@@ -158,7 +158,7 @@ export default function Sdv({breadcrumbs}) {
                     className="w-full text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
-                        Сроки изготовления визы: что нужно знать заявителю
+                        Основной пакет документов для шенгенской визы
                     </h1>
                 </div>
             </div>
@@ -191,75 +191,85 @@ export default function Sdv({breadcrumbs}) {
                     className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            <b>Сроки рассмотрения визового заявления</b> могут значительно варьироваться. 
-                            Понимание сроков рассмотрения визового заявления — ключ к успешному планированию поездки. 
-                            Для шенгенских туристических виз (тип C) стандартный период рассмотрения, установленный 
-                            Визовым кодексом ЕС, составляет 15 календарных дней с момента поступления документов 
-                            в консульство. Этот срок является стандартным ориентиром.
-                        </p>
-                    </div>
-                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <p>
-                            <b>На практике реальные сроки зависят от нескольких факторов:</b>
+                            <b>Сбор документов на визу</b> — самый ответственный этап в получении визы. Каждая бумага имеет свою цель и должна соответствовать строгим требованиям консульства. Вот подробный разбор стандартного пакета.
                         </p>
                         <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Страна назначения.</span> Существует негласное разделение 
-                                    стран на «быстрые» и «медленные». 
-                                    Например, консульства <Link href="/shengenskie-vizy/viza-v-ispaniyu" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">Испании</Link>, <Link href="/shengenskie-vizy/viza-v-italiyu" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">Италии</Link>, <Link href="/shengenskie-vizy/viza-vo-francziyu" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">Франции</Link> и Греции часто обрабатывают заявления быстрее 
-                                    (иногда за 7-10 рабочих дней в низкий сезон). Консульства Германии, Австрии, 
-                                    Швейцарии известны своим скрупулезным подходом, и рассмотрение почти всегда 
-                                    занимает полные 15 дней или более.
+                                    <b>1. Паспорт.</b>
+                                    <p>Должен быть выдан не более 10 лет назад.</p>
+                                    <p>Срок его действия должен превышать дату предполагаемого выезда из Шенгенской зоны минимум на 3 месяца.</p>
+                                    <p>Обязательно наличие как минимум 2-х чистых страниц в разделе «Визы».</p>
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Сезонность.</span> Самый важный фактор. 
-                                    В высокий сезон (с мая по сентябрь) и перед длительными праздниками (Новый год, майские праздники) 
-                                    консульства и визовые центры перегружены. В эти периоды стандартные 15 дней превращаются в 20-30 дней ожидания. 
-                                    Рекомендуем подавать документы за 1.5-2 месяца до поездки.
+                                    <b>Визовая анкета</b> 
+                                    <p>Заполняется онлайн на сайте визового центра или консульства, либо от руки (зависит от страны). Должна быть заполнена без ошибок и распечатана. Подписывается лично заявителем в двух местах.</p>
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Тип визы.</span> Сроки рассмотрения национальных виз для работы или учебы 
-                                    не регулируются Шенгенским кодексом и устанавливаются законодательством конкретной страны. Ожидание может длиться 
-                                    от 1 до 6 месяцев.
+                                    <b>Фотографии.</b> 
+                                    <p>Две цветные фотографии, сделанные не более 6 месяцев назад.</p>
+                                    <p>Размер 3,5 x 4,5 см, на белом или светло-сером фоне.</p>
+                                    <p>Лицо должно занимать 70-80% кадра.</p>
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Полнота пакета документов.</span> Любые неточности или отсутствие 
-                                    необходимых справок могут привести к задержке в рассмотрении вашего дела.
+                                    <b>Медицинская страховка.</b> 
+                                    <p>Сумма покрытия не менее €30,000.</p>
+                                    <p>Должна действовать на всей территории Шенгенской зоны.</p>
+                                    <p>Срок действия страховки должен покрывать весь период поездки. Для многократных виз — как минимум первую поездку.</p>
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Продление срока до 45 дней.</span> В отдельных случаях, 
-                                    когда требуется более тщательная проверка предоставленных данных или консультации между странами-членами 
-                                    Шенгенской зоны, срок рассмотрения может быть продлен до 30 календарных дней, а в исключительных ситуациях — 
-                                    до 45 календарных дней. Это не является негативным знаком, а лишь указывает на необходимость дополнительной проверки.
+                                    <b>Подтверждение цели и маршрута поездки.</b> 
+                                    <p><b>Туризм:</b> Брони отелей или апартаментов на весь период пребывания (неоплаченные брони с booking.com подходят, но оплаченные повышают шансы). Подробный план поездки по дням, если вы посещаете несколько городов/стран.</p>
+                                    <p><b>Деловая поездка: </b>Официальное приглашение от европейской компании с указанием цели, сроков и стороны, покрывающей расходы.</p>
+                                    <p><b>Посещение родственников/друзей: </b>Приглашение от частного лица, заверенное в местном муниципалитете, и копия паспорта/ВНЖ приглашающего.</p>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <b>Подтверждение транспорта.</b> 
+                                    <p>Бронь авиабилетов в обе стороны. Выкупать билеты до получения визы не обязательно, достаточно брони.</p>
+                                    <p>Если поездка на автомобиле: техпаспорт, водительское удостоверение, международная автостраховка («Зеленая карта»).</p>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <b>Финансовые гарантии.</b> 
+                                    <p>Выписка с банковского счета: Справка об остатке и/или выписка о движении средств за последние 3-6 месяцев. Сумма должна покрывать расходы на поездку (см. соответствующий вопрос).</p>
+                                    <p>Спонсорское письмо: Если поездку оплачивает другой человек, необходимо его письмо, справка о доходах и копия паспорта.</p>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <b>Подтверждение занятости (доказательство связей с родиной):</b> 
+                                    <p>Для работающих: Справка с места работы на фирменном бланке с указанием должности, даты трудоустройства, размера заработной платы за последние 6 месяцев и подтверждением, что на время поездки предоставляется отпуск с сохранением рабочего места.</p>
+                                    <p><b>Для ИП:</b> Свидетельство о регистрации, последняя налоговая декларация.</p>
+                                    <p><b>Для студентов:</b> Справка из учебного заведения, студенческий билет.</p>
+                                    <p><b>Для пенсионеров:</b> Пенсионное удостоверение.</p>
                                 </span>
                             </li>
                         </ul>
+                    </div>
+
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Важно помнить, что отсчет начинается не с дня подачи в визовый центр, 
-                            а с момента доставки документов в консульство, что добавляет 1-3 рабочих дня. 
-                            Наше <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                            target="_blank" rel="noopener noreferrer" onClick={openModal}>визовое агентство VISA VAM</a> помогает выбрать оптимальное время для подачи 
-                            и контролирует все этапы, чтобы минимизировать ваше ожидание.
+                            Каждый документ важен. Специалисты <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                            target="_blank" rel="noopener noreferrer" onClick={openModal}> агентства VISA VAM </a> проверяют каждую справку на соответствие актуальным и часто меняющимся требованиям конкретного консульства. Сэкономьте своё время и нервы — доверьте визовые вопросы профессионалам!
                         </p>
                     </div>
                 </div>

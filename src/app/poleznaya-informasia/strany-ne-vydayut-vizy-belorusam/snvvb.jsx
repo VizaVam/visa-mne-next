@@ -26,11 +26,11 @@ const BreadcrumbNav = ({pathname}) => (
             Полезная информация
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default">Сроки изготовления визы</span>
+        <span className="font-semibold text-gray-900 cursor-default">Ограничения на выдачу виз для граждан Беларуси</span>
     </nav>
 );
 
-export default function Sdv({breadcrumbs}) {
+export default function Kbtv({breadcrumbs}) {
     const pathname = usePathname();
     const {openModal} = useModal();
 
@@ -158,7 +158,7 @@ export default function Sdv({breadcrumbs}) {
                     className="w-full text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
-                        Сроки изготовления визы: что нужно знать заявителю
+                        Ограничения на выдачу виз для граждан Беларуси
                     </h1>
                 </div>
             </div>
@@ -191,75 +191,98 @@ export default function Sdv({breadcrumbs}) {
                     className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            <b>Сроки рассмотрения визового заявления</b> могут значительно варьироваться. 
-                            Понимание сроков рассмотрения визового заявления — ключ к успешному планированию поездки. 
-                            Для шенгенских туристических виз (тип C) стандартный период рассмотрения, установленный 
-                            Визовым кодексом ЕС, составляет 15 календарных дней с момента поступления документов 
-                            в консульство. Этот срок является стандартным ориентиром.
+                            С 2022 года визовая политика ряда стран Европейского союза по 
+                            отношению к гражданам Беларуси претерпела значительные изменения. 
+                            Важно понимать, что <b>большинство ограничений</b> касаются именно 
+                            туристических виз (тип C) и не всегда затрагивают поездки по 
+                            гуманитарным причинам, для воссоединения семьи или для международных 
+                            перевозок.
                         </p>
-                    </div>
-                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            <b>На практике реальные сроки зависят от нескольких факторов:</b>
+                            По состоянию на август 2025 года, наиболее строгие <b>ограничения для белорусов</b> действуют в следующих странах:
                         </p>
                         <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Страна назначения.</span> Существует негласное разделение 
-                                    стран на «быстрые» и «медленные». 
-                                    Например, консульства <Link href="/shengenskie-vizy/viza-v-ispaniyu" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">Испании</Link>, <Link href="/shengenskie-vizy/viza-v-italiyu" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">Италии</Link>, <Link href="/shengenskie-vizy/viza-vo-francziyu" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">Франции</Link> и Греции часто обрабатывают заявления быстрее 
-                                    (иногда за 7-10 рабочих дней в низкий сезон). Консульства Германии, Австрии, 
-                                    Швейцарии известны своим скрупулезным подходом, и рассмотрение почти всегда 
-                                    занимает полные 15 дней или более.
+                                    <b>Чехия.</b> Одной из первых приостановила выдачу всех типов виз и ВНЖ для граждан РБ, за редкими исключениями строго гуманитарного характера. Прием заявлений на туристические визы полностью прекращен.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Сезонность.</span> Самый важный фактор. 
-                                    В высокий сезон (с мая по сентябрь) и перед длительными праздниками (Новый год, майские праздники) 
-                                    консульства и визовые центры перегружены. В эти периоды стандартные 15 дней превращаются в 20-30 дней ожидания. 
-                                    Рекомендуем подавать документы за 1.5-2 месяца до поездки.
+                                    <b>Литва и Латвия. </b> Резко сократили прием визовых заявлений. Приоритет отдается членам семей граждан ЕС, лицам, следующим с гуманитарными целями (лечение, похороны), а также водителям-международникам. Получить туристическую визу в этих странах практически невозможно.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Тип визы.</span> Сроки рассмотрения национальных виз для работы или учебы 
-                                    не регулируются Шенгенским кодексом и устанавливаются законодательством конкретной страны. Ожидание может длиться 
-                                    от 1 до 6 месяцев.
+                                    <b>Эстония</b> Ввела запрет на въезд граждан Беларуси с туристическими шенгенскими визами, выданными любой страной. Выдача собственных туристических виз также остановлена. Исключения делаются для очень узкого круга лиц.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Полнота пакета документов.</span> Любые неточности или отсутствие 
-                                    необходимых справок могут привести к задержке в рассмотрении вашего дела.
+                                    <b><Link href="/shengenskie-vizy/viza-v-polshu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Польша.</Link></b> Не принимает документы на туристические визы. Основной фокус смещен на выдачу национальных рабочих виз, виз по программе Poland. Business Harbour (хотя и она была модифицирована) и гуманитарных виз.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    <span className={"text-black font-bold"}>Продление срока до 45 дней.</span> В отдельных случаях, 
-                                    когда требуется более тщательная проверка предоставленных данных или консультации между странами-членами 
-                                    Шенгенской зоны, срок рассмотрения может быть продлен до 30 календарных дней, а в исключительных ситуациях — 
-                                    до 45 календарных дней. Это не является негативным знаком, а лишь указывает на необходимость дополнительной проверки.
+                                    <b>Финляндия.</b> Существенно ограничила прием заявлений на туристические визы и ввела ограничения на въезд через свою сухопутную границу для туристов.
                                 </span>
                             </li>
                         </ul>
+                    </div>
+
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <p><b>Какие страны остаются лояльными?</b></p>
+                        <p>Несмотря на ограничения, ряд стран продолжают принимать документы от белорусов на туристические визы. Среди них:</p>
+                        <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
+                            
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-italiyu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Италия</Link>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-ispaniyu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Испания</Link>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-vo-francziyu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Франция</Link>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-grecziyu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Греция</Link>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-vengriyu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Венгрия</Link>
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-germaniyu" className="underline cursor-pointer hover:font-normal font-medium text-blue-500" target="_blank" rel="noopener noreferrer">Германия</Link> (с более строгой проверкой)
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Важно помнить, что отсчет начинается не с дня подачи в визовый центр, 
-                            а с момента доставки документов в консульство, что добавляет 1-3 рабочих дня. 
-                            Наше <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                            target="_blank" rel="noopener noreferrer" onClick={openModal}>визовое агентство VISA VAM</a> помогает выбрать оптимальное время для подачи 
-                            и контролирует все этапы, чтобы минимизировать ваше ожидание.
+                            Ситуация постоянно меняется. Решения могут как ужесточаться, так и смягчаться. Наше <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                            target="_blank" rel="noopener noreferrer" onClick={openModal}>визовое агентство VISA VAM </a> ведет ежедневный мониторинг визовой политики всех консульств и обладает самой актуальной информацией, что позволяет нам направлять клиентов в те представительства, где шансы на получение визы остаются высокими.
                         </p>
                     </div>
                 </div>

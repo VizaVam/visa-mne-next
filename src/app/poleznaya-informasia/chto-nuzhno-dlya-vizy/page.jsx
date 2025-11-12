@@ -1,16 +1,16 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Povv from "./ppvs";
+import Cndv from "./cndv";
 
 export const metadata = {
-    title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-    description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
+    title: "Список документов на шенгенскую визу | Что нужно для получения визы",
+    description: "Полный и подробный перечень документов для шенгенской визы с объяснениями. Требования к паспорту, фото, справкам для работающих, ИП, студентов и пенсионеров.",
     alternates: {
-        canonical: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        canonical: "https://visavampro.by/poleznaya-informasia/chto-nuzhno-dlya-vizy",
     },  
     openGraph: {
-        title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-        description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
-        url: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        title: "Список документов на шенгенскую визу | Что нужно для получения визы",
+        description: "Полный и подробный перечень документов для шенгенской визы с объяснениями. Требования к паспорту, фото, справкам для работающих, ИП, студентов и пенсионеров.",
+        url: "https://visavampro.by/poleznaya-informasia/chto-nuzhno-dlya-vizy",
         type: "website",
         images: [
             {
@@ -45,13 +45,13 @@ export default function Page() {
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
         { name: "Полезная статья", url: "https://visavampro.by/poleznaya-informasia" },
-        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/kuda-poehat-belorusam" }
+        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/chto-nuzhno-dlya-vizy" }
     ];
 
     return (
         <>
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <Povv/>
+            <Cndv/>
         </>
     )
 };

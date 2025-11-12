@@ -110,7 +110,7 @@ const PolInfoTr = () => {
                 <div className="flex justify-center">
                     <Link
                             href={`/poleznaya-informasia`}
-                            className="mt-[10px] sm:w-full mdd:w-full text-[16px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
+                            className="mt-[10px] px-[7%] sm:w-full mdd:w-full text-[16px] text-center lg:w-72 bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
                         >
                             Все статьи
                     </Link>

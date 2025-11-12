@@ -2,15 +2,15 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Povv from "./povv";
 
 export const metadata = {
-    title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-    description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
+    title: "Основные причины отказа в шенгенской визе | Как избежать отказа",
+    description: "Рассмотрим самые частые причины отказа в визе: от проблем с документами до недоверия консула. Советы, как повысить шансы на одобрение.",
     alternates: {
-        canonical: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        canonical: "https://visavampro.by/poleznaya-informasia/prichiny-otkaza-v-vize",
     },  
     openGraph: {
-        title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-        description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
-        url: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        title: "Основные причины отказа в шенгенской визе | Как избежать отказа",
+        description: "Рассмотрим самые частые причины отказа в визе: от проблем с документами до недоверия консула. Советы, как повысить шансы на одобрение.",
+        url: "https://visavampro.by/poleznaya-informasia/prichiny-otkaza-v-vize",
         type: "website",
         images: [
             {
@@ -45,7 +45,7 @@ export default function Page() {
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
         { name: "Полезная статья", url: "https://visavampro.by/poleznaya-informasia" },
-        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/kuda-poehat-belorusam" }
+        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/prichiny-otkaza-v-vize" }
     ];
 
     return (

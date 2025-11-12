@@ -1,16 +1,16 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Povv from "./ppvs";
+import Kbtv from "./kbtv";
 
 export const metadata = {
-    title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-    description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
+    title: "Типы виз: чем отличается виза C от D и другие категории",
+    description: "Полный обзор типов и категорий виз: A, C, D, LTV. Узнайте, какая виза нужна для туризма, транзита, работы или учебы, и в чем их принципиальные различия.",
     alternates: {
-        canonical: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        canonical: "https://visavampro.by/poleznaya-informasia/kakie-byvayut-tipy-viz",
     },  
     openGraph: {
-        title: "Правило первого въезда и основной страны в Шенгене: как это работает",
-        description: "Детальное объяснение правил использования шенгенской визы. Что важнее: страна первого въезда или страна основного пребывания? Как избежать проблем на границе.",
-        url: "https://visavampro.by/poleznaya-informasia/pravilo-pervogo-vezda-shengen",
+        title: "Типы виз: чем отличается виза C от D и другие категории",
+        description: "Полный обзор типов и категорий виз: A, C, D, LTV. Узнайте, какая виза нужна для туризма, транзита, работы или учебы, и в чем их принципиальные различия.",
+        url: "https://visavampro.by/poleznaya-informasia/kakie-byvayut-tipy-viz",
         type: "website",
         images: [
             {
@@ -45,13 +45,13 @@ export default function Page() {
     const breadcrumbs = [
         { name: "Главная", url: "https://visavampro.by/" },
         { name: "Полезная статья", url: "https://visavampro.by/poleznaya-informasia" },
-        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/kuda-poehat-belorusam" }
+        { name: "Куда поехать белорусам в 2025 году", url: "https://visavampro.by/poleznaya-informasia/kakie-byvayut-tipy-viz" }
     ];
 
     return (
         <>
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <Povv/>
+            <Kbtv/>
         </>
     )
 };

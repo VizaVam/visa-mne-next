@@ -26,11 +26,11 @@ const BreadcrumbNav = ({pathname}) => (
             Полезная информация
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default">Правило первого въезда и основной страны в Шенгене</span>
+        <span className="font-semibold text-gray-900 cursor-default">Как работает правило «90 дней из 180»</span>
     </nav>
 );
 
-export default function Povv({breadcrumbs}) {
+export default function Kbtv({breadcrumbs}) {
     const pathname = usePathname();
     const {openModal} = useModal();
 
@@ -158,7 +158,7 @@ export default function Povv({breadcrumbs}) {
                     className="w-full text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
-                        Правило первого въезда и основной страны в Шенгене
+                        Как работает правило «90 дней из 180»
                     </h1>
                 </div>
             </div>
@@ -191,75 +191,94 @@ export default function Povv({breadcrumbs}) {
                     className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Вопрос корректного использования <Link href="/shengenskie-vizy" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">шенгенской визы</Link> — один из самых важных для путешественника, так как его нарушение может привести к аннуляции визы прямо на границе. Давайте разберем два ключевых понятия.
+                            Правило «90/180» — это фундаментальный принцип, регулирующий пребывание по краткосрочной визе C. 
+                            Неправильное его толкование является одной из самых частых причин серьезных визовых нарушений. 
+                            Формулировка «разрешено пребывание до 90 дней в течение любого 180-дневного периода» 
+                            требует детального разбора.
                         </p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <p className="flex gap-2 items-start">
-                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
-                            <b>Правило основной страны пребывания.</b>
-                        </p>
+                        <p><b>Что такое «плавающее окно» в 180 дней?</b></p>
                         <p>
-                            Это главное правило, закрепленное в Визовом кодексе. Оно определяет, в консульство какой страны вы должны подавать заявление.
-                        </p>
-                        <p>
-                            <b>Сценарий А:</b> Поездка в одну страну. Если вы едете только в Германию, вы обязаны запрашивать немецкую визу.
-                        </p>
-                        <p>
-                            <b>Сценарий Б:</b> Поездка в несколько стран. Вы должны определить, в какой из стран проведете больше всего ночей. Если ваш план: 4 ночи в Италии, 5 ночей во Франции и 2 ночи в Испании, то основной страной является Франция. Заявление нужно подавать в консульство Франции.
-                        </p>
-                        <p>
-                            <b>Сценарий В:</b> Равное количество дней в разных странах. Если вы планируете провести по 3 дня в Австрии, Венгрии и Чехии, то визу нужно запрашивать у страны, границу которой вы пересечете первой. Если вы летите в Вену, то подаетесь в консульство Австрии.
+                            Это не фиксированные полгода (например, с 1 января по 30 июня). 
+                            180-дневный период является «скользящим». Это означает, что в любой 
+                            день вашего нахождения в Шенгене (и в день выезда) система 
+                            пограничного контроля смотрит на 180 дней назад от этой даты и 
+                            суммирует все дни, которые вы провели в зоне. Эта сумма не должна 
+                            превышать 90 дней.
                         </p>
                     </div>
+
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <p className="flex gap-2 items-start">
-                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
-                            <b>«Правило первого въезда»</b>
-                        </p>
-                        <p>
-                            Это скорее неформальное понятие, вытекающее из первого. Идеальная ситуация для пограничника — когда вы с визой страны X въезжаете через границу страны X. Это логично и не вызывает вопросов.
-                        </p>
-                        <p>
-                            Что будет, если нарушить правило первого въезда?
-                        </p>
-                        <p>
-                            <b>Пример:</b> у вас французская виза (по ней вы собираетесь провести 10 дней в Париже), но летите вы через Мюнхен (Германия), потому что так дешевле, и в тот же день садитесь на поезд до Парижа. Немецкий пограничник имеет полное право спросить вас: «Почему вы с французской визой въезжаете через Германию?».
-                        </p>
-                        <p>
-                            В этом случае вы должны быть готовы доказать, что ваша основная цель — именно Франция. Для этого необходимо иметь при себе:
-                        </p>
+                        <p><b>Как правильно считать дни:</b></p>
                         <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    Распечатки броней отелей во Франции.
+                                    День въезда и день 
+                                    выезда по <Link href="/shengenskie-vizy" 
+                                    className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer">шенгенской визе</Link> считаются полными днями пребывания, 
+                                    независимо от времени пересечения границы.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    Билет на поезд или самолет из Мюнхена в Париж.
+                                    Для подсчета возьмите дату предполагаемого выезда.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    Любые другие документы, подтверждающие ваш маршрут (билеты на мероприятия, приглашения).
+                                    Отсчитайте от нее 180 дней назад.
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Просуммируйте все дни, отмеченные въездными и выездными штампами в вашем паспорте, которые попадают в этот 180-дневный промежуток.
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Прибавьте к этой сумме дни вашей текущей/планируемой поездки.
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Итоговое число не должно быть больше 90.
                                 </span>
                             </li>
                         </ul>
-                        <p>
-                            Если вы не сможете внятно объяснить свой маршрут и предоставить доказательства, пограничник может счесть, что вы обманули консульство <b>при получении визы</b>. В худшем случае это может привести к аннуляции визы и отказу во въезде. Поэтому, хотя въезжать через другую страну можно, всегда будьте готовы обосновать свой выбор маршрута.
-                        </p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Мы знаем, как важна каждая деталь при оформлении визы — от правильного заполнения анкеты до грамотного оформления 
-                            финансовых документов. <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                            target="_blank" rel="noopener noreferrer" onClick={openModal}>VISA VAM</a> берёт на себя всю бумажную работу, оставляя вам только радость от предстоящей поездки.
+                            <b>Пример:</b>
+                        </p>
+                        <p>У вас годовая мультивиза. Вы были в Шенгене с 1 по 30 марта (30 дней) и с 10 по 29 июня (20 дней). Итого 50 дней. Вы хотите поехать снова 15 сентября.</p>
+                        <p>На дату 15 сентября 180-дневное окно будет с 19 марта по 15 сентября. В этот период попадает часть вашей первой поездки (с 19 по 30 марта = 12 дней) и вся вторая поездка (20 дней). Итого: 12 + 20 = 32 дня использовано.</p>
+                        <p>У вас остается 90 - 32 = 58 дней для пребывания.</p>
+                    </div>
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">   
+                        <p><b>Последствия нарушения.</b></p>
+                        <p>Превышение 90-дневного лимита — серьезное нарушение миграционного законодательства.</p>
+                        <p><b>При выезде: </b>Вас ждет неприятный разговор с пограничником, возможен штраф (сумма зависит от страны и количества дней просрочки).</p>
+                        <p>В паспорт могут поставить штамп о депортации. В базу данных SIS вносится запись о нарушении, что приводит к автоматическому отказу в последующих визах и запрету на въезд в Шенгенскую зону на срок от 6 месяцев до 5 лет.</p>
+                    </div>
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <p>
+                            Для избежания ошибок рекомендуется использовать <Link href="https://ec.europa.eu/assets/home/visa-calculator/calculator.htm?lang=en" 
+                            className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                            target="_blank" 
+                            rel="noopener noreferrer">официальный визовый калькулятор ЕС</Link>. Наше агентство <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                            target="_blank" rel="noopener noreferrer" onClick={openModal}>VISA VAM </a> всегда помогает клиентам с 
+                            мультивизами отслеживать дни пребывания. Каждый клиент для нас — не просто заявка, а личная миссия. 
+                            Мы подходим индивидуально к каждой ситуации, учитывая все нюансы, цели поездки и историю посещений, 
+                            чтобы максимизировать шансы на одобрение визы.
                         </p>
                     </div>
                 </div>

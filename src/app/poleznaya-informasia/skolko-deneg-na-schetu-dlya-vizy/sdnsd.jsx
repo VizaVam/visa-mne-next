@@ -26,11 +26,11 @@ const BreadcrumbNav = ({pathname}) => (
             Полезная информация
         </Link>
         <Image src="/nav-icon.png" alt="" width={8} height={8} className="w-2"/>
-        <span className="font-semibold text-gray-900 cursor-default">Правило первого въезда и основной страны в Шенгене</span>
+        <span className="font-semibold text-gray-900 cursor-default">Финансовые гарантии для шенгенской визы</span>
     </nav>
 );
 
-export default function Povv({breadcrumbs}) {
+export default function Kbtv({breadcrumbs}) {
     const pathname = usePathname();
     const {openModal} = useModal();
 
@@ -158,7 +158,7 @@ export default function Povv({breadcrumbs}) {
                     className="w-full text-left lg:text-left z-10 px-[7%] flex flex-col lg:gap-24 sm:gap-12 mdd:gap-12">
                     <BreadcrumbNav pathname={pathname}/>
                     <h1 className="dm:w-full ht:text-[40px] lg:text-[40px] md:text-[40px] sm:text-[34px] mdd:text-[28px] font-medium text-black">
-                        Правило первого въезда и основной страны в Шенгене
+                        Финансовые гарантии для шенгенской визы
                     </h1>
                 </div>
             </div>
@@ -191,75 +191,140 @@ export default function Povv({breadcrumbs}) {
                     className="w-full relative flex flex-col gap-24 mdd:gap-12 px-[7%] pt-32 mdd:pt-20 text-[16px] mdd:text-[14px]">
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Вопрос корректного использования <Link href="/shengenskie-vizy" 
-                                className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                target="_blank" rel="noopener noreferrer">шенгенской визы</Link> — один из самых важных для путешественника, так как его нарушение может привести к аннуляции визы прямо на границе. Давайте разберем два ключевых понятия.
+                            Подтверждение наличия достаточных финансовых средств является 
+                            обязательным условием для получения шенгенской визы. Консул 
+                            должен быть уверен, что вы сможете покрыть все расходы во время 
+                            поездки и не станете обузой для социальной системы страны.
                         </p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <p className="flex gap-2 items-start">
-                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
-                            <b>Правило основной страны пребывания.</b>
-                        </p>
-                        <p>
-                            Это главное правило, закрепленное в Визовом кодексе. Оно определяет, в консульство какой страны вы должны подавать заявление.
-                        </p>
-                        <p>
-                            <b>Сценарий А:</b> Поездка в одну страну. Если вы едете только в Германию, вы обязаны запрашивать немецкую визу.
-                        </p>
-                        <p>
-                            <b>Сценарий Б:</b> Поездка в несколько стран. Вы должны определить, в какой из стран проведете больше всего ночей. Если ваш план: 4 ночи в Италии, 5 ночей во Франции и 2 ночи в Испании, то основной страной является Франция. Заявление нужно подавать в консульство Франции.
-                        </p>
-                        <p>
-                            <b>Сценарий В:</b> Равное количество дней в разных странах. Если вы планируете провести по 3 дня в Австрии, Венгрии и Чехии, то визу нужно запрашивать у страны, границу которой вы пересечете первой. Если вы летите в Вену, то подаетесь в консульство Австрии.
-                        </p>
+                        <p><b>Как определяется необходимая сумма?</b></p>
+                        <p>Не существует единой для всех суммы. Она рассчитывается индивидуально и зависит от трех основных факторов:</p>
+                        <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Страна назначения. Каждая страна устанавливает свои референтные суммы на день пребывания.
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Продолжительность поездки. Чем дольше поездка, тем больше денег должно быть на счету.
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Тип проживания. Если у вас уже полностью оплачены отели, требуемая сумма на счете может быть меньше.
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
-                        <p className="flex gap-2 items-start">
-                            <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
-                            <b>«Правило первого въезда»</b>
-                        </p>
+                        <p><b>Ориенировочные суммы на день пребывания (могут меняться):</b></p>
+                        <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-germaniyu" 
+                                    className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                    target="_blank" rel="noopener noreferrer">Германия</Link>: ~€45-50/день
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-vo-francziyu" 
+                                    className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                    target="_blank" rel="noopener noreferrer">Франция</Link>: ~€65/день (если отель не оплачен), ~€120/день (если нет брони отеля)
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-italiyu" 
+                                    className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                    target="_blank" rel="noopener noreferrer">Италия</Link>: ~€50/день
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-ispaniyu" 
+                                    className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                    target="_blank" rel="noopener noreferrer">Испания</Link>: ~€108/день (но не менее €972 на всю поездку, даже если она короче)
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <Link href="/shengenskie-vizy/viza-v-chehiyu" 
+                                    className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                                    target="_blank" rel="noopener noreferrer">Чехия</Link>: ~€60/день
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    Швейцария: ~100 CHF (~€105)/день
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Это скорее неформальное понятие, вытекающее из первого. Идеальная ситуация для пограничника — когда вы с визой страны X въезжаете через границу страны X. Это логично и не вызывает вопросов.
+                            <b>Пример расчета:</b>
                         </p>
+                        <p>Вы едете во Францию на 10 дней, отель не оплачен.</p>
+                        <p>10 дней * €65/день = €650.</p>
+                        <p>К этой сумме нужно мысленно прибавить стоимость авиабилетов (например, €300) и проживания (например, €700). Итоговая сумма на счете должна быть не менее €1650, а лучше с запасом — €2000-2500.</p>
+                    </div>
+
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
+                        <p><b>Что важно показать в выписке из банка?</b></p>
+                        <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <b>Не только остаток.</b> Консула интересует не только финальная сумма, но и движение средств за последние 3-6 месяцев. Это показывает стабильность вашего дохода.
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-start">
+                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
+                                <span>
+                                    <b>Избегайте "заброса" денег.</b> Если на пустой счет за день до получения выписки положить крупную сумму, это вызовет подозрения. Консул может подумать, что деньги вам одолжили специально для справки.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Что будет, если нарушить правило первого въезда?
-                        </p>
-                        <p>
-                            <b>Пример:</b> у вас французская виза (по ней вы собираетесь провести 10 дней в Париже), но летите вы через Мюнхен (Германия), потому что так дешевле, и в тот же день садитесь на поезд до Парижа. Немецкий пограничник имеет полное право спросить вас: «Почему вы с французской визой въезжаете через Германию?».
-                        </p>
-                        <p>
-                            В этом случае вы должны быть готовы доказать, что ваша основная цель — именно Франция. Для этого необходимо иметь при себе:
+                            <b>Альтернативные финансовые гарантии.</b>
                         </p>
                         <ul className="ml-6 flex flex-col gap-2 list-disc pl-4">
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    Распечатки броней отелей во Франции.
+                                    Спонсорское письмо. Если вашу поездку оплачивает другой человек (например, супруг или родитель), он предоставляет письмо, свою выписку из банка и справку о доходах.
                                 </span>
                             </li>
                             <li className="flex gap-2 items-start">
                                 <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                                 <span>
-                                    Билет на поезд или самолет из Мюнхена в Париж.
-                                </span>
-                            </li>
-                            <li className="flex gap-2 items-start">
-                                <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
-                                <span>
-                                    Любые другие документы, подтверждающие ваш маршрут (билеты на мероприятия, приглашения).
+                                    Дорожные чеки (Travel Cheques). Устаревший, но все еще принимаемый иногда некоторыми консульствами способ.
                                 </span>
                             </li>
                         </ul>
-                        <p>
-                            Если вы не сможете внятно объяснить свой маршрут и предоставить доказательства, пограничник может счесть, что вы обманули консульство <b>при получении визы</b>. В худшем случае это может привести к аннуляции визы и отказу во въезде. Поэтому, хотя въезжать через другую страну можно, всегда будьте готовы обосновать свой выбор маршрута.
-                        </p>
                     </div>
                     <div className="w-[80%] mdd:w-full flex flex-col gap-4">
                         <p>
-                            Мы знаем, как важна каждая деталь при оформлении визы — от правильного заполнения анкеты до грамотного оформления 
-                            финансовых документов. <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                            target="_blank" rel="noopener noreferrer" onClick={openModal}>VISA VAM</a> берёт на себя всю бумажную работу, оставляя вам только радость от предстоящей поездки.
+                            <b>Правильно подготовленные финансовые документы</b> — это 50% успеха в получении визы.
+                        </p>
+                        <p>
+                            Запутались в требованиях к документам или боитесь допустить ошибку? <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
+                            target="_blank" rel="noopener noreferrer" onClick={openModal}>Визовое агентство VISA VAM</a> поможет избежать типичных и скрытых ошибок, которые часто становятся причиной отказов. Доверьтесь экспертам — и получите визу без лишнего стресса.
                         </p>
                     </div>
                 </div>

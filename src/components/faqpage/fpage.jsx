@@ -193,7 +193,7 @@ export default function FaqPage({breadcrumbs}) {
                 </div>
             </div>
 
-            <div className="relative mt-[200px] md:mt-[320px]">
+            <div className="relative mt-[100px] md:mt-[160px]">
                 {/* Banner Section */}
                 {/* <div className="w-full relative">
                     <Image

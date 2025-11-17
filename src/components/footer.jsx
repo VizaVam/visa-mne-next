@@ -148,7 +148,7 @@ export default function Footer() {
                                     <p>Суббота c 10:00 до 14:00</p>
                                     <p>Воскресенье: выходной</p>
                                 </div>
-                                <div className={"footer__top-right-main-right-lists-socs"}>
+                                <div className={"footer__top-right-main-right-lists-socs !justify-center"}>
                                     <a
                                         href="https://www.instagram.com/visavam.by/profilecard/?igsh=YnRwZGh4Y3Jld2pj"
                                         target="_blank"

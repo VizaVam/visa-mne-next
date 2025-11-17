@@ -13,7 +13,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/1.jpg",
+    image: "/spainbezviz.jpg",
     text: 'Хочешь в Испанию? Испанская виза с <span class="underline">безличной подачей в Минске</span>',
   },
   {

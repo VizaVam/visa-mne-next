@@ -116,7 +116,7 @@
 .footer__top-right-main-right-lists-socs {
   display: flex;
   gap: 2rem;
-  justify-content: end;
+  justify-content: center;
   margin-top: 1rem;
 }
 .footer__top-right-main-right-lists-socs img {

@@ -229,8 +229,7 @@ export default function OnasPage({breadcrumbs}) {
                         <p>
                             Без этого документа въезд во многие страны <Link href="/shengenskie-vizy" 
                                     className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
-                                    target="_blank" rel="noopener noreferrer">Шенгенской зоны</Link>
-                            (Польша, <Link href="/shengenskie-vizy/viza-v-italiyu" 
+                                    target="_blank" rel="noopener noreferrer">Шенгенской зоны</Link> (Польша, <Link href="/shengenskie-vizy/viza-v-italiyu" 
                                     className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
                                     target="_blank" rel="noopener noreferrer">Италия</Link>, <Link href="/shengenskie-vizy/viza-vo-francziyu" 
                                     className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 
@@ -401,8 +400,7 @@ export default function OnasPage({breadcrumbs}) {
                         </p>
                         <p>
                             А для стопроцентной уверенности и экономии своих нервов - обращайтесь 
-                            к экспертам компании <b>"VISA VAM</b>". Мы возьмем на себя всю рутину по 
-                            <b>оформлению визы.</b>
+                            к экспертам компании <b>"VISA VAM</b>". Мы возьмем на себя всю рутину по <b>оформлению визы.</b>
                         </p>
                         <p>
                             👉 <a className="underline cursor-pointer hover:font-normal font-medium text-blue-500" 

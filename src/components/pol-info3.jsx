@@ -13,7 +13,8 @@ const PolInfoTr = () => {
                 Полезная информация
             </h2>
 
-            <Link href="/poleznaya-informasia/kak-polochit-turisticheskyu-visy" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
+            <Link href="/poleznaya-informasia/kak-polochit-turisticheskyu-visy" 
+            className="px-[7%] w-full relative left-0  pb-4">
                 <div style={{
                     boxShadow: '3px 2px 8px 1px #FFEEDB',
                     backdropFilter: 'blur(200px)'
@@ -45,7 +46,8 @@ const PolInfoTr = () => {
                 </div>
             </Link>
             
-            <Link href="/poleznaya-informasia/kak-poluchit-rabochyu-vizy" target="_blank" className="px-[7%] w-full relative left-0  pb-4">
+            <Link href="/poleznaya-informasia/kak-poluchit-rabochyu-vizy" target="_blank" 
+            className="px-[7%] w-full relative left-0  pb-4">
                 <div style={{
                     boxShadow: '3px 2px 8px 1px #FFEEDB',
                     backdropFilter: 'blur(200px)'

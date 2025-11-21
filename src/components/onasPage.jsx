@@ -269,12 +269,12 @@ export default function OnasPage({breadcrumbs}) {
                                 Визы для переезда в Европу на учёбу, работу или заключения брака
                             </span>
                         </li>
-                        <li className="flex gap-2 items-start">
+                        {/* <li className="flex gap-2 items-start">
                             <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                             <span>
                                 Страхование от отказа в визе
                             </span>
-                        </li>
+                        </li> */}
                         <li className="flex gap-2 items-start">
                             <Image src="/check-0.png" alt="" width={16} height={16} className="w-4 h-4" style={{ transform: 'translate(0px, 4px)' }}/>
                             <span>

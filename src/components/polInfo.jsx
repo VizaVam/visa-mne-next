@@ -86,6 +86,40 @@ export default function PolInfo({breadcrumbs}) {
                     </h1>
                 </div>
 
+                <Link href="/poleznaya-informasia/kak-oformit-uchebnyu-visy" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
+                    <div style={{
+                        boxShadow: '3px 2px 8px 1px #FFEEDB',
+                        backdropFilter: 'blur(200px)'
+                    }}
+                        className="flex flex-col md:flex-row md:gap-4 items-center bg-white border border-[#FFEEDB] rounded-lg shadow-md p-0 md:p-4 hover:shadow-lg transition-shadow">
+                        <Image src={"/topic12.webp"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"w-[191px] h-[124px] dm:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <Image src={"/topic12.webp"} alt={"Полезная информация"} width={1000} height={1000}
+                               className={"md:hidden rounded-none md:rounded-tl-none md:rounded-tr-none rounded-tl-lg rounded-tr-lg"}/>
+                        <div className={"dm:p-4"}>
+                            <h3 className="text-base dm:font-medium md:text-xl text-black mb-1">
+                                Как оформить учебную визу: простой гид для тех, кто планирует учиться за границей
+                            </h3>
+                            <p className="dm:text-base text-[#595959] mb-4">
+                                Учиться за границей - штука пугающая и очень притягательная. 
+                                Но первый реальный шаг - оформление учебной визы. В этой статье 
+                                мы разберем: какие есть нюансы, какие подводные камни спрятаны 
+                                в консульских требованиях и как не потерять голову среди справок, 
+                                соответственно как сделать учебную визу.
+                            </p>
+                            <div className="flex justify-between items-center">
+                                <span
+                                    className="dm:text-base text-[#F86F00] font-medium"
+                                >
+                                    Читать полностью
+                                </span>
+                                <span className="text-[#FA9D3E] text-sm md:hidden">01.12.2025</span>
+                            </div>
+                        </div>
+                        <span className="text-[#FA9D3E] text-sm self-start dm:hidden">01.12.2025</span>
+                    </div>
+                </Link>
+
                 <Link href="/poleznaya-informasia/kak-polochit-turisticheskyu-visy" className="px-[7%] w-full relative left-0 top-[80px] lg:top-[80px] mdd:top-[60px] pb-4">
                     <div style={{
                         boxShadow: '3px 2px 8px 1px #FFEEDB',

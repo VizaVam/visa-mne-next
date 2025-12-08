@@ -193,6 +193,9 @@ const FormBlock = () => {
             params.append("source", "заявка с сайта visavampro.by");
             params.append("note", noteText); // Добавляем текстовое примечание
             params.append("u_phone", formattedPhone);
+            if (params.get('utm_source')) {
+                params.append("utm_source", params.get('utm_source'));
+            }
 
             console.log("Отправляемые данные (URLSearchParams):", params.toString());
 

@@ -108,6 +108,10 @@ const CommentForm = () => {
             params.append("source", "заявка с сайта visavampro.by");
             params.append("note", usercomment);
 
+            if (params.get('utm_source')) {
+                params.append("utm_source", params.get('utm_source'));
+            }
+
             console.log("Formatted phone:", formattedPhone);
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
                 method: "POST",

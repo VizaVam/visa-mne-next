@@ -109,8 +109,17 @@ const PhoneForm = () => {
             params.append("u_date_create", creationDate);
             params.append("u_status", "Новый");
             params.append("source", "заявка с сайта visavampro.by");
-            if (params.get('utm_source')) {
-                params.append("utm_source", params.get('utm_source'));
+
+
+            const searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.get('utm_source')) {
+                params.append("utm_source", searchParams.get('utm_source'));
+            }
+            if (searchParams.get('utm_medium')) {
+                params.append("utm_medium", searchParams.get('utm_medium'));
+            }
+            if (searchParams.get('utm_compaign')) {
+                params.append("utm_compaign", searchParams.get('utm_compaign'));
             }
 
             console.log("Formatted phone before send:", formattedPhone);

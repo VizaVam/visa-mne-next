@@ -113,6 +113,12 @@ const Modal = () => {
             if (searchParams.get('utm_compaign')) {
                 params.append("utm_compaign", searchParams.get('utm_compaign'));
             }
+            if (searchParams.get('utm_content')) {
+                params.append("utm_content", searchParams.get('utm_content'));
+            }
+            if (searchParams.get('utm_term')) {
+                params.append("utm_term", searchParams.get('utm_term'));
+            }
 
             console.log("Formatted phone:", formattedPhone);
             const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {

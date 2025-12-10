@@ -204,6 +204,12 @@ const FormBlock = () => {
             if (searchParams.get('utm_compaign')) {
                 params.append("utm_compaign", searchParams.get('utm_compaign'));
             }
+            if (searchParams.get('utm_content')) {
+                params.append("utm_content", searchParams.get('utm_content'));
+            }
+            if (searchParams.get('utm_term')) {
+                params.append("utm_term", searchParams.get('utm_term'));
+            }
 
             console.log(params.toString());
 

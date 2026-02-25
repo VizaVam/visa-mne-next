@@ -11,7 +11,6 @@ export default function Bx24Loader() {
                 `,
             }}
             />
-            <button type="button" id="b24-web-form-popup-btn-507" className="b24-web-form-popup-btn-507" style={{ display: 'none' }}>Получить консультацию</button>
         </>
     );
 }

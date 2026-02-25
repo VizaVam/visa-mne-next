@@ -33,11 +33,11 @@ export default function Header({ onTimerestrictedChange }) {
     const excludedCountries = ["rabochaya-viza-v-ispaniyu", "rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
 
     const handleB24Open = () => {
-        const btn = document.getElementById('b24-web-form-popup-btn-507');
-        if (btn) {
-            btn.click();
+        const bx24btn = document.querySelector('.b24-form-click-btn-507');
+        if (bx24btn) {
+            bx24btn.click();
         } else {
-            console.error("Битрикс-кнопка не найдена в layout.js");
+            console.error("Битрикс-кнопка не найдена в layout");
         }
     };
 

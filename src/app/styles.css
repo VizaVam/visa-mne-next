@@ -142,6 +142,10 @@
   line-height: 1.5rem;
 }
 
+.b24-form-click-btn-wrapper-507 {
+  display: none;
+}
+
 .docs {
   display: flex;
   flex-direction: column;

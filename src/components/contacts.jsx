@@ -1,10 +1,18 @@
 'use client'
 
-import { useModal } from "@/components/modalcontext";
+// import { useModal } from "@/components/modalcontext";
 import { motion } from "framer-motion";
 
 const CallToAction = () => {
-    const { openModal } = useModal();
+    // const { openModal } = useModal();
+    const handleB24Open = () => {
+        const btn = document.getElementById('b24-web-form-popup-btn-507');
+        if (btn) {
+            btn.click();
+        } else {
+            console.error("Битрикс-кнопка не найдена в layout.js");
+        }
+    };
 
     return (
         <div className="pb-40 pt-40 px-[7%] flex flex-col items-center">
@@ -15,7 +23,7 @@ const CallToAction = () => {
                 Напишите нам — проконсультируем <span className="text-[#F86F00]">бесплатно в течение 5 минут!</span>
             </p>
             <button
-                onClick={openModal}
+                onClick={handleB24Open}
                 className="relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
             >
                 {[0, 1, 2].map((i) => (

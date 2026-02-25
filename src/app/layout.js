@@ -122,7 +122,7 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        <button type="button" id="b24-web-form-popup-btn-507" className="b24-web-form-popup-btn-507" style={{ display: 'none' }}>Получить консультацию</button>
+        <button type="button" id="b24-web-form-popup-btn-507" className="b24-form-click-btn-507" style={{ display: 'none' }}>Получить консультацию</button>
         <ModalProvider>
           <CommentModalProvider>
           <ClientRootLayout>{children}</ClientRootLayout>

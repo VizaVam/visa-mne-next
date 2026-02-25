@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { memo } from "react";
 import { motion } from "framer-motion";
-import { useModal } from "@/components/modalcontext";
+// import { useModal } from "@/components/modalcontext";
 
 const RippleButton = memo(({ onClick, children }) => (
     <button
@@ -34,7 +34,15 @@ const RippleButton = memo(({ onClick, children }) => (
 RippleButton.displayName = 'RippleButton';
 
 const VisaSupportSection = () => {
-    const { openModal } = useModal();
+    // const { openModal } = useModal();
+    const handleB24Open = () => {
+        const btn = document.getElementById('b24-web-form-popup-btn-507');
+        if (btn) {
+            btn.click();
+        } else {
+            console.error("Битрикс-кнопка не найдена в layout.js");
+        }
+    };
 
     return (
         <div className="mx-auto w-full">
@@ -144,7 +152,7 @@ const VisaSupportSection = () => {
                             </div>
                             {/* Кнопка консультации, стилизованная как в FormBlock */}
                             <div className="mt-8">
-                                <RippleButton onClick={openModal}>
+                                <RippleButton onClick={handleB24Open}>
                                     Получить консультацию
                                 </RippleButton>
                             </div>

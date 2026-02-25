@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useEffect, useState} from "react";
-import {useModal} from "@/components/modalcontext";
+// import {useModal} from "@/components/modalcontext";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
@@ -14,7 +14,7 @@ import TimeRestrictedBlock from "@/components/TimeRestrictedBlock/TimeRestricted
 
 export default function Header({ onTimerestrictedChange }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {openModal} = useModal();
+    // const {openModal} = useModal();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenn, setIsOpenn] = useState(false);
     const [isFaqMenuOpen, setIsFaqMenuOpen] = useState(false);
@@ -31,6 +31,15 @@ export default function Header({ onTimerestrictedChange }) {
     const discountEndDate = new Date('2025-07-31T23:59:59+05:00');
 
     const excludedCountries = ["rabochaya-viza-v-ispaniyu", "rabochaya-viza-v-germaniyu", "viza-v-velikobritaniyu", "viza-v-ssha", "viza-v-kitaj", "rabochaya-viza-v-bolgariyu", "rabochaya-viza-v-polshu", "delovaya-viza-v-polshu", "uchebnaya-viza-v-polshu", "gostevaya-polskaya-viza", "viza-v-polsy-po-karte-polyaka"];
+
+    const handleB24Open = () => {
+        const btn = document.getElementById('b24-web-form-popup-btn-507');
+        if (btn) {
+            btn.click();
+        } else {
+            console.error("Битрикс-кнопка не найдена в layout.js");
+        }
+    };
 
     useEffect(() => {
         setIsOpen(false);
@@ -308,7 +317,7 @@ export default function Header({ onTimerestrictedChange }) {
                             )}
                         </div>
                         <button
-                            onClick={openModal}
+                            onClick={handleB24Open}
                             className="header__bottom-right-btn relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
                         >
                             {/* Три медленные пульсирующие волны, затем пауза */}

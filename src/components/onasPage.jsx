@@ -24,9 +24,13 @@ const Slider = dynamic(() => import('@/components/slider'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка слайдера...</div>,
 });
 
-const PhoneForm = dynamic(() => import('@/components/newModal'), {
-    ssr: false,
-    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+// const PhoneForm = dynamic(() => import('@/components/newModal'), {
+//     ssr: false,
+//     loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+// });
+
+const Contacts = dynamic(() => import('@/components/contacts'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка контактов...</div>,
 });
 
 const AdvantageItem = memo(({ value, description }) => (
@@ -311,7 +315,7 @@ export default function OnasPage({breadcrumbs}) {
             </div>
 
             <LazySection>
-                <PhoneForm />
+                <Contacts />
             </LazySection>
 
             {/* Countries Section */}

@@ -23,10 +23,10 @@ const Docs = dynamic(() => import('@/components/docs'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка документов...</div>,
 });
 
-const PhoneForm = dynamic(() => import('@/components/newModal'), {
-    ssr: false,
-    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
-});
+// const PhoneForm = dynamic(() => import('@/components/newModal'), {
+//     ssr: false,
+//     loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+// });
 
 const NewStepsCountries = dynamic(() => import('@/components/newStepsCountries'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
@@ -692,7 +692,7 @@ export default function OtherCountryPage({breadcrumbs}) {
                 </div>
 
                 <LazySection>
-                    <PhoneForm/>
+                    <Contacts />
                 </LazySection>
 
                 <LazySection>

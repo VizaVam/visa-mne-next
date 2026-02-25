@@ -35,9 +35,13 @@ const NewSteps = dynamic(() => import('@/components/newSteps'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
 });
 
-const PhoneForm = dynamic(() => import('@/components/newModal'), {
-    ssr: false,
-    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+// const PhoneForm = dynamic(() => import('@/components/newModal'), {
+//     ssr: false,
+//     loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+// });
+
+const Contacts = dynamic(() => import('@/components/contacts'), {
+    loading: () => <div className="px-[7%] py-10 text-center">Загрузка контактов...</div>,
 });
 
 // Объединяем нижние секции — если они такие же, как в HomePage
@@ -194,7 +198,7 @@ export default function VisaPage({breadcrumbs}) {
             <LazySection>
                 <div className="pb-32 mdd:pb-20">
                     <NewSteps />
-                    <PhoneForm />
+                    <Contacts />
                 </div>
             </LazySection>
 

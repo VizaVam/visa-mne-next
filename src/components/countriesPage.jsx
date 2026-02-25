@@ -31,10 +31,10 @@ const DownloadFiles = dynamic(() => import('@/components/downloadFiles'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка файлов...</div>,
 });
 
-const PhoneForm = dynamic(() => import('@/components/newModal'), {
-    ssr: false,
-    loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
-});
+// const PhoneForm = dynamic(() => import('@/components/newModal'), {
+//     ssr: false,
+//     loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
+// });
 
 const NewStepsCountries = dynamic(() => import('@/components/newStepsCountries'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
@@ -1163,7 +1163,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         && selectedCountry.url !== "viza-v-polsy-po-karte-polyaka")  
                     && (
                             <LazySection>
-                                <PhoneForm />
+                                <Contacts />
                             </LazySection>
                     )}
 
@@ -1448,7 +1448,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     </div>
                     {selectedCountry.url === "viza-v-italiyu" && (
                         <LazySection>
-                            <PhoneForm />
+                            <Contacts />
                         </LazySection>
                     )}
 
@@ -1481,7 +1481,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                         <div></div>
                     ) : (
                         <LazySection>
-                            <PhoneForm />
+                            <Contacts />
                         </LazySection>
                     )}
 

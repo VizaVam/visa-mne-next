@@ -29,10 +29,6 @@ const Slider = dynamic(() => import('@/components/slider'), {
 //     loading: () => <div className="px-[7%] py-6 text-center">Загрузка формы...</div>,
 // });
 
-const Contacts = dynamic(() => import('@/components/contacts'), {
-    loading: () => <div className="px-[7%] py-10 text-center">Загрузка контактов...</div>,
-});
-
 const AdvantageItem = memo(({ value, description }) => (
     <li className="flex items-center text-lg mb-[15px]">
         <Image

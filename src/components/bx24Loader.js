@@ -11,6 +11,13 @@ export default function Bx24Loader() {
                 `,
             }}
             />
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                .b24-form-click-btn-wrapper-507 {
+                    display: none !important;
+                }
+                `
+            }} />
         </>
     );
 }

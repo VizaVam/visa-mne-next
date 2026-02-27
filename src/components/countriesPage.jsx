@@ -52,9 +52,9 @@ const CountryCards = dynamic(() => import('@/components/alternativeCountries'), 
     loading: () => <div className="px-[7%] py-6 text-center">Загрузка альтернатив...</div>,
 });
 
-const TakePrice = dynamic(() => import('@/components/TakePrice'), {
-    loading: () => <div className="px-[7%] py-6 text-center">Загрузка цен...</div>,
-});
+// const TakePrice = dynamic(() => import('@/components/TakePrice'), {
+//     loading: () => <div className="px-[7%] py-6 text-center">Загрузка цен...</div>,
+// });
 // --- Конец ленивой загрузки ---
 
 const AdvantageItem = ({ value, description }) => (
@@ -1013,7 +1013,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             {selectedCountry.variants911 && (<div className="flex flex-col gap-6 lg:w-[60%]"><VariantsList variants={selectedCountry.variants911}/></div>)} 
                             
 
-                            {selectedCountry.typevc && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {/* {selectedCountry.typevc && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)} */}
                             {selectedCountry.typevc && (
                                 <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                     {parseText(selectedCountry.typevc)}
@@ -1077,7 +1077,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                             {selectedCountry.variants3?.length > 0 && (
                                 <VariantsList variants={selectedCountry.variants3} parseText={parseText}/>)}
 
-                            {selectedCountry.typevp && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {/* {selectedCountry.typevp && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)} */}
                             {selectedCountry.typevp && (
                                 <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">{parseText(selectedCountry.typevp)}</p>)}
                             {selectedCountry.typevbp?.length > 0 && (
@@ -1087,7 +1087,7 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                     enabled={selectedCountry.enabled || []}
                                 />)}
 
-                            {selectedCountry.typev && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)}
+                            {/* {selectedCountry.typev && (<div className="w-full pt-20 mdd:pt-8"><TakePrice/></div>)} */}
 
                             <div className="flex flex-col gap-6 lg:w-[60%]">
                                 {selectedCountry.typev && (
@@ -1339,11 +1339,11 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                                     </>
                                 )}
 
-                                {!form.includes(selectedCountry.url) && (
+                                {/* {!form.includes(selectedCountry.url) && (
                                     <div className="w-full pt-20 mdd:pt-8">
                                         <TakePrice/>
                                     </div>
-                                )}
+                                )} */}
 
 
                                 <div className="flex flex-col gap-6 lg:w-[60%]">
@@ -1453,11 +1453,11 @@ export default function CountryPage({ breadcrumbs, countryData, countryUrl }) {
                     )}
 
 
-                    {form.includes(selectedCountry.url) && (
+                    {/* {form.includes(selectedCountry.url) && (
                         <div className="w-full px-[7%] pt-20 mdd:pt-8">
                             <TakePrice/>
                         </div>
-                    )}
+                    )} */}
 
                     <div className={"pt-32 mdd:pt-20"}>
                         <LazySection>

@@ -28,9 +28,9 @@ const VizaCoop = dynamic(() => import('@/components/VizaCoop'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка сотрудничества...</div>,
 });
 
-const TakePrice = dynamic(() => import('@/components/TakePrice'), {
-    loading: () => <div className="px-[7%] py-10 text-center">Загрузка цен...</div>,
-});
+// const TakePrice = dynamic(() => import('@/components/TakePrice'), {
+//     loading: () => <div className="px-[7%] py-10 text-center">Загрузка цен...</div>,
+// });
 
 const NewSteps = dynamic(() => import('@/components/newSteps'), {
     loading: () => <div className="px-[7%] py-10 text-center">Загрузка шагов...</div>,
@@ -212,11 +212,11 @@ export default function HomePage() {
                 </div>
             </LazySection>
 
-            <LazySection>
+            {/* <LazySection>
                 <div className="px-[7%] pt-32 mdd:pt-20">
                     <TakePrice />
                 </div>
-            </LazySection>
+            </LazySection> */}
 
             <LazySection>
                 <div className="pb-32 mdd:pb-20">

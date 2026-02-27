@@ -11,7 +11,7 @@ import {useInView} from 'react-intersection-observer';
 import {useModal} from "@/components/modalcontext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Discount from "@/components/discount";
-import TakePrice from "@/components/TakePrice";
+// import TakePrice from "@/components/TakePrice";
 import dynamic from "next/dynamic";
 
 // --- Ленивая загрузка компонентов с fallback ---
@@ -622,11 +622,11 @@ export default function OtherCountryPage({breadcrumbs}) {
                             <TextBlock text={selectedCountry.text6} parseText={parseText}/>
                         </div>
 
-                        {selectedCountry.typevc && (
+                        {/* {selectedCountry.typevc && (
                             <div className="w-full pt-20 mdd:pt-8">
                                 <TakePrice/>
                             </div>
-                        )}
+                        )} */}
                         {selectedCountry.typevc && (
                             <p className="pt-20 mdd:pt-8 text-black text-[18px] md:text-[28px] sm:text-[22px] font-semibold">
                                 {parseText(selectedCountry.typevc)}
